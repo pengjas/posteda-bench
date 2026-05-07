@@ -1,0 +1,11 @@
+{
+    "init_cell_name": "gcd",
+    "init_errors_num": 9,
+    "init_error_types": {
+        "M1.S.2": 6,
+        "M1.S.6": 1,
+        "M4.S.5": 2
+    },
+    "drc_execution_time_seconds": 103.84,
+    "num_iterations": 16
+}

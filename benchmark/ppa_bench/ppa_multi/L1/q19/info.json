@@ -1,0 +1,7 @@
+{
+    "target_power": 0.018,
+    "target_effective_period": 718,
+    "initial_power": 0.0219,
+    "initial_effective_period": 726.97,
+    "num_iterations": 2
+}

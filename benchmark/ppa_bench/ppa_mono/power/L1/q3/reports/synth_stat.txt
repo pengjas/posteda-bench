@@ -1,0 +1,48 @@
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+
+20. Printing statistics.
+
+=== sub_64bit ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+      921        - wires
+     1110        - wire bits
+        4        - public wires
+      193        - public wire bits
+        4        - ports
+      193        - port bits
+      918   99.334 cells
+        9    0.787   AND2x2_ASAP7_75t_R
+        2    0.292   AND2x4_ASAP7_75t_R
+        5    0.437   AO21x1_ASAP7_75t_R
+       13    2.274   AOI211x1_ASAP7_75t_R
+      136   15.863   AOI21x1_ASAP7_75t_R
+        3    0.262   BUFx3_ASAP7_75t_R
+        3     0.35   BUFx4f_ASAP7_75t_R
+        4    0.583   BUFx6f_ASAP7_75t_R
+        1    0.204   FAx1_ASAP7_75t_R
+       63    8.267   HAxp5_ASAP7_75t_R
+      159    6.955   INVx1_ASAP7_75t_R
+        3    0.175   INVx2_ASAP7_75t_R
+       68    5.949   NAND2x1_ASAP7_75t_R
+       63    9.185   NAND2x2_ASAP7_75t_R
+        3    0.481   NAND3x1_ASAP7_75t_R
+       74    6.474   NOR2x1_ASAP7_75t_R
+       90   13.122   NOR2x2_ASAP7_75t_R
+        8    1.283   NOR3x1_ASAP7_75t_R
+        3    0.306   OA21x2_ASAP7_75t_R
+      160   18.662   OAI21x1_ASAP7_75t_R
+        5    0.437   OR2x2_ASAP7_75t_R
+        1    0.087   OR3x1_ASAP7_75t_R
+       19    3.047   XNOR2x2_ASAP7_75t_R
+       11    1.925   XOR2x1_ASAP7_75t_R
+       12    1.925   XOR2x2_ASAP7_75t_R
+
+   Chip area for module '\sub_64bit': 99.333540
+     of which used for sequential elements: 0.000000 (0.00%)
+

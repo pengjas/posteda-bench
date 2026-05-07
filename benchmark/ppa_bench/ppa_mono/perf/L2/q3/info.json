@@ -1,0 +1,16 @@
+{
+    "knob": [
+        "PLACE_DENSITY",
+        "GPL_TIMING_DRIVEN",
+        "GPL_ROUTABILITY_DRIVEN",
+        "TNS_END_PERCENT",
+        "SKIP_GATE_CLONING",
+        "SKIP_PIN_SWAP",
+        "SKIP_LAST_GASP",
+        "SKIP_CTS_REPAIR_TIMING",
+        "ENABLE_DPO"
+    ],
+    "target_effective_period": 200.0,
+    "initial_effective_period": 204.3,
+    "num_iterations": 2
+}

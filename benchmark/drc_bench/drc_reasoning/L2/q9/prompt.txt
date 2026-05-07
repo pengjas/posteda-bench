@@ -1,0 +1,8 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset - Full layout check, ROI-filtered report
+=======================================
+Top Cell: aes_cipher_top
+=======================================
+--- V0.M1.AUX.3  |  cell: aes_cipher_top ---
+[0] {'category': 'V0.M1.AUX.3', 'description': 'V0.M1.AUX.3 : V0 must exactly be the same width as M1 along the direction perpendicular to the M1 length', 'values': ['polygon: (53.739,44.613;53.739,44.631;53.757,44.631;53.757,44.613)'], 'cell_name': 'aes_cipher_top', 'parent': None, 'trans': None}
+=======================================

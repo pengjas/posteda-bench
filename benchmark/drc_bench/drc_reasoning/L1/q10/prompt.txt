@@ -1,0 +1,9 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: adder
+=======================================
+--- LIG.LISD.S.9B  |  cell: TIEHIx1_ASAP7_75t_R ---
+[0] {'category': 'LIG.LISD.S.9B', 'description': 'LIG.LISD.S.9B : Min. horizontal spacing between LIG and GATE (not cut using GCUT) : 17nm', 'values': ['edge-pair: (0.038,0.068;0.038,0.09)/(0.037,0.09;0.037,0.068)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 20.196,29.16'}
+[1] {'category': 'LIG.LISD.S.9B', 'description': 'LIG.LISD.S.9B : Min. horizontal spacing between LIG and GATE (not cut using GCUT) : 17nm', 'values': ['edge-pair: (0.038,0.068;0.038,0.09)/(0.037,0.09;0.037,0.068)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 20.088,36.72'}
+=======================================

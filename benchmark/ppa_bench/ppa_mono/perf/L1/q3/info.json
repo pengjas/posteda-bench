@@ -1,0 +1,7 @@
+{
+    "knob": "SETUP_SLACK_MARGIN",
+    "value": 100,
+    "target_effective_period": 295.0,
+    "initial_effective_period": 296.35,
+    "num_iterations": 1
+}

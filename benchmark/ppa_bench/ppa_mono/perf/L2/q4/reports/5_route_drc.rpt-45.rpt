@@ -1,0 +1,1176 @@
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2080
+	bbox = (13.2850, 64.7520) - (13.3580, 64.7760) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:net2315
+	bbox = (13.3330, 63.6960) - (13.3580, 63.7200) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2079
+	bbox = (13.3330, 65.2800) - (13.3580, 65.3040) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:net2313
+	bbox = (13.3330, 64.2240) - (13.3580, 64.2480) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2080
+	bbox = (13.2850, 64.7520) - (13.3340, 64.7760) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net1882
+	bbox = (13.3330, 79.2480) - (13.3580, 79.2720) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:net1863
+	bbox = (13.3330, 80.3040) - (13.3580, 80.3280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:net1864
+	bbox = (13.2850, 80.8320) - (13.3580, 80.8560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:net1885
+	bbox = (13.3330, 79.7760) - (13.3580, 79.8000) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net1865
+	bbox = (13.3330, 81.3600) - (13.3580, 81.3840) on Layer M4
+violation type: Short
+	srcs: net:VDD net:net1864
+	bbox = (13.2850, 80.8320) - (13.3340, 80.8560) on Layer M4
+violation type: Short
+	srcs: net:VSS net:net1885
+	bbox = (13.3330, 79.7750) - (13.3340, 79.7770) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2318
+	bbox = (13.2850, 63.1680) - (13.3580, 63.1920) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[30\]
+	bbox = (13.3330, 58.7040) - (13.3580, 58.7280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2338
+	bbox = (13.3330, 62.1120) - (13.3580, 62.1360) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2335
+	bbox = (13.3330, 62.6400) - (13.3580, 62.6640) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[31\]
+	bbox = (13.3330, 59.2320) - (13.3580, 59.2560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2325
+	bbox = (13.2850, 60.5280) - (13.3580, 60.5520) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2341
+	bbox = (13.3330, 61.0560) - (13.3580, 61.0800) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:net2320
+	bbox = (13.3330, 61.5840) - (13.3580, 61.6080) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2325
+	bbox = (13.2850, 60.5280) - (13.3340, 60.5520) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2338
+	bbox = (13.3330, 62.1110) - (13.3340, 62.1130) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2318
+	bbox = (13.2850, 63.1680) - (13.3340, 63.1920) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:net1884
+	bbox = (13.3330, 78.7200) - (13.3580, 78.7440) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net1881
+	bbox = (13.2850, 78.1920) - (13.3580, 78.2160) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2072
+	bbox = (13.3330, 75.3120) - (13.3580, 75.3360) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2149
+	bbox = (13.2850, 75.8400) - (13.3580, 75.8640) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2147
+	bbox = (13.3330, 76.8960) - (13.3580, 76.9200) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2148
+	bbox = (13.3330, 76.3680) - (13.3580, 76.3920) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2150
+	bbox = (13.3330, 74.7840) - (13.3580, 74.8080) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2149
+	bbox = (13.2850, 75.8400) - (13.3340, 75.8640) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net1881
+	bbox = (13.2850, 78.1920) - (13.3340, 78.2160) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2150
+	bbox = (13.3330, 74.7830) - (13.3340, 74.7850) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[11\]
+	bbox = (21.7420, 48.6720) - (21.9230, 48.6960) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[12\]
+	bbox = (21.7420, 49.2000) - (21.9230, 49.2240) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[10\]
+	bbox = (21.7420, 48.1440) - (21.9230, 48.1680) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[9\]
+	bbox = (21.7420, 47.6160) - (21.9230, 47.6400) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[8\]
+	bbox = (21.7420, 47.0880) - (21.9230, 47.1120) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[8\] net:VDD
+	bbox = (21.7900, 47.0880) - (21.9230, 47.1120) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[11\] net:VDD
+	bbox = (21.7900, 48.6710) - (21.9230, 48.6730) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[27\]
+	bbox = (21.7420, 57.1200) - (21.9230, 57.1440) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[26\]
+	bbox = (21.7420, 56.5920) - (21.9230, 56.6160) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[25\]
+	bbox = (21.7420, 56.0640) - (21.9230, 56.0880) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[24\]
+	bbox = (21.7420, 55.5360) - (21.9230, 55.5600) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[23\]
+	bbox = (21.7420, 55.0080) - (21.9230, 55.0320) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[24\] net:VDD
+	bbox = (21.7900, 55.5360) - (21.9230, 55.5600) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[27\] net:VDD
+	bbox = (21.7900, 57.1190) - (21.9230, 57.1210) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2318
+	bbox = (21.7420, 63.1680) - (21.9230, 63.1920) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:net2313
+	bbox = (21.7420, 64.2240) - (21.9230, 64.2480) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2080
+	bbox = (21.7420, 64.7520) - (21.9230, 64.7760) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2079
+	bbox = (21.7420, 65.2800) - (21.9230, 65.3040) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:net2315
+	bbox = (21.7420, 63.6960) - (21.9230, 63.7200) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2335
+	bbox = (21.7420, 62.6400) - (21.9230, 62.6640) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2318
+	bbox = (21.7900, 63.1680) - (21.9230, 63.1920) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2080
+	bbox = (21.7900, 64.7520) - (21.9230, 64.7760) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2157
+	bbox = (21.7420, 71.0880) - (21.9230, 71.1120) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2155
+	bbox = (21.7420, 72.1440) - (21.9230, 72.1680) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2153
+	bbox = (21.7420, 73.2000) - (21.9230, 73.2240) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2154
+	bbox = (21.7420, 72.6720) - (21.9230, 72.6960) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2156
+	bbox = (21.7420, 71.6160) - (21.9230, 71.6400) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2156
+	bbox = (21.7900, 71.6160) - (21.9230, 71.6400) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2153
+	bbox = (21.7900, 73.2000) - (21.9230, 73.2240) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[23\]
+	bbox = (30.0370, 55.0080) - (30.0780, 55.0320) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[26\]
+	bbox = (30.0370, 56.5920) - (30.0780, 56.6160) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[25\]
+	bbox = (30.0370, 56.0640) - (30.0780, 56.0880) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[24\]
+	bbox = (30.0370, 55.5360) - (30.0780, 55.5600) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[27\]
+	bbox = (30.0370, 57.1200) - (30.0780, 57.1440) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem3\[24\] net:VDD
+	bbox = (30.0370, 55.5360) - (30.0540, 55.5600) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem3\[27\] net:VDD
+	bbox = (30.0370, 57.1190) - (30.0540, 57.1210) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2157
+	bbox = (30.0370, 71.0880) - (30.0780, 71.1120) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2156
+	bbox = (29.9890, 71.6160) - (30.0780, 71.6400) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2155
+	bbox = (30.1020, 72.1440) - (30.1310, 72.1680) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2153
+	bbox = (30.1020, 73.2000) - (30.1310, 73.2240) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2154
+	bbox = (30.1020, 72.6720) - (30.1310, 72.6960) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2156
+	bbox = (29.9890, 71.6160) - (30.0540, 71.6400) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[5\] net:VDD
+	bbox = (21.7900, 45.5040) - (21.9230, 45.5280) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[0\] net:VSS
+	bbox = (21.7900, 42.8640) - (21.9230, 42.8880) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[3\] net:VSS
+	bbox = (21.7900, 44.4470) - (21.9230, 44.4490) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[4\]
+	bbox = (21.7420, 44.9760) - (21.9230, 45.0000) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[5\]
+	bbox = (21.7420, 45.5040) - (21.9230, 45.5280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[3\]
+	bbox = (21.7420, 44.4480) - (21.9230, 44.4720) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[0\]
+	bbox = (21.7420, 42.8640) - (21.9230, 42.8880) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[2\]
+	bbox = (21.7420, 43.9200) - (21.9230, 43.9440) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[6\]
+	bbox = (21.7420, 46.0320) - (21.8270, 46.0560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[1\]
+	bbox = (21.7420, 43.3920) - (21.9230, 43.4160) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[7\]
+	bbox = (21.7420, 46.5600) - (21.9230, 46.5840) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:clknet_1_0__leaf_clk
+	bbox = (21.7420, 84.2400) - (21.9230, 84.2640) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net1858
+	bbox = (21.7420, 83.7120) - (21.9230, 83.7360) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/_069_
+	bbox = (21.7420, 83.1840) - (21.9230, 83.2080) on Layer M4
+violation type: Short
+	srcs: net:dmem/_069_ net:VDD
+	bbox = (21.7900, 83.1840) - (21.9230, 83.2080) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[28\]
+	bbox = (30.0370, 57.6480) - (30.0780, 57.6720) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[29\]
+	bbox = (29.9890, 58.1760) - (30.0780, 58.2000) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[30\]
+	bbox = (30.1020, 58.7040) - (30.1310, 58.7280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[31\]
+	bbox = (30.1020, 59.2320) - (30.1310, 59.2560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2325
+	bbox = (30.1020, 60.5280) - (30.1310, 60.5520) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:net2320
+	bbox = (30.1020, 61.5840) - (30.1510, 61.6080) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2341
+	bbox = (30.1020, 61.0560) - (30.1310, 61.0800) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem3\[29\] net:VSS
+	bbox = (29.9890, 58.1760) - (30.0540, 58.2000) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[10\]
+	bbox = (13.3330, 48.1440) - (13.3580, 48.1680) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[9\]
+	bbox = (13.3330, 47.6160) - (13.3580, 47.6400) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[12\]
+	bbox = (13.3330, 49.2000) - (13.3580, 49.2240) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[11\]
+	bbox = (13.3330, 48.6720) - (13.3580, 48.6960) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[8\]
+	bbox = (13.2850, 47.0880) - (13.3580, 47.1120) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[8\] net:VDD
+	bbox = (13.2850, 47.0880) - (13.3340, 47.1120) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[11\] net:VDD
+	bbox = (13.3330, 48.6710) - (13.3340, 48.6730) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[26\]
+	bbox = (13.3330, 56.5920) - (13.3580, 56.6160) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[27\]
+	bbox = (13.3330, 57.1200) - (13.3580, 57.1440) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[25\]
+	bbox = (13.3330, 56.0640) - (13.3580, 56.0880) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[24\]
+	bbox = (13.3330, 55.5360) - (13.3580, 55.5600) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[23\]
+	bbox = (13.3330, 55.0080) - (13.3580, 55.0320) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[28\]
+	bbox = (13.3330, 57.6480) - (13.3580, 57.6720) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[29\]
+	bbox = (13.2850, 58.1760) - (13.3580, 58.2000) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[29\] net:VSS
+	bbox = (13.2850, 58.1760) - (13.3340, 58.2000) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[24\] net:VDD
+	bbox = (13.3330, 55.5360) - (13.3340, 55.5600) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[27\] net:VDD
+	bbox = (13.3330, 57.1190) - (13.3340, 57.1210) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2157
+	bbox = (13.3330, 71.0880) - (13.3580, 71.1120) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2152
+	bbox = (13.3330, 73.7280) - (13.3580, 73.7520) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2151
+	bbox = (13.3330, 74.2560) - (13.3580, 74.2800) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2153
+	bbox = (13.3330, 73.2000) - (13.3580, 73.2240) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2154
+	bbox = (13.3330, 72.6720) - (13.3580, 72.6960) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2155
+	bbox = (13.3330, 72.1440) - (13.3580, 72.1680) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2156
+	bbox = (13.2850, 71.6160) - (13.3580, 71.6400) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2156
+	bbox = (13.2850, 71.6160) - (13.3340, 71.6400) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2153
+	bbox = (13.3330, 73.2000) - (13.3340, 73.2240) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net1908
+	bbox = (21.7420, 80.3040) - (21.9230, 80.3280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:net3209
+	bbox = (21.7420, 78.7200) - (21.9230, 78.7440) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net1913
+	bbox = (21.7420, 79.7760) - (21.9230, 79.8000) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:net3182
+	bbox = (21.7420, 79.2480) - (21.9230, 79.2720) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net1926
+	bbox = (21.7420, 80.8320) - (21.9230, 80.8560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net1914
+	bbox = (21.7420, 81.3600) - (21.9230, 81.3840) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:net3210
+	bbox = (21.7420, 81.8880) - (21.9230, 81.9120) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net1913
+	bbox = (21.7900, 79.7750) - (21.9230, 79.7770) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net1926
+	bbox = (21.7900, 80.8320) - (21.9230, 80.8560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[10\]
+	bbox = (30.0370, 48.1440) - (30.0780, 48.1680) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[8\]
+	bbox = (30.1020, 47.0880) - (30.1310, 47.1120) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[9\]
+	bbox = (30.1020, 47.6160) - (30.1310, 47.6400) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[11\]
+	bbox = (30.1020, 48.6720) - (30.1510, 48.6960) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[12\]
+	bbox = (30.1020, 49.2000) - (30.1310, 49.2240) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem3\[11\] net:VDD
+	bbox = (30.1500, 48.6710) - (30.1510, 48.6730) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2318
+	bbox = (30.0370, 63.1680) - (30.0780, 63.1920) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2079
+	bbox = (30.1020, 65.2800) - (30.1310, 65.3040) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2080
+	bbox = (30.1020, 64.7520) - (30.1310, 64.7760) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2335
+	bbox = (30.1020, 62.6400) - (30.1310, 62.6640) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:net2313
+	bbox = (30.1020, 64.2240) - (30.1310, 64.2480) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:net2315
+	bbox = (30.1020, 63.6960) - (30.1310, 63.7200) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2338
+	bbox = (30.1020, 62.1120) - (30.1510, 62.1360) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2338
+	bbox = (30.1500, 62.1110) - (30.1510, 62.1130) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2318
+	bbox = (30.0370, 63.1680) - (30.0540, 63.1920) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:net1869
+	bbox = (30.0370, 79.7760) - (30.0780, 79.8000) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:net1873
+	bbox = (30.0370, 80.8320) - (30.0780, 80.8560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net1868
+	bbox = (30.1020, 79.2480) - (30.1510, 79.2720) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:net1867
+	bbox = (30.1020, 78.7200) - (30.1310, 78.7440) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net1870
+	bbox = (30.1020, 80.3040) - (30.1310, 80.3280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:net1874
+	bbox = (30.1020, 81.3600) - (30.1310, 81.3840) on Layer M4
+violation type: Short
+	srcs: net:VDD net:net1873
+	bbox = (30.0370, 80.8320) - (30.0540, 80.8560) on Layer M4
+violation type: Short
+	srcs: net:VSS net:net1869
+	bbox = (30.0370, 79.7750) - (30.0540, 79.7770) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[5\] net:VDD
+	bbox = (13.3330, 45.5040) - (13.3340, 45.5280) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[0\] net:VSS
+	bbox = (13.3330, 42.8640) - (13.3340, 42.8880) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[3\] net:VSS
+	bbox = (13.3330, 44.4470) - (13.3340, 44.4490) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem0 net:dmem/inter_dmem2\[1\]
+	bbox = (13.3820, 43.3920) - (13.4270, 43.4160) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[6\]
+	bbox = (13.3330, 46.0320) - (13.3580, 46.0560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[5\]
+	bbox = (13.3330, 45.5040) - (13.3580, 45.5280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[0\]
+	bbox = (13.3330, 42.8640) - (13.3580, 42.8880) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[2\]
+	bbox = (13.3330, 43.9200) - (13.3580, 43.9440) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[3\]
+	bbox = (13.3330, 44.4480) - (13.3580, 44.4720) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[4\]
+	bbox = (13.3330, 44.9760) - (13.3580, 45.0000) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[7\]
+	bbox = (13.3330, 46.5600) - (13.3580, 46.5840) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[17\]
+	bbox = (13.3330, 51.8400) - (13.3580, 51.8640) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[16\]
+	bbox = (13.2850, 51.3120) - (13.3580, 51.3360) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[18\]
+	bbox = (13.3330, 52.3680) - (13.3580, 52.3920) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[22\]
+	bbox = (13.3330, 54.4800) - (13.3580, 54.5040) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[20\]
+	bbox = (13.3330, 53.4240) - (13.3580, 53.4480) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[21\]
+	bbox = (13.2850, 53.9520) - (13.3580, 53.9760) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[15\]
+	bbox = (13.3330, 50.7840) - (13.3580, 50.8080) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[19\]
+	bbox = (13.3330, 52.8960) - (13.3580, 52.9200) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[13\]
+	bbox = (13.2850, 49.7280) - (13.3580, 49.7520) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/inter_dmem2\[14\]
+	bbox = (13.3330, 50.2560) - (13.3580, 50.2800) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[21\] net:VDD
+	bbox = (13.2850, 53.9520) - (13.3340, 53.9760) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[13\] net:VSS
+	bbox = (13.2850, 49.7280) - (13.3340, 49.7520) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[16\] net:VSS
+	bbox = (13.2850, 51.3120) - (13.3340, 51.3360) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem2\[19\] net:VSS
+	bbox = (13.3330, 52.8950) - (13.3340, 52.8970) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2074
+	bbox = (13.3330, 67.9200) - (13.3580, 67.9440) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2075
+	bbox = (13.2850, 67.3920) - (13.3580, 67.4160) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2076
+	bbox = (13.3330, 66.8640) - (13.3580, 66.8880) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2077
+	bbox = (13.3330, 66.3360) - (13.3580, 66.3600) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2160
+	bbox = (13.3330, 69.5040) - (13.3580, 69.5280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2159
+	bbox = (13.3330, 70.0320) - (13.3580, 70.0560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2158
+	bbox = (13.3330, 70.5600) - (13.3580, 70.5840) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2161
+	bbox = (13.2850, 68.9760) - (13.3580, 69.0000) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2078
+	bbox = (13.3330, 65.8080) - (13.3580, 65.8320) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net2073
+	bbox = (13.3330, 68.4480) - (13.3580, 68.4720) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2077
+	bbox = (13.3330, 66.3350) - (13.3340, 66.3370) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2075
+	bbox = (13.2850, 67.3920) - (13.3340, 67.4160) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2161
+	bbox = (13.2850, 68.9760) - (13.3340, 69.0000) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2158
+	bbox = (13.3330, 70.5590) - (13.3340, 70.5610) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/net1891
+	bbox = (13.3330, 81.8880) - (13.3580, 81.9120) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/_063_
+	bbox = (13.3330, 83.7120) - (13.3580, 83.7360) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:dmem/_064_
+	bbox = (13.3330, 83.1840) - (13.3580, 83.2080) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem2 net:clknet_1_0__leaf_clk
+	bbox = (13.3330, 84.2400) - (13.3580, 84.2640) on Layer M4
+violation type: Short
+	srcs: net:dmem/_064_ net:VDD
+	bbox = (13.3330, 83.1840) - (13.3340, 83.2080) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[20\]
+	bbox = (21.7420, 53.4240) - (21.9230, 53.4480) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[22\]
+	bbox = (21.7420, 54.4800) - (21.9230, 54.5040) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[21\]
+	bbox = (21.7420, 53.9520) - (21.9230, 53.9760) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[16\]
+	bbox = (21.7420, 51.3120) - (21.9230, 51.3360) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[17\]
+	bbox = (21.7420, 51.8400) - (21.9230, 51.8640) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[18\]
+	bbox = (21.7420, 52.3680) - (21.9230, 52.3920) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[19\]
+	bbox = (21.7420, 52.8960) - (21.9230, 52.9200) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[14\]
+	bbox = (21.7420, 50.2560) - (21.9230, 50.2800) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[13\]
+	bbox = (21.7420, 49.7280) - (21.9230, 49.7520) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[15\]
+	bbox = (21.7420, 50.7840) - (21.9230, 50.8080) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[13\] net:VSS
+	bbox = (21.7900, 49.7280) - (21.9230, 49.7520) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[16\] net:VSS
+	bbox = (21.7900, 51.3120) - (21.9230, 51.3360) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[19\] net:VSS
+	bbox = (21.7900, 52.8950) - (21.9230, 52.8970) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[21\] net:VDD
+	bbox = (21.7900, 53.9520) - (21.9230, 53.9760) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[31\]
+	bbox = (21.7420, 59.2320) - (21.9230, 59.2560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[30\]
+	bbox = (21.7420, 58.7040) - (21.9230, 58.7280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2325
+	bbox = (21.7420, 60.5280) - (21.9230, 60.5520) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:net2320
+	bbox = (21.7420, 61.5840) - (21.9230, 61.6080) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2338
+	bbox = (21.7420, 62.1120) - (21.9230, 62.1360) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2341
+	bbox = (21.7420, 61.0560) - (21.9230, 61.0800) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[28\]
+	bbox = (21.7420, 57.6480) - (21.9230, 57.6720) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem0\[29\]
+	bbox = (21.7420, 58.1760) - (21.9230, 58.2000) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem0\[29\] net:VSS
+	bbox = (21.7900, 58.1760) - (21.9230, 58.2000) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2325
+	bbox = (21.7900, 60.5280) - (21.9230, 60.5520) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2338
+	bbox = (21.7900, 62.1110) - (21.9230, 62.1130) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2076
+	bbox = (21.7420, 66.8640) - (21.9230, 66.8880) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2078
+	bbox = (21.7420, 65.8080) - (21.9230, 65.8320) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2077
+	bbox = (21.7420, 66.3360) - (21.9230, 66.3600) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2159
+	bbox = (21.7420, 70.0320) - (21.9230, 70.0560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2160
+	bbox = (21.7420, 69.5040) - (21.9230, 69.5280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2158
+	bbox = (21.7420, 70.5600) - (21.9230, 70.5840) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2161
+	bbox = (21.7420, 68.9760) - (21.9230, 69.0000) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2073
+	bbox = (21.7420, 68.4480) - (21.9230, 68.4720) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2074
+	bbox = (21.7420, 67.9200) - (21.9230, 67.9440) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2075
+	bbox = (21.7420, 67.3920) - (21.9230, 67.4160) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2075
+	bbox = (21.7900, 67.3920) - (21.9230, 67.4160) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2161
+	bbox = (21.7900, 68.9760) - (21.9230, 69.0000) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2158
+	bbox = (21.7900, 70.5590) - (21.9230, 70.5610) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2077
+	bbox = (21.7900, 66.3350) - (21.9230, 66.3370) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2152
+	bbox = (21.7420, 73.7280) - (21.9230, 73.7520) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2150
+	bbox = (21.7420, 74.7840) - (21.9230, 74.8080) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2151
+	bbox = (21.7420, 74.2560) - (21.9230, 74.2800) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net1861
+	bbox = (21.7420, 78.1920) - (21.9230, 78.2160) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2147
+	bbox = (21.7420, 76.8960) - (21.9230, 76.9200) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2148
+	bbox = (21.7420, 76.3680) - (21.9230, 76.3920) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2072
+	bbox = (21.7420, 75.3120) - (21.9230, 75.3360) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2149
+	bbox = (21.7420, 75.8400) - (21.9230, 75.8640) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2149
+	bbox = (21.7900, 75.8400) - (21.9230, 75.8640) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net1861
+	bbox = (21.7900, 78.1920) - (21.9230, 78.2160) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2150
+	bbox = (21.7900, 74.7830) - (21.9230, 74.7850) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem3\[3\] net:VSS
+	bbox = (30.1500, 44.4470) - (30.1510, 44.4490) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[3\]
+	bbox = (30.1020, 44.4480) - (30.1510, 44.4720) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[7\]
+	bbox = (30.1020, 46.5600) - (30.1310, 46.5840) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[2\]
+	bbox = (30.0370, 43.9200) - (30.0780, 43.9440) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[1\]
+	bbox = (30.0370, 43.3920) - (30.0780, 43.4160) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[0\]
+	bbox = (30.1020, 42.8640) - (30.1310, 42.8880) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[5\]
+	bbox = (30.1020, 45.5040) - (30.1310, 45.5280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[4\]
+	bbox = (30.1020, 44.9760) - (30.1310, 45.0000) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[6\]
+	bbox = (30.1020, 46.0320) - (30.1310, 46.0560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[13\]
+	bbox = (29.9890, 49.7280) - (30.0780, 49.7520) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[20\]
+	bbox = (30.0370, 53.4240) - (30.0780, 53.4480) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[19\]
+	bbox = (30.0370, 52.8960) - (30.0780, 52.9200) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[18\]
+	bbox = (30.0370, 52.3680) - (30.0780, 52.3920) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[15\]
+	bbox = (30.0370, 50.7840) - (30.0780, 50.8080) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[14\]
+	bbox = (30.0370, 50.2560) - (30.0780, 50.2800) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/inter_dmem3\[17\]
+	bbox = (30.0370, 51.8400) - (30.0780, 51.8640) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[22\]
+	bbox = (30.1020, 54.4800) - (30.1310, 54.5040) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[21\]
+	bbox = (30.1020, 53.9520) - (30.1310, 53.9760) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/inter_dmem3\[16\]
+	bbox = (30.1020, 51.3120) - (30.1310, 51.3360) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem3\[13\] net:VSS
+	bbox = (29.9890, 49.7280) - (30.0540, 49.7520) on Layer M4
+violation type: Short
+	srcs: net:dmem/inter_dmem3\[19\] net:VSS
+	bbox = (30.0370, 52.8950) - (30.0540, 52.8970) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem3 net:dmem/net2073
+	bbox = (30.0370, 68.4480) - (30.0780, 68.4720) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2078
+	bbox = (30.1020, 65.8080) - (30.1510, 65.8320) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2159
+	bbox = (30.1020, 70.0320) - (30.1510, 70.0560) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2160
+	bbox = (30.1020, 69.5040) - (30.1310, 69.5280) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2158
+	bbox = (30.1020, 70.5600) - (30.1510, 70.5840) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2161
+	bbox = (30.1020, 68.9760) - (30.1310, 69.0000) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2074
+	bbox = (30.1020, 67.9200) - (30.1310, 67.9440) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2075
+	bbox = (30.1020, 67.3920) - (30.1310, 67.4160) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2076
+	bbox = (30.1020, 66.8640) - (30.1310, 66.8880) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2077
+	bbox = (30.1020, 66.3360) - (30.1510, 66.3600) on Layer M4
+violation type: Short
+	srcs: net:VSS net:dmem/net2158
+	bbox = (30.1500, 70.5590) - (30.1510, 70.5610) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2077
+	bbox = (30.1500, 66.3350) - (30.1510, 66.3370) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2152
+	bbox = (30.1020, 73.7280) - (30.1310, 73.7520) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2149
+	bbox = (30.1020, 75.8400) - (30.1310, 75.8640) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2150
+	bbox = (30.1020, 74.7840) - (30.1510, 74.8080) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2072
+	bbox = (30.1020, 75.3120) - (30.1310, 75.3360) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2151
+	bbox = (30.1020, 74.2560) - (30.1510, 74.2800) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net1866
+	bbox = (30.1020, 78.1920) - (30.1310, 78.2160) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2147
+	bbox = (30.1020, 76.8960) - (30.1310, 76.9200) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net2148
+	bbox = (30.1020, 76.3680) - (30.1310, 76.3920) on Layer M4
+violation type: Short
+	srcs: net:VDD net:dmem/net2150
+	bbox = (30.1500, 74.7830) - (30.1510, 74.7850) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net3984
+	bbox = (30.1020, 81.8880) - (30.1310, 81.9120) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/_062_
+	bbox = (30.1020, 83.1840) - (30.1790, 83.2080) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:dmem/net3984
+	bbox = (30.1020, 83.7120) - (30.1310, 83.7360) on Layer M4
+violation type: Short
+	srcs: inst:dmem/dmem1 net:clknet_1_1__leaf_clk
+	bbox = (30.1020, 84.2400) - (30.1510, 84.2640) on Layer M4
+violation type: Short
+	srcs: net:dmem/_062_ net:VDD
+	bbox = (30.1500, 83.1840) - (30.1790, 83.2080) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:net2315
+	bbox = (13.3330, 63.6480) - (13.3340, 63.6960) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net1882
+	bbox = (13.3330, 79.2720) - (13.3340, 79.2960) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net1865
+	bbox = (13.3330, 81.3120) - (13.3340, 81.3600) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem2\[30\] net:VDD
+	bbox = (13.3330, 58.6560) - (13.3340, 58.7040) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:net2320
+	bbox = (13.3330, 61.6080) - (13.3340, 61.6320) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net2148
+	bbox = (13.3330, 76.3200) - (13.3340, 76.3680) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem0\[10\] net:VSS
+	bbox = (21.7900, 48.1680) - (21.9230, 48.1920) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem0\[26\] net:VSS
+	bbox = (21.7900, 56.6160) - (21.9230, 56.6400) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:net2315
+	bbox = (21.7900, 63.6480) - (21.9230, 63.6960) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2155
+	bbox = (21.7900, 72.0960) - (21.9230, 72.1440) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[26\] net:VSS
+	bbox = (30.0370, 56.6160) - (30.0540, 56.6400) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net2153
+	bbox = (30.1310, 73.2000) - (30.1500, 73.2240) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2155
+	bbox = (30.1310, 72.0960) - (30.1500, 72.1440) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem0\[2\] net:VDD
+	bbox = (21.7900, 43.9440) - (21.9230, 43.9680) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem0\[6\] net:VSS
+	bbox = (21.7900, 45.9840) - (21.8270, 46.0320) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem0\[6\] net:VDD
+	bbox = (21.7740, 46.0050) - (21.7920, 46.0930) on Layer M5
+violation type: Metal Spacing
+	srcs: net:VSS net:clknet_1_0__leaf_clk
+	bbox = (21.7900, 84.2640) - (21.9230, 84.2880) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[30\] net:VDD
+	bbox = (30.1310, 58.6560) - (30.1500, 58.7040) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2325
+	bbox = (30.1310, 60.5280) - (30.1500, 60.5520) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem2\[10\] net:VSS
+	bbox = (13.3330, 48.1680) - (13.3340, 48.1920) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem2\[26\] net:VSS
+	bbox = (13.3330, 56.6160) - (13.3340, 56.6400) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2155
+	bbox = (13.3330, 72.0960) - (13.3340, 72.1440) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2151
+	bbox = (13.3330, 74.2800) - (13.3340, 74.3040) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net1914
+	bbox = (21.7900, 81.3120) - (21.9230, 81.3600) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:net3182
+	bbox = (21.7900, 79.2720) - (21.9230, 79.2960) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[10\] net:VSS
+	bbox = (30.0370, 48.1680) - (30.0540, 48.1920) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[8\] net:VDD
+	bbox = (30.1310, 47.0880) - (30.1500, 47.1120) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:net2315
+	bbox = (30.1310, 63.6480) - (30.1500, 63.6960) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:net2320
+	bbox = (30.1500, 61.6080) - (30.1510, 61.6320) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net2080
+	bbox = (30.1310, 64.7520) - (30.1500, 64.7760) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net1868
+	bbox = (30.1500, 79.2720) - (30.1510, 79.2960) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:net1874
+	bbox = (30.1310, 81.3120) - (30.1500, 81.3600) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem2\[2\] net:VDD
+	bbox = (13.3330, 43.9440) - (13.3340, 43.9680) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem2\[6\] net:VSS
+	bbox = (13.3330, 45.9840) - (13.3340, 46.0320) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem2\[14\] net:VDD
+	bbox = (13.3330, 50.2080) - (13.3340, 50.2560) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem2\[18\] net:VDD
+	bbox = (13.3330, 52.3920) - (13.3340, 52.4160) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem2\[22\] net:VSS
+	bbox = (13.3330, 54.4320) - (13.3340, 54.4800) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net2074
+	bbox = (13.3330, 67.8720) - (13.3340, 67.9200) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net2159
+	bbox = (13.3330, 70.0560) - (13.3340, 70.0800) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2078
+	bbox = (13.3330, 65.8320) - (13.3340, 65.8560) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:clknet_1_0__leaf_clk
+	bbox = (13.3330, 84.2640) - (13.3340, 84.2880) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem0\[22\] net:VSS
+	bbox = (21.7900, 54.4320) - (21.9230, 54.4800) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem0\[14\] net:VDD
+	bbox = (21.7900, 50.2080) - (21.9230, 50.2560) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem0\[18\] net:VDD
+	bbox = (21.7900, 52.3920) - (21.9230, 52.4160) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem0\[30\] net:VDD
+	bbox = (21.7900, 58.6560) - (21.9230, 58.7040) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:net2320
+	bbox = (21.7900, 61.6080) - (21.9230, 61.6320) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2078
+	bbox = (21.7900, 65.8320) - (21.9230, 65.8560) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net2074
+	bbox = (21.7900, 67.8720) - (21.9230, 67.9200) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net2159
+	bbox = (21.7900, 70.0560) - (21.9230, 70.0800) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2151
+	bbox = (21.7900, 74.2800) - (21.9230, 74.3040) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net2148
+	bbox = (21.7900, 76.3200) - (21.9230, 76.3680) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[2\] net:VDD
+	bbox = (30.0370, 43.9440) - (30.0540, 43.9680) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[5\] net:VDD
+	bbox = (30.1310, 45.5040) - (30.1500, 45.5280) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[0\] net:VSS
+	bbox = (30.1310, 42.8640) - (30.1500, 42.8880) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[6\] net:VSS
+	bbox = (30.1310, 45.9840) - (30.1500, 46.0320) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[14\] net:VDD
+	bbox = (30.0370, 50.2080) - (30.0540, 50.2560) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[18\] net:VDD
+	bbox = (30.0370, 52.3920) - (30.0540, 52.4160) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[21\] net:VDD
+	bbox = (30.1310, 53.9520) - (30.1500, 53.9760) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[16\] net:VSS
+	bbox = (30.1310, 51.3120) - (30.1500, 51.3360) on Layer M4
+violation type: Metal Spacing
+	srcs: net:dmem/inter_dmem3\[22\] net:VSS
+	bbox = (30.1310, 54.4320) - (30.1500, 54.4800) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2078
+	bbox = (30.1500, 65.8320) - (30.1510, 65.8560) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2075
+	bbox = (30.1310, 67.3920) - (30.1500, 67.4160) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2161
+	bbox = (30.1310, 68.9760) - (30.1500, 69.0000) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net2074
+	bbox = (30.1310, 67.8720) - (30.1500, 67.9200) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net2159
+	bbox = (30.1500, 70.0560) - (30.1510, 70.0800) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VDD net:dmem/net2148
+	bbox = (30.1310, 76.3200) - (30.1500, 76.3680) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2151
+	bbox = (30.1500, 74.2800) - (30.1510, 74.3040) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net2149
+	bbox = (30.1310, 75.8400) - (30.1500, 75.8640) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:dmem/net1866
+	bbox = (30.1310, 78.1920) - (30.1500, 78.2160) on Layer M4
+violation type: Metal Spacing
+	srcs: net:VSS net:clknet_1_1__leaf_clk
+	bbox = (30.1500, 84.2640) - (30.1510, 84.2880) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VSS net:net1885
+	bbox = (13.3330, 79.7760) - (13.3340, 79.7760) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VSS net:dmem/net2338
+	bbox = (13.3330, 62.1120) - (13.3340, 62.1120) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VDD net:dmem/net2150
+	bbox = (13.3330, 74.7840) - (13.3340, 74.7840) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:dmem/inter_dmem3\[27\] net:VDD
+	bbox = (30.0370, 57.1200) - (30.0540, 57.1200) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:dmem/inter_dmem2\[11\] net:VDD
+	bbox = (13.3330, 48.6720) - (13.3340, 48.6720) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:dmem/inter_dmem2\[27\] net:VDD
+	bbox = (13.3330, 57.1200) - (13.3340, 57.1200) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:dmem/inter_dmem3\[11\] net:VDD
+	bbox = (30.1500, 48.6720) - (30.1510, 48.6720) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VSS net:dmem/net2338
+	bbox = (30.1500, 62.1120) - (30.1510, 62.1120) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VDD net:dmem/net2318
+	bbox = (30.0370, 63.1680) - (30.0540, 63.1680) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VSS net:net1869
+	bbox = (30.0370, 79.7760) - (30.0540, 79.7760) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VDD net:net1873
+	bbox = (30.0370, 80.8320) - (30.0540, 80.8320) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:dmem/inter_dmem2\[5\] net:VDD
+	bbox = (13.3330, 45.5040) - (13.3340, 45.5040) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:dmem/inter_dmem2\[3\] net:VSS
+	bbox = (13.3330, 44.4480) - (13.3340, 44.4480) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:dmem/inter_dmem2\[19\] net:VSS
+	bbox = (13.3330, 52.8960) - (13.3340, 52.8960) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VDD net:dmem/net2077
+	bbox = (13.3330, 66.3360) - (13.3340, 66.3360) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VSS net:dmem/net2158
+	bbox = (13.3330, 70.5600) - (13.3340, 70.5600) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:dmem/inter_dmem3\[3\] net:VSS
+	bbox = (30.1500, 44.4480) - (30.1510, 44.4480) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:dmem/inter_dmem3\[5\] net:VDD
+	bbox = (30.1310, 45.5040) - (30.1500, 45.5040) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:dmem/inter_dmem3\[19\] net:VSS
+	bbox = (30.0370, 52.8960) - (30.0540, 52.8960) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:dmem/inter_dmem3\[21\] net:VDD
+	bbox = (30.1310, 53.9520) - (30.1500, 53.9520) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VDD net:dmem/net2077
+	bbox = (30.1500, 66.3360) - (30.1510, 66.3360) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VSS net:dmem/net2075
+	bbox = (30.1310, 67.3920) - (30.1500, 67.3920) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VSS net:dmem/net2158
+	bbox = (30.1500, 70.5600) - (30.1510, 70.5600) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VDD net:dmem/net2150
+	bbox = (30.1500, 74.7840) - (30.1510, 74.7840) on Layer M4
+violation type: Lef58EolKeepOut
+	srcs: net:VSS net:dmem/net2149
+	bbox = (30.1310, 75.8400) - (30.1500, 75.8400) on Layer M4

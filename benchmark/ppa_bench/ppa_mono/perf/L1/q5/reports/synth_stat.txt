@@ -1,0 +1,73 @@
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_SLVT_FF_nldm_220122.lib.gz', decompressing using zlib.
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+
+20. Printing statistics.
+
+=== ethmac ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+    57067        - wires
+    57246        - wire bits
+      307        - public wires
+      486        - public wire bits
+       37        - ports
+      216        - port bits
+    56986 7.36E+03 cells
+      706   61.761   AND2x2_ASAP7_75t_SL
+        1    0.146   AND2x4_ASAP7_75t_SL
+      511   44.702   AND3x1_ASAP7_75t_SL
+       54    5.511   AND4x1_ASAP7_75t_SL
+        1    0.117   AND4x2_ASAP7_75t_SL
+       58    6.765   AND5x1_ASAP7_75t_SL
+    11315  989.836   AO21x1_ASAP7_75t_SL
+      111   16.184   AO221x1_ASAP7_75t_SL
+      146   19.158   AO22x1_ASAP7_75t_SL
+        1    0.233   AO31x2_ASAP7_75t_SL
+      109   12.714   AO32x1_ASAP7_75t_SL
+      166   29.043   AOI211x1_ASAP7_75t_SL
+     1373  160.147   AOI21x1_ASAP7_75t_SL
+       38    7.757   AOI221x1_ASAP7_75t_SL
+       65    9.477   AOI22x1_ASAP7_75t_SL
+        2    0.525   BUFx12f_ASAP7_75t_SL
+     4645  338.621   BUFx2_ASAP7_75t_SL
+       53    4.636   BUFx3_ASAP7_75t_SL
+       12    1.225   BUFx4_ASAP7_75t_SL
+        1    0.117   BUFx4f_ASAP7_75t_SL
+        1    0.117   BUFx5_ASAP7_75t_SL
+     1241  470.438   DFFASRHQNx1_ASAP7_75t_SL
+     9305 2.71E+03   DFFHQNx1_ASAP7_75t_SL
+      164    21.52   HAxp5_ASAP7_75t_SL
+     2655   116.13   INVx1_ASAP7_75t_SL
+        6     0.35   INVx2_ASAP7_75t_SL
+        1    0.102   INVx5_ASAP7_75t_SL
+     9476   828.96   NAND2x1_ASAP7_75t_SL
+        4    0.583   NAND2x2_ASAP7_75t_SL
+       27     4.33   NAND3x1_ASAP7_75t_SL
+     3659  320.089   NOR2x1_ASAP7_75t_SL
+        4    0.583   NOR2x2_ASAP7_75t_SL
+       19    3.047   NOR3x1_ASAP7_75t_SL
+       10    2.916   NOR3x2_ASAP7_75t_SL
+      132   15.396   OA211x2_ASAP7_75t_SL
+     8362  853.426   OA21x2_ASAP7_75t_SL
+        1    0.233   OA221x2_ASAP7_75t_SL
+       63    9.185   OA22x2_ASAP7_75t_SL
+        3    0.656   OA31x2_ASAP7_75t_SL
+     1377  160.613   OAI21x1_ASAP7_75t_SL
+      255   37.179   OAI22x1_ASAP7_75t_SL
+       96    8.398   OR2x2_ASAP7_75t_SL
+      361    31.58   OR3x1_ASAP7_75t_SL
+       70    7.144   OR4x1_ASAP7_75t_SL
+       51    5.949   OR5x1_ASAP7_75t_SL
+        1    0.044   TIEHIx1_ASAP7_75t_SL
+        1    0.044   TIELOx1_ASAP7_75t_SL
+        1    0.175   XNOR2x1_ASAP7_75t_SL
+      209   33.519   XNOR2x2_ASAP7_75t_SL
+       63   10.104   XOR2x2_ASAP7_75t_SL
+
+   Chip area for module '\ethmac': 7364.824560
+     of which used for sequential elements: 3183.776280 (43.23%)
+

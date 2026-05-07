@@ -1,0 +1,8 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: top_cell
+=======================================
+--- WELL.S.1  |  cell: top_cell ---
+[0] {'category': 'WELL.S.1', 'description': 'WELL.S.1 : Min. vertical spacing between WELL : 108nm', 'values': ['edge-pair: (0,0.054;0.108,0.054)|(0.108,0.074;0,0.074)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+=======================================

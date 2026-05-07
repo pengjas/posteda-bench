@@ -1,6 +1,0 @@
-create_clock -name core_clock -period 170 [get_ports clk]
-# set_max_transition 40 [current_design]
-# set_max_fanout 8 [current_design]
-# set_max_fanout 4 [current_design]
-set_false_path -to [all_outputs]
-set_false_path -from [all_inputs -no_clocks]

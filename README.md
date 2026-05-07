@@ -14,8 +14,8 @@ posteda_bench/
 │   ├── drc/{react,tot,reflexion,proposer_critic,tools}/
 │   └── ppa/{react,tot,reflexion,proposer_critic,orfs_agent,tools}/
 ├── benchmark/
-│   ├── drc_bench/           # 30 DRC tasks (drc_essential ∪ drc_reasoning, L1–L3, q1–q5)
-│   └── ppa_bench/           # 20 PPA tasks (ppa_mono/{area,power,perf}, ppa_multi)
+│   ├── drc_bench/           # 70 DRC tasks (drc_essential ∪ drc_reasoning, L1–L3)
+│   └── ppa_bench/           # 75 PPA tasks (ppa_mono/{area,power,perf}, ppa_multi)
 └── eval/
     ├── eval_drc_sr.sh       # DRC eval: success rate + error reduction
     ├── eval_ppa_sr.sh       # PPA eval: success rate + violation reduction
@@ -92,7 +92,8 @@ containing this README) or to standard environment variables.
 ## 3. Benchmark layout
 
 ### DRC benchmark (`benchmark/drc_bench/`)
-Two splits × three difficulty levels × five tasks each = **30 tasks**:
+Two splits × three difficulty levels = **70 tasks**
+(`drc_essential`: L1×20, L2×10, L3×10; `drc_reasoning`: L1×13, L2×10, L3×7):
 
 | split | description |
 |---|---|
@@ -110,7 +111,8 @@ Per-task files (e.g. `drc_bench/drc_essential/L1/q1/`):
   the task (provided for transparency; not invoked at eval time)
 
 ### PPA benchmark (`benchmark/ppa_bench/`)
-Two regimes × difficulty levels × tasks = **20 tasks**:
+Two regimes × difficulty levels = **75 tasks**
+(`ppa_mono/{area,power}`: 10 each; `ppa_mono/perf`: 15; `ppa_multi`: 40):
 
 | regime | objectives |
 |---|---|

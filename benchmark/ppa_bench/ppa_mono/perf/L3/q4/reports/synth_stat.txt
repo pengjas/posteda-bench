@@ -1,0 +1,79 @@
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_SLVT_FF_nldm_220122.lib.gz', decompressing using zlib.
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+
+20. Printing statistics.
+
+=== ibex_core ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+    19255        - wires
+    19489        - wire bits
+       92        - public wires
+      326        - public wire bits
+       30        - ports
+      264        - port bits
+    18766 2.32E+03 cells
+      903   78.994   AND2x2_ASAP7_75t_SL
+        1    0.146   AND2x4_ASAP7_75t_SL
+      462   40.416   AND3x1_ASAP7_75t_SL
+        1    0.102   AND3x2_ASAP7_75t_SL
+      141    14.39   AND4x1_ASAP7_75t_SL
+        2    0.233   AND4x2_ASAP7_75t_SL
+       39    4.549   AND5x1_ASAP7_75t_SL
+       28    6.532   AO211x2_ASAP7_75t_SL
+     2192  191.756   AO21x1_ASAP7_75t_SL
+      206   30.035   AO221x1_ASAP7_75t_SL
+        1     0.16   AO221x2_ASAP7_75t_SL
+       52    9.098   AO222x2_ASAP7_75t_SL
+      171   22.439   AO22x1_ASAP7_75t_SL
+       30    4.374   AO22x2_ASAP7_75t_SL
+       46   10.731   AO31x2_ASAP7_75t_SL
+      133   15.513   AO32x1_ASAP7_75t_SL
+        5    0.729   AO33x2_ASAP7_75t_SL
+       68   11.897   AOI211x1_ASAP7_75t_SL
+      284   33.126   AOI21x1_ASAP7_75t_SL
+       48    9.798   AOI221x1_ASAP7_75t_SL
+       74   10.789   AOI22x1_ASAP7_75t_SL
+     1686  122.909   BUFx2_ASAP7_75t_SL
+       30    2.624   BUFx3_ASAP7_75t_SL
+        2    0.233   BUFx5_ASAP7_75t_SL
+       10    1.458   BUFx6f_ASAP7_75t_SL
+     1664  630.789   DFFASRHQNx1_ASAP7_75t_SL
+      273   79.607   DFFHQNx1_ASAP7_75t_SL
+        1    0.219   DLLx1_ASAP7_75t_SL
+      342   69.809   FAx1_ASAP7_75t_SL
+      223   29.262   HAxp5_ASAP7_75t_SL
+     1703   74.489   INVx1_ASAP7_75t_SL
+        5    0.292   INVx2_ASAP7_75t_SL
+     1937  169.449   NAND2x1_ASAP7_75t_SL
+        1    0.146   NAND2x2_ASAP7_75t_SL
+       24    3.849   NAND3x1_ASAP7_75t_SL
+     1098   96.053   NOR2x1_ASAP7_75t_SL
+        1    0.146   NOR2x2_ASAP7_75t_SL
+       34    5.453   NOR3x1_ASAP7_75t_SL
+     1367  159.447   OA211x2_ASAP7_75t_SL
+     1061  108.286   OA21x2_ASAP7_75t_SL
+        2    0.467   OA221x2_ASAP7_75t_SL
+       60   10.498   OA222x2_ASAP7_75t_SL
+      112    16.33   OA22x2_ASAP7_75t_SL
+       28    6.124   OA31x2_ASAP7_75t_SL
+        7    1.021   OA33x2_ASAP7_75t_SL
+      316   36.858   OAI21x1_ASAP7_75t_SL
+      249   36.304   OAI22x1_ASAP7_75t_SL
+      305   26.681   OR2x2_ASAP7_75t_SL
+      926   81.006   OR3x1_ASAP7_75t_SL
+        1    0.102   OR3x2_ASAP7_75t_SL
+      183   18.677   OR4x1_ASAP7_75t_SL
+       89   10.381   OR5x1_ASAP7_75t_SL
+        1    0.044   TIEHIx1_ASAP7_75t_SL
+        1    0.044   TIELOx1_ASAP7_75t_SL
+      106       17   XNOR2x2_ASAP7_75t_SL
+       31    4.972   XOR2x2_ASAP7_75t_SL
+
+   Chip area for module '\ibex_core': 2316.834900
+     of which used for sequential elements: 710.395920 (30.66%)
+

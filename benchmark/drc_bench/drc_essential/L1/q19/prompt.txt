@@ -1,0 +1,12 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: top_cell
+=======================================
+--- PSELECT.GATE.EX.1-2  |  cell: top_cell ---
+[0] {'category': 'PSELECT.GATE.EX.1-2', 'description': 'PSELECT.GATE.EX.1-2 : Min. horizontal extension of PSELECT past GATE : 7nm', 'values': ['polygon: (0.014,-0.241;0.014,-0.212;0.018,-0.212;0.018,-0.241)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+[1] {'category': 'PSELECT.GATE.EX.1-2', 'description': 'PSELECT.GATE.EX.1-2 : Min. horizontal extension of PSELECT past GATE : 7nm', 'values': ['polygon: (0.038,-0.241;0.038,-0.212;0.043,-0.212;0.043,-0.241)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+=======================================
+--- PSELECT.W.1  |  cell: top_cell ---
+[0] {'category': 'PSELECT.W.1', 'description': 'PSELECT.W.1 : Min. horizontal width of PSELECT : 108nm', 'values': ['edge-pair: (0.014,-0.309;0.014,-0.212)|(0.043,-0.212;0.043,-0.309)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+=======================================

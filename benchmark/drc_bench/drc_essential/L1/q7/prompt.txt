@@ -1,0 +1,9 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: top_cell
+=======================================
+--- M7.W.5  |  cell: top_cell ---
+[0] {'category': 'M7.W.5', 'description': 'M7.W.5 : Min. vertical width of M7 : 44nm', 'values': ['edge: (0,-0.006;0.355,-0.006)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+[1] {'category': 'M7.W.5', 'description': 'M7.W.5 : Min. vertical width of M7 : 44nm', 'values': ['edge: (0.355,-0.035;0,-0.035)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+=======================================

@@ -1,0 +1,29 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: adder
+=======================================
+--- M1.W.1  |  cell: DECAPx10_ASAP7_75t_R ---
+[0] {'category': 'M1.W.1', 'description': 'M1.W.1 : Min. width of M1 : 18nm', 'values': ['edge-pair: (0.612,0.215;0.04,0.215)|(0.04,0.225;0.627,0.225)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.602,16.2'}
+[1] {'category': 'M1.W.1', 'description': 'M1.W.1 : Min. width of M1 : 18nm', 'values': ['edge-pair: (0.612,0.215;0.04,0.215)|(0.04,0.225;0.627,0.225)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 35.37,19.98'}
+=======================================
+--- M2.W.1  |  cell: adder ---
+[0] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (7.78325,16.348;7.772,16.348)|(7.76075,16.362;7.772,16.362)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[1] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (12.06625,16.344;12.055,16.344)|(12.04375,16.358;12.055,16.358)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[2] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (12.055,16.348;7.772,16.348)|(7.772,16.358;12.055,16.358)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[3] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (7.772,16.344;7.76075,16.344)|(7.772,16.358;7.78325,16.358)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[4] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (12.055,16.348;12.04375,16.348)|(12.055,16.362;12.06625,16.362)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================
+--- V0.AUX.1-2  |  cell: DECAPx10_ASAP7_75t_R ---
+[0] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.585,0.207;0.585,0.215;0.603,0.215;0.603,0.207)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.602,16.2'}
+[1] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.369,0.207;0.369,0.215;0.387,0.215;0.387,0.207)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.602,16.2'}
+[2] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.477,0.207;0.477,0.215;0.495,0.215;0.495,0.207)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.602,16.2'}
+[3] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.261,0.207;0.261,0.215;0.279,0.215;0.279,0.207)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.602,16.2'}
+[4] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.153,0.207;0.153,0.215;0.171,0.215;0.171,0.207)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.602,16.2'}
+[5] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.045,0.207;0.045,0.215;0.063,0.215;0.063,0.207)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.602,16.2'}
+[6] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.585,0.207;0.585,0.215;0.603,0.215;0.603,0.207)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 35.37,19.98'}
+[7] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.369,0.207;0.369,0.215;0.387,0.215;0.387,0.207)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 35.37,19.98'}
+[8] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.477,0.207;0.477,0.215;0.495,0.215;0.495,0.207)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 35.37,19.98'}
+[9] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.261,0.207;0.261,0.215;0.279,0.215;0.279,0.207)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 35.37,19.98'}
+... Only first 10 errors shown; 2 more not displayed.
+=======================================

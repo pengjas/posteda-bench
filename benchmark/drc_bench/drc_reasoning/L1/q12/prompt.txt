@@ -1,0 +1,11 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset - Full layout check, ROI-filtered report
+=======================================
+Top Cell: aes_cipher_top
+=======================================
+--- M1.S.2  |  cell: aes_cipher_top ---
+[0] {'category': 'M1.S.2', 'description': "M1.S.2 : Min. spacing between two M1' edges, when one edge is > 36 nm : 25nm", 'values': ['polygon: (39.222,54.70075;39.222,54.704;39.21925,54.704;39.2285,54.71025;39.24,54.72125;39.24,54.718;39.24275,54.718;39.2335,54.71175)'], 'cell_name': 'aes_cipher_top', 'parent': None, 'trans': None}
+=======================================
+--- V1.S.4  |  cell: aes_cipher_top ---
+[0] {'category': 'V1.S.4', 'description': 'V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm', 'values': ['edge-pair: (39.222,54.702;39.222,54.7)/(39.24,54.72;39.24,54.722)'], 'cell_name': 'aes_cipher_top', 'parent': None, 'trans': None}
+=======================================

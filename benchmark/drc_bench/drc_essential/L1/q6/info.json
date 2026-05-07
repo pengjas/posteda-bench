@@ -1,0 +1,10 @@
+{
+    "error_type": "WELL.W.2",
+    "init_errors_num": 1,
+    "init_cell_name": "top_cell",
+    "init_error_types": {
+        "WELL.W.2": 1
+    },
+    "drc_execution_time_seconds": 10.07,
+    "num_iterations": 8
+}

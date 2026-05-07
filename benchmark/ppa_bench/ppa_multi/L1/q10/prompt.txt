@@ -1,0 +1,9 @@
+The design has completed the OpenROAD flow, but effective period and area are not met.
+
+Current effective_period: 304.89 ps
+Target effective_period: <= 243 ps
+
+Current area: 250.53 um^2
+Target area: <= 106 um^2
+
+Analyze any available files and optimize the design configuration or timing constraints in `config/.mk` and `config/.sdc` or Verilog source code in `src/` to meet the targets. You may reference `FlowVariables.md` for available tuning options.

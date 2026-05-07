@@ -1,0 +1,8 @@
+{
+	"floorplan__design__io": 193,
+	"design__io__hpwl": 926549,
+	"flow__warnings__count": 10,
+	"flow__errors__count": 0,
+	"flow__warnings__count:STA-1212": 1001,
+	"flow__warnings__type_count": 1
+}

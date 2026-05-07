@@ -1,0 +1,10 @@
+{
+    "init_cell_name": "adder",
+    "init_errors_num": 2,
+    "steps_by_human": 1,
+    "init_error_types": {
+        "GATE.ACTIVE.EX.2": 2
+    },
+    "drc_execution_time_seconds": 648.7,
+    "num_iterations": 8
+}

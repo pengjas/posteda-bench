@@ -1,0 +1,59 @@
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+
+20. Printing statistics.
+
+=== adder_pipe_64bit ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1389        - wires
+     1579        - wire bits
+      302        - public wires
+      492        - public wire bits
+        7        - ports
+      197        - port bits
+     1380  224.167 cells
+       21    1.837   AND2x2_ASAP7_75t_R
+        1    0.146   AND2x4_ASAP7_75t_R
+        1    0.087   AND3x1_ASAP7_75t_R
+       32    2.799   AO21x1_ASAP7_75t_R
+        5    0.656   AO22x1_ASAP7_75t_R
+        7    1.225   AOI211x1_ASAP7_75t_R
+       85    9.914   AOI21x1_ASAP7_75t_R
+        3    0.437   AOI22x1_ASAP7_75t_R
+       11    0.802   BUFx2_ASAP7_75t_R
+        1    0.087   BUFx3_ASAP7_75t_R
+        2    0.233   BUFx4f_ASAP7_75t_R
+        5    0.729   BUFx6f_ASAP7_75t_R
+      360  136.469   DFFASRHQNx1_ASAP7_75t_R
+        7    1.429   FAx1_ASAP7_75t_R
+       61    8.004   HAxp5_ASAP7_75t_R
+      425   18.589   INVx1_ASAP7_75t_R
+        4    0.233   INVx2_ASAP7_75t_R
+       55    4.811   NAND2x1_ASAP7_75t_R
+       19     2.77   NAND2x2_ASAP7_75t_R
+        5    0.802   NAND3x1_ASAP7_75t_R
+       57    4.986   NOR2x1_ASAP7_75t_R
+       40    5.832   NOR2x2_ASAP7_75t_R
+        2    0.321   NOR3x1_ASAP7_75t_R
+        3     0.35   OA211x2_ASAP7_75t_R
+       10    1.021   OA21x2_ASAP7_75t_R
+        1    0.146   OA22x2_ASAP7_75t_R
+        1    0.219   OA31x2_ASAP7_75t_R
+      108   12.597   OAI21x1_ASAP7_75t_R
+        5    0.729   OAI22x1_ASAP7_75t_R
+        7    0.612   OR2x2_ASAP7_75t_R
+        9    0.787   OR3x1_ASAP7_75t_R
+        1    0.102   OR4x1_ASAP7_75t_R
+        1    0.044   TIEHIx1_ASAP7_75t_R
+       23    4.024   XNOR2x1_ASAP7_75t_R
+        1     0.16   XNOR2x2_ASAP7_75t_R
+        1    0.175   XOR2x1_ASAP7_75t_R
+
+   Chip area for module '\adder_pipe_64bit': 224.167500
+     of which used for sequential elements: 136.468800 (60.88%)
+

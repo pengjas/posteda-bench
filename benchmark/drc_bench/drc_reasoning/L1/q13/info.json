@@ -1,0 +1,10 @@
+{
+    "init_cell_name": "aes_cipher_top",
+    "init_errors_num": 2,
+    "steps_by_human": 1,
+    "init_error_types": {
+        "M5.S.5": 2
+    },
+    "num_iterations": 8,
+    "drc_execution_time_seconds": 3356.82
+}

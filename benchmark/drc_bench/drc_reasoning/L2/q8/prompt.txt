@@ -1,0 +1,8 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: adder
+=======================================
+--- V2.M3.AUX.2  |  cell: VIA_VIA23_1_3_36_36 ---
+[0] {'category': 'V2.M3.AUX.2', 'description': 'V2.M3.AUX.2 : V2 must exactly be the same width as M3 along the direction perpendicular to the M3 length', 'values': ['polygon: (-0.009,-0.009;-0.009,0.009;0.009,0.009;0.009,-0.009)'], 'cell_name': 'VIA_VIA23_1_3_36_36', 'parent': 'adder', 'trans': 'r0 *1 34.752,35.1'}
+=======================================

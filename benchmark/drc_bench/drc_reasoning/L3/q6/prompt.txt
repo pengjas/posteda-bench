@@ -1,0 +1,20 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: gcd
+=======================================
+--- M1.S.2  |  cell: gcd ---
+[0] {'category': 'M1.S.2', 'description': "M1.S.2 : Min. spacing between two M1' edges, when one edge is > 36 nm : 25nm", 'values': ['polygon: (7.029,11.804;7.029,11.824;7.038,11.824;7.053,11.804)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M1.S.2', 'description': "M1.S.2 : Min. spacing between two M1' edges, when one edge is > 36 nm : 25nm", 'values': ['polygon: (3.897,7.484;3.897,7.504;3.906,7.504;3.921,7.484)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[2] {'category': 'M1.S.2', 'description': "M1.S.2 : Min. spacing between two M1' edges, when one edge is > 36 nm : 25nm", 'values': ['polygon: (4.977,11.264;4.977,11.284;4.986,11.284;5.001,11.264)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[3] {'category': 'M1.S.2', 'description': "M1.S.2 : Min. spacing between two M1' edges, when one edge is > 36 nm : 25nm", 'values': ['polygon: (5.409,9.104;5.409,9.124;5.418,9.124;5.433,9.104)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[4] {'category': 'M1.S.2', 'description': "M1.S.2 : Min. spacing between two M1' edges, when one edge is > 36 nm : 25nm", 'values': ['polygon: (6.705,6.404;6.705,6.424;6.714,6.424;6.729,6.404)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[5] {'category': 'M1.S.2', 'description': "M1.S.2 : Min. spacing between two M1' edges, when one edge is > 36 nm : 25nm", 'values': ['polygon: (3.897,8.696;3.897,8.716;3.921,8.716;3.906,8.696)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================
+--- M1.S.6  |  cell: gcd ---
+[0] {'category': 'M1.S.6', 'description': 'M1.S.6 : Min. corner-to-corner spacing between two M1 : 20nm', 'values': ['polygon: (11.61,9.77425;11.61,9.776;11.60925,9.776;11.6125,9.77725;11.628,9.78475;11.628,9.783;11.62875,9.783;11.6255,9.78175)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================
+--- M4.S.5  |  cell: gcd ---
+[0] {'category': 'M4.S.5', 'description': 'M4.S.5 : Min. parallel run length of two M4 on adjacent tracks : 44nm', 'values': ['edge: (6.851,15.264;6.85,15.264)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M4.S.5', 'description': 'M4.S.5 : Min. parallel run length of two M4 on adjacent tracks : 44nm', 'values': ['edge: (6.85,15.24;6.851,15.24)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================

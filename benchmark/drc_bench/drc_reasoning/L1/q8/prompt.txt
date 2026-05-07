@@ -1,0 +1,9 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: gcd
+=======================================
+--- M4.S.5  |  cell: gcd ---
+[0] {'category': 'M4.S.5', 'description': 'M4.S.5 : Min. parallel run length of two M4 on adjacent tracks : 44nm', 'values': ['edge: (6.851,15.264;6.85,15.264)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M4.S.5', 'description': 'M4.S.5 : Min. parallel run length of two M4 on adjacent tracks : 44nm', 'values': ['edge: (6.85,15.24;6.851,15.24)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================

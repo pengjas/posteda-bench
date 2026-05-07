@@ -1,0 +1,16 @@
+{
+    "error_type": [
+        [
+            "NSELECT.GATE.EX.1-2",
+            "NSELECT.W.1"
+        ]
+    ],
+    "init_errors_num": 3,
+    "init_cell_name": "top_cell",
+    "init_error_types": {
+        "NSELECT.W.1": 1,
+        "NSELECT.GATE.EX.1-2": 2
+    },
+    "drc_execution_time_seconds": 9.15,
+    "num_iterations": 8
+}

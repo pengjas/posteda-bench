@@ -1,0 +1,11 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: top_cell
+=======================================
+--- GATE.S.1  |  cell: top_cell ---
+[0] {'category': 'GATE.S.1', 'description': 'GATE.S.1 : Exact horizontal GATE pitch : 54nm', 'values': ['polygon: (0.02,-0.01;0.02,0.05;0.04,0.05;0.04,-0.01)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+=======================================
+--- GATE.S.3  |  cell: top_cell ---
+[0] {'category': 'GATE.S.3', 'description': 'GATE.S.3 : Min. horizontal spacing between GATE : 34nm', 'values': ['edge-pair: (0.04,0;0.04,0.04)|(0.02,0.04;0.02,0)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+=======================================

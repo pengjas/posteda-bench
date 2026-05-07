@@ -1,0 +1,6 @@
+{
+    "knob": "CORE_UTILIZATION",
+    "target_power": 0.00039,
+    "initial_power": 0.000444,
+    "num_iterations": 1
+}

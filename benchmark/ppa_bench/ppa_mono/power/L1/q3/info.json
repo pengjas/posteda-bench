@@ -1,0 +1,8 @@
+{
+    "knob": [
+        "ABC_AREA"
+    ],
+    "target_power": 0.00038,
+    "initial_power": 0.000474,
+    "num_iterations": 1
+}
