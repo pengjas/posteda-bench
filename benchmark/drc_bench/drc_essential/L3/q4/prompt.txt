@@ -1,0 +1,29 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: gcd
+=======================================
+--- M2.W.1  |  cell: gcd ---
+[0] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (10.511,4.3605;10.499,4.3605)|(10.487,4.374;10.499,4.374)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (10.555,4.356;10.543,4.356)|(10.531,4.3695;10.543,4.3695)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[2] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (10.543,4.3605;10.499,4.3605)|(10.499,4.3695;10.543,4.3695)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[3] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (10.499,4.356;10.487,4.356)|(10.499,4.3695;10.511,4.3695)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[4] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (10.543,4.3605;10.531,4.3605)|(10.543,4.374;10.555,4.374)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================
+--- M5.AUX.3  |  cell: gcd ---
+[0] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (5.42875,7.28175;5.42875,7.28425;5.43125,7.28425;5.43125,7.28175)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (5.42875,8.39775;5.42875,8.40025;5.43125,8.40025;5.43125,8.39775)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[2] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (5.42875,8.48175;5.42875,8.48425;5.43125,8.48425;5.43125,8.48175)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[3] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (5.42875,9.15575;5.42875,9.15825;5.43125,9.15825;5.43125,9.15575)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[4] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (5.44075,9.15575;5.44075,9.15825;5.44325,9.15825;5.44325,9.15575)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[5] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (5.44075,8.48175;5.44075,8.48425;5.44325,8.48425;5.44325,8.48175)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[6] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (5.44075,8.39775;5.44075,8.40025;5.44325,8.40025;5.44325,8.39775)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[7] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (5.44075,7.28175;5.44075,7.28425;5.44325,7.28425;5.44325,7.28175)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[8] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (7.39675,1.09175;7.39675,1.09425;7.39925,1.09425;7.39925,1.09175)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[9] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (7.40875,1.09175;7.40875,1.09425;7.41125,1.09425;7.41125,1.09175)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================
+--- M5.W.1  |  cell: gcd ---
+[0] {'category': 'M5.W.1', 'description': 'M5.W.1 : Min. horizontal width of M5 : 24nm', 'values': ['edge-pair: (5.43,7.283;5.43,8.399)|(5.442,8.399;5.442,7.283)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M5.W.1', 'description': 'M5.W.1 : Min. horizontal width of M5 : 24nm', 'values': ['edge-pair: (5.43,8.483;5.43,9.157)|(5.442,9.157;5.442,8.483)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[2] {'category': 'M5.W.1', 'description': 'M5.W.1 : Min. horizontal width of M5 : 24nm', 'values': ['edge-pair: (7.398,0.016;7.398,1.093)|(7.41,1.093;7.41,0.016)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================

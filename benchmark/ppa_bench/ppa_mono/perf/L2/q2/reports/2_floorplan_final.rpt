@@ -1,0 +1,194 @@
+
+==========================================================================
+floorplan final report_tns
+--------------------------------------------------------------------------
+tns max -2130.09
+
+==========================================================================
+floorplan final report_wns
+--------------------------------------------------------------------------
+wns max -45.48
+
+==========================================================================
+floorplan final report_worst_slack
+--------------------------------------------------------------------------
+worst slack max -45.48
+
+==========================================================================
+floorplan final report_clock_min_period
+--------------------------------------------------------------------------
+clk period_min = 200.48 fmax = 4988.08
+
+==========================================================================
+floorplan final report_checks -path_delay min
+--------------------------------------------------------------------------
+Startpoint: uart_rx_inst.data_reg[0]$_SDFFCE_PP0P_
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: uart_rx_inst.data_reg[0]$_SDFFCE_PP0P_
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ uart_rx_inst.data_reg[0]$_SDFFCE_PP0P_/CLK (DFFHQNx1_ASAP7_75t_SL)
+     2    1.48   19.24   33.49   33.49 ^ uart_rx_inst.data_reg[0]$_SDFFCE_PP0P_/QN (DFFHQNx1_ASAP7_75t_SL)
+                                         _0067_ (net)
+                 19.24    0.00   33.49 ^ _0804_/A1 (OAI21x1_ASAP7_75t_SL)
+     1    0.54    6.36    5.13   38.62 v _0804_/Y (OAI21x1_ASAP7_75t_SL)
+                                         _0099_ (net)
+                  6.36    0.00   38.62 v uart_rx_inst.data_reg[0]$_SDFFCE_PP0P_/D (DFFHQNx1_ASAP7_75t_SL)
+                                 38.62   data arrival time
+
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                                  0.00 ^ uart_rx_inst.data_reg[0]$_SDFFCE_PP0P_/CLK (DFFHQNx1_ASAP7_75t_SL)
+                          9.04    9.04   library hold time
+                                  9.04   data required time
+-----------------------------------------------------------------------------
+                                  9.04   data required time
+                                -38.62   data arrival time
+-----------------------------------------------------------------------------
+                                 29.58   slack (MET)
+
+
+
+==========================================================================
+floorplan final report_checks -path_delay max
+--------------------------------------------------------------------------
+Startpoint: uart_rx_inst.bit_cnt[1]$_SDFFE_PP0P_
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: uart_rx_inst.m_axis_tdata[0]$_SDFFE_PP0P_
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ uart_rx_inst.bit_cnt[1]$_SDFFE_PP0P_/CLK (DFFHQNx2_ASAP7_75t_SL)
+     4    3.70   25.31   39.24   39.24 v uart_rx_inst.bit_cnt[1]$_SDFFE_PP0P_/QN (DFFHQNx2_ASAP7_75t_SL)
+                                         _0085_ (net)
+                 25.31    0.00   39.24 v _1196_/A (HAxp5_ASAP7_75t_SL)
+     1    0.68   23.86   14.34   53.57 ^ _1196_/CON (HAxp5_ASAP7_75t_SL)
+                                         _0086_ (net)
+                 23.86    0.00   53.57 ^ _0776_/A (BUFx3_ASAP7_75t_SL)
+    10    8.70   23.04   21.66   75.24 ^ _0776_/Y (BUFx3_ASAP7_75t_SL)
+                                         _0174_ (net)
+                 23.04    0.00   75.24 ^ _0800_/A (INVx4_ASAP7_75t_SL)
+     8    4.81   12.60    7.51   82.74 v _0800_/Y (INVx4_ASAP7_75t_SL)
+                                         _0198_ (net)
+                 12.60    0.00   82.74 v _0818_/B (OR3x2_ASAP7_75t_SL)
+     4    4.05   19.13   27.28  110.03 v _0818_/Y (OR3x2_ASAP7_75t_SL)
+                                         _0209_ (net)
+                 19.13    0.00  110.03 v _0930_/A (OR5x1_ASAP7_75t_SL)
+     1    1.30   16.78   27.77  137.79 v _0930_/Y (OR5x1_ASAP7_75t_SL)
+                                         _0305_ (net)
+                 16.78    0.00  137.79 v _0931_/A (BUFx6f_ASAP7_75t_SL)
+     9   10.57   13.87   17.72  155.51 v _0931_/Y (BUFx6f_ASAP7_75t_SL)
+                                         _0306_ (net)
+                 13.87    0.00  155.51 v _0932_/A (BUFx12f_ASAP7_75t_SL)
+    10    6.51    8.23   13.78  169.29 v _0932_/Y (BUFx12f_ASAP7_75t_SL)
+                                         _0307_ (net)
+                  8.23    0.00  169.29 v _0933_/B (NAND2x1p5_ASAP7_75t_SL)
+     1    0.44   12.46    5.13  174.41 ^ _0933_/Y (NAND2x1p5_ASAP7_75t_SL)
+                                         _0308_ (net)
+                 12.46    0.00  174.41 ^ _0934_/C (OA211x2_ASAP7_75t_SL)
+     1    0.62    9.30   17.06  191.47 ^ _0934_/Y (OA211x2_ASAP7_75t_SL)
+                                         _0108_ (net)
+                  9.30    0.00  191.47 ^ uart_rx_inst.m_axis_tdata[0]$_SDFFE_PP0P_/D (DFFHQNx1_ASAP7_75t_SL)
+                                191.47   data arrival time
+
+                  0.00  155.00  155.00   clock clk (rise edge)
+                          0.00  155.00   clock network delay (ideal)
+                          0.00  155.00   clock reconvergence pessimism
+                                155.00 ^ uart_rx_inst.m_axis_tdata[0]$_SDFFE_PP0P_/CLK (DFFHQNx1_ASAP7_75t_SL)
+                         -9.00  146.00   library setup time
+                                146.00   data required time
+-----------------------------------------------------------------------------
+                                146.00   data required time
+                               -191.47   data arrival time
+-----------------------------------------------------------------------------
+                                -45.48   slack (VIOLATED)
+
+
+
+==========================================================================
+floorplan final report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: uart_rx_inst.bit_cnt[1]$_SDFFE_PP0P_
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: uart_rx_inst.m_axis_tdata[0]$_SDFFE_PP0P_
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                  0.00    0.00    0.00 ^ uart_rx_inst.bit_cnt[1]$_SDFFE_PP0P_/CLK (DFFHQNx2_ASAP7_75t_SL)
+     4    3.70   25.31   39.24   39.24 v uart_rx_inst.bit_cnt[1]$_SDFFE_PP0P_/QN (DFFHQNx2_ASAP7_75t_SL)
+                                         _0085_ (net)
+                 25.31    0.00   39.24 v _1196_/A (HAxp5_ASAP7_75t_SL)
+     1    0.68   23.86   14.34   53.57 ^ _1196_/CON (HAxp5_ASAP7_75t_SL)
+                                         _0086_ (net)
+                 23.86    0.00   53.57 ^ _0776_/A (BUFx3_ASAP7_75t_SL)
+    10    8.70   23.04   21.66   75.24 ^ _0776_/Y (BUFx3_ASAP7_75t_SL)
+                                         _0174_ (net)
+                 23.04    0.00   75.24 ^ _0800_/A (INVx4_ASAP7_75t_SL)
+     8    4.81   12.60    7.51   82.74 v _0800_/Y (INVx4_ASAP7_75t_SL)
+                                         _0198_ (net)
+                 12.60    0.00   82.74 v _0818_/B (OR3x2_ASAP7_75t_SL)
+     4    4.05   19.13   27.28  110.03 v _0818_/Y (OR3x2_ASAP7_75t_SL)
+                                         _0209_ (net)
+                 19.13    0.00  110.03 v _0930_/A (OR5x1_ASAP7_75t_SL)
+     1    1.30   16.78   27.77  137.79 v _0930_/Y (OR5x1_ASAP7_75t_SL)
+                                         _0305_ (net)
+                 16.78    0.00  137.79 v _0931_/A (BUFx6f_ASAP7_75t_SL)
+     9   10.57   13.87   17.72  155.51 v _0931_/Y (BUFx6f_ASAP7_75t_SL)
+                                         _0306_ (net)
+                 13.87    0.00  155.51 v _0932_/A (BUFx12f_ASAP7_75t_SL)
+    10    6.51    8.23   13.78  169.29 v _0932_/Y (BUFx12f_ASAP7_75t_SL)
+                                         _0307_ (net)
+                  8.23    0.00  169.29 v _0933_/B (NAND2x1p5_ASAP7_75t_SL)
+     1    0.44   12.46    5.13  174.41 ^ _0933_/Y (NAND2x1p5_ASAP7_75t_SL)
+                                         _0308_ (net)
+                 12.46    0.00  174.41 ^ _0934_/C (OA211x2_ASAP7_75t_SL)
+     1    0.62    9.30   17.06  191.47 ^ _0934_/Y (OA211x2_ASAP7_75t_SL)
+                                         _0108_ (net)
+                  9.30    0.00  191.47 ^ uart_rx_inst.m_axis_tdata[0]$_SDFFE_PP0P_/D (DFFHQNx1_ASAP7_75t_SL)
+                                191.47   data arrival time
+
+                  0.00  155.00  155.00   clock clk (rise edge)
+                          0.00  155.00   clock network delay (ideal)
+                          0.00  155.00   clock reconvergence pessimism
+                                155.00 ^ uart_rx_inst.m_axis_tdata[0]$_SDFFE_PP0P_/CLK (DFFHQNx1_ASAP7_75t_SL)
+                         -9.00  146.00   library setup time
+                                146.00   data required time
+-----------------------------------------------------------------------------
+                                146.00   data required time
+                               -191.47   data arrival time
+-----------------------------------------------------------------------------
+                                -45.48   slack (VIOLATED)
+
+
+
+==========================================================================
+floorplan final report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             1.29e-03   2.58e-04   1.75e-06   1.55e-03  30.8%
+Combinational          2.17e-03   1.30e-03   5.65e-06   3.48e-03  69.2%
+Clock                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  3.46e-03   1.56e-03   7.39e-06   5.03e-03 100.0%
+                          68.8%      31.1%       0.1%

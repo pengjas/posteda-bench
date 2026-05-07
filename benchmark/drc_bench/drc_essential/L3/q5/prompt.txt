@@ -1,0 +1,22 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: gcd
+=======================================
+--- M3.W.1  |  cell: gcd ---
+[0] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (3.744,8.831;3.744,8.843)|(3.7575,8.855;3.7575,8.843)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (3.7485,9.199;3.7485,9.211)|(3.762,9.223;3.762,9.211)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[2] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (3.7485,8.843;3.7485,9.211)|(3.7575,9.211;3.7575,8.843)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[3] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (3.7485,8.843;3.7485,8.855)|(3.762,8.843;3.762,8.831)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[4] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (3.744,9.211;3.744,9.223)|(3.7575,9.211;3.7575,9.199)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================
+--- V1.AUX.1  |  cell: gcd ---
+[0] {'category': 'V1.AUX.1', 'description': 'V1.AUX.1 : V1 must be inside M1 and M2', 'values': ['polygon: (3.443,8.784;3.443,8.802;3.446,8.802;3.446,8.784)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'V1.AUX.1', 'description': 'V1.AUX.1 : V1 must be inside M1 and M2', 'values': ['polygon: (3.438,8.784;3.438,8.802;3.446,8.802;3.446,8.784)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================
+--- V2.AUX.1  |  cell: gcd ---
+[0] {'category': 'V2.AUX.1', 'description': 'V2.AUX.1 : V2 must be inside M2 and M3', 'values': ['polygon: (3.631,8.748;3.631,8.766;3.636,8.766;3.636,8.748)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================
+--- V2.M2.EN.1  |  cell: gcd ---
+[0] {'category': 'V2.M2.EN.1', 'description': 'V2.M2.EN.1 : Min. enclosure of V2 by M2 on at least two opposite sides  : 5nm', 'values': ['polygon: (3.631,8.748;3.631,8.766;3.654,8.766;3.654,8.748)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================

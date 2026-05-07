@@ -1,0 +1,13 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: gcd
+=======================================
+--- V0.M1.AUX.3  |  cell: OA21x2_ASAP7_75t_R ---
+[0] {'category': 'V0.M1.AUX.3', 'description': 'V0.M1.AUX.3 : V0 must exactly be the same width as M1 along the direction perpendicular to the M1 length', 'values': ['polygon: (0.153,0.2295;0.153,0.2385;0.171,0.2385;0.171,0.2295)'], 'cell_name': 'OA21x2_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'r0 *1 7.83,5.94'}
+[1] {'category': 'V0.M1.AUX.3', 'description': 'V0.M1.AUX.3 : V0 must exactly be the same width as M1 along the direction perpendicular to the M1 length', 'values': ['polygon: (0.153,0.2295;0.153,0.2385;0.171,0.2385;0.171,0.2295)'], 'cell_name': 'OA21x2_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'm0 *1 5.238,8.1'}
+=======================================
+--- V0.W.1  |  cell: OA21x2_ASAP7_75t_R ---
+[0] {'category': 'V0.W.1', 'description': 'V0.W.1 : Min. width of V0 : 18nm', 'values': ['edge-pair: (0.171,0.2295;0.153,0.2295)|(0.153,0.2385;0.171,0.2385)'], 'cell_name': 'OA21x2_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'r0 *1 7.83,5.94'}
+[1] {'category': 'V0.W.1', 'description': 'V0.W.1 : Min. width of V0 : 18nm', 'values': ['edge-pair: (0.171,0.2295;0.153,0.2295)|(0.153,0.2385;0.171,0.2385)'], 'cell_name': 'OA21x2_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'm0 *1 5.238,8.1'}
+=======================================

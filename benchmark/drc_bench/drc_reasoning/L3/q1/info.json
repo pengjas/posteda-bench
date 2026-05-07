@@ -1,0 +1,9 @@
+{
+    "init_cell_name": "seq_detect",
+    "init_errors_num": 8,
+    "init_error_types": {
+        "LIG.LISD.S.7": 8
+    },
+    "drc_execution_time_seconds": 107.84,
+    "num_iterations": 16
+}

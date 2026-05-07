@@ -1,0 +1,1618 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>ASAP7 DRC runset</description>
+ <original-file/>
+ <generator>drc: script='asap7.lydrc'</generator>
+ <top-cell>gcd</top-cell>
+ <tags>
+ </tags>
+ <categories>
+  <category>
+   <name>WELL.W.1</name>
+   <description>WELL.W.1 : Min. horizontal width of WELL : 108nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WELL.W.2</name>
+   <description>WELL.W.2 : Min. vertical width of WELL : 54nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WELL.S.1</name>
+   <description>WELL.S.1 : Min. vertical spacing between WELL : 108nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WELL.S.2</name>
+   <description>WELL.S.2 : Min. horizontal spacing between WELL : 54nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WELL.A.1A</name>
+   <description>WELL.A.1A : Min. area of WELL : 5832nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WELL.A.1B</name>
+   <description>WELL.A.1B : Min. enclosed area of WELL : 5832nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WELL.GATE.EX.1</name>
+   <description>WELL.GATE.EX.1 : Min. horizontal extension of WELL past GATE (not cut by GCUT layer): 7nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>WELL.GATE.EX.2</name>
+   <description>WELL.GATE.EX.2 : Min. vertical extension of WELL past GATE (not cut by GCUT layer): 7nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>FIN.W.1a</name>
+   <description>FIN.W.1 : Exact vertical width of FIN : 7nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>FIN.W.1</name>
+   <description>FIN.W.1 : Exact vertical width of FIN : 7nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>FIN.W.2</name>
+   <description>FIN.W.2 : Min. horizontal width of WELL : 108nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>FIN.S.1</name>
+   <description>FIN.S.1 : Exact vertical FIN pitch : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>FIN.AUX.1</name>
+   <description>FIN.AUX.1 : FIN may not bend</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GATE.W.1</name>
+   <description>GATE.W.1 : Exact horizontal width of GATE : 20nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GATE.W.2</name>
+   <description>GATE.W.2 : Min. vertical width of GATE : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GATE.S.1</name>
+   <description>GATE.S.1 : Exact horizontal GATE pitch : 54nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GATE.S.3</name>
+   <description>GATE.S.3 : Min. horizontal spacing between GATE : 34nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GATE.S.2</name>
+   <description>GATE.S.2 : Every GATE (not cut by GCUT and not interacting with the layer SRAMDRC) must have at least one other GATE within 54 nm of its surrounding along the horizontal axis : 54nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GATE.AUX.1</name>
+   <description>GATE.AUX.1 : GATE may not bend</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GATE.AUX.2</name>
+   <description>GATE.AUX.2 : GATE may not be discontinuous along the vertical axis</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GATE.AUX.3</name>
+   <description>GATE.AUX.3 : ACTIVE layer vertical edge may not lie inside, or coincide with, the GATE layer</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GATE.ACTIVE.EX.1</name>
+   <description>GATE.ACTIVE.EX.1 : Min. vertical extension of GATE (not cut by GCUT) past ACTIVE : 4nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GATE.ACTIVE.EX.2</name>
+   <description>GATE.ACTIVE.EX.2 : Min. horizontal extension of ACTIVE interacting with GATE (not cut by GCUT layer) past GATE (not cut by GCUT layer) : 25nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GATE.ACTIVE.S.4</name>
+   <description>GATE.ACTIVE.S.4 : Min. horizontal spacing between ACTIVE and GATE (not cut by GCUT and not interacting with ACTIVE) : 9nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.FIN.EX.1</name>
+   <description>ACTIVE.FIN.EX.1 : Min. vertical extension of ACTIVE past FIN : 10nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.W.1</name>
+   <description>ACTIVE.W.1 : Min. vertical width of ACTIVE : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.W.2</name>
+   <description>ACTIVE.W.2 : ACTIVE layer vertical width increment is an integer multiple of : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.W.3</name>
+   <description>ACTIVE.W.3 : Min. horizontal width of ACTIVE : 16nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.S.1</name>
+   <description>ACTIVE.S.1 : Min. vertical spacing between ACTIVE : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.S.2A</name>
+   <description>ACTIVE.S.2A : Min. horizontal spacing between ACTIVE layers forming source/drain regions (of different transistors) : 92nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.S.2B</name>
+   <description>ACTIVE.S.2B : Min. horizontal spacing between ACTIVE : 38nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.WELL.S.4</name>
+   <description>ACTIVE.WELL.S.4 : Min. spacing of ACTIVE to WELL : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SRAM.ACTIVE.WELL.S.5</name>
+   <description>SRAM.ACTIVE.WELL.S.5 : Min. spacing of ACTIVE in SRAM to WELL : 13.5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.WELL.EN.1</name>
+   <description>ACTIVE.WELL.EN.1 : Min. enclosure of ACTIVE by WELL : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SRAM.ACTIVE.WELL.EN.2</name>
+   <description>SRAM.ACTIVE.WELL.EN.2 : Min. enclosure of ACTIVE in SRAM by WELL : 13.5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.A.1A</name>
+   <description>ACTIVE.A.1A : Min. area of ACTIVE : 864nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.A.1B</name>
+   <description>ACTIVE.A.1B : Min. enclosed area of ACTIVE : 864nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SRAM.ACTIVE.A.1A</name>
+   <description>SRAM.ACTIVE.A.1A : Min. area of ACTIVE in SRAM : 432nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SRAM.ACTIVE.A.1B</name>
+   <description>SRAM.ACTIVE.A.1B : Min. enclosed area of ACTIVE in SRAM : 432nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.AUX.1</name>
+   <description>ACTIVE.AUX.1 : ACTIVE must always be enclosed by NSELECT or PSELECT</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.AUX.1_edges</name>
+   <description>ACTIVE.AUX.1 : ACTIVE must always be enclosed by NSELECT or PSELECT, such that no ACTIVE layer edge(s) coincide with NSELECT or PSELECT layer edge(s)</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SRAM.ACTIVE.AUX.2</name>
+   <description>SRAM.ACTIVE.AUX.2 : ACTIVE not belonging to an SRAM cell may not touch the SRAMDRC layer</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ACTIVE.AUX.3</name>
+   <description>ACTIVE.AUX.3 : notch in ACTIVE along vertical axis is not allowed</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GCUT.W.1</name>
+   <description>GCUT.W.1 : Min. vertical width of GCUT : 17nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GCUT.ACTIVE.S.1</name>
+   <description>GCUT.ACTIVE.S.1 : Min. vertical spacing between GCUT and channel : 4nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GCUT.GATE.EX.1</name>
+   <description>GCUT.GATE.EX.1 : Min. horizontal extension of GCUT past GATE : 17nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GCUT.GATE.S.2</name>
+   <description>GCUT.GATE.S.2 : Minimum spacing of GCUT to GATE : 17nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GCUT.S.3</name>
+   <description>GCUT.S.3 : Min. vertical spacing between GCUT : 35nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GCUT.AUX.1</name>
+   <description>GCUT.AUX.1 : GCUT layer may not exist without the layer GATE</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GCUT.AUX.2</name>
+   <description>GCUT.AUX.2 : GCUT layer vertical edge may not lie inside, or coincide with, the GATE layer</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>GCUT.AUX.3</name>
+   <description>GCUT.AUX.3 : GCUT may not interact with channel</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NSELECT.W.1</name>
+   <description>NSELECT.W.1 : Min. horizontal width of NSELECT : 108nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NSELECT.W.2</name>
+   <description>NSELECT.W.2 : Min. vertical width of NSELECT : 54nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NSELECT.ACTIVE.EN.1</name>
+   <description>NSELECT.ACTIVE.EN.1 : Min. horizontal enclosure of ACTIVE by NSELECT : 46nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NSELECT.ACTIVE.EN.2</name>
+   <description>NSELECT.ACTIVE.EN.2 : Min. vertical enclosure of ACTIVE by NSELECT : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SRAM.NSELECT.ACTIVE.EN.3-4</name>
+   <description>SRAM.NSELECT.ACTIVE.EN.3-4 : Min. enclosure of ACTIVE in SRAM by NSELECT : 13.5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NSELECT.GATE.EX.1-2</name>
+   <description>NSELECT.GATE.EX.1-2 : Min. horizontal extension of NSELECT past GATE : 7nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PSELECT.W.1</name>
+   <description>PSELECT.W.1 : Min. horizontal width of PSELECT : 108nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PSELECT.W.2</name>
+   <description>PSELECT.W.2 : Min. vertical width of PSELECT : 54nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PSELECT.ACTIVE.EN.1</name>
+   <description>PSELECT.ACTIVE.EN.1 : Min. horizontal enclosure of ACTIVE by PSELECT : 46nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PSELECT.ACTIVE.EN.2</name>
+   <description>PSELECT.ACTIVE.EN.2 : Min. vertical enclosure of ACTIVE by PSELECT : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SRAM.PSELECT.ACTIVE.EN.3-4</name>
+   <description>SRAM.PSELECT.ACTIVE.EN.3-4 : Min. enclosure of ACTIVE in SRAM by PSELECT : 13.5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>PSELECT.GATE.EX.1-2</name>
+   <description>PSELECT.GATE.EX.1-2 : Min. horizontal extension of PSELECT past GATE : 7nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NSELECT.PSELECT.AUX.1</name>
+   <description>NSELECT.PSELECT.AUX.1 : NSELECT and PSELECT may not overlap</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>VT.AUX.2</name>
+   <description>VT.AUX.2 : VT layers (LVT, SLVT, and SRAMVT) may not overlap</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SDT.W.1</name>
+   <description>SDT.W.1 : Min. horizontal width of SDT : 24nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SDT.W.2</name>
+   <description>SDT.W.2 : Min. vertical width of SDT : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SDT.W.3</name>
+   <description>SDT.W.3 : SDT vertical height increment is an integer multiple of : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SRAM.SDT.W.4</name>
+   <description>SRAM.SDT.W.4 : Min. vertical width of SDT in SRAM : 17nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SDT.S.1</name>
+   <description>SDT.S.1 : Min. vertical spacing between SDT : 30nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SDT.GATE.S.2</name>
+   <description>SDT.GATE.S.2 : Min. horizontal spacing between SDT and GATE : 5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LISD.W.1</name>
+   <description>LISD.W.1 : Min. width of LISD : 24nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LISD.S.1</name>
+   <description>LISD.S.1 : Min. spacing between two LISD' edges, when both edges are &gt; 36 nm : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LISD.S.2</name>
+   <description>LIG.S.2 : Min. spacing between two LIG' edges, when one edge is &gt; 36 nm : 25nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LISD.S.3-4</name>
+   <description>LISD.S.3-4 : Min. spacing between two LISD' edges, when both edge are =&lt; 36 nm : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LISD.A.1</name>
+   <description>LISD.A.1 : Min. area of LISD : 648nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SRAM.LISD.AUX.1</name>
+   <description>SRAM.LISD.AUX.1 : LISD, which are either completely outside the SRAMDRC or which do not intersect the SRAMDRC, may not touch the SRAMDRC</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.W.1</name>
+   <description>LIG.W.1 : Min. width of LIG : 16nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.S.1</name>
+   <description>LIG.S.1 : Min. spacing between two LIG' edges, when both edges are &gt; 36 nm : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.S.3</name>
+   <description>LIG.S.3 : Min. spacing between two LIG' edges, when both edges are &gt;=24nm and =&lt; 36 nm : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.S.4-5</name>
+   <description>LISD.S.4-5 : Min. spacing between two LIG' edges, when both edge are =&lt; 24 nm : 31nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.LISD.S.6</name>
+   <description>LIG.LISD.S.6 : Min. spacing between LIG and LISD not on the same net : 14nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.LISD.S.7</name>
+   <description>LIG.LISD.S.7 : Min. corner-to-corner spacing between LISD and LIG not on the same net : 15nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.SDT.S.8</name>
+   <description>LIG.SDT.S.8 : Min. spacing between LIG and SDT not on the same net : 14nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.LISD.S.9A</name>
+   <description>LIG.LISD.S.9A : Min. vertical spacing between LIG and GATE (not cut using GCUT) : 14nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.LISD.S.9B</name>
+   <description>LIG.LISD.S.9B : Min. horizontal spacing between LIG and GATE (not cut using GCUT) : 17nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.GATE.S.10</name>
+   <description>LIG.GATE.S.10 : Min. spacing between LIG and GATE (not cut using GCUT) forming a channel : 5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.GCUT.S.11</name>
+   <description>LIG.GCUT.S.11 : Min. vertical spacing between LIG and GCUT : 5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.A.1</name>
+   <description>LIG.A.1 : Min. area of LIG : 324nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.LISD.A.2</name>
+   <description>LIG.LISD.A.2 : Min. area of overlap between LIG and LISD : 128nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.GATE.A.3</name>
+   <description>LIG.GATE.A.3 : Min. area of overlap between LIG and and GATE (not cut using GCUT) : 320nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.GATE.A.4</name>
+   <description>LIG.GATE.A.4 : Min. area of overlap between LIG in SRAM and and GATE (not cut using GCUT) : 240nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.GATE.AUX.1</name>
+   <description>LIG.GATE.AUX.1 : LIG vertical edge may not lie inside, or coincide with, the GATE layer</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SRAM.LIG.AUX.2</name>
+   <description>SRAM.LIG.AUX.2 : LIG, which are either completely outside the SRAMDRC or which do not intersect the SRAMDRC, may not touch the SRAMDRC</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.GATE.EX.1</name>
+   <description>LIG.GATE.EX.1 : Min. extension of LIG past GATE (not cut using GCUT) : 1nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>LIG.LISD.OV.1</name>
+   <description>LIG.LISD.OV.1 : Min. overlap between LIG and LISD connected together : 8nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>SRAM.LIG.GATE.OV.2</name>
+   <description>SRAM.LIG.GATE.OV.2 : Min. overlap between LIG in SRAM and GATE (not cut using GCUT) : 15nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.W.1</name>
+   <description>V0.W.1 : Min. width of V0 : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.S.1</name>
+   <description>V0.S.1 : Min. spacing between V0 instances on parallel M1 tracks, if they are not aligned with each other : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.S.2</name>
+   <description>V0.S.2 : Min. corner-to-corner spacing between two V0 instances—both with a 5 nm M1 end-cap : 23nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.S.3</name>
+   <description>V0.S.3 : Min. corner-to-corner spacing between two V0 instances—both without a 5 nm M1 end-cap : 30nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.S.4</name>
+   <description>V0.S.4 : Min. corner-to-corner spacing between two V0 instances—one with and another without, a 5 nm M1 end-cap : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.M1.EN.1</name>
+   <description>V0.M1.EN.1 : enclosure of V0 by M1 on one side : 5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.LISD.EN.2</name>
+   <description>V0.LISD.EN.2 : Min. enclosure of V0 (interacting with LISD, but not with LIG) by LISD on at least two opposite sides is 3 nm and such a V0 must lie completely inside LISD : 3nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.LISD.EN.3</name>
+   <description>V0.LISD.EN.3 : Min. enclosure of V0 (sharing some, but not all its area with LISD) by LISD (interacting with LIG) on at least two opposite sides is 3 nm and such a V0 does not need to lie completely inside LISD : 3nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.LIG.EN.4</name>
+   <description>V0.LIG.EN.4 : Min. enclosure of LIG by V0 (interacting with LIG and not inside LISD) on two opposite sides is 1 nm : 1nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.LIG.A.1</name>
+   <description>V0.LIG.A.1 : Min. area of overlap between V0 (interacting with LIG and not inside LISD) and LIG : 288nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.AUX.1-2</name>
+   <description>V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V0.M1.AUX.3</name>
+   <description>V0.M1.AUX.3 : V0 must exactly be the same width as M1 along the direction perpendicular to the M1 length</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.W.1</name>
+   <description>M1.W.1 : Min. width of M1 : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.S.1</name>
+   <description>M1.S.1 : Min. spacing between two M1' edges, when both edges are &gt; 36 nm : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.S.2</name>
+   <description>M1.S.2 : Min. spacing between two M1' edges, when one edge is &gt; 36 nm : 25nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.S.3</name>
+   <description>M1.S.3 : Min. spacing between two M1' edges, when both edges are &gt;=24nm and =&lt; 36 nm : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.S.4-5</name>
+   <description>M1.S.4-5 : Min. spacing between two M1' edges, when both edge are =&lt; 24 nm : 31nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.S.6</name>
+   <description>M1.S.6 : Min. corner-to-corner spacing between two M1 : 20nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M1.A.1</name>
+   <description>M1.A.1 : Min. area of M1 : 504nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.W.1</name>
+   <description>M2.W.1 : Min. width of M2 : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.S.1</name>
+   <description>M2.S.1 : Min. spacing between two M2' edges, when both edges are &gt; 36 nm : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.S.2</name>
+   <description>M2.S.2 : Min. spacing between two M2' edges, when one edge is &gt; 36 nm : 25nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.S.3</name>
+   <description>M2.S.3 : Min. spacing between two M2' edges, when both edges are &gt;=24nm and =&lt; 36 nm : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.S.4-5</name>
+   <description>M2.S.4-5 : Min. spacing between two M2' edges, when both edge are =&lt; 24 nm : 31nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.S.6</name>
+   <description>M2.S.6 : Min. corner-to-corner spacing between two M2 : 20nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M2.A.1</name>
+   <description>M2.A.1 : Min. area of M2 : 504nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M3.W.1</name>
+   <description>M3.W.1 : Min. width of M3 : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M3.S.1</name>
+   <description>M3.S.1 : Min. spacing between two M3' edges, when both edges are &gt; 36 nm : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M3.S.2</name>
+   <description>M3.S.2 : Min. spacing between two M3' edges, when one edge is &gt; 36 nm : 25nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M3.S.3</name>
+   <description>M3.S.3 : Min. spacing between two M3' edges, when both edges are &gt;=24nm and =&lt; 36 nm : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M3.S.4-5</name>
+   <description>M3.S.4-5 : Min. spacing between two M3' edges, when both edge are =&lt; 24 nm : 31nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M3.S.6</name>
+   <description>M3.S.6 : Min. corner-to-corner spacing between two M3 : 20nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M3.A.1</name>
+   <description>M3.A.1 : Min. area of M3 : 504nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.W.1</name>
+   <description>V1.W.1 : Min. width of V1 : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.S.1</name>
+   <description>V1.S.1 : Min. spacing between V1 instances on parallel M2 tracks, if they are not aligned with each other : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.S.2</name>
+   <description>V1.S.2 : Min. corner-to-corner spacing between two V1 instances—both with a 5 nm M2 end-cap : 23nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.S.3</name>
+   <description>V1.S.3 : Min. corner-to-corner spacing between two V1 instances—both without a 5 nm M2 end-cap : 30nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.S.4</name>
+   <description>V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.M1.EN.1</name>
+   <description>V1.M1.EN.1 : Min. enclosure of V1 by M1 on at least two opposite sides  : 5nm &amp; 2nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.M2.EN.2</name>
+   <description>V1.M2.EN.2 : enclosure of V1 by M2 on one side : 5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.AUX.1</name>
+   <description>V1.AUX.1 : V1 must be inside M1 and M2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V1.M2.AUX.2</name>
+   <description>V1.M2.AUX.2 : V1 must exactly be the same width as M2 along the direction perpendicular to the M2 length</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V2.W.1</name>
+   <description>V2.W.1 : Min. width of V2 : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V2.S.1</name>
+   <description>V2.S.1 : Min. spacing between V2 instances on parallel M3 tracks, if they are not aligned with each other : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V2.S.2</name>
+   <description>V2.S.2 : Min. corner-to-corner spacing between two V2 instances—both with a 5 nm M3 end-cap : 23nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V2.S.3</name>
+   <description>V2.S.3 : Min. corner-to-corner spacing between two V2 instances—both without a 5 nm M3 end-cap : 30nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V2.S.4</name>
+   <description>V2.S.4 : Min. corner-to-corner spacing between two V2 instances—one with and another without, a 5 nm M3 end-cap : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V2.M2.EN.1</name>
+   <description>V2.M2.EN.1 : Min. enclosure of V2 by M2 on at least two opposite sides  : 5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V2.M3.EN.2</name>
+   <description>V2.M3.EN.2 : enclosure of V2 by M3 on one side : 5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V2.AUX.1</name>
+   <description>V2.AUX.1 : V2 must be inside M2 and M3</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V2.M3.AUX.2</name>
+   <description>V2.M3.AUX.2 : V2 must exactly be the same width as M3 along the direction perpendicular to the M3 length</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V3.W.1</name>
+   <description>V3.W.1 : Min. width of V3 : 18nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V3.S.1</name>
+   <description>V3.S.1 : Min. spacing between V3 instances on parallel M4 tracks, if they are not aligned with each other : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V3.S.2</name>
+   <description>V3.S.2 : Min. corner-to-corner spacing between two V3 instances—both with a 5 nm M4 end-cap : 23nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V3.S.3</name>
+   <description>V3.S.3 : Min. corner-to-corner spacing between two V3 instances—both without a 5 nm M4 end-cap : 30nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V3.S.4</name>
+   <description>V3.S.4 : Min. corner-to-corner spacing between two V3 instances—one with and another without, a 5 nm M4 end-cap : 27nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V3.M3.EN.1</name>
+   <description>V3.M3.EN.1 : Min. enclosure of V3 by M3 on at least two opposite sides  : 5nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V3.M4.EN.2</name>
+   <description>V3.M4.EN.2 : Min. enclosure of V3 by M4 on at least two opposite sides  : 11nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V3.AUX.1</name>
+   <description>V3.AUX.1 : V3 must be inside M3 and M4</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V3.M4.AUX.2</name>
+   <description>V3.M4.AUX.2 : V3 must exactly be the same width as M4 along the direction perpendicular to the M4 length</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M4.W.1</name>
+   <description>M4.W.1 : Min. vertical width of M4 : 24nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M4.W.2</name>
+   <description>M4.W.2 : Max. vertical width of M4 : 480nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M4.W.3</name>
+   <description>M4.W.3 : M4 vertical width may not be an even integer multiple of its minimum width</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M4.W.5</name>
+   <description>M4.W.5 : Min. horizontal width of M4 : 44nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M4.S.1</name>
+   <description>M4.S.1 : Min. vertical spacing between M4 : 24nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M4.S.2</name>
+   <description>M4.S.2 : Min. horizontal spacing between M4 : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M4.S.3</name>
+   <description>M4.S.3 : Min. horizontal tip-to-tip spacing between two M4 on adjacent tracks : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M4.S.4</name>
+   <description>M4.S.4 : Min. horizontal tip-to-tip spacing between two M4 on adjacent tracks : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M4.S.5</name>
+   <description>M4.S.5 : Min. parallel run length of two M4 on adjacent tracks : 44nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M4.AUX.3</name>
+   <description>M4.AUX.3 : M4 may not bend</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M5.W.1</name>
+   <description>M5.W.1 : Min. horizontal width of M5 : 24nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M5.W.2</name>
+   <description>M5.W.2 : Max. horizontal width of M5 : 480nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M5.W.3</name>
+   <description>M5.W.3 : M5 horizontal width may not be an even integer multiple of its minimum width</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M5.W.5</name>
+   <description>M5.W.5 : Min. vertical width of M5 : 44nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M5.S.1</name>
+   <description>M5.S.1 : Min. horizontal spacing between M5 : 24nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M5.S.2</name>
+   <description>M5.S.2 : Min. vertical spacing between M5 : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M5.S.3</name>
+   <description>M5.S.3 : Min. vertical tip-to-tip spacing between two M5 on adjacent tracks : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M5.S.4</name>
+   <description>M5.S.4 : Min. vertical tip-to-tip spacing between two M5 on adjacent tracks : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M5.S.5</name>
+   <description>M5.S.5 : Min. parallel run length of two M5 on adjacent tracks : 44nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M5.AUX.3</name>
+   <description>M5.AUX.3 : M5 may not bend</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V4.W.1</name>
+   <description>V4.W.1 : Min. width of V4 : 24nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V4.S.1-2-3</name>
+   <description>V4.S.1-2-3 : Min. spacing between V4 : 33nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V4.M4.EN.1</name>
+   <description>V4.M4.EN.1 : Min. enclosure of V4 by M4 on at least two opposite sides  : 11nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V4.AUX.1</name>
+   <description>V4.AUX.1 : V4 must be inside M4 and M5</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V4.M5.AUX.2</name>
+   <description>V4.M5.AUX.2 : V4 must exactly be the same width as M5 along the direction perpendicular to the M5 length</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V5.W.1</name>
+   <description>V5.W.1 : Min. width of V5 : 24nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V5.S.1-2-3</name>
+   <description>V5.S.1-2-3 : Min. spacing between V5 : 33nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V5.M5.EN.1</name>
+   <description>V5.M5.EN.1 : Min. enclosure of V5 by M5 on at least two opposite sides  : 11nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V5.AUX.1</name>
+   <description>V5.AUX.1 : V5 must be inside M5 and M6</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M6.W.1</name>
+   <description>M6.W.1 : Min. vertical width of M6 : 32nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M6.W.2</name>
+   <description>M6.W.2 : Max. vertical width of M6 : 640nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M6.W.3</name>
+   <description>M6.W.3 : M6 vertical width may not be an even integer multiple of its minimum width</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M6.W.5</name>
+   <description>M6.W.5 : Min. horizontal width of M6 : 44nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M6.S.1</name>
+   <description>M6.S.1 : Min. vertical spacing between M6 : 32nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M6.S.2</name>
+   <description>M6.S.2 : Min. horizontal spacing between M6 : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M6.S.3</name>
+   <description>M6.S.3 : Min. horizontal tip-to-tip spacing between two M6 on adjacent tracks : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M6.S.4</name>
+   <description>M6.S.4 : Min. horizontal tip-to-tip spacing between two M6 on adjacent tracks : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M6.S.5</name>
+   <description>M6.S.5 : Min. parallel run length of two M6 on adjacent tracks : 44nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M6.AUX.3</name>
+   <description>M6.AUX.3 : M6 may not bend</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M7.W.1</name>
+   <description>M7.W.1 : Min. horizontal width of M7 : 32nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M7.W.2</name>
+   <description>M7.W.2 : Max. horizontal width of M7 : 640nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M7.W.3</name>
+   <description>M7.W.3 : M7 horizontal width may not be an even integer multiple of its minimum width</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M7.W.5</name>
+   <description>M7.W.5 : Min. vertical width of M7 : 44nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M7.S.1</name>
+   <description>M7.S.1 : Min. horizontal spacing between M7 : 32nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M7.S.2</name>
+   <description>M7.S.2 : Min. vertical spacing between M7 : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M7.S.3</name>
+   <description>M7.S.3 : Min. vertical tip-to-tip spacing between two M7 on adjacent tracks : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M7.S.4</name>
+   <description>M7.S.4 : Min. vertical tip-to-tip spacing between two M7 on adjacent tracks : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M7.S.5</name>
+   <description>M7.S.5 : Min. parallel run length of two M7 on adjacent tracks : 44nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M7.AUX.3</name>
+   <description>M7.AUX.3 : M7 may not bend</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V6.W.1</name>
+   <description>V6.W.1 : Min. width of V6 : 32nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V6.S.1-2-3</name>
+   <description>V6.S.1-2-3 : Min. spacing between V6 : 45nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V6.M6.EN.1</name>
+   <description>V6.M6.EN.1 : Min. enclosure of V6 by M6 on at least two opposite sides  : 11nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V6.AUX.1</name>
+   <description>V6.AUX.1 : V6 must be inside M6 and M7</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V6.M7.AUX.2</name>
+   <description>V6.M7.AUX.2 : V6 must exactly be the same width as M7 along the direction perpendicular to the M7 length</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V7.W.1</name>
+   <description>V7.W.1 : Min. width of V7 : 32nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V7.S.1-2-3</name>
+   <description>V7.S.1-2-3 : Min. spacing between V7 : 45nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V7.M7.EN.1</name>
+   <description>V7.M7.EN.1 : Min. enclosure of V7 by M7 on at least two opposite sides  : 11nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V7.AUX.1</name>
+   <description>V7.AUX.1 : V7 must be inside M7 and M8</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V7.M8.AUX.2</name>
+   <description>V7.M8.AUX.2 : V7 must exactly be the same width as M8 along the direction perpendicular to the M8 length</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.W.1</name>
+   <description>M8.W.1 : Min. width of M8 : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.W.2</name>
+   <description>M8.W.2 : Min. width of M8, when its length &gt;= 400 nm and &lt; 1200 nm : 60nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.W.3</name>
+   <description>M8.W.3 : Min. width of M8, when its length &gt;= 1200 nm and &lt; 1800 nm : 80nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.W.4</name>
+   <description>M8.W.3 : Min. width of M8, when its length &gt;=1800 nm : 120nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.W.5</name>
+   <description>M8.W.5 : Max. width of M8 : 2000nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.S.1</name>
+   <description>M8.S.1 : Min. spacing between two M8' edges, when both edges are &gt;= 80 nm : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.S.2</name>
+   <description>M8.S.2 : Min. spacing between two M8' edges, when one of the edges is &lt; 80 nm and the other is &gt;= 80 nm : 43nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.S.3</name>
+   <description>M8.S.3 : Min. spacing between two M8' edges, when both edges are &lt; 80 nm : 46nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.S.4</name>
+   <description>M8.S.4 : Min. spacing between two M8' edges, when one of the edges is &gt;= 60 nm and &lt; 80 nm : 60nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.S.5</name>
+   <description>M8.S.5 : Min. spacing between two M8' edges, when one of the edges is &gt;= 80 nm and &lt; 120 nm : 80nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.S.6</name>
+   <description>M8.S.6 : Min. spacing between two M8' edges, when one of the edges is &gt;= 120 nm and &lt; 500 nm : 120nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.S.7</name>
+   <description>M8.S.7 : Min. spacing between two M8' edges, when one of the edges is &gt;= 500 nm and &lt; 1000 nm : 500nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.S.8</name>
+   <description>M8.S.8 : Min. spacing between two M8' edges, when one of the edges is &gt;= 1000 nm : 1000nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.A.1</name>
+   <description>M8.A.1 : Min. area of M8 : 7520nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M8.L.1</name>
+   <description>M8.L.1 : Minimum feature length of M8 : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.W.1</name>
+   <description>M9.W.1 : Min. width of M9 : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.W.2</name>
+   <description>M9.W.2 : Min. width of M9, when its length &gt;= 400 nm and &lt; 1200 nm : 60nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.W.3</name>
+   <description>M9.W.3 : Min. width of M9, when its length &gt;= 1200 nm and &lt; 1800 nm : 80nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.W.4</name>
+   <description>M9.W.3 : Min. width of M9, when its length &gt;=1800 nm : 120nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.W.5</name>
+   <description>M9.W.5 : Max. width of M9 : 2000nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.S.1</name>
+   <description>M9.S.1 : Min. spacing between two M9' edges, when both edges are &gt;= 80 nm : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.S.2</name>
+   <description>M9.S.2 : Min. spacing between two M9' edges, when one of the edges is &lt; 80 nm and the other is &gt;= 80 nm : 43nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.S.3</name>
+   <description>M9.S.3 : Min. spacing between two M9' edges, when both edges are &lt; 80 nm : 46nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.S.4</name>
+   <description>M9.S.4 : Min. spacing between two M9' edges, when one of the edges is &gt;= 60 nm and &lt; 80 nm : 60nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.S.5</name>
+   <description>M9.S.5 : Min. spacing between two M9' edges, when one of the edges is &gt;= 80 nm and &lt; 120 nm : 80nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.S.6</name>
+   <description>M9.S.6 : Min. spacing between two M9' edges, when one of the edges is &gt;= 120 nm and &lt; 500 nm : 120nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.S.7</name>
+   <description>M9.S.7 : Min. spacing between two M9' edges, when one of the edges is &gt;= 500 nm and &lt; 1000 nm : 500nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.S.8</name>
+   <description>M9.S.8 : Min. spacing between two M9' edges, when one of the edges is &gt;= 1000 nm : 1000nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.A.1</name>
+   <description>M9.A.1 : Min. area of M9 : 7520nm2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>M9.L.1</name>
+   <description>M9.L.1 : Minimum feature length of M9 : 40nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V8.W.1</name>
+   <description>V8.W.1 : Exact width of a V8 instance</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V8.S.1-2</name>
+   <description>V8.S.1-2 : Min. spacing between V8 : 57.nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V8.M8.EN.1</name>
+   <description>V8.M8.EN.1 : Min. enclosure of V8 by M8 on at least two opposite sides  : 20nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V8.M9.EN.2</name>
+   <description>V8.M9.EN.2 : Min. enclosure of V8 by M9 on at least two opposite sides  : 20nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V8.AUX.1</name>
+   <description>V8.AUX.1 : V8 must be inside M8 and M9</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V9.W.1</name>
+   <description>V9.W.1 : Exact width of a V9 instance</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V9.S.1-2</name>
+   <description>V9.S.1-2 : Min. spacing between V9 : 57.nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V9.M9.EN.1</name>
+   <description>V9.M9.EN.1 : Min. enclosure of V9 by M9 on at least two opposite sides  : 20nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V9.PAD.EN.2</name>
+   <description>V9.PAD.EN.2 : Min. enclosure of V9 by PAD on at least two opposite sides  : 20nm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>V9.AUX.1</name>
+   <description>V9.AUX.1 : V9 must be inside M9 and PAD</description>
+   <categories>
+   </categories>
+  </category>
+ </categories>
+ <cells>
+  <cell>
+   <name>gcd</name>
+   <variant/>
+   <layout-name/>
+   <references>
+   </references>
+  </cell>
+ </cells>
+ <items>
+  <item>
+   <tags/>
+   <category>'M3.W.1'</category>
+   <cell>gcd</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (5.616,8.867;5.616,8.879)|(5.6295,8.891;5.6295,8.879)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M3.W.1'</category>
+   <cell>gcd</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (5.6205,8.929;5.6205,8.941)|(5.634,8.953;5.634,8.941)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M3.W.1'</category>
+   <cell>gcd</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (5.6205,8.879;5.6205,8.941)|(5.6295,8.941;5.6295,8.879)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M3.W.1'</category>
+   <cell>gcd</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (5.6205,8.879;5.6205,8.891)|(5.634,8.879;5.634,8.867)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'M3.W.1'</category>
+   <cell>gcd</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (5.616,8.941;5.616,8.953)|(5.6295,8.941;5.6295,8.929)</value>
+   </values>
+  </item>
+ </items>
+</report-database>

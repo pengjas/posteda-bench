@@ -1,0 +1,26 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: adder
+=======================================
+--- LIG.SDT.S.8  |  cell: DFFASRHQNx1_ASAP7_75t_R ---
+[0] {'category': 'LIG.SDT.S.8', 'description': 'LIG.SDT.S.8 : Min. spacing between LIG and SDT not on the same net : 14nm', 'values': ['edge-pair: (1.149,0.059;1.149,0.081)/(1.146,0.081;1.146,0.059)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.926,33.48'}
+[1] {'category': 'LIG.SDT.S.8', 'description': 'LIG.SDT.S.8 : Min. spacing between LIG and SDT not on the same net : 14nm', 'values': ['edge-pair: (1.149,0.059;1.149,0.081)/(1.146,0.081;1.146,0.059)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 19.278,30.24'}
+=======================================
+--- V0.S.1  |  cell: DFFASRHQNx1_ASAP7_75t_R ---
+[0] {'category': 'V0.S.1', 'description': 'V0.S.1 : Min. spacing between V0 instances on parallel M1 tracks, if they are not aligned with each other : 27nm', 'values': ['polygon: (0.729,0.169;0.71075,0.189;0.711,0.189;0.72925,0.169)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.926,33.48'}
+[1] {'category': 'V0.S.1', 'description': 'V0.S.1 : Min. spacing between V0 instances on parallel M1 tracks, if they are not aligned with each other : 27nm', 'values': ['polygon: (0.729,0.169;0.71075,0.189;0.711,0.189;0.72925,0.169)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 19.278,30.24'}
+=======================================
+--- V1.S.4  |  cell: DFFASRHQNx1_ASAP7_75t_R ---
+[0] {'category': 'V1.S.4', 'description': 'V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm', 'values': ['edge-pair: (0.9,0.09;0.9,0.088)/(0.918,0.108;0.918,0.11)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.926,33.48'}
+[1] {'category': 'V1.S.4', 'description': 'V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm', 'values': ['edge-pair: (0.16,0.09;0.16,0.08975)/(0.18,0.108;0.18,0.10825)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.926,33.48'}
+[2] {'category': 'V1.S.4', 'description': 'V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm', 'values': ['edge-pair: (0.9,0.09;0.9,0.088)/(0.918,0.108;0.918,0.11)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 19.278,30.24'}
+[3] {'category': 'V1.S.4', 'description': 'V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm', 'values': ['edge-pair: (0.16,0.09;0.16,0.08975)/(0.18,0.108;0.18,0.10825)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 19.278,30.24'}
+=======================================
+--- V2.M3.AUX.2  |  cell: VIA_VIA23_1_3_36_36 ---
+[0] {'category': 'V2.M3.AUX.2', 'description': 'V2.M3.AUX.2 : V2 must exactly be the same width as M3 along the direction perpendicular to the M3 length', 'values': ['polygon: (-0.009,-0.009;-0.009,0.009;0.009,0.009;0.009,-0.009)'], 'cell_name': 'VIA_VIA23_1_3_36_36', 'parent': 'adder', 'trans': 'r0 *1 34.752,35.1'}
+=======================================
+--- V4.M5.AUX.2  |  cell: VIA_VIA45_1_2_58_58 ---
+[0] {'category': 'V4.M5.AUX.2', 'description': 'V4.M5.AUX.2 : V4 must exactly be the same width as M5 along the direction perpendicular to the M5 length', 'values': ['polygon: (-0.041,-0.012;-0.041,0.012;-0.017,0.012;-0.017,-0.012)'], 'cell_name': 'VIA_VIA45_1_2_58_58', 'parent': 'adder', 'trans': 'r0 *1 34.944,37.53'}
+[1] {'category': 'V4.M5.AUX.2', 'description': 'V4.M5.AUX.2 : V4 must exactly be the same width as M5 along the direction perpendicular to the M5 length', 'values': ['polygon: (0.017,-0.012;0.017,0.012;0.041,0.012;0.041,-0.012)'], 'cell_name': 'VIA_VIA45_1_2_58_58', 'parent': 'adder', 'trans': 'r0 *1 34.944,37.53'}
+=======================================

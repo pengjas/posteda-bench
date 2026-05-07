@@ -1,0 +1,1056 @@
+{
+  "creator": "Yosys 0.61+0 (git sha1 UNKNOWN-dirty, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)",
+  "modules": {
+    "multi_pipe_8bit": {
+      "attributes": {
+        "hdlname": "multi_pipe_8bit",
+        "dynports": "00000000000000000000000000000001",
+        "top": "00000000000000000000000000000001",
+        "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:1.1-92.10"
+      },
+      "parameter_default_values": {
+        "size": "00000000000000000000000000001000"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "rst_n": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "mul_a": {
+          "direction": "input",
+          "bits": [ 4, 5, 6, 7, 8, 9, 10, 11 ]
+        },
+        "mul_b": {
+          "direction": "input",
+          "bits": [ 12, 13, 14, 15, 16, 17, 18, 19 ]
+        },
+        "mul_en_in": {
+          "direction": "input",
+          "bits": [ 20 ]
+        },
+        "mul_en_out": {
+          "direction": "output",
+          "bits": [ 21 ]
+        },
+        "mul_out": {
+          "direction": "output",
+          "bits": [ 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37 ]
+        }
+      },
+      "cells": {
+        "$auto$alumacc.cc:382:replace_macc$4304": {
+          "hide_name": 1,
+          "type": "$macc_v2",
+          "parameters": {
+            "ADDEND_NEGATED": "000",
+            "A_SIGNED": "x",
+            "A_WIDTHS": "x",
+            "B_SIGNED": "x",
+            "B_WIDTHS": "x",
+            "C_SIGNED": "000",
+            "C_WIDTHS": "000000000000111000000000000100000000000000001101",
+            "NADDENDS": "00000000000000000000000000000011",
+            "NPRODUCTS": "00000000000000000000000000000000",
+            "PRODUCT_NEGATED": "x",
+            "Y_WIDTH": "00000000000000000000000000010000"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:80.26-80.59"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "C": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ ],
+            "B": [ ],
+            "C": [ 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80 ],
+            "Y": [ 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96 ]
+          }
+        },
+        "$auto$alumacc.cc:512:replace_alu$4305": {
+          "hide_name": 1,
+          "type": "$alu",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001000",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001001",
+            "Y_WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:69.21-69.38"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "BI": "input",
+            "CI": "input",
+            "CO": "output",
+            "X": "output",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 97, 98, 99, 100, 101, 102, 103, 104 ],
+            "B": [ 105, 106, 107, 108, 109, 110, 111, 112, 113 ],
+            "BI": [ "0" ],
+            "CI": [ "0" ],
+            "CO": [ 114, 115, 116, 117, 118, 119, 120, 121, 122, 123 ],
+            "X": [ 124, 125, 126, 127, 128, 129, 130, 131, 132, 133 ],
+            "Y": [ 134, 135, 136, 137, 138, 139, 140, 141, 142, 143 ]
+          }
+        },
+        "$auto$alumacc.cc:512:replace_alu$4308": {
+          "hide_name": 1,
+          "type": "$alu",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001011",
+            "Y_WIDTH": "00000000000000000000000000001100"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:70.21-70.38"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "BI": "input",
+            "CI": "input",
+            "CO": "output",
+            "X": "output",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 144, 145, 146, 147, 148, 149, 150, 151, 152, 153 ],
+            "B": [ 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164 ],
+            "BI": [ "0" ],
+            "CI": [ "0" ],
+            "CO": [ 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176 ],
+            "X": [ 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188 ],
+            "Y": [ 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200 ]
+          }
+        },
+        "$auto$alumacc.cc:512:replace_alu$4311": {
+          "hide_name": 1,
+          "type": "$alu",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001101",
+            "Y_WIDTH": "00000000000000000000000000001110"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:71.21-71.38"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "BI": "input",
+            "CI": "input",
+            "CO": "output",
+            "X": "output",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212 ],
+            "B": [ 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225 ],
+            "BI": [ "0" ],
+            "CI": [ "0" ],
+            "CO": [ 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239 ],
+            "X": [ 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253 ],
+            "Y": [ 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267 ]
+          }
+        },
+        "$auto$alumacc.cc:512:replace_alu$4314": {
+          "hide_name": 1,
+          "type": "$alu",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001110",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001111",
+            "Y_WIDTH": "00000000000000000000000000010000"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:72.21-72.38"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "BI": "input",
+            "CI": "input",
+            "CO": "output",
+            "X": "output",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281 ],
+            "B": [ 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296 ],
+            "BI": [ "0" ],
+            "CI": [ "0" ],
+            "CO": [ 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312 ],
+            "X": [ 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328 ],
+            "Y": [ 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344 ]
+          }
+        },
+        "$auto$alumacc.cc:512:replace_alu$4317": {
+          "hide_name": 1,
+          "type": "$alu",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001010",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001100",
+            "Y_WIDTH": "00000000000000000000000000001101"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:80.26-80.41"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "BI": "input",
+            "CI": "input",
+            "CO": "output",
+            "X": "output",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 345, 346, 347, 348, 349, 350, 351, 352, 353, 354 ],
+            "B": [ 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366 ],
+            "BI": [ "0" ],
+            "CI": [ "0" ],
+            "CO": [ 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379 ],
+            "X": [ 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392 ],
+            "Y": [ 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 ]
+          }
+        },
+        "$auto$ff.cc:337:slice$4277": {
+          "hide_name": 1,
+          "type": "$sdffce",
+          "parameters": {
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "EN_POLARITY": "00000000000000000000000000000001",
+            "SRST_POLARITY": "00000000000000000000000000000000",
+            "SRST_VALUE": "00000000",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:38.3-46.13"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "EN": "input",
+            "Q": "output",
+            "SRST": "input"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 12, 13, 14, 15, 16, 17, 18, 19 ],
+            "EN": [ 3 ],
+            "Q": [ 393, 394, 395, 396, 397, 398, 399, 400 ],
+            "SRST": [ 20 ]
+          }
+        },
+        "$procdff$4228": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:25.2-33.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 401 ],
+            "Q": [ 21 ]
+          }
+        },
+        "$procdff$4233": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:25.2-33.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 20, 402, 403 ],
+            "Q": [ 402, 403, 401 ]
+          }
+        },
+        "$procdff$4238": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "00000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:38.3-46.13"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 404, 405, 406, 407, 408, 409, 410, 411 ],
+            "Q": [ 412, 413, 414, 415, 416, 417, 418, 419 ]
+          }
+        },
+        "$procdff$4250": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0000000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:61.2-73.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 134, 135, 136, 137, 138, 139, 140, 141, 142, 143 ],
+            "Q": [ 345, 346, 347, 348, 349, 350, 351, 352, 353, 354 ]
+          }
+        },
+        "$procdff$4255": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "000000000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001100"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:61.2-73.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200 ],
+            "Q": [ 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366 ]
+          }
+        },
+        "$procdff$4260": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "00000000000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001110"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:61.2-73.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267 ],
+            "Q": [ 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80 ]
+          }
+        },
+        "$procdff$4265": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0000000000000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000010000"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:61.2-73.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344 ],
+            "Q": [ 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66 ]
+          }
+        },
+        "$procdff$4270": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0000000000000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000010000"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:76.2-80.60"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96 ],
+            "Q": [ 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435 ]
+          }
+        },
+        "$procdff$4275": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "0000000000000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000010000"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:83.2-89.26"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451 ],
+            "Q": [ 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37 ]
+          }
+        },
+        "$procmux$4222": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000010000"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:86.16-86.33|/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:86.13-89.26"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435 ],
+            "S": [ 401 ],
+            "Y": [ 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451 ]
+          }
+        },
+        "$ternary$/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:44$4189": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:44.28-44.50"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ 4, 5, 6, 7, 8, 9, 10, 11 ],
+            "S": [ 20 ],
+            "Y": [ 404, 405, 406, 407, 408, 409, 410, 411 ]
+          }
+        },
+        "$ternary$/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:50$4206": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:50.20-50.56"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ 412, 413, 414, 415, 416, 417, 418, 419 ],
+            "S": [ 393 ],
+            "Y": [ 97, 98, 99, 100, 101, 102, 103, 104 ]
+          }
+        },
+        "$ternary$/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:51$4208": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001001"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:51.20-51.61"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "0", 412, 413, 414, 415, 416, 417, 418, 419 ],
+            "S": [ 394 ],
+            "Y": [ 105, 106, 107, 108, 109, 110, 111, 112, 113 ]
+          }
+        },
+        "$ternary$/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:52$4210": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001010"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:52.20-52.61"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "0", "0", 412, 413, 414, 415, 416, 417, 418, 419 ],
+            "S": [ 395 ],
+            "Y": [ 144, 145, 146, 147, 148, 149, 150, 151, 152, 153 ]
+          }
+        },
+        "$ternary$/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:53$4212": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001011"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:53.20-53.61"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "0", "0", "0", 412, 413, 414, 415, 416, 417, 418, 419 ],
+            "S": [ 396 ],
+            "Y": [ 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164 ]
+          }
+        },
+        "$ternary$/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:54$4214": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001100"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:54.20-54.61"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "0", "0", "0", "0", 412, 413, 414, 415, 416, 417, 418, 419 ],
+            "S": [ 397 ],
+            "Y": [ 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212 ]
+          }
+        },
+        "$ternary$/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:55$4216": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001101"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:55.20-55.61"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "0", "0", "0", "0", "0", 412, 413, 414, 415, 416, 417, 418, 419 ],
+            "S": [ 398 ],
+            "Y": [ 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225 ]
+          }
+        },
+        "$ternary$/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:56$4218": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001110"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:56.20-56.61"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "0", "0", "0", "0", "0", "0", 412, 413, 414, 415, 416, 417, 418, 419 ],
+            "S": [ 399 ],
+            "Y": [ 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281 ]
+          }
+        },
+        "$ternary$/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:57$4220": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001111"
+          },
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:57.20-57.61"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "0", "0", "0", "0", "0", "0", "0", 412, 413, 414, 415, 416, 417, 418, 419 ],
+            "S": [ 400 ],
+            "Y": [ 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\mul_a_reg[7:0]": {
+          "hide_name": 1,
+          "bits": [ 404, 405, 406, 407, 408, 409, 410, 411 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:38.3-46.13"
+          }
+        },
+        "$0\\mul_out[15:0]": {
+          "hide_name": 1,
+          "bits": [ 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:83.2-89.26"
+          }
+        },
+        "$0\\mul_out_reg[15:0]": {
+          "hide_name": 1,
+          "bits": [ 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:76.2-80.60"
+          }
+        },
+        "$0\\sum[0][15:0]": {
+          "hide_name": 1,
+          "bits": [ 134, 135, 136, 137, 138, 139, 140, 141, 142, 143 ],
+          "attributes": {
+          }
+        },
+        "$0\\sum[1][15:0]": {
+          "hide_name": 1,
+          "bits": [ 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199 ],
+          "attributes": {
+          }
+        },
+        "$0\\sum[2][15:0]": {
+          "hide_name": 1,
+          "bits": [ 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264 ],
+          "attributes": {
+          }
+        },
+        "$0\\sum[3][15:0]": {
+          "hide_name": 1,
+          "bits": [ 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343 ],
+          "attributes": {
+          }
+        },
+        "$add$/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:80$4200_Y": {
+          "hide_name": 1,
+          "bits": [ 38, 39, 40, 41, 42, 43, 44 ],
+          "attributes": {
+          }
+        },
+        "$auto$alumacc.cc:528:replace_alu$4306": {
+          "hide_name": 1,
+          "bits": [ 124, 125, 126, 127, 128, 129, 130, 131, 132, 133 ],
+          "attributes": {
+            "unused_bits": "0 1 2 3 4 5 6 7 8 9"
+          }
+        },
+        "$auto$alumacc.cc:528:replace_alu$4309": {
+          "hide_name": 1,
+          "bits": [ 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188 ],
+          "attributes": {
+            "unused_bits": "0 1 2 3 4 5 6 7 8 9 10 11"
+          }
+        },
+        "$auto$alumacc.cc:528:replace_alu$4312": {
+          "hide_name": 1,
+          "bits": [ 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253 ],
+          "attributes": {
+            "unused_bits": "0 1 2 3 4 5 6 7 8 9 10 11 12 13"
+          }
+        },
+        "$auto$alumacc.cc:528:replace_alu$4315": {
+          "hide_name": 1,
+          "bits": [ 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328 ],
+          "attributes": {
+            "unused_bits": "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+          }
+        },
+        "$auto$alumacc.cc:528:replace_alu$4318": {
+          "hide_name": 1,
+          "bits": [ 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392 ],
+          "attributes": {
+            "unused_bits": "0 1 2 3 4 5 6 7 8 9 10 11 12"
+          }
+        },
+        "$auto$alumacc.cc:529:replace_alu$4307": {
+          "hide_name": 1,
+          "bits": [ 114, 115, 116, 117, 118, 119, 120, 121, 122, 123 ],
+          "attributes": {
+            "unused_bits": "0 1 2 3 4 5 6 7 8 9"
+          }
+        },
+        "$auto$alumacc.cc:529:replace_alu$4310": {
+          "hide_name": 1,
+          "bits": [ 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176 ],
+          "attributes": {
+            "unused_bits": "0 1 2 3 4 5 6 7 8 9 10 11"
+          }
+        },
+        "$auto$alumacc.cc:529:replace_alu$4313": {
+          "hide_name": 1,
+          "bits": [ 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239 ],
+          "attributes": {
+            "unused_bits": "0 1 2 3 4 5 6 7 8 9 10 11 12 13"
+          }
+        },
+        "$auto$alumacc.cc:529:replace_alu$4316": {
+          "hide_name": 1,
+          "bits": [ 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312 ],
+          "attributes": {
+            "unused_bits": "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+          }
+        },
+        "$auto$alumacc.cc:529:replace_alu$4319": {
+          "hide_name": 1,
+          "bits": [ 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379 ],
+          "attributes": {
+            "unused_bits": "0 1 2 3 4 5 6 7 8 9 10 11 12"
+          }
+        },
+        "$auto$wreduce.cc:514:run$4279": {
+          "hide_name": 1,
+          "bits": [ 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, "0", "0", "0", "0" ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:61.2-73.11"
+          }
+        },
+        "$auto$wreduce.cc:514:run$4280": {
+          "hide_name": 1,
+          "bits": [ 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, "0", "0" ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:61.2-73.11"
+          }
+        },
+        "$auto$wreduce.cc:514:run$4281": {
+          "hide_name": 1,
+          "bits": [ 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:61.2-73.11"
+          }
+        },
+        "$auto$wreduce.cc:514:run$4282": {
+          "hide_name": 1,
+          "bits": [ 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, "0", "0", "0" ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:80.26-80.41"
+          }
+        },
+        "$auto$wreduce.cc:514:run$4284": {
+          "hide_name": 1,
+          "bits": [ 97, 98, 99, 100, 101, 102, 103, 104, "0", "0", "0", "0", "0", "0", "0", "0", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:50.20-50.56"
+          }
+        },
+        "$auto$wreduce.cc:514:run$4288": {
+          "hide_name": 1,
+          "bits": [ 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, "0", "0", "0", "0", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:54.20-54.61"
+          }
+        },
+        "$auto$wreduce.cc:514:run$4290": {
+          "hide_name": 1,
+          "bits": [ 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, "0", "0", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:56.20-56.61"
+          }
+        },
+        "$auto$wreduce.cc:514:run$4293": {
+          "hide_name": 1,
+          "bits": [ 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, "0", "0", "0", "0" ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:60.17-60.20"
+          }
+        },
+        "$auto$wreduce.cc:514:run$4294": {
+          "hide_name": 1,
+          "bits": [ 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, "0", "0" ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:60.17-60.20"
+          }
+        },
+        "$auto$wreduce.cc:514:run$4295": {
+          "hide_name": 1,
+          "bits": [ 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:60.17-60.20"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:14.10-14.13"
+          }
+        },
+        "mul_a": {
+          "hide_name": 0,
+          "bits": [ 4, 5, 6, 7, 8, 9, 10, 11 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:17.21-17.26"
+          }
+        },
+        "mul_a_reg": {
+          "hide_name": 0,
+          "bits": [ 412, 413, 414, 415, 416, 417, 418, 419 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:36.15-36.24"
+          }
+        },
+        "mul_b": {
+          "hide_name": 0,
+          "bits": [ 12, 13, 14, 15, 16, 17, 18, 19 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:18.21-18.26"
+          }
+        },
+        "mul_b_reg": {
+          "hide_name": 0,
+          "bits": [ 393, 394, 395, 396, 397, 398, 399, 400 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:37.15-37.24"
+          }
+        },
+        "mul_en_in": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:16.10-16.19"
+          }
+        },
+        "mul_en_out": {
+          "hide_name": 0,
+          "bits": [ 21 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:20.15-20.25"
+          }
+        },
+        "mul_en_out_reg": {
+          "hide_name": 0,
+          "bits": [ 402, 403, 401 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:24.14-24.28"
+          }
+        },
+        "mul_out": {
+          "hide_name": 0,
+          "bits": [ 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:21.28-21.35"
+          }
+        },
+        "mul_out_reg": {
+          "hide_name": 0,
+          "bits": [ 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:75.17-75.28"
+          }
+        },
+        "rst_n": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/OpenROAD-flow-scripts/flow/designs/src/multi_pipe_8bit/multi_pipe_8bit.v:15.10-15.15"
+          }
+        },
+        "sum[0]": {
+          "hide_name": 0,
+          "bits": [ 345, 346, 347, 348, 349, 350, 351, 352, 353, 354 ],
+          "attributes": {
+          }
+        },
+        "sum[1]": {
+          "hide_name": 0,
+          "bits": [ 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365 ],
+          "attributes": {
+          }
+        },
+        "sum[2]": {
+          "hide_name": 0,
+          "bits": [ 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77 ],
+          "attributes": {
+          }
+        },
+        "sum[3]": {
+          "hide_name": 0,
+          "bits": [ 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65 ],
+          "attributes": {
+          }
+        },
+        "temp[0]": {
+          "hide_name": 0,
+          "bits": [ 97 ],
+          "attributes": {
+          }
+        },
+        "temp[1]": {
+          "hide_name": 0,
+          "bits": [ 105, 106, 107, 108, 109, 110, 111, 112, 113 ],
+          "attributes": {
+          }
+        },
+        "temp[2]": {
+          "hide_name": 0,
+          "bits": [ 144, 145, 146, 147, 148, 149, 150, 151, 152, 153 ],
+          "attributes": {
+          }
+        },
+        "temp[3]": {
+          "hide_name": 0,
+          "bits": [ 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164 ],
+          "attributes": {
+          }
+        },
+        "temp[4]": {
+          "hide_name": 0,
+          "bits": [ 201, 202, 203, 204, 205, 206, 207, 208, 209, 210 ],
+          "attributes": {
+          }
+        },
+        "temp[5]": {
+          "hide_name": 0,
+          "bits": [ 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225 ],
+          "attributes": {
+          }
+        },
+        "temp[6]": {
+          "hide_name": 0,
+          "bits": [ 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279 ],
+          "attributes": {
+          }
+        },
+        "temp[7]": {
+          "hide_name": 0,
+          "bits": [ 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296 ],
+          "attributes": {
+          }
+        }
+      }
+    }
+  }
+}

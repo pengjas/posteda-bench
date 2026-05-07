@@ -1,0 +1,7 @@
+{
+    "knob": "ASAP7_USE_VT",
+    "value": "LVT",
+    "target_effective_period": 225.0,
+    "initial_effective_period": 269.18,
+    "num_iterations": 1
+}

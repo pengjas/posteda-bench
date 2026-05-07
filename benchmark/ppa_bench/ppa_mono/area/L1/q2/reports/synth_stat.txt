@@ -1,0 +1,48 @@
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+
+20. Printing statistics.
+
+=== multi_pipe_8bit ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+      622        - wires
+      651        - wire bits
+       36        - public wires
+       65        - public wire bits
+        7        - ports
+       36        - port bits
+      570   81.167 cells
+       13    1.137   AND2x2_ASAP7_75t_R
+       21    1.837   AO21x1_ASAP7_75t_R
+        8     1.05   AO22x1_ASAP7_75t_R
+       23    2.683   AOI21x1_ASAP7_75t_R
+       18    1.312   BUFx2_ASAP7_75t_R
+       84   31.843   DFFASRHQNx1_ASAP7_75t_R
+        8    2.333   DFFHQNx1_ASAP7_75t_R
+       13    2.654   FAx1_ASAP7_75t_R
+       49     6.43   HAxp5_ASAP7_75t_R
+      101    4.418   INVx1_ASAP7_75t_R
+        3    0.175   INVx2_ASAP7_75t_R
+       11    0.962   NAND2x1_ASAP7_75t_R
+        3    0.437   NAND2x2_ASAP7_75t_R
+        5    0.802   NAND3x1_ASAP7_75t_R
+      104    9.098   NOR2x1_ASAP7_75t_R
+        6    0.875   NOR2x2_ASAP7_75t_R
+        4    0.642   NOR3x1_ASAP7_75t_R
+       12    1.225   OA21x2_ASAP7_75t_R
+       35    4.082   OAI21x1_ASAP7_75t_R
+        9    0.787   OR2x2_ASAP7_75t_R
+        1    0.044   TIEHIx1_ASAP7_75t_R
+        4      0.7   XNOR2x1_ASAP7_75t_R
+       13    2.085   XNOR2x2_ASAP7_75t_R
+        2     0.35   XOR2x1_ASAP7_75t_R
+       20    3.208   XOR2x2_ASAP7_75t_R
+
+   Chip area for module '\multi_pipe_8bit': 81.166860
+     of which used for sequential elements: 34.175520 (42.11%)
+

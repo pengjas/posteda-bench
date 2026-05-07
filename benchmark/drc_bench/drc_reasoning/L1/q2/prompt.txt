@@ -1,0 +1,8 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: DFFASRHQNx1_ASAP7_75t_L
+=======================================
+--- LIG.SDT.S.8  |  cell: DFFASRHQNx1_ASAP7_75t_L ---
+[0] {'category': 'LIG.SDT.S.8', 'description': 'LIG.SDT.S.8 : Min. spacing between LIG and SDT not on the same net : 14nm', 'values': ['edge-pair: (1.149,0.059;1.149,0.081)/(1.146,0.081;1.146,0.059)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_L', 'parent': None, 'trans': None}
+=======================================

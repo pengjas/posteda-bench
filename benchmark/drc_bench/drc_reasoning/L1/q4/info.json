@@ -1,0 +1,10 @@
+{
+    "init_cell_name": "DFFASRHQNx1_ASAP7_75t_L",
+    "init_errors_num": 1,
+    "steps_by_human": 1,
+    "init_error_types": {
+        "V0.S.1": 1
+    },
+    "drc_execution_time_seconds": 12.34,
+    "num_iterations": 8
+}

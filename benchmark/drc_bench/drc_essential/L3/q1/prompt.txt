@@ -1,0 +1,19 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: gcd
+=======================================
+--- M2.W.1  |  cell: gcd ---
+[0] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (8.207,10.0665;8.195,10.0665)|(8.183,10.08;8.195,10.08)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (8.359,10.062;8.347,10.062)|(8.335,10.0755;8.347,10.0755)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[2] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (8.347,10.0665;8.195,10.0665)|(8.195,10.0755;8.347,10.0755)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[3] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (8.195,10.062;8.183,10.062)|(8.195,10.0755;8.207,10.0755)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[4] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (8.347,10.0665;8.335,10.0665)|(8.347,10.08;8.359,10.08)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================
+--- M3.W.1  |  cell: gcd ---
+[0] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (8.82,9.911;8.82,9.923)|(8.8335,9.935;8.8335,9.923)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (8.8245,10.081;8.8245,10.093)|(8.838,10.105;8.838,10.093)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[2] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (8.8245,9.923;8.8245,10.093)|(8.8335,10.093;8.8335,9.923)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[3] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (8.8245,9.923;8.8245,9.935)|(8.838,9.923;8.838,9.911)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[4] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (8.82,10.093;8.82,10.105)|(8.8335,10.093;8.8335,10.081)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================

@@ -1,0 +1,10 @@
+{
+    "init_cell_name": "SDFHx1_ASAP7_75t_L",
+    "init_errors_num": 1,
+    "steps_by_human": 2,
+    "init_error_types": {
+        "LIG.S.4-5": 1
+    },
+    "drc_execution_time_seconds": 12.22,
+    "num_iterations": 8
+}

@@ -1,0 +1,31 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: gcd
+=======================================
+--- LIG.GATE.AUX.1  |  cell: OA21x2_ASAP7_75t_R ---
+[0] {'category': 'LIG.GATE.AUX.1', 'description': 'LIG.GATE.AUX.1 : LIG vertical edge may not lie inside, or coincide with, the GATE layer', 'values': ['edge: (0.021,0.127;0.021,0.143)'], 'cell_name': 'OA21x2_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'r0 *1 7.83,5.94'}
+[1] {'category': 'LIG.GATE.AUX.1', 'description': 'LIG.GATE.AUX.1 : LIG vertical edge may not lie inside, or coincide with, the GATE layer', 'values': ['edge: (0.021,0.127;0.021,0.143)'], 'cell_name': 'OA21x2_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'm0 *1 5.238,8.1'}
+=======================================
+--- M1.W.1  |  cell: DECAPx6_ASAP7_75t_R ---
+[0] {'category': 'M1.W.1', 'description': 'M1.W.1 : Min. width of M1 : 18nm', 'values': ['edge-pair: (0.396,0.213;0.04,0.213)|(0.04,0.225;0.4095,0.225)'], 'cell_name': 'DECAPx6_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'r0 *1 7.722,3.24'}
+[1] {'category': 'M1.W.1', 'description': 'M1.W.1 : Min. width of M1 : 18nm', 'values': ['edge-pair: (0.396,0.213;0.04,0.213)|(0.04,0.225;0.4095,0.225)'], 'cell_name': 'DECAPx6_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'm0 *1 11.34,8.1'}
+=======================================
+--- V0.AUX.1-2  |  cell: DECAPx6_ASAP7_75t_R ---
+[0] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.369,0.207;0.369,0.213;0.387,0.213;0.387,0.207)'], 'cell_name': 'DECAPx6_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'r0 *1 7.722,3.24'}
+[1] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.261,0.207;0.261,0.213;0.279,0.213;0.279,0.207)'], 'cell_name': 'DECAPx6_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'r0 *1 7.722,3.24'}
+[2] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.153,0.207;0.153,0.213;0.171,0.213;0.171,0.207)'], 'cell_name': 'DECAPx6_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'r0 *1 7.722,3.24'}
+[3] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.045,0.207;0.045,0.213;0.063,0.213;0.063,0.207)'], 'cell_name': 'DECAPx6_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'r0 *1 7.722,3.24'}
+[4] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.369,0.207;0.369,0.213;0.387,0.213;0.387,0.207)'], 'cell_name': 'DECAPx6_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'm0 *1 11.34,8.1'}
+[5] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.261,0.207;0.261,0.213;0.279,0.213;0.279,0.207)'], 'cell_name': 'DECAPx6_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'm0 *1 11.34,8.1'}
+[6] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.153,0.207;0.153,0.213;0.171,0.213;0.171,0.207)'], 'cell_name': 'DECAPx6_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'm0 *1 11.34,8.1'}
+[7] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.045,0.207;0.045,0.213;0.063,0.213;0.063,0.207)'], 'cell_name': 'DECAPx6_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'm0 *1 11.34,8.1'}
+=======================================
+--- V0.AUX.1-2  |  cell: OA21x2_ASAP7_75t_R ---
+[0] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.018,0.126;0.018,0.144;0.02,0.144;0.02,0.126)'], 'cell_name': 'OA21x2_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'r0 *1 7.83,5.94'}
+[1] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.018,0.126;0.018,0.144;0.02,0.144;0.02,0.126)'], 'cell_name': 'OA21x2_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'm0 *1 5.238,8.1'}
+=======================================
+--- V0.LIG.A.1  |  cell: OA21x2_ASAP7_75t_R ---
+[0] {'category': 'V0.LIG.A.1', 'description': 'V0.LIG.A.1 : Min. area of overlap between V0 (interacting with LIG and not inside LISD) and LIG : 288nm2', 'values': ['polygon: (0.021,0.127;0.021,0.143;0.036,0.143;0.036,0.127)'], 'cell_name': 'OA21x2_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'r0 *1 7.83,5.94'}
+[1] {'category': 'V0.LIG.A.1', 'description': 'V0.LIG.A.1 : Min. area of overlap between V0 (interacting with LIG and not inside LISD) and LIG : 288nm2', 'values': ['polygon: (0.021,0.127;0.021,0.143;0.036,0.143;0.036,0.127)'], 'cell_name': 'OA21x2_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'm0 *1 5.238,8.1'}
+=======================================

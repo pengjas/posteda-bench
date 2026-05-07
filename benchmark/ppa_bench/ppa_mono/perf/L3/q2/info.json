@@ -1,0 +1,13 @@
+{
+    "knob": [
+        "pipeline",
+        "ASAP7_USE_VT"
+    ],
+    "knob_values": [
+        "gcd_pipelined",
+        "SLVT"
+    ],
+    "target_effective_period": 167.0,
+    "initial_effective_period": 262.53,
+    "num_iterations": 2
+}

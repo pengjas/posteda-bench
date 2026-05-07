@@ -1,0 +1,9 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: gcd
+=======================================
+--- V4.M5.AUX.2  |  cell: VIA_VIA45_1_2_58_58 ---
+[0] {'category': 'V4.M5.AUX.2', 'description': 'V4.M5.AUX.2 : V4 must exactly be the same width as M5 along the direction perpendicular to the M5 length', 'values': ['polygon: (-0.041,-0.012;-0.041,0.012;-0.017,0.012;-0.017,-0.012)'], 'cell_name': 'VIA_VIA45_1_2_58_58', 'parent': 'gcd', 'trans': 'r0 *1 12.18,12.42'}
+[1] {'category': 'V4.M5.AUX.2', 'description': 'V4.M5.AUX.2 : V4 must exactly be the same width as M5 along the direction perpendicular to the M5 length', 'values': ['polygon: (0.017,-0.012;0.017,0.012;0.041,0.012;0.041,-0.012)'], 'cell_name': 'VIA_VIA45_1_2_58_58', 'parent': 'gcd', 'trans': 'r0 *1 12.18,12.42'}
+=======================================

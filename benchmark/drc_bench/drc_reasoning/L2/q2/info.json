@@ -1,0 +1,10 @@
+{
+    "init_cell_name": "top_cell",
+    "init_errors_num": 1,
+    "steps_by_human": 1,
+    "init_error_types": {
+        "M1.S.2": 1
+    },
+    "drc_execution_time_seconds": 107.46,
+    "num_iterations": 8
+}

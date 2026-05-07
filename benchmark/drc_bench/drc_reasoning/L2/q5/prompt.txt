@@ -1,0 +1,8 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset - Full layout check, ROI-filtered report
+=======================================
+Top Cell: gcd
+=======================================
+--- M1.S.6  |  cell: gcd ---
+[0] {'category': 'M1.S.6', 'description': 'M1.S.6 : Min. corner-to-corner spacing between two M1 : 20nm', 'values': ['polygon: (13.666,13.3028;13.6557,13.31485;13.64725,13.318;13.653,13.318;13.653,13.3262;13.6633,13.31415;13.67175,13.311;13.666,13.311)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================

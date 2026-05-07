@@ -1,0 +1,9 @@
+{
+    "knob": [
+        "CORE_UTILIZATION",
+        "ABC_AREA"
+    ],
+    "target_area": 180,
+    "initial_area": 397.723,
+    "num_iterations": 2
+}

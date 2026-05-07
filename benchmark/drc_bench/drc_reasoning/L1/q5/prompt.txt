@@ -1,0 +1,8 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: DFFHQNx1_ASAP7_75t_L
+=======================================
+--- LIG.S.4-5  |  cell: DFFHQNx1_ASAP7_75t_L ---
+[0] {'category': 'LIG.S.4-5', 'description': "LISD.S.4-5 : Min. spacing between two LIG' edges, when both edge are =< 24 nm : 31nm", 'values': ['polygon: (0.795,0.11625;0.795,0.117;0.79725,0.1175;0.825,0.12475;0.825,0.124;0.82275,0.1235)'], 'cell_name': 'DFFHQNx1_ASAP7_75t_L', 'parent': None, 'trans': None}
+=======================================

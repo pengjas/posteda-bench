@@ -1,0 +1,6 @@
+{
+    "knob": "pipeline",
+    "target_effective_period": 170.0,
+    "initial_effective_period": 186.9,
+    "num_iterations": 2
+}
