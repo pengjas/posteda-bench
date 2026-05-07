@@ -1,0 +1,14 @@
+{
+    "error_type": [
+        "GATE.S.3",
+        "GATE.S.1"
+    ],
+    "init_errors_num": 2,
+    "init_cell_name": "top_cell",
+    "init_error_types": {
+        "GATE.S.1": 1,
+        "GATE.S.3": 1
+    },
+    "drc_execution_time_seconds": 8.46,
+    "num_iterations": 8
+}

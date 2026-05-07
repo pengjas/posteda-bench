@@ -1,0 +1,82 @@
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_SLVT_FF_nldm_220122.lib.gz', decompressing using zlib.
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `$ORFS_HOME/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+
+20. Printing statistics.
+
+=== aes_cipher_top ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+    14789        - wires
+    15170        - wire bits
+       10        - public wires
+      391        - public wire bits
+        7        - ports
+      388        - port bits
+    14633 1.59E+03 cells
+      814   71.209   AND2x2_ASAP7_75t_SL
+        2    0.292   AND2x4_ASAP7_75t_SL
+      808   70.684   AND3x1_ASAP7_75t_SL
+        4    0.408   AND3x2_ASAP7_75t_SL
+        1    0.204   AND3x4_ASAP7_75t_SL
+      318   32.455   AND4x1_ASAP7_75t_SL
+       62    7.232   AND5x1_ASAP7_75t_SL
+        1    0.292   AND5x2_ASAP7_75t_SL
+        1    0.233   AO211x2_ASAP7_75t_SL
+     1801  157.551   AO21x1_ASAP7_75t_SL
+        2    0.204   AO21x2_ASAP7_75t_SL
+      438    63.86   AO221x1_ASAP7_75t_SL
+       36    6.299   AO222x2_ASAP7_75t_SL
+       92   12.072   AO22x1_ASAP7_75t_SL
+       25    5.832   AO31x2_ASAP7_75t_SL
+      313   36.508   AO32x1_ASAP7_75t_SL
+        7    1.021   AO33x2_ASAP7_75t_SL
+      109   19.071   AOI211x1_ASAP7_75t_SL
+      273   31.843   AOI21x1_ASAP7_75t_SL
+       35    7.144   AOI221x1_ASAP7_75t_SL
+       58    8.456   AOI22x1_ASAP7_75t_SL
+        2    0.525   BUFx12f_ASAP7_75t_SL
+     1340   97.686   BUFx2_ASAP7_75t_SL
+      183   16.009   BUFx3_ASAP7_75t_SL
+       26    3.033   BUFx4f_ASAP7_75t_SL
+       40    5.832   BUFx6f_ASAP7_75t_SL
+      562  163.879   DFFHQNx1_ASAP7_75t_SL
+      278   36.479   HAxp5_ASAP7_75t_SL
+      572   25.019   INVx1_ASAP7_75t_SL
+       29    1.691   INVx2_ASAP7_75t_SL
+        5    0.365   INVx3_ASAP7_75t_SL
+        3    0.394   MAJx2_ASAP7_75t_SL
+     1138   99.552   NAND2x1_ASAP7_75t_SL
+        9    1.312   NAND2x2_ASAP7_75t_SL
+       34    5.453   NAND3x1_ASAP7_75t_SL
+        3    0.875   NAND3x2_ASAP7_75t_SL
+      404   35.342   NOR2x1_ASAP7_75t_SL
+       41    6.576   NOR3x1_ASAP7_75t_SL
+        9    2.624   NOR3x2_ASAP7_75t_SL
+     1091  127.254   OA211x2_ASAP7_75t_SL
+      909   92.773   OA21x2_ASAP7_75t_SL
+        2    0.467   OA221x2_ASAP7_75t_SL
+       18    3.149   OA222x2_ASAP7_75t_SL
+       45    6.561   OA22x2_ASAP7_75t_SL
+       27    5.905   OA31x2_ASAP7_75t_SL
+       29    4.228   OA33x2_ASAP7_75t_SL
+      310   36.158   OAI21x1_ASAP7_75t_SL
+       29    4.228   OAI22x1_ASAP7_75t_SL
+      172   15.047   OR2x2_ASAP7_75t_SL
+        1    0.175   OR2x6_ASAP7_75t_SL
+      944   82.581   OR3x1_ASAP7_75t_SL
+        5     0.51   OR3x2_ASAP7_75t_SL
+      268   27.352   OR4x1_ASAP7_75t_SL
+        4    0.467   OR4x2_ASAP7_75t_SL
+       49    5.715   OR5x1_ASAP7_75t_SL
+       39    6.823   XNOR2x1_ASAP7_75t_SL
+      524   84.039   XNOR2x2_ASAP7_75t_SL
+        3    0.525   XOR2x1_ASAP7_75t_SL
+      286   45.869   XOR2x2_ASAP7_75t_SL
+
+   Chip area for module '\aes_cipher_top': 1585.341720
+     of which used for sequential elements: 163.879200 (10.34%)
+

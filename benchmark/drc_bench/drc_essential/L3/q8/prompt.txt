@@ -1,0 +1,16 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: adder
+=======================================
+--- M1.W.1  |  cell: DECAPx10_ASAP7_75t_R ---
+[0] {'category': 'M1.W.1', 'description': 'M1.W.1 : Min. width of M1 : 18nm', 'values': ['edge-pair: (0.558,0.053;0.558,0.15)|(0.573,0.15;0.573,0.063)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.602,16.2'}
+[1] {'category': 'M1.W.1', 'description': 'M1.W.1 : Min. width of M1 : 18nm', 'values': ['edge-pair: (0.558,0.053;0.558,0.15)|(0.573,0.15;0.573,0.063)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 35.37,19.98'}
+=======================================
+--- V0.AUX.1-2  |  cell: DECAPx10_ASAP7_75t_R ---
+[0] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.573,0.126;0.573,0.144;0.576,0.144;0.576,0.126)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.602,16.2'}
+[1] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (0.573,0.126;0.573,0.144;0.576,0.144;0.576,0.126)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 35.37,19.98'}
+=======================================
+--- V0.AUX.1-2  |  cell: adder ---
+[0] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (5.494,12.645;5.494,12.663;5.496,12.663;5.496,12.645)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================

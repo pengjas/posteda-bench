@@ -1,0 +1,14 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: top_cell
+=======================================
+--- GATE.W.2  |  cell: top_cell ---
+[0] {'category': 'GATE.W.2', 'description': 'GATE.W.2 : Min. vertical width of GATE : 40nm', 'values': ['edge-pair: (0.103,-0.228;0.08,-0.228)|(0.08,-0.22;0.103,-0.22)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+=======================================
+--- LIG.GATE.A.4  |  cell: top_cell ---
+[0] {'category': 'LIG.GATE.A.4', 'description': 'LIG.GATE.A.4 : Min. area of overlap between LIG in SRAM and and GATE (not cut using GCUT) : 240nm2', 'values': ['polygon: (0.08,-0.228;0.08,-0.22;0.103,-0.22;0.103,-0.228)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+=======================================
+--- SRAM.LIG.GATE.OV.2  |  cell: top_cell ---
+[0] {'category': 'SRAM.LIG.GATE.OV.2', 'description': 'SRAM.LIG.GATE.OV.2 : Min. overlap between LIG in SRAM and GATE (not cut using GCUT) : 15nm', 'values': ['edge-pair: (0.103,-0.228;0.08,-0.228)|(0.08,-0.22;0.103,-0.22)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+=======================================

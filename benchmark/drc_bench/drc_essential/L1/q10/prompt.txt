@@ -1,0 +1,8 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: top_cell
+=======================================
+--- ACTIVE.S.1  |  cell: top_cell ---
+[0] {'category': 'ACTIVE.S.1', 'description': 'ACTIVE.S.1 : Min. vertical spacing between ACTIVE : 27nm', 'values': ['edge-pair: (0,-0.017;0.1,-0.017)|(0.1,-0.003;0,-0.003)'], 'cell_name': 'top_cell', 'parent': None, 'trans': None}
+=======================================

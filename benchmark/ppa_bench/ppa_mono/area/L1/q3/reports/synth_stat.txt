@@ -1,0 +1,73 @@
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+
+20. Printing statistics.
+
+=== fixed_point_adder ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     2481        - wires
+     2670        - wire bits
+        3        - public wires
+      192        - public wire bits
+        3        - ports
+      192        - port bits
+     2351  233.557 cells
+       77    6.736   AND2x2_ASAP7_75t_R
+       68    5.949   AND3x1_ASAP7_75t_R
+       37    3.776   AND4x1_ASAP7_75t_R
+        1    0.117   AND4x2_ASAP7_75t_R
+       23    2.683   AND5x1_ASAP7_75t_R
+        4    0.933   AO211x2_ASAP7_75t_R
+      238    20.82   AO21x1_ASAP7_75t_R
+        2    0.204   AO21x2_ASAP7_75t_R
+       28    4.082   AO221x1_ASAP7_75t_R
+        3    0.481   AO221x2_ASAP7_75t_R
+        4    0.525   AO22x1_ASAP7_75t_R
+        7    1.633   AO31x2_ASAP7_75t_R
+       23    2.683   AO32x1_ASAP7_75t_R
+        1    0.146   AO33x2_ASAP7_75t_R
+       26    4.549   AOI211x1_ASAP7_75t_R
+       45    5.249   AOI21x1_ASAP7_75t_R
+        5    1.021   AOI221x1_ASAP7_75t_R
+        3    0.437   AOI22x1_ASAP7_75t_R
+       82    5.978   BUFx2_ASAP7_75t_R
+       16      1.4   BUFx3_ASAP7_75t_R
+        3    0.306   BUFx4_ASAP7_75t_R
+        4    0.467   BUFx4f_ASAP7_75t_R
+       11    1.604   BUFx6f_ASAP7_75t_R
+        8      1.4   BUFx8_ASAP7_75t_R
+        3    0.612   FAx1_ASAP7_75t_R
+      188   24.669   HAxp5_ASAP7_75t_R
+      308   13.472   INVx1_ASAP7_75t_R
+        1    0.058   INVx2_ASAP7_75t_R
+       98    8.573   NAND2x1_ASAP7_75t_R
+        6    0.962   NAND3x1_ASAP7_75t_R
+       80    6.998   NOR2x1_ASAP7_75t_R
+        1    0.146   NOR2x2_ASAP7_75t_R
+       12    1.925   NOR3x1_ASAP7_75t_R
+       76    8.865   OA211x2_ASAP7_75t_R
+      336   34.292   OA21x2_ASAP7_75t_R
+        1    0.233   OA221x2_ASAP7_75t_R
+        1    0.175   OA222x2_ASAP7_75t_R
+        6    0.875   OA22x2_ASAP7_75t_R
+        3    0.656   OA31x2_ASAP7_75t_R
+        8    1.166   OA33x2_ASAP7_75t_R
+      126   14.697   OAI21x1_ASAP7_75t_R
+        3    0.437   OAI22x1_ASAP7_75t_R
+       97    8.486   OR2x2_ASAP7_75t_R
+        6      0.7   OR2x4_ASAP7_75t_R
+      108    9.448   OR3x1_ASAP7_75t_R
+       45    4.593   OR4x1_ASAP7_75t_R
+        2    0.233   OR4x2_ASAP7_75t_R
+       15     1.75   OR5x1_ASAP7_75t_R
+       95   15.236   XNOR2x2_ASAP7_75t_R
+        7    1.123   XOR2x2_ASAP7_75t_R
+
+   Chip area for module '\fixed_point_adder': 233.557020
+     of which used for sequential elements: 0.000000 (0.00%)
+

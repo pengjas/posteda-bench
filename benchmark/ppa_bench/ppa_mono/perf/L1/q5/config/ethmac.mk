@@ -1,0 +1,14 @@
+export PLATFORM               = asap7
+
+export DESIGN_NAME            = ethmac
+
+export VERILOG_FILES         = $(sort $(wildcard $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/*.v))
+export SDC_FILE              = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/ethmac.sdc
+export ABC_AREA               = 1
+export ASAP7_USE_VT 		 = SLVT
+
+export CORE_UTILIZATION       = 80
+export CORE_ASPECT_RATIO      = 1
+export CORE_MARGIN            = 2
+export PLACE_DENSITY          = 0.75
+export FLOW_VARIANT             = util

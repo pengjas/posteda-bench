@@ -13,6 +13,11 @@ runs/
 trajectories/
 *.log
 
+# OpenROAD intermediate / output databases — regenerable from config + RTL
+# Reports (kept) and logs (kept) are sufficient for eval; .odb files are not
+benchmark/**/results/
+benchmark/**/objects/
+
 # Local credentials
 *.key
 secrets.*

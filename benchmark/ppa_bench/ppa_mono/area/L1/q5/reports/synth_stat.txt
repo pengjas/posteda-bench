@@ -1,0 +1,74 @@
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_RVT_FF_nldm_220122.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_RVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+
+20. Printing statistics.
+
+=== jpeg_encoder ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+    62961        - wires
+    62997        - wire bits
+     2688        - public wires
+     2724        - public wire bits
+       11        - ports
+       47        - port bits
+    55078 6.14E+03 cells
+     1124   98.328   AND2x2_ASAP7_75t_R
+      786   68.759   AND3x1_ASAP7_75t_R
+        1    0.102   AND3x2_ASAP7_75t_R
+      149   15.207   AND4x1_ASAP7_75t_R
+        2    0.233   AND5x1_ASAP7_75t_R
+     6802  595.039   AO21x1_ASAP7_75t_R
+        2    0.204   AO21x2_ASAP7_75t_R
+     1194  174.085   AO221x1_ASAP7_75t_R
+      240   31.493   AO22x1_ASAP7_75t_R
+        2    0.467   AO31x2_ASAP7_75t_R
+       72    8.398   AO32x1_ASAP7_75t_R
+        8      1.4   AOI211x1_ASAP7_75t_R
+     1285  149.882   AOI21x1_ASAP7_75t_R
+       83   16.942   AOI221x1_ASAP7_75t_R
+      168   24.494   AOI22x1_ASAP7_75t_R
+     2110  153.819   BUFx2_ASAP7_75t_R
+       19    1.662   BUFx3_ASAP7_75t_R
+        6    0.612   BUFx4_ASAP7_75t_R
+        3     0.35   BUFx4f_ASAP7_75t_R
+       20    2.333   BUFx5_ASAP7_75t_R
+        4    0.583   BUFx6f_ASAP7_75t_R
+       65    24.64   DFFASRHQNx1_ASAP7_75t_R
+     4318 1.26E+03   DFFHQNx1_ASAP7_75t_R
+     4205  858.325   FAx1_ASAP7_75t_R
+     3694  484.727   HAxp5_ASAP7_75t_R
+    13704  599.413   INVx1_ASAP7_75t_R
+       16    0.933   INVx2_ASAP7_75t_R
+        2    0.146   INVx3_ASAP7_75t_R
+        2    0.175   INVx4_ASAP7_75t_R
+        2    0.262   MAJx2_ASAP7_75t_R
+     1971  172.423   NAND2x1_ASAP7_75t_R
+        5    0.729   NAND2x2_ASAP7_75t_R
+       93   14.915   NAND3x1_ASAP7_75t_R
+     6390  558.997   NOR2x1_ASAP7_75t_R
+       12     1.75   NOR2x2_ASAP7_75t_R
+        9    1.443   NOR3x1_ASAP7_75t_R
+       73    8.515   OA211x2_ASAP7_75t_R
+     1471   150.13   OA21x2_ASAP7_75t_R
+       50     7.29   OA22x2_ASAP7_75t_R
+       46    10.06   OA31x2_ASAP7_75t_R
+     2393   279.12   OAI21x1_ASAP7_75t_R
+      489   71.296   OAI22x1_ASAP7_75t_R
+       37    3.237   OR2x2_ASAP7_75t_R
+      255   22.307   OR3x1_ASAP7_75t_R
+      108   11.022   OR4x1_ASAP7_75t_R
+       17    1.983   OR5x1_ASAP7_75t_R
+        1    0.044   TIEHIx1_ASAP7_75t_R
+        1    0.044   TIELOx1_ASAP7_75t_R
+      336   53.888   XNOR2x2_ASAP7_75t_R
+        1    0.175   XOR2x1_ASAP7_75t_R
+     1232  197.588   XOR2x2_ASAP7_75t_R
+
+   Chip area for module '\jpeg_encoder': 6139.098540
+     of which used for sequential elements: 1283.769000 (20.91%)
+

@@ -1,0 +1,12 @@
+The design has completed the OpenROAD flow, but power and area are not met.
+
+Current power: 0.00161 W
+Target power: <= 0.00091 W
+
+Current area: 293.163 um^2
+Target area: <= 250 um^2
+
+Additionally, the following constraints must be maintained (already satisfied by the current design):
+- Keep effective_period <= 345 ps (current: 319.69 ps)
+
+Analyze any available files and optimize the design configuration or timing constraints in `config/.mk` and `config/.sdc` or Verilog source code in `src/` to meet the targets. You may reference `FlowVariables.md` for available tuning options.

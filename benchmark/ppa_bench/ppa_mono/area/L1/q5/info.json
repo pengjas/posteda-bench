@@ -1,0 +1,6 @@
+{
+    "knob": "CORE_UTILIZATION",
+    "target_area": 9540,
+    "initial_area": 13184.2,
+    "num_iterations": 1
+}

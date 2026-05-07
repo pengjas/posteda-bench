@@ -1,0 +1,12 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: adder
+=======================================
+--- M3.W.1  |  cell: adder ---
+[0] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (19.836,29.927;19.836,29.939)|(19.8495,29.951;19.8495,29.939)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[1] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (19.8405,30.259;19.8405,30.271)|(19.854,30.283;19.854,30.271)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[2] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (19.8405,29.939;19.8405,30.271)|(19.8495,30.271;19.8495,29.939)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[3] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (19.8405,29.939;19.8405,29.951)|(19.854,29.939;19.854,29.927)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[4] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (19.836,30.271;19.836,30.283)|(19.8495,30.271;19.8495,30.259)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================

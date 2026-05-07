@@ -1,0 +1,9 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: adder
+=======================================
+--- LIG.GATE.AUX.1  |  cell: TIEHIx1_ASAP7_75t_R ---
+[0] {'category': 'LIG.GATE.AUX.1', 'description': 'LIG.GATE.AUX.1 : LIG vertical edge may not lie inside, or coincide with, the GATE layer', 'values': ['edge: (0.091,0.09;0.091,0.068)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 20.196,29.16'}
+[1] {'category': 'LIG.GATE.AUX.1', 'description': 'LIG.GATE.AUX.1 : LIG vertical edge may not lie inside, or coincide with, the GATE layer', 'values': ['edge: (0.091,0.09;0.091,0.068)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 20.088,36.72'}
+=======================================

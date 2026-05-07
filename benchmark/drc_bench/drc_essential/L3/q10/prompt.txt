@@ -1,0 +1,26 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: adder
+=======================================
+--- M1.W.1  |  cell: DFFASRHQNx1_ASAP7_75t_R ---
+[0] {'category': 'M1.W.1', 'description': 'M1.W.1 : Min. width of M1 : 18nm', 'values': ['edge-pair: (1.044,0.102;1.044,0.167)|(1.058,0.167;1.058,0.102)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.926,33.48'}
+[1] {'category': 'M1.W.1', 'description': 'M1.W.1 : Min. width of M1 : 18nm', 'values': ['edge-pair: (1.044,0.102;1.044,0.167)|(1.058,0.167;1.058,0.102)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 19.278,30.24'}
+=======================================
+--- M2.W.1  |  cell: adder ---
+[0] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (15.776,34.4385;15.764,34.4385)|(15.752,34.452;15.764,34.452)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[1] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (18.691,34.434;18.679,34.434)|(18.667,34.4475;18.679,34.4475)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[2] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (18.679,34.4385;15.764,34.4385)|(15.764,34.4475;18.679,34.4475)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[3] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (15.764,34.434;15.752,34.434)|(15.764,34.4475;15.776,34.4475)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[4] {'category': 'M2.W.1', 'description': 'M2.W.1 : Min. width of M2 : 18nm', 'values': ['edge-pair: (18.679,34.4385;18.667,34.4385)|(18.679,34.452;18.691,34.452)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================
+--- V0.AUX.1-2  |  cell: DFFASRHQNx1_ASAP7_75t_R ---
+[0] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (1.058,0.126;1.058,0.144;1.062,0.144;1.062,0.126)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.926,33.48'}
+[1] {'category': 'V0.AUX.1-2', 'description': 'V0.AUX.1-2 : V0 must always interact with M1 and [LISD|LIG]', 'values': ['polygon: (1.058,0.126;1.058,0.144;1.062,0.144;1.062,0.126)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 19.278,30.24'}
+=======================================
+--- V1.AUX.1  |  cell: DFFASRHQNx1_ASAP7_75t_R ---
+[0] {'category': 'V1.AUX.1', 'description': 'V1.AUX.1 : V1 must be inside M1 and M2', 'values': ['polygon: (1.002,0.036;1.002,0.054;1.003,0.054;1.003,0.036)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.926,33.48'}
+[1] {'category': 'V1.AUX.1', 'description': 'V1.AUX.1 : V1 must be inside M1 and M2', 'values': ['polygon: (1.058,0.144;1.058,0.162;1.062,0.162;1.062,0.144)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'r0 *1 19.926,33.48'}
+[2] {'category': 'V1.AUX.1', 'description': 'V1.AUX.1 : V1 must be inside M1 and M2', 'values': ['polygon: (1.002,0.036;1.002,0.054;1.003,0.054;1.003,0.036)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 19.278,30.24'}
+[3] {'category': 'V1.AUX.1', 'description': 'V1.AUX.1 : V1 must be inside M1 and M2', 'values': ['polygon: (1.058,0.144;1.058,0.162;1.062,0.162;1.062,0.144)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'adder', 'trans': 'm0 *1 19.278,30.24'}
+=======================================

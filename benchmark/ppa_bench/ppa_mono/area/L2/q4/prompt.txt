@@ -1,0 +1,6 @@
+The design has completed the OpenROAD flow, but area is not met.
+
+Current area: 374.384 um^2
+Target area: <= 195 um^2
+
+Analyze any available files and optimize the design configuration or timing constraints in `config/.mk` and `config/.sdc` or Verilog source code in `src/` to meet the area target. You may reference `FlowVariables.md` for available tuning options.

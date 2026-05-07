@@ -50,11 +50,11 @@
   "conformsTo": "http://mlcommons.org/croissant/1.0",
   "name": "PostEDA-Bench",
   "alternateName": "posteda_bench",
-  "description": "PostEDA-Bench is a benchmark for evaluating LLM-based agents on post-EDA (Electronic Design Automation) tasks for digital integrated-circuit design. It contains 50 tasks organized into two sub-benchmarks: (1) DRC-Bench, which evaluates an agent's ability to interpret and reason about Design Rule Check violations on ASAP7 GDS layouts (drc_essential: 15 tasks across 3 difficulty levels; drc_reasoning: 15 tasks across 3 difficulty levels); and (2) PPA-Bench, which evaluates an agent's ability to optimize Power, Performance, and Area of OpenROAD synthesis/place-and-route flows (ppa_mono: 14 single-objective tasks across area/performance/power and 2 difficulty levels; ppa_multi: 6 multi-objective tasks across 2 difficulty levels). Each task ships with a natural-language prompt, fully reproducible OpenROAD configuration, RTL/Verilog source, GDS layouts, reports, and a hidden ground-truth/evaluation harness. Submissions are evaluated by closed-form scripts that re-run the EDA flow and compare against held-out targets.",
+  "description": "PostEDA-Bench is a benchmark for evaluating LLM-based agents on post-EDA (Electronic Design Automation) tasks for digital integrated-circuit design. It contains 145 tasks organized into two sub-benchmarks: (1) DRC-Bench, which evaluates an agent's ability to interpret and reason about Design Rule Check violations on ASAP7 GDS layouts (drc_essential: 40 tasks across 3 difficulty levels; drc_reasoning: 30 tasks across 3 difficulty levels); and (2) PPA-Bench, which evaluates an agent's ability to optimize Power, Performance, and Area of OpenROAD synthesis/place-and-route flows (ppa_mono: 35 single-objective tasks across area/performance/power, with performance covering 3 difficulty levels and area/power covering 2; ppa_multi: 40 multi-objective tasks across 2 difficulty levels). Each task ships with a natural-language prompt, fully reproducible OpenROAD configuration, RTL/Verilog source, GDS layouts, reports, and a hidden ground-truth/evaluation harness. Submissions are evaluated by closed-form scripts that re-run the EDA flow and compare against held-out targets.",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "url": "https://anonymous.4open.science/r/REPLACE_WITH_ANONYMOUS_REPO_ID/",
-  "version": "1.0.0",
-  "datePublished": "2026-05-07",
+  "url": "https://anonymous.4open.science/r/posteda-bench-0183/",
+  "version": "1.1.0",
+  "datePublished": "2026-05-08",
   "keywords": [
     "EDA",
     "Electronic Design Automation",
@@ -95,10 +95,10 @@
   "rai:dataCollectionTimeframe": {
     "@type": "sc:DateTime",
     "startDate": "2025-09-01",
-    "endDate": "2026-04-30"
+    "endDate": "2026-05-08"
   },
   "rai:dataCollectionRawData": "Open-source RTL (Verilog) for digital designs; the public ASAP7 7nm Process Design Kit (PDK) and DRC runsets; OpenROAD-flow-scripts (ORFS) configuration files. No third-party proprietary IP, no human-subject data, and no scraped web data are included.",
-  "rai:dataCollectionMissingData": "None. Each of the 50 tasks contains the complete set of artifacts required for execution and grading (prompt.txt, info.json with hidden ground truth, and supporting EDA inputs such as GDS, RTL, ORFS configs, reports, and logs).",
+  "rai:dataCollectionMissingData": "None. Each of the 145 tasks contains the complete set of artifacts required for execution and grading (prompt.txt, info.json with hidden ground truth, and supporting EDA inputs such as GDS, RTL, ORFS configs, reports, and logs).",
   "rai:dataPreprocessingProtocol": "GDS files were normalized to a single top cell and re-flattened where necessary so that DRC reports are deterministic. OpenROAD flow runs were re-executed with fixed random seeds and pinned tool versions to ensure metric reproducibility. Hidden evaluation targets (ground-truth DRC violation lists and PPA target thresholds) were extracted into per-task info.json files and excluded from the LLM-visible prompt context.",
   "rai:dataAnnotationProtocol": "Each task was annotated with: (a) a difficulty label (L1, L2, L3, or single/multi-objective for PPA) determined by the number of independent constraints and the size of the design space; (b) a ground-truth answer (DRC violation set or PPA target metrics) computed by deterministic open-source EDA tools rather than human judgement; (c) a natural-language prompt written in English by the dataset authors and peer-reviewed within the team for clarity and absence of leakage. Annotators were the dataset creators, who hold graduate-level expertise in VLSI/EDA.",
   "rai:dataAnnotationPlatform": "Annotation, ground-truth generation, and review were performed using local scripts (Python, Bash) and the open-source tools KLayout (DRC) and OpenROAD-flow-scripts (PPA). No commercial annotation platform or crowdsourcing was used.",
@@ -128,16 +128,16 @@
       "@id": "posteda-bench-archive",
       "name": "posteda-bench-archive",
       "description": "xz-compressed tarball of the entire repository (benchmark/, agents/, eval/, plus README and LICENSE). Hosted via anonymous.4open.science for double-blind review; will be moved to a permanent archival location (Zenodo / GitHub release) at camera-ready.",
-      "contentUrl": "https://anonymous.4open.science/api/repo/REPLACE_WITH_ANONYMOUS_REPO_ID/file/releases/posteda-bench-1.0.0.tar.xz",
+      "contentUrl": "https://anonymous.4open.science/api/repo/posteda-bench-0183/file/releases/posteda-bench-1.1.0.tar.xz",
       "encodingFormat": "application/x-xz",
-      "sha256": "bee0e263ba4ac7379360f0ecb7bb21c846865667072098e3900d03f281953298"
+      "sha256": "c5fb7d9ca7b5565831619a7711b86f6a79dd065304e53b1c74dd859579d570b6"
     },
 
     {
       "@type": "cr:FileSet",
       "@id": "drc-essential-prompts",
       "name": "drc-essential-prompts",
-      "description": "Natural-language task prompts for the drc_essential split (15 tasks, 3 difficulty levels x 5 questions).",
+      "description": "Natural-language task prompts for the drc_essential split (40 tasks: 20 at L1, 10 at L2, 10 at L3).",
       "containedIn": { "@id": "posteda-bench-archive" },
       "encodingFormat": "text/plain",
       "includes": "benchmark/drc_bench/drc_essential/L*/q*/prompt.txt"
@@ -165,7 +165,7 @@
       "@type": "cr:FileSet",
       "@id": "drc-reasoning-prompts",
       "name": "drc-reasoning-prompts",
-      "description": "Natural-language task prompts for the drc_reasoning split (15 tasks, 3 difficulty levels x 5 questions).",
+      "description": "Natural-language task prompts for the drc_reasoning split (30 tasks: 13 at L1, 10 at L2, 7 at L3).",
       "containedIn": { "@id": "posteda-bench-archive" },
       "encodingFormat": "text/plain",
       "includes": "benchmark/drc_bench/drc_reasoning/L*/q*/prompt.txt"
@@ -193,7 +193,7 @@
       "@type": "cr:FileSet",
       "@id": "ppa-mono-prompts",
       "name": "ppa-mono-prompts",
-      "description": "Natural-language task prompts for the ppa_mono split (14 single-objective PPA optimization tasks across area, performance, power and 2 difficulty levels).",
+      "description": "Natural-language task prompts for the ppa_mono split (35 single-objective PPA optimization tasks: area/L1, area/L2, perf/L1, perf/L2, perf/L3, power/L1, power/L2 with 5 questions each).",
       "containedIn": { "@id": "posteda-bench-archive" },
       "encodingFormat": "text/plain",
       "includes": "benchmark/ppa_bench/ppa_mono/*/L*/q*/prompt.txt"
@@ -230,7 +230,7 @@
       "@type": "cr:FileSet",
       "@id": "ppa-multi-prompts",
       "name": "ppa-multi-prompts",
-      "description": "Natural-language task prompts for the ppa_multi split (6 multi-objective PPA optimization tasks across 2 difficulty levels).",
+      "description": "Natural-language task prompts for the ppa_multi split (40 multi-objective PPA optimization tasks: 20 at L1, 20 at L2).",
       "containedIn": { "@id": "posteda-bench-archive" },
       "encodingFormat": "text/plain",
       "includes": "benchmark/ppa_bench/ppa_multi/L*/q*/prompt.txt"
@@ -281,7 +281,7 @@
           "source": {
             "fileSet": { "@id": "drc-essential-prompts" },
             "extract": { "fileProperty": "fullpath" },
-            "transform": { "regex": "benchmark/drc_bench/drc_essential/(L[123])/(q[1-5])/prompt\\.txt" }
+            "transform": { "regex": "benchmark/drc_bench/drc_essential/(L[123])/(q[0-9]+)/prompt\\.txt" }
           }
         },
         {
@@ -293,7 +293,7 @@
           "source": {
             "fileSet": { "@id": "drc-essential-prompts" },
             "extract": { "fileProperty": "fullpath" },
-            "transform": { "regex": "benchmark/drc_bench/drc_essential/(L[123])/q[1-5]/prompt\\.txt" }
+            "transform": { "regex": "benchmark/drc_bench/drc_essential/(L[123])/q[0-9]+/prompt\\.txt" }
           }
         },
         {
@@ -326,7 +326,7 @@
           "source": {
             "fileSet": { "@id": "drc-reasoning-prompts" },
             "extract": { "fileProperty": "fullpath" },
-            "transform": { "regex": "benchmark/drc_bench/drc_reasoning/(L[123])/(q[1-5])/prompt\\.txt" }
+            "transform": { "regex": "benchmark/drc_bench/drc_reasoning/(L[123])/(q[0-9]+)/prompt\\.txt" }
           }
         },
         {
@@ -338,7 +338,7 @@
           "source": {
             "fileSet": { "@id": "drc-reasoning-prompts" },
             "extract": { "fileProperty": "fullpath" },
-            "transform": { "regex": "benchmark/drc_bench/drc_reasoning/(L[123])/q[1-5]/prompt\\.txt" }
+            "transform": { "regex": "benchmark/drc_bench/drc_reasoning/(L[123])/q[0-9]+/prompt\\.txt" }
           }
         },
         {
@@ -359,7 +359,7 @@
       "@type": "cr:RecordSet",
       "@id": "ppa_mono",
       "name": "ppa_mono",
-      "description": "PPA-Mono split: 14 single-objective Power/Performance/Area optimization tasks on OpenROAD-flow-scripts at ASAP7. The agent must edit OpenROAD configs, SDC, or RTL to meet a specific target (area-only, perf-only, or power-only) at L1 or L2 difficulty.",
+      "description": "PPA-Mono split: 35 single-objective Power/Performance/Area optimization tasks on OpenROAD-flow-scripts at ASAP7. The agent must edit OpenROAD configs, SDC, or RTL to meet a specific target (area-only, perf-only, or power-only). Difficulty: L1, L2 for area and power; L1, L2, L3 for perf.",
       "key": { "@id": "ppa_mono/task_id" },
       "field": [
         {
@@ -371,7 +371,7 @@
           "source": {
             "fileSet": { "@id": "ppa-mono-prompts" },
             "extract": { "fileProperty": "fullpath" },
-            "transform": { "regex": "benchmark/ppa_bench/ppa_mono/(area|perf|power)/(L[12])/(q[0-9]+)/prompt\\.txt" }
+            "transform": { "regex": "benchmark/ppa_bench/ppa_mono/(area|perf|power)/(L[123])/(q[0-9]+)/prompt\\.txt" }
           }
         },
         {
@@ -383,7 +383,7 @@
           "source": {
             "fileSet": { "@id": "ppa-mono-prompts" },
             "extract": { "fileProperty": "fullpath" },
-            "transform": { "regex": "benchmark/ppa_bench/ppa_mono/(area|perf|power)/L[12]/q[0-9]+/prompt\\.txt" }
+            "transform": { "regex": "benchmark/ppa_bench/ppa_mono/(area|perf|power)/L[123]/q[0-9]+/prompt\\.txt" }
           }
         },
         {
@@ -395,7 +395,7 @@
           "source": {
             "fileSet": { "@id": "ppa-mono-prompts" },
             "extract": { "fileProperty": "fullpath" },
-            "transform": { "regex": "benchmark/ppa_bench/ppa_mono/(?:area|perf|power)/(L[12])/q[0-9]+/prompt\\.txt" }
+            "transform": { "regex": "benchmark/ppa_bench/ppa_mono/(?:area|perf|power)/(L[123])/q[0-9]+/prompt\\.txt" }
           }
         },
         {
@@ -416,7 +416,7 @@
       "@type": "cr:RecordSet",
       "@id": "ppa_multi",
       "name": "ppa_multi",
-      "description": "PPA-Multi split: 6 multi-objective tasks where the agent must jointly satisfy multiple PPA constraints (e.g., meet a tighter clock period while keeping power below a budget) on ASAP7 / OpenROAD-flow-scripts.",
+      "description": "PPA-Multi split: 40 multi-objective tasks where the agent must jointly satisfy multiple PPA constraints (e.g., meet a tighter clock period while keeping power below a budget) on ASAP7 / OpenROAD-flow-scripts. Difficulty: L1, L2.",
       "key": { "@id": "ppa_multi/task_id" },
       "field": [
         {

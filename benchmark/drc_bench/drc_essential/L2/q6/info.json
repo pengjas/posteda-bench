@@ -1,0 +1,15 @@
+{
+    "init_cell_name": "gcd",
+    "init_errors_num": 2,
+    "steps_by_human": 1,
+    "error_type": [
+        "M2.W.1"
+    ],
+    "cell_level": "top_cell",
+    "init_error_types": {
+        "V2.M2.EN.1": 1,
+        "V2.AUX.1": 1
+    },
+    "drc_execution_time_seconds": 109.51,
+    "num_iterations": 8
+}

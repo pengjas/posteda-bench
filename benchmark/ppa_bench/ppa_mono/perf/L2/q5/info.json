@@ -1,0 +1,10 @@
+{
+    "knob": [
+        "PLACE_DENSITY",
+        "TNS_END_PERCENT",
+        "set_max_fanout"
+    ],
+    "target_effective_period": 500.0,
+    "initial_effective_period": 502.26,
+    "num_iterations": 2
+}

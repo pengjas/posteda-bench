@@ -1,0 +1,14 @@
+{
+    "error_type": [
+        "WELL.A.1B",
+        "WELL.S.1"
+    ],
+    "init_errors_num": 2,
+    "init_cell_name": "top_cell",
+    "init_error_types": {
+        "WELL.S.1": 1,
+        "WELL.A.1B": 1
+    },
+    "drc_execution_time_seconds": 9.31,
+    "num_iterations": 8
+}

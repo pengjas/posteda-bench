@@ -1,0 +1,8 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: TIEHIx1_ASAP7_75t_L
+=======================================
+--- LIG.LISD.S.7  |  cell: TIEHIx1_ASAP7_75t_L ---
+[0] {'category': 'LIG.LISD.S.7', 'description': 'LIG.LISD.S.7 : Min. corner-to-corner spacing between LISD and LIG not on the same net : 15nm', 'values': ['edge-pair: (0.0715,0.068;0.054,0.068)/(0.0485,0.054;0.066,0.054)'], 'cell_name': 'TIEHIx1_ASAP7_75t_L', 'parent': None, 'trans': None}
+=======================================

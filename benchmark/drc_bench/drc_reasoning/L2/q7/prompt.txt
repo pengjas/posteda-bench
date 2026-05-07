@@ -1,0 +1,8 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: DFFASRHQNx1_ASAP7_75t_L
+=======================================
+--- V1.S.4  |  cell: DFFASRHQNx1_ASAP7_75t_L ---
+[0] {'category': 'V1.S.4', 'description': 'V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm', 'values': ['edge-pair: (0.9,0.09;0.9,0.088)/(0.918,0.108;0.918,0.11)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_L', 'parent': None, 'trans': None}
+=======================================

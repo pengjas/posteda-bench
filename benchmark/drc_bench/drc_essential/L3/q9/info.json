@@ -1,0 +1,18 @@
+{
+    "init_cell_name": "adder",
+    "init_errors_num": 23,
+    "steps_by_human": 1,
+    "error_type": [
+        "M2.W.1"
+    ],
+    "cell_level": "top_cell",
+    "init_error_types": {
+        "M4.W.1": 2,
+        "M4.W.5": 8,
+        "M4.S.5": 4,
+        "M4.AUX.3": 8,
+        "V4.AUX.1": 1
+    },
+    "drc_execution_time_seconds": 642.37,
+    "num_iterations": 16
+}

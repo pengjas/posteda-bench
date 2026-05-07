@@ -1,0 +1,18 @@
+{
+    "error_type": [
+        [
+            "GATE.W.2",
+            "LIG.GATE.A.4",
+            "SRAM.LIG.GATE.OV.2"
+        ]
+    ],
+    "init_errors_num": 3,
+    "init_cell_name": "top_cell",
+    "init_error_types": {
+        "GATE.W.2": 1,
+        "LIG.GATE.A.4": 1,
+        "SRAM.LIG.GATE.OV.2": 1
+    },
+    "drc_execution_time_seconds": 9.32,
+    "num_iterations": 8
+}

@@ -1,0 +1,7 @@
+{
+    "knob": "set_max_fanout",
+    "value": 10,
+    "target_effective_period": 295.0,
+    "initial_effective_period": 297.55,
+    "num_iterations": 2
+}

@@ -1,0 +1,9 @@
+The design has completed the OpenROAD flow, but effective period is not met.
+
+Current effective_period: 726.97 ps
+Target effective_period: <= 502 ps
+
+Additionally, the following constraints must be maintained (already satisfied by the current design):
+- Keep power <= 0.025 W (current: 0.0219 W)
+
+Analyze any available files and optimize the design configuration or timing constraints in `config/.mk` and `config/.sdc` or Verilog source code in `src/` to meet the targets. You may reference `FlowVariables.md` for available tuning options.

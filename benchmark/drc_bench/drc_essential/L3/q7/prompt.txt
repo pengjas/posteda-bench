@@ -1,0 +1,45 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: adder
+=======================================
+--- M4.AUX.3  |  cell: adder ---
+[0] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (8.52375,17.48875;8.52375,17.49125;8.52625,17.49125;8.52625,17.48875)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[1] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (11.83175,17.48875;11.83175,17.49125;11.83425,17.49125;11.83425,17.48875)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[2] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (11.83175,17.47675;11.83175,17.47925;11.83425,17.47925;11.83425,17.47675)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[3] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (8.52375,17.47675;8.52375,17.47925;8.52625,17.47925;8.52625,17.47675)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[4] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (8.62575,17.68075;8.62575,17.68325;8.62825,17.68325;8.62825,17.68075)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[5] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (11.29175,17.68075;11.29175,17.68325;11.29425,17.68325;11.29425,17.68075)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[6] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (11.29175,17.66875;11.29175,17.67125;11.29425,17.67125;11.29425,17.66875)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[7] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (8.62575,17.66875;8.62575,17.67125;8.62825,17.67125;8.62825,17.66875)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================
+--- M4.S.5  |  cell: adder ---
+[0] {'category': 'M4.S.5', 'description': 'M4.S.5 : Min. parallel run length of two M4 on adjacent tracks : 44nm', 'values': ['edge: (8.485,17.448;8.525,17.448)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[1] {'category': 'M4.S.5', 'description': 'M4.S.5 : Min. parallel run length of two M4 on adjacent tracks : 44nm', 'values': ['edge: (8.525,17.472;8.485,17.472)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================
+--- M4.W.1  |  cell: adder ---
+[0] {'category': 'M4.W.1', 'description': 'M4.W.1 : Min. vertical width of M4 : 24nm', 'values': ['edge-pair: (11.833,17.478;8.525,17.478)|(8.525,17.49;11.833,17.49)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[1] {'category': 'M4.W.1', 'description': 'M4.W.1 : Min. vertical width of M4 : 24nm', 'values': ['edge-pair: (11.293,17.67;8.627,17.67)|(8.627,17.682;11.293,17.682)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================
+--- M4.W.5  |  cell: adder ---
+[0] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (11.873,17.478;11.873,17.472)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[1] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (11.833,17.472;11.833,17.478)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[2] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (11.873,17.496;11.873,17.49)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[3] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (11.833,17.49;11.833,17.496)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[4] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (11.333,17.67;11.333,17.664)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[5] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (11.293,17.664;11.293,17.67)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[6] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (11.333,17.688;11.333,17.682)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[7] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (11.293,17.682;11.293,17.688)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[8] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (8.485,17.472;8.485,17.478)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[9] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (8.525,17.478;8.525,17.472)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+... Only first 10 errors shown; 2 more not displayed.
+=======================================
+--- M5.AUX.3  |  cell: adder ---
+[0] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (8.16475,13.32975;8.16475,13.33225;8.16725,13.33225;8.16725,13.32975)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[1] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (8.16475,18.89975;8.16475,18.90225;8.16725,18.90225;8.16725,18.89975)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[2] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (8.17675,18.89975;8.17675,18.90225;8.17925,18.90225;8.17925,18.89975)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[3] {'category': 'M5.AUX.3', 'description': 'M5.AUX.3 : M5 may not bend', 'values': ['polygon: (8.17675,13.32975;8.17675,13.33225;8.17925,13.33225;8.17925,13.32975)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================
+--- M5.W.1  |  cell: adder ---
+[0] {'category': 'M5.W.1', 'description': 'M5.W.1 : Min. horizontal width of M5 : 24nm', 'values': ['edge-pair: (8.166,13.331;8.166,18.901)|(8.178,18.901;8.178,13.331)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================

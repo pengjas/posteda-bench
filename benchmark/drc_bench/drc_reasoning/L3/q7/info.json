@@ -1,0 +1,12 @@
+{
+    "init_cell_name": "gcd",
+    "init_errors_num": 7,
+    "init_error_types": {
+        "LIG.S.4-5": 2,
+        "V1.S.4": 2,
+        "V2.M3.AUX.2": 1,
+        "V4.M5.AUX.2": 2
+    },
+    "drc_execution_time_seconds": 102.53,
+    "num_iterations": 16
+}

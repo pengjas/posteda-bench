@@ -1,0 +1,6 @@
+The design has completed the OpenROAD flow, but power is not met.
+
+Current power: 0.0017 W
+Target power: <= 0.0015 W
+
+Analyze any available files and optimize the design configuration or timing constraints in `config/.mk` and `config/.sdc` or Verilog source code in `src/` to meet the power target. You may reference `FlowVariables.md` for available tuning options.

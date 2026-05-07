@@ -1,0 +1,54 @@
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_AO_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_INVBUF_SLVT_FF_nldm_220122.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_OA_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+Found gzip magic in file `/OpenROAD-flow-scripts/flow/platforms/asap7/lib/NLDM/asap7sc7p5t_SIMPLE_SLVT_FF_nldm_211120.lib.gz', decompressing using zlib.
+
+20. Printing statistics.
+
+=== gcd ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+      416        - wires
+      462        - wire bits
+       25        - public wires
+       71        - public wire bits
+        8        - ports
+       54        - port bits
+      409   47.647 cells
+        5    0.437   AND2x2_ASAP7_75t_SL
+        1    0.146   AND2x4_ASAP7_75t_SL
+       15    1.312   AND3x1_ASAP7_75t_SL
+        9    0.787   AO21x1_ASAP7_75t_SL
+        3    0.525   AOI211x1_ASAP7_75t_SL
+       74    8.631   AOI21x1_ASAP7_75t_SL
+        1    0.146   AOI22x1_ASAP7_75t_SL
+        1    0.262   BUFx12f_ASAP7_75t_SL
+        8    0.583   BUFx2_ASAP7_75t_SL
+        1    0.087   BUFx3_ASAP7_75t_SL
+        1    0.117   BUFx4f_ASAP7_75t_SL
+        6    0.875   BUFx6f_ASAP7_75t_SL
+        1    0.175   BUFx8_ASAP7_75t_SL
+       35   10.206   DFFHQNx1_ASAP7_75t_SL
+        1    0.204   FAx1_ASAP7_75t_SL
+       16      2.1   HAxp5_ASAP7_75t_SL
+       55    2.406   INVx1_ASAP7_75t_SL
+        1    0.058   INVx2_ASAP7_75t_SL
+       33    2.887   NAND2x1_ASAP7_75t_SL
+        4    0.583   NAND2x2_ASAP7_75t_SL
+        1     0.16   NAND3x1_ASAP7_75t_SL
+       35    3.062   NOR2x1_ASAP7_75t_SL
+        6    0.875   NOR2x2_ASAP7_75t_SL
+        7    1.123   NOR3x1_ASAP7_75t_SL
+       17    1.735   OA21x2_ASAP7_75t_SL
+       44    5.132   OAI21x1_ASAP7_75t_SL
+       15    1.312   OR2x2_ASAP7_75t_SL
+        1    0.087   OR3x1_ASAP7_75t_SL
+        5     0.51   OR4x1_ASAP7_75t_SL
+        6    0.962   XNOR2x2_ASAP7_75t_SL
+        1     0.16   XOR2x2_ASAP7_75t_SL
+
+   Chip area for module '\gcd': 47.647440
+     of which used for sequential elements: 10.206000 (21.42%)
+
