@@ -1,0 +1,9 @@
+{
+    "knob": [
+        "ABC_AREA",
+        "ASAP7_USE_VT"
+    ],
+    "target_power": 0.00038,
+    "initial_power": 0.000513,
+    "num_iterations": 2
+}

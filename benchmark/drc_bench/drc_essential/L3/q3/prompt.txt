@@ -1,0 +1,27 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: gcd
+=======================================
+--- M3.W.1  |  cell: gcd ---
+[0] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (6.336,8.291;6.336,8.303)|(6.3495,8.315;6.3495,8.303)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (6.3405,8.389;6.3405,8.401)|(6.354,8.413;6.354,8.401)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[2] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (6.3405,8.303;6.3405,8.401)|(6.3495,8.401;6.3495,8.303)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[3] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (6.3405,8.303;6.3405,8.315)|(6.354,8.303;6.354,8.291)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[4] {'category': 'M3.W.1', 'description': 'M3.W.1 : Min. width of M3 : 18nm', 'values': ['edge-pair: (6.336,8.401;6.336,8.413)|(6.3495,8.401;6.3495,8.389)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================
+--- M4.AUX.3  |  cell: gcd ---
+[0] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (5.45775,8.46475;5.45775,8.46725;5.46025,8.46725;5.46025,8.46475)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (7.79975,8.46475;7.79975,8.46725;7.80225,8.46725;7.80225,8.46475)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[2] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (7.79975,8.45275;7.79975,8.45525;7.80225,8.45525;7.80225,8.45275)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[3] {'category': 'M4.AUX.3', 'description': 'M4.AUX.3 : M4 may not bend', 'values': ['polygon: (5.45775,8.45275;5.45775,8.45525;5.46025,8.45525;5.46025,8.45275)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================
+--- M4.W.1  |  cell: gcd ---
+[0] {'category': 'M4.W.1', 'description': 'M4.W.1 : Min. vertical width of M4 : 24nm', 'values': ['edge-pair: (7.801,8.454;5.459,8.454)|(5.459,8.466;7.801,8.466)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================
+--- M4.W.5  |  cell: gcd ---
+[0] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (7.841,8.454;7.841,8.448)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[1] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (7.801,8.448;7.801,8.454)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[2] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (7.801,8.466;7.801,8.472)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+[3] {'category': 'M4.W.5', 'description': 'M4.W.5 : Min. horizontal width of M4 : 44nm', 'values': ['edge: (7.841,8.472;7.841,8.466)'], 'cell_name': 'gcd', 'parent': None, 'trans': None}
+=======================================

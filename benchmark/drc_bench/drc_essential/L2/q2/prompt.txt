@@ -1,0 +1,9 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: gcd
+=======================================
+--- LISD.W.1  |  cell: DECAPx10_ASAP7_75t_R ---
+[0] {'category': 'LISD.W.1', 'description': 'LISD.W.1 : Min. width of LISD : 24nm', 'values': ['edge-pair: (0.582,0.162;0.582,0.243)|(0.604,0.243;0.604,0.162)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'r0 *1 7.074,11.88'}
+[1] {'category': 'LISD.W.1', 'description': 'LISD.W.1 : Min. width of LISD : 24nm', 'values': ['edge-pair: (0.582,0.162;0.582,0.243)|(0.604,0.243;0.604,0.162)'], 'cell_name': 'DECAPx10_ASAP7_75t_R', 'parent': 'gcd', 'trans': 'm0 *1 7.128,14.58'}
+=======================================

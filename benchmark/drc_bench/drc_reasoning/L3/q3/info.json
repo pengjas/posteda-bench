@@ -1,0 +1,13 @@
+{
+    "init_cell_name": "adder",
+    "init_errors_num": 7,
+    "init_error_types": {
+        "M1.S.2": 1,
+        "M1.S.6": 1,
+        "V1.S.4": 1,
+        "M4.S.3": 2,
+        "M4.S.5": 2
+    },
+    "drc_execution_time_seconds": 646.0,
+    "num_iterations": 16
+}

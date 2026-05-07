@@ -1,0 +1,10 @@
+{
+    "init_cell_name": "MockArray",
+    "init_errors_num": 1,
+    "steps_by_human": 1,
+    "num_iterations": 8,
+    "init_error_types": {
+        "M8.S.8": 1
+    },
+    "drc_execution_time_seconds": 12002.71
+}

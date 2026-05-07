@@ -1,0 +1,15 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: seq_detect
+=======================================
+--- LIG.LISD.S.7  |  cell: TIEHIx1_ASAP7_75t_R ---
+[0] {'category': 'LIG.LISD.S.7', 'description': 'LIG.LISD.S.7 : Min. corner-to-corner spacing between LISD and LIG not on the same net : 15nm', 'values': ['edge-pair: (0.108,0.068;0.0905,0.068)/(0.096,0.054;0.1135,0.054)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'r0 *1 8.64,2.7'}
+[1] {'category': 'LIG.LISD.S.7', 'description': 'LIG.LISD.S.7 : Min. corner-to-corner spacing between LISD and LIG not on the same net : 15nm', 'values': ['edge-pair: (0.0715,0.068;0.054,0.068)/(0.0485,0.054;0.066,0.054)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'r0 *1 8.64,2.7'}
+[2] {'category': 'LIG.LISD.S.7', 'description': 'LIG.LISD.S.7 : Min. corner-to-corner spacing between LISD and LIG not on the same net : 15nm', 'values': ['edge-pair: (0.054,0.175;0.0715,0.175)/(0.066,0.189;0.0485,0.189)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'r0 *1 8.64,2.7'}
+[3] {'category': 'LIG.LISD.S.7', 'description': 'LIG.LISD.S.7 : Min. corner-to-corner spacing between LISD and LIG not on the same net : 15nm', 'values': ['edge-pair: (0.0905,0.175;0.108,0.175)/(0.1135,0.189;0.096,0.189)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'r0 *1 8.64,2.7'}
+[4] {'category': 'LIG.LISD.S.7', 'description': 'LIG.LISD.S.7 : Min. corner-to-corner spacing between LISD and LIG not on the same net : 15nm', 'values': ['edge-pair: (0.108,0.068;0.0905,0.068)/(0.096,0.054;0.1135,0.054)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'm0 *1 10.962,3.78'}
+[5] {'category': 'LIG.LISD.S.7', 'description': 'LIG.LISD.S.7 : Min. corner-to-corner spacing between LISD and LIG not on the same net : 15nm', 'values': ['edge-pair: (0.0715,0.068;0.054,0.068)/(0.0485,0.054;0.066,0.054)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'm0 *1 10.962,3.78'}
+[6] {'category': 'LIG.LISD.S.7', 'description': 'LIG.LISD.S.7 : Min. corner-to-corner spacing between LISD and LIG not on the same net : 15nm', 'values': ['edge-pair: (0.054,0.175;0.0715,0.175)/(0.066,0.189;0.0485,0.189)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'm0 *1 10.962,3.78'}
+[7] {'category': 'LIG.LISD.S.7', 'description': 'LIG.LISD.S.7 : Min. corner-to-corner spacing between LISD and LIG not on the same net : 15nm', 'values': ['edge-pair: (0.0905,0.175;0.108,0.175)/(0.1135,0.189;0.096,0.189)'], 'cell_name': 'TIEHIx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'm0 *1 10.962,3.78'}
+=======================================

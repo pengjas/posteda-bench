@@ -1,0 +1,17 @@
+{
+    "init_cell_name": "gcd",
+    "init_errors_num": 16,
+    "steps_by_human": 1,
+    "error_type": [
+        "M2.W.1"
+    ],
+    "cell_level": "top_cell",
+    "init_error_types": {
+        "LIG.GATE.AUX.1": 2,
+        "V0.LIG.A.1": 2,
+        "V0.AUX.1-2": 10,
+        "M1.W.1": 2
+    },
+    "drc_execution_time_seconds": 103.43,
+    "num_iterations": 16
+}

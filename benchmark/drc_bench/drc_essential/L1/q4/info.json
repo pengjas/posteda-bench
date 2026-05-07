@@ -1,0 +1,12 @@
+{
+    "error_type": [
+        "M4.S.2"
+    ],
+    "init_errors_num": 2,
+    "init_cell_name": "top_cell",
+    "init_error_types": {
+        "M4.S.2": 2
+    },
+    "drc_execution_time_seconds": 8.02,
+    "num_iterations": 8
+}

@@ -1,0 +1,13 @@
+{
+    "init_cell_name": "adder",
+    "init_errors_num": 11,
+    "init_error_types": {
+        "LIG.SDT.S.8": 2,
+        "V0.S.1": 2,
+        "V1.S.4": 4,
+        "V2.M3.AUX.2": 1,
+        "V4.M5.AUX.2": 2
+    },
+    "drc_execution_time_seconds": 638.32,
+    "num_iterations": 16
+}

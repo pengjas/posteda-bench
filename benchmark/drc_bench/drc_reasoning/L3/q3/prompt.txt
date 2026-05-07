@@ -1,0 +1,22 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: adder
+=======================================
+--- M1.S.2  |  cell: adder ---
+[0] {'category': 'M1.S.2', 'description': "M1.S.2 : Min. spacing between two M1' edges, when one edge is > 36 nm : 25nm", 'values': ['polygon: (10.485,35.156;10.485,35.176;10.509,35.176;10.494,35.156)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================
+--- M1.S.6  |  cell: adder ---
+[0] {'category': 'M1.S.6', 'description': 'M1.S.6 : Min. corner-to-corner spacing between two M1 : 20nm', 'values': ['polygon: (7.65,12.08525;7.65,12.087;7.64925,12.087;7.6525,12.08825;7.668,12.09575;7.668,12.094;7.66875,12.094;7.6655,12.09275)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================
+--- M4.S.3  |  cell: adder ---
+[0] {'category': 'M4.S.3', 'description': 'M4.S.3 : Min. horizontal tip-to-tip spacing between two M4 on adjacent tracks : 40nm', 'values': ['edge: (13.284,36.978;13.284,36.984)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[1] {'category': 'M4.S.3', 'description': 'M4.S.3 : Min. horizontal tip-to-tip spacing between two M4 on adjacent tracks : 40nm', 'values': ['edge: (13.275,36.936;13.275,36.93)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================
+--- M4.S.5  |  cell: adder ---
+[0] {'category': 'M4.S.5', 'description': 'M4.S.5 : Min. parallel run length of two M4 on adjacent tracks : 44nm', 'values': ['edge: (24.509,0.504;24.545,0.504)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+[1] {'category': 'M4.S.5', 'description': 'M4.S.5 : Min. parallel run length of two M4 on adjacent tracks : 44nm', 'values': ['edge: (24.545,0.528;24.509,0.528)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================
+--- V1.S.4  |  cell: adder ---
+[0] {'category': 'V1.S.4', 'description': 'V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm', 'values': ['edge-pair: (13.5,25.54;13.5,25.542)/(13.482,25.562;13.482,25.56)'], 'cell_name': 'adder', 'parent': None, 'trans': None}
+=======================================

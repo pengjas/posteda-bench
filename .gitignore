@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+.idea/
+.vscode/
+.DS_Store
+
+# Agent run artifacts (regenerated on each run)
+runs/
+trajectories/
+*.log
+
+# Local credentials
+*.key
+secrets.*

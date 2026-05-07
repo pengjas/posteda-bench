@@ -1,0 +1,14 @@
+{
+    "init_cell_name": "gcd",
+    "init_errors_num": 2,
+    "steps_by_human": 1,
+    "error_type": [
+        "LISD.W.1"
+    ],
+    "cell_level": "sub_cell",
+    "init_error_types": {
+        "LISD.W.1": 2
+    },
+    "drc_execution_time_seconds": 109.31,
+    "num_iterations": 8
+}

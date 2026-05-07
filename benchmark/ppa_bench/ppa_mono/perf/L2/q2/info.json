@@ -1,0 +1,13 @@
+{
+    "knob": [
+        "CORNER",
+        "SKIP_GATE_CLONING"
+    ],
+    "value": [
+        "BC",
+        "0"
+    ],
+    "target_effective_period": 155.0,
+    "initial_effective_period": 196.93,
+    "num_iterations": 2
+}

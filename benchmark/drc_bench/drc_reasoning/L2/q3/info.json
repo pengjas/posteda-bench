@@ -1,0 +1,10 @@
+{
+    "init_cell_name": "gcd",
+    "init_errors_num": 2,
+    "steps_by_human": 1,
+    "init_error_types": {
+        "V4.M5.AUX.2": 2
+    },
+    "drc_execution_time_seconds": 100.54,
+    "num_iterations": 8
+}

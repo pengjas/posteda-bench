@@ -1,0 +1,8 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: AO211x2_ASAP7_75t_L
+=======================================
+--- GATE.ACTIVE.S.4  |  cell: AO211x2_ASAP7_75t_L ---
+[0] {'category': 'GATE.ACTIVE.S.4', 'description': 'GATE.ACTIVE.S.4 : Min. horizontal spacing between ACTIVE and GATE (not cut by GCUT and not interacting with ACTIVE) : 9nm', 'values': ['polygon: (0.091,0.027;0.091,0.108;0.096,0.108;0.096,0.027)'], 'cell_name': 'AO211x2_ASAP7_75t_L', 'parent': None, 'trans': None}
+=======================================

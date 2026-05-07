@@ -1,0 +1,12 @@
+{
+    "error_type": [
+        "SDT.GATE.S.2"
+    ],
+    "init_errors_num": 1,
+    "init_cell_name": "top_cell",
+    "init_error_types": {
+        "SDT.GATE.S.2": 1
+    },
+    "drc_execution_time_seconds": 9.12,
+    "num_iterations": 8
+}

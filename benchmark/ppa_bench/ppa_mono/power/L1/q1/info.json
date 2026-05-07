@@ -1,0 +1,6 @@
+{
+    "knob": "ASAP7_USE_VT",
+    "target_power": 0.0009,
+    "initial_power": 0.00104,
+    "num_iterations": 1
+}

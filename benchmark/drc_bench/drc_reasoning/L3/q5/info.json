@@ -1,0 +1,14 @@
+{
+    "init_cell_name": "adder",
+    "init_errors_num": 14,
+    "init_error_types": {
+        "GATE.ACTIVE.EX.2": 2,
+        "LIG.LISD.S.7": 2,
+        "LIG.LISD.S.9B": 2,
+        "LIG.GATE.AUX.1": 4,
+        "V0.S.1": 2,
+        "V0.S.4": 2
+    },
+    "drc_execution_time_seconds": 636.41,
+    "num_iterations": 16
+}

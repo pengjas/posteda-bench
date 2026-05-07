@@ -1,0 +1,11 @@
+the input gds file is ./top_cell.gds
+Description: ASAP7 DRC runset
+=======================================
+Top Cell: seq_detect
+=======================================
+--- V1.S.4  |  cell: DFFASRHQNx1_ASAP7_75t_R ---
+[0] {'category': 'V1.S.4', 'description': 'V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm', 'values': ['edge-pair: (0.16,0.09;0.16,0.08975)/(0.18,0.108;0.18,0.10825)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'm0 *1 9.558,3.78'}
+[1] {'category': 'V1.S.4', 'description': 'V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm', 'values': ['edge-pair: (0.9,0.09;0.9,0.088)/(0.918,0.108;0.918,0.11)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'm0 *1 9.558,3.78'}
+[2] {'category': 'V1.S.4', 'description': 'V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm', 'values': ['edge-pair: (0.9,0.09;0.9,0.088)/(0.918,0.108;0.918,0.11)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'r0 *1 10.098,3.24'}
+[3] {'category': 'V1.S.4', 'description': 'V1.S.4 : Min. corner-to-corner spacing between two V1 instances—one with and another without, a 5 nm M2 end-cap : 27nm', 'values': ['edge-pair: (0.16,0.09;0.16,0.08975)/(0.18,0.108;0.18,0.10825)'], 'cell_name': 'DFFASRHQNx1_ASAP7_75t_R', 'parent': 'seq_detect', 'trans': 'r0 *1 10.098,3.24'}
+=======================================

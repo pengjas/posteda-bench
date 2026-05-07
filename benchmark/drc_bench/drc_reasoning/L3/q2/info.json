@@ -1,0 +1,9 @@
+{
+    "init_cell_name": "seq_detect",
+    "init_errors_num": 4,
+    "init_error_types": {
+        "V1.S.4": 4
+    },
+    "drc_execution_time_seconds": 103.37,
+    "num_iterations": 16
+}
