@@ -33,11 +33,11 @@ posteda_bench/
 - `jq`, `bc`, `tput`, `realpath`, `basename` (standard on most distros)
 
 ### EDA toolchain
-- **KLayout** ≥ 0.28 — required for DRC tasks. Provides the `klayout` CLI and
-  the `pya` / `klayout.db` Python bindings.
+- **KLayout** ≥ 0.28 — required for DRC tasks. Provides the `klayout` CLI,
+  whose bundled Python supplies `pya` / `klayout.db` to the scripts the DRC
+  tools generate.
   ```bash
   sudo apt-get install klayout         # or build from source
-  pip install klayout                  # python bindings
   ```
 - **OpenROAD-flow-scripts (ORFS)** — required for PPA tasks. Clone and build
   according to upstream instructions, then expose the flow directory:
@@ -49,22 +49,31 @@ posteda_bench/
   ASAP7 PDK is required (shipped with ORFS).
 - **Yosys** ≥ 0.30 (already pulled in by the ORFS build).
 
-### Python packages
+### Python environment
+
+This repository ships **no `requirements.txt`**. The agents and eval scripts
+run inside the `drcagent` conda environment:
+
 ```bash
-pip install -r requirements.txt
+conda activate drcagent
 ```
-where `requirements.txt` contains at minimum:
+
+To recreate it from scratch (Python 3.11):
+```bash
+conda create -n drcagent python=3.11
+conda activate drcagent
+pip install langchain langchain-openai langgraph openai numpy scipy
+pip install scikit-learn          # for orfs_agent's GP surrogate
+pip install Pillow                # only needed for vision agents
+pip install langchain-google-genai # only for the Gemini backend
 ```
-langchain
-langchain-openai
-langgraph
-openai
-numpy
-scikit-learn          # for orfs_agent's GP surrogate
-Pillow                # only needed for vision agents
-```
-Installing `klayout`'s Python module via pip exposes `pya` / `klayout.db`
-inside Python; equivalent to using KLayout's bundled python.
+Without `scikit-learn`, `agents/ppa/orfs_agent/gp_optimizer.py` falls back to
+non-GP candidate generation instead of failing.
+
+Note that the DRC tools never `import pya` / `klayout.db` in this
+environment — those imports live inside scripts handed to the `klayout -b -r`
+CLI, which runs them under KLayout's own bundled Python. Only the `klayout`
+binary needs to be on `$PATH`.
 
 ## 2. Configure environment variables
 
@@ -125,6 +134,8 @@ Per-task files include `prompt.txt`, `info.json` (targets only), `config/`
 inside its sandbox copy and re-runs the OpenROAD flow.
 
 ## 4. Running the eval harnesses
+
+Activate the environment first: `conda activate drcagent`.
 
 ### DRC
 ```bash
@@ -209,6 +220,7 @@ Headline metrics:
 
 Run a single DRC task end-to-end without the harness:
 ```bash
+conda activate drcagent
 cd /tmp && rm -rf sb && mkdir sb && cd sb
 cp -L $REPO_ROOT/benchmark/drc_bench/drc_essential/L1/q1/* .
 export PYTHONPATH=$REPO_ROOT
