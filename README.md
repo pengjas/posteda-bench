@@ -16,12 +16,13 @@ posteda_bench/
 ├── benchmark/
 │   ├── drc_bench/           # 70 DRC tasks (drc_essential ∪ drc_reasoning, L1–L3)
 │   └── ppa_bench/           # 75 PPA tasks (ppa_mono/{area,power,perf}, ppa_multi)
-└── eval/
-    ├── eval_drc_sr.sh       # DRC eval: success rate + error reduction
-    ├── eval_ppa_sr.sh       # PPA eval: success rate + violation reduction
-    ├── ppa_metric_collection.py
-    ├── FlowVariables.md     # OpenROAD flow-variable reference (used by the agent)
-    └── equiv/               # Post-agent RTL functional-equivalence sanity check
+├── eval/
+│   ├── eval_drc_sr.sh       # DRC eval: success rate + error reduction
+│   ├── eval_ppa_sr.sh       # PPA eval: success rate + violation reduction
+│   ├── ppa_metric_collection.py
+│   ├── FlowVariables.md     # OpenROAD flow-variable reference (used by the agent)
+│   └── equiv/               # Post-agent RTL functional-equivalence sanity check
+└── requirements.txt         # Pinned Python dependencies (conda env `posteda`)
 ```
 
 ## 1. Prerequisites
@@ -51,24 +52,21 @@ posteda_bench/
 
 ### Python environment
 
-This repository ships **no `requirements.txt`**. The agents and eval scripts
-run inside the `drcagent` conda environment:
+The agents and eval scripts run inside the `posteda` conda environment
+(Python 3.11):
 
 ```bash
-conda activate drcagent
+conda create -n posteda python=3.11
+conda activate posteda
+pip install -r requirements.txt
 ```
 
-To recreate it from scratch (Python 3.11):
-```bash
-conda create -n drcagent python=3.11
-conda activate drcagent
-pip install langchain langchain-openai langgraph openai numpy scipy
-pip install scikit-learn          # for orfs_agent's GP surrogate
-pip install Pillow                # only needed for vision agents
-pip install langchain-google-genai # only for the Gemini backend
-```
-Without `scikit-learn`, `agents/ppa/orfs_agent/gp_optimizer.py` falls back to
-non-GP candidate generation instead of failing.
+`requirements.txt` pins every package to the version used in the reference
+environment. Three of them are optional: `pillow` is needed only by the
+vision agents, `langchain-google-genai` only by the Gemini backend, and
+`scikit-learn` only by `orfs_agent`'s GP surrogate — without it,
+`gp_optimizer.py` falls back to Latin-hypercube sampling rather than
+failing.
 
 Note that the DRC tools never `import pya` / `klayout.db` in this
 environment — those imports live inside scripts handed to the `klayout -b -r`
@@ -135,7 +133,7 @@ inside its sandbox copy and re-runs the OpenROAD flow.
 
 ## 4. Running the eval harnesses
 
-Activate the environment first: `conda activate drcagent`.
+Activate the environment first: `conda activate posteda`.
 
 ### DRC
 ```bash
@@ -220,7 +218,7 @@ Headline metrics:
 
 Run a single DRC task end-to-end without the harness:
 ```bash
-conda activate drcagent
+conda activate posteda
 cd /tmp && rm -rf sb && mkdir sb && cd sb
 cp -L $REPO_ROOT/benchmark/drc_bench/drc_essential/L1/q1/* .
 export PYTHONPATH=$REPO_ROOT
