@@ -1,0 +1,41 @@
+# PostEDA-Bench Python dependencies
+#
+# Reference environment: conda env `posteda`, Python 3.11.11
+#
+#     conda create -n posteda python=3.11
+#     conda activate posteda
+#     pip install -r requirements.txt
+#
+# Versions are pinned to those installed in the reference environment.
+
+# --- Agent framework and LLM backends -------------------------------------
+# The vLLM backend reuses langchain-openai against a local OpenAI-compatible
+# endpoint, so it needs no additional package.
+langchain==1.2.6
+langchain-core==1.2.7
+langchain-openai==1.1.7
+langgraph==1.0.6
+openai==2.15.0
+
+# --- Numerics --------------------------------------------------------------
+numpy==2.4.1
+
+# --- Typing helpers used by the agent state definitions --------------------
+typing_extensions==4.15.0
+
+# --- Optional: vision agents (agents/drc/**/vision_*.py) -------------------
+pillow==12.1.0
+
+# --- Optional: Gemini backend ----------------------------------------------
+langchain-google-genai==4.2.0
+
+# --- Optional: GP surrogate in agents/ppa/orfs_agent/gp_optimizer.py -------
+# NOTE: not installed in the reference environment. When scikit-learn is
+# absent, gp_optimizer.py silently falls back to Latin-hypercube sampling
+# instead of Gaussian-process-guided candidate selection.
+scikit-learn==1.7.2
+
+# KLayout is NOT listed here on purpose: the DRC tools never import `pya` /
+# `klayout.db` in this environment. Those imports live inside scripts handed
+# to the `klayout -b -r` CLI, which runs them under KLayout's own bundled
+# Python. Only the `klayout` binary needs to be on $PATH.
