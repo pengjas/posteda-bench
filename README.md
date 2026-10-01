@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="posteda.png" alt="PostEDA-Bench — a bridge from AI reasoning to chip-design closure" width="900">
+  <img src="posteda_v2.png" alt="PostEDA-Bench — a bridge from AI reasoning to chip-design closure" width="900">
 </p>
 
 <h1 align="center">Can your AI agent close PPA targets and conquer DRC errors?</h1>
