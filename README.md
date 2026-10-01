@@ -2,7 +2,7 @@
   <img src="posteda.png" alt="PostEDA-Bench — a bridge from AI reasoning to chip-design closure" width="900">
 </p>
 
-<h1 align="center">The chip-design gauntlet for AI agents.</h1>
+<h1 align="center">Can your AI agent close PPA targets and conquer DRC errors?</h1>
 
 <p align="center">
   <strong>145 challenges. Two unforgiving arenas. One mission: close the design.</strong>
