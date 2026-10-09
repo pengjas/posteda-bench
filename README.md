@@ -76,14 +76,15 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
 
 **The last mile fights back.** In the paper's main comparison, the strongest DRC-Reasoning result reaches **54.67%** success, and the strongest PPA-Multi result reaches **20.00%**. There is serious room for the next breakthrough.
 
-| Task family | Best observed mean success rate | Model | Agent framework |
-| --- | ---: | --- | --- |
-| DRC-Essential | **95.00%** | Claude Opus 5 | ReAct |
-| DRC-Reasoning | **54.67%** | Claude Opus 5 | ReAct |
-| PPA-Mono | **64.56%** | Gemma-4-31B-it | ReAct |
-| PPA-Multi | **20.00%** | Qwen3.5-122B-A10B | ORFS-Agent |
+<p align="center">
+  <a href="assets/figures/drc-success-rates.pdf"><img src="assets/figures/drc-success-rates.png" alt="DRC-Bench success rates by model and framework: DRC-Essential and DRC-Reasoning, led by Claude Opus 5 with ReAct at 95.00% and 54.67%, respectively" width="1000"></a>
+</p>
 
-*Source: [arXiv v4, Table 3](https://arxiv.org/html/2605.06936v4#S3.T3). Each row selects the highest observed mean SR in the main comparison, averaged over five runs per task. Vision and iteration-budget ablations are separate experiments; see [Appendix H](https://arxiv.org/html/2605.06936v4#A8) for statistical uncertainty.*
+<p align="center">
+  <a href="assets/figures/ppa-success-rates.pdf"><img src="assets/figures/ppa-success-rates.png" alt="PPA-Bench success rates by model and framework: PPA-Mono is led by Gemma-4-31B-it with ReAct at 64.56%; PPA-Multi is led by Qwen3.5-122B-A10B with ORFS-Agent at 20.00%" width="1000"></a>
+</p>
+
+*Source: [arXiv v4, Table 3](https://arxiv.org/html/2605.06936v4#S3.T3). Bars show mean success rates over five runs per task. Click either figure for its full-resolution PDF. Vision and iteration-budget ablations are separate experiments; see [Appendix H](https://arxiv.org/html/2605.06936v4#A8) for statistical uncertainty.*
 
 ### Give the agent eyes
 
