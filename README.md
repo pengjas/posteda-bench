@@ -29,7 +29,7 @@
 
 ---
 
-**PostEDA-Bench** is a benchmark for evaluating AI agents on post-EDA design closure: repairing design rule checking (DRC) violations and meeting power, performance, and area (PPA) targets after electronic design automation (EDA) tools have run. Its 145 tasks span multiple difficulty levels and require agents to analyze design artifacts and tool reports, modify designs or flow settings, and verify results with EDA tools. The repository provides benchmark tasks, baseline agents, and executable evaluation workflows for reproducible comparisons.
+**PostEDA-Bench** is a benchmark for evaluating AI agents on fixing design-rule violations and meeting power, performance, and area targets in chip design.
 
 📄 **[Bridging the Last Mile of Circuit Design: PostEDA-Bench, a Hierarchical Benchmark for PPA Convergence and DRC Fixing](https://arxiv.org/abs/2605.06936)**
 
