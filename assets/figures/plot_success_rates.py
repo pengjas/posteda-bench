@@ -12,8 +12,12 @@ model-logos/LICENSE. Rendering does not require a network connection.
 Install and run from the repository root:
     python -m pip install -r assets/figures/requirements-plot.txt
     python assets/figures/plot_success_rates.py
+    python assets/figures/plot_success_rates.py --layout compact
 
 Produces two figures, each with two task-family panels, in PNG and vector PDF.
+The compact layout puts panels side by side and keeps the top seven results
+per DRC panel and top eight per PPA panel. It writes separate -top7 / -top8
+files, preserving the original figures. Title strips match Table 3's headers.
 Calibri Bold must be installed locally to reproduce the typography, or supplied
 with --font-file /path/to/calibrib.ttf. The font file is not bundled.
 """
@@ -38,7 +42,7 @@ import matplotlib.colors as mcolors
 from matplotlib import font_manager
 import matplotlib.pyplot as plt
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
-from matplotlib.patches import PathPatch
+from matplotlib.patches import PathPatch, Rectangle
 from matplotlib.path import Path as PlotPath
 from matplotlib.ticker import MultipleLocator
 
@@ -75,6 +79,14 @@ SUITES = {
     "ppa": ("PPA-Bench", (("ppa_mono", "PPA-Mono"),
                           ("ppa_multi", "PPA-Multi"))),
 }
+# Exact task-family header colors in the arXiv v4 Table 3 HTML (SOURCE_URL).
+TITLE_STRIP_COLORS = {
+    "drc_essential": "#F2C6AB",
+    "drc_reasoning": "#CFEBF9",
+    "ppa_mono": "#BFE5A8",
+    "ppa_multi": "#F7E39E",
+}
+COMPACT_TOP_N = {"drc": 7, "ppa": 8}
 
 
 def load_scores(path: Path) -> list[dict]:
@@ -162,11 +174,12 @@ def add_model_logo(ax, x: int, model: str) -> None:
     ))
 
 
-def draw_panel(ax, rows: list[dict], metric: str, title: str) -> None:
+def draw_panel(ax, rows: list[dict], metric: str, title: str,
+               top_n: int | None = None, title_strip: bool = False) -> None:
     ranked = sorted(
         (row for row in rows if row[metric] is not None),
         key=lambda row: (-row[metric], FRAMEWORK_ORDER[row["framework"]], row["model"]),
-    )
+    )[:top_n]
     values = [row[metric] for row in ranked]
     colors = [MODEL_COLORS[row["model"]] for row in ranked]
     ax.set_axisbelow(True)
@@ -195,7 +208,15 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str) -> None:
         rotation=48, ha="right", rotation_mode="anchor", fontsize=11.5,
         linespacing=1.4, fontweight="bold", color="#34313D",
     )
-    ax.set_title(title, loc="left", fontsize=19, fontweight="bold", pad=19, color="#24212B")
+    if title_strip:
+        ax.add_patch(Rectangle(
+            (0, 1.045), 1, 0.135, transform=ax.transAxes,
+            facecolor=TITLE_STRIP_COLORS[metric], edgecolor="none", clip_on=False,
+        ))
+        ax.text(0.5, 1.1125, title, transform=ax.transAxes,
+                ha="center", va="center", fontsize=19, fontweight="bold", color="#24212B")
+    else:
+        ax.set_title(title, loc="left", fontsize=19, fontweight="bold", pad=19, color="#24212B")
     for x, (value, color) in enumerate(zip(values, colors)):
         # Small/zero results retain their true bar height and a readable label.
         inside = value >= upper_limit * 0.14
@@ -206,20 +227,29 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str) -> None:
                 fontsize=12, fontweight="bold", zorder=4)
 
 
-def render_suite(key: str, rows: list[dict], output_dir: Path, dpi: int) -> list[Path]:
+def render_suite(key: str, rows: list[dict], output_dir: Path, dpi: int,
+                 layout: str = "full") -> list[Path]:
     suite_title, panels = SUITES[key]
-    fig, axes = plt.subplots(2, 1, figsize=(16.8, 12.0))
-    fig.subplots_adjust(left=0.09, right=0.985, bottom=0.22, top=0.855, hspace=1.2)
+    compact = layout == "compact"
+    if compact:
+        fig, axes = plt.subplots(1, 2, figsize=(18.0, 7.2))
+        fig.subplots_adjust(left=0.065, right=0.985, bottom=0.36, top=0.745, wspace=0.18)
+    else:
+        fig, axes = plt.subplots(2, 1, figsize=(16.8, 12.0))
+        fig.subplots_adjust(left=0.09, right=0.985, bottom=0.22, top=0.855, hspace=1.2)
     fig.patch.set_facecolor("#FFFCFE")
     for ax, (metric, title) in zip(axes, panels):
         ax.set_facecolor("#FFFCFE")
-        draw_panel(ax, rows, metric, title)
-    fig.text(0.065, 0.955, suite_title, fontsize=32, fontweight="bold", color="#24212B")
-    fig.text(0.065, 0.923, "Success rate by model and agent framework", fontsize=14.5,
+        draw_panel(ax, rows, metric, title,
+                   top_n=COMPACT_TOP_N[key] if compact else None, title_strip=compact)
+    fig.text(0.065, 0.945 if compact else 0.955, suite_title,
+             fontsize=32, fontweight="bold", color="#24212B")
+    fig.text(0.065, 0.89 if compact else 0.923, "Success rate by model and agent framework", fontsize=14.5,
              fontweight="bold", color="#696373")
     paths = []
     for extension in ("png", "pdf"):
-        path = output_dir / f"{key}-success-rates.{extension}"
+        suffix = f"-top{COMPACT_TOP_N[key]}" if compact else ""
+        path = output_dir / f"{key}-success-rates{suffix}.{extension}"
         metadata = {"Title": f"{suite_title}: success rates", "Subject": SOURCE_URL,
                     "Creator": "PostEDA-Bench / plot_success_rates.py", "CreationDate": None,
                     "ModDate": None} if extension == "pdf" else {"Source": SOURCE_URL}
@@ -235,6 +265,8 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, default=HERE)
     parser.add_argument("--dpi", type=int, default=240, help="PNG resolution (default: 240)")
     parser.add_argument("--font-file", type=Path, help="Path to a local Calibri Bold font file")
+    parser.add_argument("--layout", choices=("full", "compact"), default="full",
+                        help="Compact: side-by-side panels, top 7 DRC / top 8 PPA; separate output files")
     args = parser.parse_args()
     if args.dpi < 72:
         parser.error("--dpi must be at least 72")
@@ -257,7 +289,7 @@ def main() -> None:
     plt.rcParams.update({"font.family": "Calibri", "font.weight": "bold", "pdf.fonttype": 42,
                          "axes.unicode_minus": False, "savefig.transparent": False})
     for key in SUITES:
-        for path in render_suite(key, rows, args.output_dir, args.dpi):
+        for path in render_suite(key, rows, args.output_dir, args.dpi, args.layout):
             print(path)
 
 
