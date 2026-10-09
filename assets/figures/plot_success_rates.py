@@ -14,6 +14,7 @@ Install and run from the repository root:
     python assets/figures/plot_success_rates.py
 
 Produces two figures, each with two task-family panels, in PNG and vector PDF.
+Times New Roman must be installed locally to reproduce the typography.
 """
 
 from __future__ import annotations
@@ -236,7 +237,7 @@ def main() -> None:
         parser.error("--dpi must be at least 72")
     args.output_dir.mkdir(parents=True, exist_ok=True)
     rows = load_scores(args.data)
-    plt.rcParams.update({"font.family": "DejaVu Sans", "font.weight": "bold", "pdf.fonttype": 42,
+    plt.rcParams.update({"font.family": "Times New Roman", "font.weight": "bold", "pdf.fonttype": 42,
                          "axes.unicode_minus": False, "savefig.transparent": False})
     for key in SUITES:
         for path in render_suite(key, rows, args.output_dir, args.dpi):
