@@ -151,10 +151,10 @@ def logo_image(name: str):
 
 def add_model_logo(ax, x: int, model: str) -> None:
     image = logo_image(MODEL_LOGOS[model])
-    icon = OffsetImage(image, zoom=20 / max(image.shape[:2]), interpolation="antialiased")
+    icon = OffsetImage(image, zoom=24 / max(image.shape[:2]), interpolation="antialiased")
     ax.add_artist(AnnotationBbox(
         icon, (x, 0), xycoords=("data", "axes fraction"),
-        xybox=(0, -17), boxcoords="offset points", frameon=False,
+        xybox=(0, -20), boxcoords="offset points", frameon=False,
         box_alignment=(0.5, 0.5), pad=0, annotation_clip=False,
     ))
 
@@ -178,9 +178,9 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str) -> None:
         rounded_bar(ax, x, value, color)
         add_model_logo(ax, x, row["model"])
     ax.yaxis.set_major_locator(MultipleLocator(20 if upper_limit == 100 else tick_step))
-    ax.set_ylabel("Success rate (%)", fontsize=11, fontweight="bold", labelpad=12, color="#50505A")
-    ax.tick_params(axis="y", length=0, labelsize=10, colors="#68616E", pad=7)
-    ax.tick_params(axis="x", length=0, pad=38)
+    ax.set_ylabel("Success rate (%)", fontsize=12.5, fontweight="bold", labelpad=12, color="#50505A")
+    ax.tick_params(axis="y", length=0, labelsize=11.5, colors="#68616E", pad=7)
+    ax.tick_params(axis="x", length=0, pad=44)
     plt.setp(ax.get_yticklabels(), fontweight="bold")
     for spine in ("left", "right", "top"):
         ax.spines[spine].set_visible(False)
@@ -189,10 +189,10 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str) -> None:
     ax.set_xticks(range(len(ranked)))
     ax.set_xticklabels(
         [f"{row['model']}\n{row['framework']}" for row in ranked],
-        rotation=48, ha="right", rotation_mode="anchor", fontsize=10,
+        rotation=48, ha="right", rotation_mode="anchor", fontsize=11.5,
         linespacing=1.4, fontweight="bold", color="#34313D",
     )
-    ax.set_title(title, loc="left", fontsize=17, fontweight="heavy", pad=19, color="#24212B")
+    ax.set_title(title, loc="left", fontsize=19, fontweight="heavy", pad=19, color="#24212B")
     for x, (value, color) in enumerate(zip(values, colors)):
         # Small/zero results retain their true bar height and a readable label.
         inside = value >= upper_limit * 0.14
@@ -200,19 +200,19 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str) -> None:
         ax.text(x, y, score_text(value),
                 ha="center", va="center" if inside else "bottom",
                 color=inside_text_color(color) if inside else "#34313D",
-                fontsize=10.5, fontweight="bold", zorder=4)
+                fontsize=12, fontweight="bold", zorder=4)
 
 
 def render_suite(key: str, rows: list[dict], output_dir: Path, dpi: int) -> list[Path]:
     suite_title, panels = SUITES[key]
     fig, axes = plt.subplots(2, 1, figsize=(16.8, 12.0))
-    fig.subplots_adjust(left=0.09, right=0.985, bottom=0.18, top=0.855, hspace=1.08)
+    fig.subplots_adjust(left=0.09, right=0.985, bottom=0.22, top=0.855, hspace=1.2)
     fig.patch.set_facecolor("#FFFCFE")
     for ax, (metric, title) in zip(axes, panels):
         ax.set_facecolor("#FFFCFE")
         draw_panel(ax, rows, metric, title)
-    fig.text(0.065, 0.955, suite_title, fontsize=29, fontweight="heavy", color="#24212B")
-    fig.text(0.065, 0.923, "Success rate by model and agent framework", fontsize=13,
+    fig.text(0.065, 0.955, suite_title, fontsize=32, fontweight="heavy", color="#24212B")
+    fig.text(0.065, 0.923, "Success rate by model and agent framework", fontsize=14.5,
              fontweight="bold", color="#696373")
     paths = []
     for extension in ("png", "pdf"):
