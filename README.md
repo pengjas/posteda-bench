@@ -29,11 +29,7 @@
 
 ---
 
-**The tools have run. The reports are in. The design still needs a hero.**
-
-A layout violates manufacturing rules. A timing target refuses to budge. A power constraint leaves almost no room to maneuver. Welcome to **post-EDA design closure**, where an agent must inspect the evidence, choose an intervention, change the design, and face the tools again.
-
-**PostEDA-Bench puts that engineering pressure at the center of agent evaluation.** It brings together real GDS layouts, RTL, tool reports, and executable evaluation flows to test whether LLM agents can repair design-rule violations and optimize power, performance, and area.
+**PostEDA-Bench** is a benchmark for evaluating AI agents on post-EDA design closure: repairing design rule checking (DRC) violations and meeting power, performance, and area (PPA) targets after electronic design automation (EDA) tools have run. Its 145 tasks span multiple difficulty levels and require agents to analyze design artifacts and tool reports, modify designs or flow settings, and verify results with EDA tools. The repository provides benchmark tasks, baseline agents, and executable evaluation workflows for reproducible comparisons.
 
 📄 **[Bridging the Last Mile of Circuit Design: PostEDA-Bench, a Hierarchical Benchmark for PPA Convergence and DRC Fixing](https://arxiv.org/abs/2605.06936)**
 
