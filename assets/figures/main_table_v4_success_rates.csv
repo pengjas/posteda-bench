@@ -1,0 +1,17 @@
+model,framework,drc_essential,drc_reasoning,ppa_mono,ppa_multi
+GPT-5,ReAct,84.50,31.33,39.42,11.50
+GPT-5-mini,ReAct,65.00,20.66,42.28,10.00
+Gemini-3-Flash-preview,ReAct,85.50,36.66,48.56,18.50
+Claude Opus 5,ReAct,95.00,54.67,40.57,2.00
+DeepSeek-V3.2,ReAct,71.00,16.66,1.14,0.00
+Qwen3.5-122B-A10B,ReAct,51.50,13.33,39.42,4.00
+Gemma-4-31B-it,ReAct,82.00,27.99,64.56,11.00
+Qwen3.5-27B,ReAct,68.50,27.32,30.85,0.00
+Qwen3.5-9B,ReAct,56.00,5.99,25.71,1.00
+GPT-5,Proposer–Critic,60.50,15.99,42.85,0.50
+Qwen3.5-122B-A10B,Proposer–Critic,66.50,17.33,39.99,2.50
+Gemma-4-31B-it,Proposer–Critic,78.00,31.33,42.28,2.00
+Qwen3.5-9B,Proposer–Critic,54.50,8.66,3.99,0.00
+GPT-5,ORFS-Agent,,,25.71,5.00
+Qwen3.5-122B-A10B,ORFS-Agent,,,40.00,20.00
+Gemma-4-31B-it,ORFS-Agent,,,47.14,1.50
