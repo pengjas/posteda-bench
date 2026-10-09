@@ -192,7 +192,7 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str,
     ax.set_ylim(0, upper_limit)
     ax.set_xlim(-0.62, len(ranked) - 0.38)
     for x, (row, value, color) in enumerate(zip(ranked, values, colors)):
-        rounded_bar(ax, x, value, color)
+        rounded_bar(ax, x, value, color, width=0.8 if title_strip else 0.73)
         add_model_logo(ax, x, row["model"])
     ax.yaxis.set_major_locator(MultipleLocator(20 if upper_limit == 100 else tick_step))
     ax.set_ylabel("Success rate (%)", fontsize=12.5 * font_scale,
@@ -212,10 +212,10 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str,
     )
     if title_strip:
         ax.add_patch(Rectangle(
-            (0, 1.045), 1, 0.16, transform=ax.transAxes,
+            (0, 1.045), 1, 0.20, transform=ax.transAxes,
             facecolor=TITLE_STRIP_COLORS[metric], edgecolor="none", clip_on=False,
         ))
-        ax.text(0.5, 1.125, title, transform=ax.transAxes,
+        ax.text(0.5, 1.145, title, transform=ax.transAxes,
                 ha="center", va="center", fontsize=19 * font_scale,
                 fontweight="bold", color="#24212B")
     else:
@@ -235,8 +235,8 @@ def render_suite(key: str, rows: list[dict], output_dir: Path, dpi: int,
     suite_title, panels = SUITES[key]
     compact = layout == "compact"
     if compact:
-        fig, axes = plt.subplots(1, 2, figsize=(18.0, 7.2))
-        fig.subplots_adjust(left=0.065, right=0.985, bottom=0.36, top=0.745, wspace=0.18)
+        fig, axes = plt.subplots(1, 2, figsize=(18.0, 8.4))
+        fig.subplots_adjust(left=0.065, right=0.985, bottom=0.40, top=0.745, wspace=0.18)
     else:
         fig, axes = plt.subplots(2, 1, figsize=(16.8, 12.0))
         fig.subplots_adjust(left=0.09, right=0.985, bottom=0.22, top=0.855, hspace=1.2)
@@ -245,11 +245,11 @@ def render_suite(key: str, rows: list[dict], output_dir: Path, dpi: int,
         ax.set_facecolor("#FFFCFE")
         draw_panel(ax, rows, metric, title,
                    top_n=COMPACT_TOP_N[key] if compact else None, title_strip=compact,
-                   font_scale=1.35 if compact else 1.0)
+                   font_scale=1.8 if compact else 1.0)
     fig.text(0.065, 0.925 if compact else 0.955, suite_title,
-             fontsize=40 if compact else 32, fontweight="bold", color="#24212B")
+             fontsize=48 if compact else 32, fontweight="bold", color="#24212B")
     fig.text(0.065, 0.87 if compact else 0.923, "Success rate by model and agent framework",
-             fontsize=19.5 if compact else 14.5,
+             fontsize=25.5 if compact else 14.5,
              fontweight="bold", color="#696373")
     paths = []
     for extension in ("png", "pdf"):
