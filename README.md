@@ -59,16 +59,16 @@ Pengju Liu, Nuo Xu, Jinwei Tang, Yu Cao, and Caiwen Ding · University of Minnes
 
 **A taste of the pressure:** [one PPA task](benchmark/ppa_bench/ppa_multi/L1/q1/prompt.txt) asks an agent to cut effective period from **319.69 ps to at most 241 ps** while keeping power at or below **0.002 W**. That is roughly a **25% period reduction**, with a power ceiling to defend. This is the task target; the agent still has to earn the result.
 
-## How the gauntlet is built
+## How PostEDA-Bench is built
 
-**From source RTL to a full-spectrum engineering stress test.** The paper's construction pipeline turns curated designs, controlled violations, and PPA parameter sweeps into tasks that probe progressively harder design-closure skills.
+PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA tool runs. **DRC-Bench** combines deliberately introduced violations with residual DRC errors from completed flows. **PPA-Bench** uses configuration sweeps to establish reference solutions and Pareto targets, creating tasks that require parameter tuning, RTL changes, or trade-offs among PPA metrics.
 
 <p align="center">
   <a href="assets/figures/benchmark-construction.pdf"><img src="assets/figures/benchmark-construction.png" alt="Benchmark construction pipeline from curated RTL and PDK rules through EDA flows, synthetic and residual DRC violations, and PPA parameter sweeps into four task families" width="1000"></a>
 </p>
 
 <p align="center">
-  <em>Rule-level repairs, residual post-flow violations, single-objective tuning, and multi-objective trade-offs.</em><br>
+  <em>Construction of DRC repair and PPA optimization tasks from design rules, RTL designs, and EDA outputs.</em><br>
   Figure 2 from the paper · <a href="assets/figures/benchmark-construction.pdf">Open full-resolution figure</a>
 </p>
 
