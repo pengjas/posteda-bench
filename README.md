@@ -74,7 +74,7 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
 
 ## The results are a wake-up call
 
-**The last mile fights back.** In the paper's main comparison, the strongest DRC-Reasoning result reaches **54.67%** success, and the strongest PPA-Multi result reaches **20.00%**. There is serious room for the next breakthrough.
+**The last mile fights back.** Agents perform better on synthetic DRC repairs and single-objective PPA tuning, but struggle with practical layout violations and competing PPA targets. In the paper's main comparison, the strongest DRC-Reasoning result reaches **54.67%** success, and the strongest PPA-Multi result reaches **20.00%**. Practical DRC repair requires geometric reasoning and coordinated edits, while PPA optimization must improve target metrics without violating other constraints. There is serious room for the next breakthrough.
 
 <p align="center">
   <a href="assets/figures/drc-success-rates-top7.pdf"><img src="assets/figures/drc-success-rates-top7.png" alt="Top seven model and framework configurations per DRC-Bench panel: DRC-Essential and DRC-Reasoning, led by Claude Opus 5 with ReAct at 95.00% and 54.67% success, respectively" width="1000"></a>
