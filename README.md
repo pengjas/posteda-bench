@@ -29,7 +29,9 @@
 
 ---
 
-**PostEDA-Bench** is a benchmark for evaluating AI agents on fixing design-rule violations and meeting power, performance, and area targets in chip design.
+## What is PostEDA-Bench?
+
+**PostEDA-Bench** evaluates AI agents on two tasks: fixing design-rule violations in an existing GDS layout (**DRC-Bench**) and optimizing existing Verilog code and EDA configurations for power, performance, and area (**PPA-Bench**). It does not evaluate the full flow from a design specification to final GDS.
 
 📄 **[Bridging the Last Mile of Circuit Design: PostEDA-Bench, a Hierarchical Benchmark for PPA Convergence and DRC Fixing](https://arxiv.org/abs/2605.06936)**
 
