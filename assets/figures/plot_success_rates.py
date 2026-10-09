@@ -6,6 +6,8 @@ The adjacent CSV records the published means, without VRR/NIS or ablations.
 Empty DRC cells mean ORFS-Agent is not applicable; they are not zero scores.
 Model colors are inspired by the providers' visual identities and the supplied
 template, and remain constant across task families and agent frameworks.
+Bundled model logos come from Lobe Icons; see model-logos/sources.json and
+model-logos/LICENSE. Rendering does not require a network connection.
 
 Install and run from the repository root:
     python -m pip install -r assets/figures/requirements-plot.txt
@@ -18,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+from functools import lru_cache
 import math
 import os
 from pathlib import Path
@@ -31,6 +34,9 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
+from matplotlib.offsetbox import AnnotationBbox, OffsetImage
+from matplotlib.patches import PathPatch
+from matplotlib.path import Path as PlotPath
 from matplotlib.ticker import MultipleLocator
 
 
@@ -48,12 +54,23 @@ MODEL_COLORS = {
     "Qwen3.5-27B": "#8874D5",
     "Qwen3.5-9B": "#A18ADE",
 }
+MODEL_LOGOS = {
+    "GPT-5": "openai",
+    "GPT-5-mini": "openai",
+    "Gemini-3-Flash-preview": "gemini",
+    "Claude Opus 5": "claude",
+    "DeepSeek-V3.2": "deepseek",
+    "Qwen3.5-122B-A10B": "qwen",
+    "Gemma-4-31B-it": "gemma",
+    "Qwen3.5-27B": "qwen",
+    "Qwen3.5-9B": "qwen",
+}
 FRAMEWORK_ORDER = {"ReAct": 0, "Proposer–Critic": 1, "ORFS-Agent": 2}
 SUITES = {
-    "drc": ("DRC-Bench", (("drc_essential", "DRC-Essential", 40),
-                          ("drc_reasoning", "DRC-Reasoning", 30))),
-    "ppa": ("PPA-Bench", (("ppa_mono", "PPA-Mono", 35),
-                          ("ppa_multi", "PPA-Multi", 40))),
+    "drc": ("DRC-Bench", (("drc_essential", "DRC-Essential"),
+                          ("drc_reasoning", "DRC-Reasoning"))),
+    "ppa": ("PPA-Bench", (("ppa_mono", "PPA-Mono"),
+                          ("ppa_multi", "PPA-Multi"))),
 }
 
 
@@ -99,7 +116,50 @@ def inside_text_color(color: str) -> str:
     return "white" if luminance < 0.18 else "#161616"
 
 
-def draw_panel(ax, rows: list[dict], metric: str, title: str, task_count: int) -> None:
+def rounded_bar(ax, x: int, height: float, color: str, width: float = 0.73) -> None:
+    """Round all four corners in physical points, preserving the score height."""
+    if height == 0:
+        return
+    pixels_x = ax.bbox.width / (ax.get_xlim()[1] - ax.get_xlim()[0])
+    pixels_y = ax.bbox.height / (ax.get_ylim()[1] - ax.get_ylim()[0])
+    radius = min(4.5 * ax.figure.dpi / 72, width * pixels_x / 2, height * pixels_y / 2)
+    rx, ry = radius / pixels_x, radius / pixels_y
+    left, right = x - width / 2, x + width / 2
+    k = 0.5522847498  # Cubic Bezier approximation of a quarter circle.
+    vertices = [
+        (left + rx, 0), (right - rx, 0),
+        (right - rx + k * rx, 0), (right, ry - k * ry), (right, ry),
+        (right, height - ry),
+        (right, height - ry + k * ry), (right - rx + k * rx, height), (right - rx, height),
+        (left + rx, height),
+        (left + rx - k * rx, height), (left, height - ry + k * ry), (left, height - ry),
+        (left, ry),
+        (left, ry - k * ry), (left + rx - k * rx, 0), (left + rx, 0),
+        (left + rx, 0),
+    ]
+    codes = ([PlotPath.MOVETO, PlotPath.LINETO] + [PlotPath.CURVE4] * 3
+             + [PlotPath.LINETO] + [PlotPath.CURVE4] * 3
+             + [PlotPath.LINETO] + [PlotPath.CURVE4] * 3
+             + [PlotPath.LINETO] + [PlotPath.CURVE4] * 3 + [PlotPath.CLOSEPOLY])
+    ax.add_patch(PathPatch(PlotPath(vertices, codes), facecolor=color, edgecolor="none", zorder=3))
+
+
+@lru_cache(maxsize=None)
+def logo_image(name: str):
+    return plt.imread(HERE / "model-logos" / f"{name}.png")
+
+
+def add_model_logo(ax, x: int, model: str) -> None:
+    image = logo_image(MODEL_LOGOS[model])
+    icon = OffsetImage(image, zoom=20 / max(image.shape[:2]), interpolation="antialiased")
+    ax.add_artist(AnnotationBbox(
+        icon, (x, 0), xycoords=("data", "axes fraction"),
+        xybox=(0, -17), boxcoords="offset points", frameon=False,
+        box_alignment=(0.5, 0.5), pad=0, annotation_clip=False,
+    ))
+
+
+def draw_panel(ax, rows: list[dict], metric: str, title: str) -> None:
     ranked = sorted(
         (row for row in rows if row[metric] is not None),
         key=lambda row: (-row[metric], FRAMEWORK_ORDER[row["framework"]], row["model"]),
@@ -108,17 +168,20 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str, task_count: int) -
     colors = [MODEL_COLORS[row["model"]] for row in ranked]
     ax.set_axisbelow(True)
     ax.grid(axis="y", color="#DCD9DF", linewidth=0.8, linestyle=(0, (2, 4)))
-    bars = ax.bar(range(len(ranked)), values, width=0.73, color=colors, zorder=3)
     # Keep a zero baseline, but fit each panel to its observed range so that
-    # low PPA-Multi scores remain visible. The footer states this explicitly.
+    # low PPA-Multi scores remain visible; tick labels show each panel's scale.
     tick_step = 5 if max(values) <= 25 else 10
     upper_limit = min(100, max(tick_step, math.ceil(max(values) * 1.07 / tick_step) * tick_step))
     ax.set_ylim(0, upper_limit)
     ax.set_xlim(-0.62, len(ranked) - 0.38)
+    for x, (row, value, color) in enumerate(zip(ranked, values, colors)):
+        rounded_bar(ax, x, value, color)
+        add_model_logo(ax, x, row["model"])
     ax.yaxis.set_major_locator(MultipleLocator(20 if upper_limit == 100 else tick_step))
-    ax.set_ylabel("Success rate (%)", fontsize=10.5, labelpad=12, color="#50505A")
-    ax.tick_params(axis="y", length=0, labelsize=9, colors="#77727F", pad=7)
-    ax.tick_params(axis="x", length=0, pad=9)
+    ax.set_ylabel("Success rate (%)", fontsize=11, fontweight="bold", labelpad=12, color="#50505A")
+    ax.tick_params(axis="y", length=0, labelsize=10, colors="#68616E", pad=7)
+    ax.tick_params(axis="x", length=0, pad=38)
+    plt.setp(ax.get_yticklabels(), fontweight="bold")
     for spine in ("left", "right", "top"):
         ax.spines[spine].set_visible(False)
     ax.spines["bottom"].set_color("#E4E0E7")
@@ -126,43 +189,31 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str, task_count: int) -
     ax.set_xticks(range(len(ranked)))
     ax.set_xticklabels(
         [f"{row['model']}\n{row['framework']}" for row in ranked],
-        rotation=48, ha="right", rotation_mode="anchor", fontsize=9.3,
-        linespacing=1.4, color="#34313D",
+        rotation=48, ha="right", rotation_mode="anchor", fontsize=10,
+        linespacing=1.4, fontweight="bold", color="#34313D",
     )
-    ax.set_title(title, loc="left", fontsize=16, fontweight="bold", pad=19, color="#24212B")
-    ax.text(1, 1.065, f"{task_count} tasks  ·  {len(ranked)} configurations",
-            transform=ax.transAxes, ha="right", va="bottom", fontsize=9.5, color="#77727F")
-    for bar, value, color in zip(bars, values, colors):
+    ax.set_title(title, loc="left", fontsize=17, fontweight="heavy", pad=19, color="#24212B")
+    for x, (value, color) in enumerate(zip(values, colors)):
         # Small/zero results retain their true bar height and a readable label.
         inside = value >= upper_limit * 0.14
         y = value * 0.55 if inside else value + upper_limit * 0.02
-        ax.text(bar.get_x() + bar.get_width() / 2, y, score_text(value),
+        ax.text(x, y, score_text(value),
                 ha="center", va="center" if inside else "bottom",
                 color=inside_text_color(color) if inside else "#34313D",
-                fontsize=9.7, fontweight="semibold", zorder=4)
+                fontsize=10.5, fontweight="bold", zorder=4)
 
 
 def render_suite(key: str, rows: list[dict], output_dir: Path, dpi: int) -> list[Path]:
     suite_title, panels = SUITES[key]
     fig, axes = plt.subplots(2, 1, figsize=(16.8, 12.0))
-    fig.subplots_adjust(left=0.09, right=0.985, bottom=0.205, top=0.855, hspace=0.95)
+    fig.subplots_adjust(left=0.09, right=0.985, bottom=0.18, top=0.855, hspace=1.08)
     fig.patch.set_facecolor("#FFFCFE")
-    for ax, (metric, title, count) in zip(axes, panels):
+    for ax, (metric, title) in zip(axes, panels):
         ax.set_facecolor("#FFFCFE")
-        draw_panel(ax, rows, metric, title, count)
-    fig.text(0.065, 0.955, suite_title, fontsize=29, fontweight="bold", color="#24212B")
-    fig.text(0.065, 0.923, "Success rate by model and agent framework", fontsize=13, color="#696373")
-    fig.text(0.985, 0.96, "PostEDA-Bench", fontsize=12, ha="right", fontweight="bold", color="#75618F")
-    fig.text(0.985, 0.937, "arXiv v4  ·  Table 3", fontsize=10, ha="right", color="#77727F")
-    fig.text(0.065, 0.048, "Mean over five runs per task. Higher is better; panels use separate scales.",
-             fontsize=9.3, color="#696373")
-    fig.text(0.065, 0.026, "Source: arxiv.org/abs/2605.06936v4  ·  Main comparison; ablations excluded.",
-             fontsize=8.8, color="#8A8490", url=SOURCE_URL)
-    fig.text(0.985, 0.048, "Color identifies the model; the second label line identifies the framework.",
-             fontsize=8.8, ha="right", color="#696373")
-    if key == "drc":
-        fig.text(0.985, 0.026, "ORFS-Agent is PPA-only and is omitted here.",
-                 fontsize=8.8, ha="right", color="#8A8490")
+        draw_panel(ax, rows, metric, title)
+    fig.text(0.065, 0.955, suite_title, fontsize=29, fontweight="heavy", color="#24212B")
+    fig.text(0.065, 0.923, "Success rate by model and agent framework", fontsize=13,
+             fontweight="bold", color="#696373")
     paths = []
     for extension in ("png", "pdf"):
         path = output_dir / f"{key}-success-rates.{extension}"
@@ -185,7 +236,7 @@ def main() -> None:
         parser.error("--dpi must be at least 72")
     args.output_dir.mkdir(parents=True, exist_ok=True)
     rows = load_scores(args.data)
-    plt.rcParams.update({"font.family": "DejaVu Sans", "pdf.fonttype": 42,
+    plt.rcParams.update({"font.family": "DejaVu Sans", "font.weight": "bold", "pdf.fonttype": 42,
                          "axes.unicode_minus": False, "savefig.transparent": False})
     for key in SUITES:
         for path in render_suite(key, rows, args.output_dir, args.dpi):

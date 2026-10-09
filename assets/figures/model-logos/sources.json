@@ -1,0 +1,16 @@
+{
+  "package": "@lobehub/icons-static-png",
+  "version": "1.97.1",
+  "repository": "https://github.com/lobehub/lobe-icons",
+  "source_commit": "0f1017c798d7713e2b79f5b08efc51fbcbfc3b0b",
+  "license": "MIT",
+  "license_url": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/LICENSE",
+  "logos": {
+    "openai.png": "https://unpkg.com/@lobehub/icons-static-png@1.97.1/light/openai.png",
+    "claude.png": "https://unpkg.com/@lobehub/icons-static-png@1.97.1/light/claude-color.png",
+    "gemini.png": "https://unpkg.com/@lobehub/icons-static-png@1.97.1/light/gemini-color.png",
+    "gemma.png": "https://unpkg.com/@lobehub/icons-static-png@1.97.1/light/gemma-color.png",
+    "deepseek.png": "https://unpkg.com/@lobehub/icons-static-png@1.97.1/light/deepseek-color.png",
+    "qwen.png": "https://unpkg.com/@lobehub/icons-static-png@1.97.1/light/qwen-color.png"
+  }
+}
