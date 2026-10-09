@@ -175,7 +175,8 @@ def add_model_logo(ax, x: int, model: str) -> None:
 
 
 def draw_panel(ax, rows: list[dict], metric: str, title: str,
-               top_n: int | None = None, title_strip: bool = False) -> None:
+               top_n: int | None = None, title_strip: bool = False,
+               font_scale: float = 1.0) -> None:
     ranked = sorted(
         (row for row in rows if row[metric] is not None),
         key=lambda row: (-row[metric], FRAMEWORK_ORDER[row["framework"]], row["model"]),
@@ -194,8 +195,9 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str,
         rounded_bar(ax, x, value, color)
         add_model_logo(ax, x, row["model"])
     ax.yaxis.set_major_locator(MultipleLocator(20 if upper_limit == 100 else tick_step))
-    ax.set_ylabel("Success rate (%)", fontsize=12.5, fontweight="bold", labelpad=12, color="#50505A")
-    ax.tick_params(axis="y", length=0, labelsize=11.5, colors="#68616E", pad=7)
+    ax.set_ylabel("Success rate (%)", fontsize=12.5 * font_scale,
+                  fontweight="bold", labelpad=12, color="#50505A")
+    ax.tick_params(axis="y", length=0, labelsize=11.5 * font_scale, colors="#68616E", pad=7)
     ax.tick_params(axis="x", length=0, pad=44)
     plt.setp(ax.get_yticklabels(), fontweight="bold")
     for spine in ("left", "right", "top"):
@@ -205,16 +207,17 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str,
     ax.set_xticks(range(len(ranked)))
     ax.set_xticklabels(
         [f"{row['model']}\n{row['framework']}" for row in ranked],
-        rotation=48, ha="right", rotation_mode="anchor", fontsize=11.5,
+        rotation=48, ha="right", rotation_mode="anchor", fontsize=11.5 * font_scale,
         linespacing=1.4, fontweight="bold", color="#34313D",
     )
     if title_strip:
         ax.add_patch(Rectangle(
-            (0, 1.045), 1, 0.135, transform=ax.transAxes,
+            (0, 1.045), 1, 0.16, transform=ax.transAxes,
             facecolor=TITLE_STRIP_COLORS[metric], edgecolor="none", clip_on=False,
         ))
-        ax.text(0.5, 1.1125, title, transform=ax.transAxes,
-                ha="center", va="center", fontsize=19, fontweight="bold", color="#24212B")
+        ax.text(0.5, 1.125, title, transform=ax.transAxes,
+                ha="center", va="center", fontsize=19 * font_scale,
+                fontweight="bold", color="#24212B")
     else:
         ax.set_title(title, loc="left", fontsize=19, fontweight="bold", pad=19, color="#24212B")
     for x, (value, color) in enumerate(zip(values, colors)):
@@ -224,7 +227,7 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str,
         ax.text(x, y, score_text(value),
                 ha="center", va="center" if inside else "bottom",
                 color=inside_text_color(color) if inside else "#34313D",
-                fontsize=12, fontweight="bold", zorder=4)
+                fontsize=12 * font_scale, fontweight="bold", zorder=4)
 
 
 def render_suite(key: str, rows: list[dict], output_dir: Path, dpi: int,
@@ -241,10 +244,12 @@ def render_suite(key: str, rows: list[dict], output_dir: Path, dpi: int,
     for ax, (metric, title) in zip(axes, panels):
         ax.set_facecolor("#FFFCFE")
         draw_panel(ax, rows, metric, title,
-                   top_n=COMPACT_TOP_N[key] if compact else None, title_strip=compact)
-    fig.text(0.065, 0.945 if compact else 0.955, suite_title,
-             fontsize=32, fontweight="bold", color="#24212B")
-    fig.text(0.065, 0.89 if compact else 0.923, "Success rate by model and agent framework", fontsize=14.5,
+                   top_n=COMPACT_TOP_N[key] if compact else None, title_strip=compact,
+                   font_scale=1.35 if compact else 1.0)
+    fig.text(0.065, 0.925 if compact else 0.955, suite_title,
+             fontsize=40 if compact else 32, fontweight="bold", color="#24212B")
+    fig.text(0.065, 0.87 if compact else 0.923, "Success rate by model and agent framework",
+             fontsize=19.5 if compact else 14.5,
              fontweight="bold", color="#696373")
     paths = []
     for extension in ("png", "pdf"):
