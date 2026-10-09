@@ -25,7 +25,7 @@ posteda_bench/
 │   ├── eval_ppa_sr.sh       # PPA eval: success rate + violation reduction
 │   ├── ppa_metric_collection.py
 │   ├── FlowVariables.md     # OpenROAD flow-variable reference (used by the agent)
-│   └── equiv/               # Post-agent RTL functional-equivalence sanity check
+│   └── equiv/               # Post-agent testbench-based RTL functional checks
 └── requirements.txt         # Pinned Python dependencies (conda env `posteda`)
 ```
 
@@ -179,9 +179,9 @@ followed by a GP optimization loop). Other available baselines:
 - `agents/ppa/tot/{gpt_tot.py, gemma_tot.py}`
 - `agents/ppa/proposer_critic/vllm_proposer_critic.py`
 
-After every PPA attempt, `eval/equiv/check_equiv.sh` runs an RTL
-functional-equivalence sanity check; agents that meet PPA targets but break
-the design's functional behavior are marked `FAIL_FUNCTIONAL`.
+After every PPA attempt, `eval/equiv/check_equiv.sh` runs testbench-based RTL
+functional checks for designs with supported testbenches; detected functional
+divergence is marked `FAIL_FUNCTIONAL` even when PPA targets are met.
 
 ## 5. LLM backends
 

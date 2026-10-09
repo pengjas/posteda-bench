@@ -74,20 +74,20 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
 
 ## The results are a wake-up call
 
-**The last mile fights back.** In the paper's main comparison, the strongest DRC-Reasoning result reaches **36.66%** success, and the strongest PPA-Multi result reaches **20.00%**. There is serious room for the next breakthrough.
+**The last mile fights back.** In the paper's main comparison, the strongest DRC-Reasoning result reaches **54.67%** success, and the strongest PPA-Multi result reaches **20.00%**. There is serious room for the next breakthrough.
 
-| Task family | Best mean success rate | Model | Agent framework |
+| Task family | Best observed mean success rate | Model | Agent framework |
 | --- | ---: | --- | --- |
-| DRC-Essential | **85.50%** | Gemini-3-Flash-preview | ReAct |
-| DRC-Reasoning | **36.66%** | Gemini-3-Flash-preview | ReAct |
+| DRC-Essential | **95.00%** | Claude Opus 5 | ReAct |
+| DRC-Reasoning | **54.67%** | Claude Opus 5 | ReAct |
 | PPA-Mono | **64.56%** | Gemma-4-31B-it | ReAct |
 | PPA-Multi | **20.00%** | Qwen3.5-122B-A10B | ORFS-Agent |
 
-*Source: [arXiv v3, Table 3](https://arxiv.org/html/2605.06936v3). Each row selects the highest mean SR in the main comparison, averaged over five runs per task. Vision and iteration-budget ablations are separate experiments.*
+*Source: [arXiv v4, Table 3](https://arxiv.org/html/2605.06936v4#S3.T3). Each row selects the highest observed mean SR in the main comparison, averaged over five runs per task. Vision and iteration-budget ablations are separate experiments; see [Appendix H](https://arxiv.org/html/2605.06936v4#A8) for statistical uncertainty.*
 
 ### Give the agent eyes
 
-**The geometry is part of the puzzle.** In the DRC-Reasoning vision ablation, adding layout images raises observed success rates for all four evaluated backbones.
+**The geometry is part of the puzzle.** In the DRC-Reasoning vision ablation, adding layout images raises observed success rates for all four evaluated backbones. Pooled gains are positive, though individual gains are not uniformly statistically significant.
 
 <p align="center">
   <a href="assets/figures/drc-vision-reasoning.pdf"><img src="assets/figures/drc-vision-reasoning.png" alt="DRC-Reasoning text-only versus text-plus-vision results: success rates rise from 31.3 to 38.7 for GPT-5, 20.7 to 23.3 for GPT-5-mini, 13.3 to 18.7 for Qwen-122B, and 28.0 to 34.7 for Gemma-4; violation-reduction rates also rise" width="800"></a>
@@ -95,7 +95,7 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
 
 <p align="center">
   <em>SR: success rate. VRR: violation reduction rate. Higher is better; values are percentages.</em><br>
-  <a href="https://arxiv.org/html/2605.06936v3">Figure 5(b), arXiv v3</a> · <a href="assets/figures/drc-vision-reasoning.pdf">Open full-resolution figure</a>
+  <a href="https://arxiv.org/html/2605.06936v4#S4.F5">Figure 5(b), arXiv v4</a> · <a href="assets/figures/drc-vision-reasoning.pdf">Open full-resolution figure</a>
 </p>
 
 ## Why this benchmark hits hard
@@ -103,7 +103,7 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
 - **The artifacts are the arena.** Agents work with layouts, source code, configurations, and tool reports. Every intervention has consequences in the design flow.
 - **The loop is the challenge.** Inspect, reason, edit, run, and reassess. Each new report can force a new plan.
 - **The tools deliver the verdict.** Evaluation measures success rate, DRC error reduction, and PPA violation reduction, with logs and token-cost records to inspect what happened.
-- **Correctness has teeth.** For designs with supported testbenches, the PPA harness includes an RTL functional-equivalence sanity check; detected functional divergence is marked `FAIL_FUNCTIONAL`.
+- **Correctness has teeth.** For designs with supported testbenches, the PPA harness runs testbench-based RTL functional checks; detected functional divergence is marked `FAIL_FUNCTIONAL`.
 - **The baselines are ready to battle.** Compare ReAct, Reflexion, Tree-of-Thoughts, proposer–critic, and an ORFS agent that pairs LLM-driven search-space discovery with Gaussian-process optimization.
 
 ## Bring your strongest agent
