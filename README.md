@@ -42,12 +42,12 @@ Pengju Liu, Nuo Xu, Jinwei Tang, Yu Cao, and Caiwen Ding · University of Minnes
 **Two arenas. Plenty of ways to get humbled.**
 
 <p align="center">
-  <a href="assets/figures/benchmark-overview.pdf"><img src="assets/figures/benchmark-overview.png" alt="PostEDA-Bench task hierarchy: 40 DRC-Essential, 30 DRC-Reasoning, 35 PPA-Mono, and 40 PPA-Multi tasks, subdivided by difficulty and optimization objective" width="500"></a>
+  <a href="assets/figures/benchmark_separated.pdf"><img src="assets/figures/benchmark_separated.png" alt="PostEDA-Bench task hierarchy: 40 DRC-Essential, 30 DRC-Reasoning, 35 PPA-Mono, and 40 PPA-Multi tasks, subdivided by difficulty and optimization objective" width="500"></a>
 </p>
 
 <p align="center">
   <em>145 tasks, four task families, and escalating demands on rule knowledge, geometric reasoning, and PPA trade-offs.</em><br>
-  Figure 1 from the paper · <a href="assets/figures/benchmark-overview.pdf">Open full-resolution figure</a>
+  Benchmark task overview · <a href="assets/figures/benchmark_separated.pdf">Open full-resolution figure</a>
 </p>
 
 | Arena | The mission | The scale |
