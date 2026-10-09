@@ -46,23 +46,16 @@ Pengju Liu, Nuo Xu, Jinwei Tang, Yu Cao, and Caiwen Ding · University of Minnes
 </p>
 
 <p align="center">
-  <em>145 tasks across four task families in a multi-level hierarchy, testing rule knowledge, geometric reasoning, and PPA trade-offs.</em><br>
+  <em>145 tasks across four task families in a multi-level hierarchy.</em><br>
   Benchmark task overview · <a href="assets/figures/benchmark_separated.pdf">Open full-resolution figure</a>
 </p>
 
-| Arena | The mission | The scale |
+| Arena | The mission | Tasks and evaluation levels |
 | --- | --- | --- |
-| 🛠️ **DRC-Bench** | Inspect and repair DRC violations in GDS layouts with KLayout and the ASAP7 rule deck. | **70 tasks**: 40 essential + 30 reasoning; L1–L3. |
-| ⚡ **PPA-Bench** | Tune flow configurations, timing constraints (.sdc), or RTL, then run OpenROAD to chase demanding optimization targets. | **75 tasks**: 35 single-objective + 40 multi-objective. |
+| 🛠️ **DRC-Bench** | Inspect and repair DRC violations in GDS layouts with KLayout and the ASAP7 rule deck. | **70 tasks**<br>**DRC-Essential (40):** L1 tests basic rule understanding; L2 tests identifying relevant geometry in layout context; L3 tests sequential repair of interacting violations.<br>**DRC-Reasoning (30):** L1 tests geometric reasoning for a repair requiring one edit; L2 requires multiple edits for one violation; L3 tests debugging multiple violations in a full layout. |
+| ⚡ **PPA-Bench** | Tune flow configurations, timing constraints (.sdc), or RTL, then run OpenROAD to chase demanding optimization targets. | **75 tasks**<br>**PPA-Mono (35):** L1 tests correcting one perturbed parameter; L2 tests coordinating several parameters; L3 (performance only) tests RTL restructuring or timing-constraint changes beyond parameter tuning.<br>**PPA-Multi (40):** L1 tests trade-offs between two PPA metrics; L2 tests balancing all three while meeting the target constraints. |
 
 *Tools: We equip agents with tools to inspect layouts and reports, edit geometry, Verilog code, and EDA configurations, and rerun DRC checks or OpenROAD flows. Agents have the flexibility to choose their tools, plan changes, and iterate on feedback much like a human engineer.*
-
-Each task family uses levels to evaluate different capabilities:
-
-- **DRC-Essential:** L1 tests basic rule understanding; L2 tests identifying relevant geometry amid surrounding layout context; L3 tests sequential repair of interacting violations.
-- **DRC-Reasoning:** L1 tests geometric reasoning for a repair requiring one edit; L2 requires multiple edits for one violation; L3 tests iterative debugging of multiple violations in a full layout.
-- **PPA-Mono:** L1 tests identifying and correcting one perturbed parameter; L2 tests coordinating several parameters; L3 (performance only) tests RTL restructuring or timing-constraint changes beyond parameter tuning.
-- **PPA-Multi:** L1 tests trade-offs between two PPA metrics; L2 tests balancing all three while meeting the target constraints.
 
 **A taste of the pressure:** [one PPA task](benchmark/ppa_bench/ppa_multi/L1/q1/prompt.txt) asks an agent to cut effective period from **319.69 ps to at most 241 ps** while keeping power at or below **0.002 W**. That is roughly a **25% period reduction**, with a power ceiling to defend. This is the task target; the agent still has to earn the result.
 
