@@ -14,7 +14,8 @@ Install and run from the repository root:
     python assets/figures/plot_success_rates.py
 
 Produces two figures, each with two task-family panels, in PNG and vector PDF.
-Times New Roman must be installed locally to reproduce the typography.
+Calibri Bold must be installed locally to reproduce the typography, or supplied
+with --font-file /path/to/calibrib.ttf. The font file is not bundled.
 """
 
 from __future__ import annotations
@@ -34,6 +35,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.colors as mcolors
+from matplotlib import font_manager
 import matplotlib.pyplot as plt
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 from matplotlib.patches import PathPatch
@@ -193,7 +195,7 @@ def draw_panel(ax, rows: list[dict], metric: str, title: str) -> None:
         rotation=48, ha="right", rotation_mode="anchor", fontsize=11.5,
         linespacing=1.4, fontweight="bold", color="#34313D",
     )
-    ax.set_title(title, loc="left", fontsize=19, fontweight="heavy", pad=19, color="#24212B")
+    ax.set_title(title, loc="left", fontsize=19, fontweight="bold", pad=19, color="#24212B")
     for x, (value, color) in enumerate(zip(values, colors)):
         # Small/zero results retain their true bar height and a readable label.
         inside = value >= upper_limit * 0.14
@@ -212,7 +214,7 @@ def render_suite(key: str, rows: list[dict], output_dir: Path, dpi: int) -> list
     for ax, (metric, title) in zip(axes, panels):
         ax.set_facecolor("#FFFCFE")
         draw_panel(ax, rows, metric, title)
-    fig.text(0.065, 0.955, suite_title, fontsize=32, fontweight="heavy", color="#24212B")
+    fig.text(0.065, 0.955, suite_title, fontsize=32, fontweight="bold", color="#24212B")
     fig.text(0.065, 0.923, "Success rate by model and agent framework", fontsize=14.5,
              fontweight="bold", color="#696373")
     paths = []
@@ -232,12 +234,27 @@ def main() -> None:
     parser.add_argument("--data", type=Path, default=HERE / "main_table_v4_success_rates.csv")
     parser.add_argument("--output-dir", type=Path, default=HERE)
     parser.add_argument("--dpi", type=int, default=240, help="PNG resolution (default: 240)")
+    parser.add_argument("--font-file", type=Path, help="Path to a local Calibri Bold font file")
     args = parser.parse_args()
     if args.dpi < 72:
         parser.error("--dpi must be at least 72")
+    if args.font_file:
+        if not args.font_file.is_file():
+            parser.error(f"Font file does not exist: {args.font_file}")
+        font_manager.fontManager.addfont(str(args.font_file))
+    try:
+        font_path = font_manager.findfont(
+            font_manager.FontProperties(family="Calibri", weight="bold"),
+            fallback_to_default=False,
+        )
+    except ValueError:
+        parser.error("Calibri Bold is unavailable; install it or pass --font-file /path/to/calibrib.ttf")
+    font_face = font_manager.get_font(font_path)
+    if font_face.family_name != "Calibri" or font_face.style_name != "Bold":
+        parser.error(f"Expected Calibri Bold, found {font_face.family_name} {font_face.style_name}")
     args.output_dir.mkdir(parents=True, exist_ok=True)
     rows = load_scores(args.data)
-    plt.rcParams.update({"font.family": "Times New Roman", "font.weight": "bold", "pdf.fonttype": 42,
+    plt.rcParams.update({"font.family": "Calibri", "font.weight": "bold", "pdf.fonttype": 42,
                          "axes.unicode_minus": False, "savefig.transparent": False})
     for key in SUITES:
         for path in render_suite(key, rows, args.output_dir, args.dpi):
