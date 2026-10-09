@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="title.png" alt="Can your AI agent close PPA targets and conquer DRC errors?" width="750">
+  <img src="posteda_title.png" alt="Can your AI agent close PPA targets and conquer DRC errors?" width="750">
 </p>
 
 <p align="center">
