@@ -91,7 +91,7 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
 **The geometry is part of the puzzle.** In the DRC-Reasoning vision ablation, adding layout images raises observed success rates for all four evaluated backbones. Pooled gains are positive, though individual gains are not uniformly statistically significant.
 
 <p align="center">
-  <a href="assets/figures/drc-vision-reasoning.pdf"><img src="assets/figures/drc-vision-reasoning.png" alt="DRC-Reasoning text-only versus text-plus-vision results: success rates rise from 31.3 to 38.7 for GPT-5, 20.7 to 23.3 for GPT-5-mini, 13.3 to 18.7 for Qwen-122B, and 28.0 to 34.7 for Gemma-4; violation-reduction rates also rise" width="800"></a>
+  <a href="assets/figures/drc-vision-reasoning.pdf"><img src="assets/figures/drc-vision-reasoning.png" alt="DRC-Reasoning text-only versus text-plus-vision results: success rates rise from 31.3 to 38.7 for GPT-5, 20.7 to 23.3 for GPT-5-mini, 13.3 to 18.7 for Qwen-122B, and 28.0 to 34.7 for Gemma-4; violation-reduction rates also rise" width="600"></a>
 </p>
 
 <p align="center">
@@ -101,11 +101,63 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
 
 ### Finding 2: Give harder tasks room to iterate
 
-**The iteration budget matters differently across tasks.** With Gemma-4-31B-it under ReAct, DRC-Essential and PPA-Mono show diminishing returns, while DRC-Reasoning and PPA-Multi keep improving at the largest tested caps. Reflexion also improves on ReAct at the same per-attempt cap: DRC-Reasoning success rises from **27.99% to 44.66%**, and PPA-Multi from **11.00% to 21.00%**. It uses two fresh attempts, carrying only a verbal reflection between them, at twice the total iteration budget. See [Section 4.4 and Figure 6](https://arxiv.org/html/2605.06936v4#S4.SS4).
+**The iteration budget matters differently across tasks.** With Gemma-4-31B-it under ReAct, DRC-Essential and PPA-Mono show diminishing returns, while DRC-Reasoning and PPA-Multi keep improving at the largest tested caps. Reflexion also improves on ReAct at the same per-attempt cap: DRC-Reasoning success rises from **27.99% to 44.66%**, and PPA-Multi from **11.00% to 21.00%**. It uses two fresh attempts, carrying only a verbal reflection between them, at twice the total iteration budget.
+
+<p align="center">
+  <a href="assets/figures/iteration-budget.svg"><img src="assets/figures/iteration-budget.svg" alt="Figure 6: Effect of iteration cap and Reflexion on Gemma-4-31B-it. The left panel shows DRC-Essential and DRC-Reasoning success and violation-reduction rates; the right panel shows PPA-Mono and PPA-Multi success and normalized improvement scores." width="1000"></a>
+</p>
+
+<p align="center">
+  <em>Effect of iteration cap and Reflexion on Gemma-4-31B-it. Solid and dashed lines use the left and right y-axes, respectively.</em><br>
+  <a href="https://arxiv.org/html/2605.06936v4#S4.F6">Figure 6, arXiv v4</a>
+</p>
 
 ### Finding 3: Match the thinking strategy to the task
 
-**More deliberation does not guarantee better results.** For Gemma-4-31B-it under ReAct, enabling thinking improves DRC-Essential, DRC-Reasoning, and PPA-Mono success, but lowers PPA-Multi from **18.50% to 11.00%**. Tree-of-Thought modestly improves DRC success yet reduces PPA-Mono to **31.42%** and PPA-Multi to **0.00%**. These results suggest that effective exploration and tool feedback matter alongside reasoning under a fixed iteration cap. See [Section 4.5 and Table 6](https://arxiv.org/html/2605.06936v4#S4.SS5).
+**More deliberation does not guarantee better results.** For Gemma-4-31B-it under ReAct, enabling thinking improves DRC-Essential, DRC-Reasoning, and PPA-Mono success, but lowers PPA-Multi from **18.50% to 11.00%**. Tree-of-Thought modestly improves DRC success yet reduces PPA-Mono to **31.42%** and PPA-Multi to **0.00%**. These results suggest that effective exploration and tool feedback matter alongside reasoning under a fixed iteration cap.
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">Thinking</th>
+      <th colspan="2">DRC-Essential</th>
+      <th colspan="2">DRC-Reasoning</th>
+      <th colspan="2">PPA-Mono</th>
+      <th colspan="2">PPA-Multi</th>
+    </tr>
+    <tr>
+      <th>SR (%)</th><th>VRR (%)</th>
+      <th>SR (%)</th><th>VRR (%)</th>
+      <th>SR (%)</th><th>NIS (%)</th>
+      <th>SR (%)</th><th>NIS (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>On</td>
+      <td>82.00</td><td><strong>92.02</strong></td>
+      <td>27.99</td><td><strong>32.05</strong></td>
+      <td><strong>64.56</strong></td><td><strong>69.34</strong></td>
+      <td>11.00</td><td>16.34</td>
+    </tr>
+    <tr>
+      <td>Off</td>
+      <td>51.00</td><td>63.75</td>
+      <td>8.66</td><td>8.66</td>
+      <td>54.28</td><td>65.20</td>
+      <td><strong>18.50</strong></td><td><strong>38.40</strong></td>
+    </tr>
+    <tr>
+      <td>ToT</td>
+      <td><strong>85.50</strong></td><td>90.35</td>
+      <td><strong>29.99</strong></td><td>31.55</td>
+      <td>31.42</td><td>40.53</td>
+      <td>0.00</td><td>1.35</td>
+    </tr>
+  </tbody>
+</table>
+
+*Source: [Table 6, arXiv v4](https://arxiv.org/html/2605.06936v4#S4.T6). Thinking-mode ablation for Gemma-4-31B-it under ReAct. SR: success rate; VRR: violation reduction rate; NIS: normalized improvement score. ToT: Tree-of-Thought. Higher is better; bold marks the largest value in each metric column.*
 
 ## Why this benchmark hits hard
 
