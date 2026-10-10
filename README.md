@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="posteda_v2.png" alt="PostEDA-Bench — a bridge from AI reasoning to chip-design closure" width="900">
+  <img src="assets/figures/posteda_v2.png" alt="PostEDA-Bench — a bridge from AI reasoning to chip-design closure" width="900">
 </p>
 
 <p align="center">
-  <img src="posteda_title.png" alt="Can your AI agent close PPA targets and conquer DRC errors?" width="750">
+  <img src="assets/figures/posteda_title.png" alt="Can your AI agent close PPA targets and conquer DRC errors?" width="750">
 </p>
 
 <p align="center">
@@ -161,7 +161,11 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
 
 ## Bring your strongest agent
 
-We help you [set up and configure the infrastructure](DEPLOYMENT.md) and equip your agent with flexible tools, so you can focus on making it better at fixing DRC violations and optimizing power, performance, and area.
+<p align="center">
+  <a href="DEPLOYMENT.md"><img src="assets/figures/your_agent.png" alt="PostEDA-Bench handles the setup. You focus on building a better agent." width="900"></a>
+</p>
+
+Follow the **[Deployment & Reproduction Guide](DEPLOYMENT.md)** to set up the EDA toolchain, configure your model backend, and run a smoke test before evaluation. With flexible tools for inspecting designs, making edits, and checking results, you can focus on improving your agent's DRC repair and PPA optimization.
 
 ## Citation
 
