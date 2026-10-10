@@ -84,7 +84,7 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
   <a href="assets/figures/ppa-success-rates-top8.pdf"><img src="assets/figures/ppa-success-rates-top8.png" alt="Top eight model and framework configurations per PPA-Bench panel: PPA-Mono is led by Gemma-4-31B-it with ReAct at 64.56% success; PPA-Multi is led by Qwen3.5-122B-A10B with ORFS-Agent at 20.00%" width="1000"></a>
 </p>
 
-*Source: [arXiv v4, Table 3](https://arxiv.org/html/2605.06936v4#S3.T3). Each panel shows the top seven DRC or top eight PPA configurations by mean success rate over five runs per task.*
+*Source: [arXiv v4, Table 3](https://arxiv.org/html/2605.06936v4#S3.T3). Each panel shows the top seven DRC or top eight PPA configurations by mean success rate over five runs per task. See [Sections 4.2.1–4.2.2 of the paper](https://arxiv.org/html/2605.06936v4#S4.SS2.SSS1) for detailed per-level breakdowns of DRC-Bench and PPA-Bench.*
 
 ### Finding 1: Give the agent eyes
 
