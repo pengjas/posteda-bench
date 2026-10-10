@@ -159,28 +159,9 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
 
 *Source: [Table 6, arXiv v4](https://arxiv.org/html/2605.06936v4#S4.T6). Thinking-mode ablation for Gemma-4-31B-it under ReAct. SR: success rate; VRR: violation reduction rate; NIS: normalized improvement score. ToT: Tree-of-Thought. Higher is better; bold marks the largest value in each metric column.*
 
-## Why this benchmark hits hard
-
-- **The artifacts are the arena.** Agents work with layouts, source code, configurations, and tool reports. Every intervention has consequences in the design flow.
-- **The loop is the challenge.** Inspect, reason, edit, run, and reassess. Each new report can force a new plan.
-- **The tools deliver the verdict.** Evaluation measures success rate, DRC error reduction, and PPA violation reduction, with logs and token-cost records to inspect what happened.
-- **Correctness has teeth.** For designs with supported testbenches, the PPA harness runs testbench-based RTL functional checks; detected functional divergence is marked `FAIL_FUNCTIONAL`.
-- **The baselines are ready to battle.** Compare ReAct, Reflexion, Tree-of-Thoughts, proposer–critic, and an ORFS agent that pairs LLM-driven search-space discovery with Gaussian-process optimization.
-
 ## Bring your strongest agent
 
-Explore the [DRC baselines](agents/drc), [PPA baselines](agents/ppa), and the [ORFS agent guide](agents/ppa/orfs_agent/README.md). Study how different reasoning strategies handle tool use, iteration budgets, and the moment a promising edit meets an unforgiving report.
-
-The repository includes benchmark inputs, reference artifacts, agent implementations, evaluation harnesses, and pinned Python dependencies. The full path from environment setup to evaluation lives in the **[Deployment & Reproduction Guide](DEPLOYMENT.md)**.
-
-| Start here | What you will find |
-| --- | --- |
-| [Deployment & reproduction](DEPLOYMENT.md) | Toolchain setup, environment variables, evaluation commands, outputs, and a smoke test. |
-| [DRC benchmark](benchmark/drc_bench) | Layout-repair tasks across essential and reasoning splits. |
-| [PPA benchmark](benchmark/ppa_bench) | Single-objective and multi-objective optimization tasks. |
-| [Agent suite](agents) | Baseline reasoning strategies and EDA tool interfaces. |
-| [Evaluation harnesses](eval) | DRC/PPA scoring and the RTL sanity-check machinery. |
-| [Dataset metadata](croissant.json) | Machine-readable dataset description in Croissant format. |
+We help you [set up and configure the infrastructure](DEPLOYMENT.md) and equip your agent with flexible tools, so you can focus on making it better at fixing DRC violations and optimizing power, performance, and area.
 
 ## Citation
 

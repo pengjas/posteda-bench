@@ -29,6 +29,21 @@ posteda_bench/
 └── requirements.txt         # Pinned Python dependencies (conda env `posteda`)
 ```
 
+## Agent development and repository guide
+
+Explore the [DRC baselines](agents/drc), [PPA baselines](agents/ppa), and the [ORFS agent guide](agents/ppa/orfs_agent/README.md). Study how different reasoning strategies handle tool use, iteration budgets, and the moment a promising edit meets an unforgiving report.
+
+The repository includes benchmark inputs, reference artifacts, agent implementations, evaluation harnesses, and pinned Python dependencies. The sections below cover the full path from environment setup to evaluation.
+
+| Start here | What you will find |
+| --- | --- |
+| [Deployment & reproduction](#1-prerequisites) | Toolchain setup, environment variables, evaluation commands, outputs, and a smoke test. |
+| [DRC benchmark](benchmark/drc_bench) | Layout-repair tasks across essential and reasoning splits. |
+| [PPA benchmark](benchmark/ppa_bench) | Single-objective and multi-objective optimization tasks. |
+| [Agent suite](agents) | Baseline reasoning strategies and EDA tool interfaces. |
+| [Evaluation harnesses](eval) | DRC/PPA scoring and the RTL sanity-check machinery. |
+| [Dataset metadata](croissant.json) | Machine-readable dataset description in Croissant format. |
+
 ## 1. Prerequisites
 
 ### System packages
