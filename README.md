@@ -86,7 +86,7 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
 
 *Source: [arXiv v4, Table 3](https://arxiv.org/html/2605.06936v4#S3.T3). Each panel shows the top seven DRC or top eight PPA configurations by mean success rate over five runs per task.*
 
-### Give the agent eyes
+### Finding 1: Give the agent eyes
 
 **The geometry is part of the puzzle.** In the DRC-Reasoning vision ablation, adding layout images raises observed success rates for all four evaluated backbones. Pooled gains are positive, though individual gains are not uniformly statistically significant.
 
@@ -98,6 +98,14 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
   <em>SR: success rate. VRR: violation reduction rate. Higher is better; values are percentages.</em><br>
   <a href="https://arxiv.org/html/2605.06936v4#S4.F5">Figure 5(b), arXiv v4</a> · <a href="assets/figures/drc-vision-reasoning.pdf">Open full-resolution figure</a>
 </p>
+
+### Finding 2: Give harder tasks room to iterate
+
+**The iteration budget matters differently across tasks.** With Gemma-4-31B-it under ReAct, DRC-Essential and PPA-Mono show diminishing returns, while DRC-Reasoning and PPA-Multi keep improving at the largest tested caps. Reflexion also improves on ReAct at the same per-attempt cap: DRC-Reasoning success rises from **27.99% to 44.66%**, and PPA-Multi from **11.00% to 21.00%**. It uses two fresh attempts, carrying only a verbal reflection between them, at twice the total iteration budget. See [Section 4.4 and Figure 6](https://arxiv.org/html/2605.06936v4#S4.SS4).
+
+### Finding 3: Match the thinking strategy to the task
+
+**More deliberation does not guarantee better results.** For Gemma-4-31B-it under ReAct, enabling thinking improves DRC-Essential, DRC-Reasoning, and PPA-Mono success, but lowers PPA-Multi from **18.50% to 11.00%**. Tree-of-Thought modestly improves DRC success yet reduces PPA-Mono to **31.42%** and PPA-Multi to **0.00%**. These results suggest that effective exploration and tool feedback matter alongside reasoning under a fixed iteration cap. See [Section 4.5 and Table 6](https://arxiv.org/html/2605.06936v4#S4.SS5).
 
 ## Why this benchmark hits hard
 
