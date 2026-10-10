@@ -35,7 +35,7 @@
 
 📄 **[Bridging the Last Mile of Circuit Design: PostEDA-Bench, a Hierarchical Benchmark for PPA Convergence and DRC Fixing](https://arxiv.org/abs/2605.06936)**
 
-Pengju Liu, Nuo Xu, Jinwei Tang, Yu Cao, and Caiwen Ding · University of Minnesota
+[Pengju Liu](https://pengjas.github.io/), Nuo Xu, Jinwei Tang, Yu Cao, and Caiwen Ding · University of Minnesota
 
 ## The challenge
 
