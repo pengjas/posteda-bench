@@ -48,11 +48,29 @@ The repository includes benchmark inputs, reference artifacts, agent implementat
 
 ### System packages
 - Linux (tested on Ubuntu 22.04 / 24.04)
-- `bash >= 4.3` (the eval scripts use `wait -n -p`)
-- `python >= 3.10`
+- `bash >= 5.1` (`wait -p`, used with `wait -n` by the eval scripts,
+  requires Bash 5.1 or newer)
+- Python **3.11.11** (the reference version; install it with the conda command
+  below). Python 3.10 is unsupported because the pinned NumPy 2.4.1 requires
+  Python 3.11 or newer.
 - `jq`, `bc`, `tput`, `realpath`, `basename` (standard on most distros)
 
 ### EDA toolchain
+- **Docker Engine** — required for PPA tasks: the agent invokes ORFS through
+  `flow/util/docker_shell`. Install Docker using the
+  [official Ubuntu instructions](https://docs.docker.com/engine/install/ubuntu/),
+  then start the daemon and grant the account that will run the agents access:
+  ```bash
+  sudo systemctl enable --now docker
+  sudo usermod -aG docker "$USER"
+  ```
+  Log out and log back in to apply the group membership, then verify Docker
+  works **without `sudo`**:
+  ```bash
+  docker run --rm hello-world
+  ```
+  Complete this step before building ORFS below. A native OpenROAD installation
+  alone does not satisfy the agent's Docker requirement.
 - **KLayout** ≥ 0.28 — required for DRC tasks. Provides the `klayout` CLI,
   whose bundled Python supplies `pya` / `klayout.db` to the scripts the DRC
   tools generate.
@@ -66,16 +84,38 @@ The repository includes benchmark inputs, reference artifacts, agent implementat
   cd OpenROAD-flow-scripts && ./build_openroad.sh
   export OPENROAD_FLOW_DIR=$(pwd)/flow
   ```
-  ASAP7 PDK is required (shipped with ORFS).
+  ASAP7 PDK is required (shipped with ORFS). With Docker installed, the build
+  command above builds the ORFS Docker image. Verify that the same wrapper used
+  by the agents can launch both EDA tools:
+  ```bash
+  (
+    cd "$OPENROAD_FLOW_DIR"
+    util/docker_shell openroad -version
+    util/docker_shell yosys -V
+  )
+  ```
+  Both commands must succeed before running PPA evaluation. See the
+  [ORFS Docker guide](https://openroad-flow-scripts.readthedocs.io/en/latest/user/DockerShell.html)
+  for image configuration.
 - **Yosys** ≥ 0.30 (already pulled in by the ORFS build).
+- **Icarus Verilog** — required on the **host** for PPA functional checks.
+  `eval/equiv/check_equiv.sh` invokes `iverilog` and `vvp` outside the ORFS
+  container. Install and verify both executables:
+  ```bash
+  sudo apt-get update
+  sudo apt-get install -y iverilog
+  iverilog -V
+  vvp -V
+  ```
+  Missing executables cause `FAIL_INFRA` on designs with supported testbenches.
 
 ### Python environment
 
 The agents and eval scripts run inside the `posteda` conda environment
-(Python 3.11):
+(Python 3.11.11):
 
 ```bash
-conda create -n posteda python=3.11
+conda create -n posteda python=3.11.11
 conda activate posteda
 pip install -r requirements.txt
 ```

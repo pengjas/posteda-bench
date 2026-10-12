@@ -14,7 +14,7 @@
 # - ERR (Error Reduction Rate): average error reduction across tasks
 #
 # Dependencies:
-# - bash (v4.3+ for 'wait -n -p'), python3, jq, bc, tput, realpath, basename
+# - bash (v5.1+ for 'wait -n -p'), python3, jq, bc, tput, realpath, basename
 #
 # ===================================================================================
 
@@ -56,7 +56,7 @@ FOLDER_PATHS=(
 # or agents/drc/tot/gpt_tot.py) by exporting AGENT_SCRIPT.
 AGENT_SCRIPT="${AGENT_SCRIPT:-$REPO_ROOT/agents/drc/react/gemma_react.py}"
 
-# Path to the DRC verifier script (optional; eval can run without it).
+# Path to the DRC verifier script, required for scoring repaired layouts.
 VERIFIER_SCRIPT="${VERIFIER_SCRIPT:-$REPO_ROOT/eval/drc_error_collection_eval.py}"
 # ===================================================================================
 

@@ -14,7 +14,7 @@
 # - VRR (Violation Reduction Rate): average violation reduction across tasks
 #
 # Dependencies:
-# - bash (v4.3+ for 'wait -n -p'), python3, jq, bc, tput, realpath, basename
+# - bash (v5.1+ for 'wait -n -p'), python3, jq, bc, tput, realpath, basename
 #
 # ===================================================================================
 
@@ -68,8 +68,7 @@ AGENT_SCRIPT="${AGENT_SCRIPT:-$REPO_ROOT/agents/ppa/orfs_agent/orfs_agent.py}"
 # Path to the PPA verifier script
 VERIFIER_SCRIPT="${VERIFIER_SCRIPT:-$REPO_ROOT/eval/ppa_metric_collection.py}"
 
-# Path to the PPA scorer (success + VRR from info.json). Optional; eval works
-# without it if absent.
+# Path to the PPA scorer, required for success + VRR from info.json.
 SCORER_SCRIPT="${SCORER_SCRIPT:-$REPO_ROOT/eval/ppa_score.py}"
 
 # OpenROAD flow scripts location. Reviewer must set this env var, or symlink
