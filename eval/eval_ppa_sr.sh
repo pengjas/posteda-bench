@@ -445,7 +445,7 @@ EVAL_START_TS=$(date +%s)
 
 # User-scoped cleanup of docker containers + temp dirs left by hard-killed runs.
 # Safe on shared hosts:
-#   - Containers: only openroad/orfs:latest ancestor, status=exited,
+#   - Containers: only $OR_IMAGE (default openroad/orfs:latest) ancestor, status=exited,
 #                 and CreatedAt >= EVAL_START_TS (this session only).
 #   - Temp dirs:  only -user $USER AND -newermt EVAL_START_TS.
 # Will NOT touch other users' containers or their _temp_runs/ entries,
@@ -464,7 +464,7 @@ cleanup_docker_and_tmp() {
                 docker rm -f "$cid" >/dev/null 2>&1 && ((cleaned++))
             fi
         done < <(docker ps -a \
-                     --filter ancestor=openroad/orfs:latest \
+                     --filter "ancestor=${OR_IMAGE:-openroad/orfs:latest}" \
                      --filter status=exited \
                      --format '{{.ID}} {{.CreatedAt}}' 2>/dev/null)
         echo "  docker: removed $cleaned exited ORFS container(s) from this session"

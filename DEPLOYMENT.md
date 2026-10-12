@@ -13,7 +13,7 @@ identifying information (paths, accounts, names) has been removed; reproduce by
 following the steps below.
 
 ```
-posteda_bench/
+posteda-bench/
 ├── agents/                  # LLM agent baselines (DRC and PPA)
 │   ├── drc/{react,tot,reflexion,proposer_critic,tools}/
 │   └── ppa/{react,tot,reflexion,proposer_critic,orfs_agent,tools}/
@@ -69,24 +69,42 @@ The repository includes benchmark inputs, reference artifacts, agent implementat
   ```bash
   docker run --rm hello-world
   ```
-  Complete this step before building ORFS below. A native OpenROAD installation
-  alone does not satisfy the agent's Docker requirement.
-- **KLayout** ≥ 0.28 — required for DRC tasks. Provides the `klayout` CLI,
-  whose bundled Python supplies `pya` / `klayout.db` to the scripts the DRC
-  tools generate.
+  Complete this step before setting up ORFS below. A native OpenROAD
+  installation alone does not satisfy the agent's Docker requirement.
+- **KLayout 0.30.3** — required for DRC tasks (the reference version). Provides
+  the `klayout` CLI, whose bundled Python supplies `pya` / `klayout.db` to the
+  scripts the DRC tools generate. Do not use `apt-get install klayout`: Ubuntu's
+  own package is older (0.26.2 on 22.04, 0.28.x on 24.04). Install the official
+  package for your Ubuntu release (22 or 24) from klayout.de instead:
   ```bash
-  sudo apt-get install klayout         # or build from source
+  UBUNTU_MAJOR=$(. /etc/os-release && echo "${VERSION_ID%%.*}")
+  wget "https://www.klayout.de/downloads/Ubuntu-${UBUNTU_MAJOR}/klayout_0.30.3-1_amd64.deb"
+  sudo apt-get install -y ./klayout_0.30.3-1_amd64.deb
+  klayout -v                           # should print: KLayout 0.30.3
   ```
-- **OpenROAD-flow-scripts (ORFS)** — required for PPA tasks. Clone and build
-  according to upstream instructions, then expose the flow directory:
+- **OpenROAD-flow-scripts (ORFS)** — required for PPA tasks. Use the exact
+  ORFS commit and Docker image that produced the benchmark's reference results:
   ```bash
-  git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
-  cd OpenROAD-flow-scripts && ./build_openroad.sh
+  git clone https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
+  cd OpenROAD-flow-scripts
+  git checkout a2bb042b6
   export OPENROAD_FLOW_DIR=$(pwd)/flow
+  export OR_IMAGE=openroad/orfs:v3.0-4639-ga2bb042b6
+  docker pull "$OR_IMAGE"
   ```
-  ASAP7 PDK is required (shipped with ORFS). With Docker installed, the build
-  command above builds the ORFS Docker image. Verify that the same wrapper used
-  by the agents can launch both EDA tools:
+  Do not use the latest ORFS. From ORFS `26Q2` onward, `util/docker_shell`
+  runs `make` inside the image's own flow directory, so every flow the agents
+  launch fails. Other ORFS versions or images also produce different PPA
+  numbers from the reference values in the tasks.
+
+  No `--recursive` clone or `./build_openroad.sh` is needed:
+  `util/docker_shell` runs OpenROAD and Yosys from the `$OR_IMAGE` Docker
+  image. If `OR_IMAGE` is unset, it falls back to `openroad/orfs:latest`, which
+  gives different results. Keep `OPENROAD_FLOW_DIR` and `OR_IMAGE` exported in
+  every shell that runs the agents or eval scripts. The ASAP7 PDK ships with
+  ORFS.
+
+  Verify that the same wrapper used by the agents can launch both EDA tools:
   ```bash
   (
     cd "$OPENROAD_FLOW_DIR"
@@ -94,10 +112,10 @@ The repository includes benchmark inputs, reference artifacts, agent implementat
     util/docker_shell yosys -V
   )
   ```
-  Both commands must succeed before running PPA evaluation. See the
-  [ORFS Docker guide](https://openroad-flow-scripts.readthedocs.io/en/latest/user/DockerShell.html)
-  for image configuration.
-- **Yosys** ≥ 0.30 (already pulled in by the ORFS build).
+  Both commands must succeed before running PPA evaluation. With this setup,
+  re-running the flow on the unmodified `ppa_multi/L1/q1` design reproduces its
+  reference metrics (effective period 319.69 ps, power 0.00161 W).
+- **Yosys** — included in the ORFS Docker image above; no host install needed.
 - **Icarus Verilog** — required on the **host** for PPA functional checks.
   `eval/equiv/check_equiv.sh` invokes `iverilog` and `vvp` outside the ORFS
   container. Install and verify both executables:
@@ -134,26 +152,31 @@ binary needs to be on `$PATH`.
 
 ## 2. Configure environment variables
 
-The two eval scripts auto-resolve the repo root from their own location;
-everything else is overridable via env. Minimum required:
+Set these in every shell where you run the commands in this guide:
 
 ```bash
-# Path to your OpenROAD-flow-scripts/flow checkout (PPA only)
+# Absolute path to your clone of this repository. The commands below use it.
+export REPO_ROOT=/abs/path/to/posteda-bench
+
+# ORFS setup from section 1 (PPA only)
 export OPENROAD_FLOW_DIR=/abs/path/to/OpenROAD-flow-scripts/flow
+export OR_IMAGE=openroad/orfs:v3.0-4639-ga2bb042b6
 
-# Required if your agent backend is OpenAI:
+# Model access: you must set up your own models (see section 5).
+# OpenAI-based agents (gpt_*.py):
 export OPENAI_API_KEY=sk-...
+# Agents that use your own OpenAI-compatible server (e.g. vLLM).
+# orfs_agent.py ignores this variable; edit the constants in that file instead.
+export VLLM_BASE_URL=http://<host>:<port>/v1
 
-# Optional: where to write evaluation outputs (defaults under repo/results/)
+# Optional: where to write evaluation outputs (defaults under $REPO_ROOT/results/)
 export RESULT_DIR_RAW=/abs/path/to/results
-
-# Optional: vLLM endpoint when LLM_BACKEND=="vllm" inside the agent
-# (override URL / model in the agent file directly if needed)
 ```
 
-No path inside the repo encodes your username, home directory, or
-account info. All references resolve relative to `REPO_ROOT` (the directory
-containing this README) or to standard environment variables.
+The eval scripts locate the repository from their own location, so
+`REPO_ROOT` only needs to point at your clone for the commands in this guide.
+No path inside the repo encodes your username, home directory, or account
+info.
 
 ## 3. Benchmark layout
 
@@ -192,11 +215,14 @@ inside its sandbox copy and re-runs the OpenROAD flow.
 
 ## 4. Running the eval harnesses
 
-Activate the environment first: `conda activate posteda`.
+Activate the environment first: `conda activate posteda`. Set up your model
+before running either harness (section 5): both default agents
+(`gemma_react.py` for DRC, `orfs_agent.py` for PPA) call a model server you
+run yourself.
 
 ### DRC
 ```bash
-cd posteda_bench/eval
+cd "$REPO_ROOT/eval"
 ./eval_drc_sr.sh
 ```
 The script (defaults shown):
@@ -219,7 +245,7 @@ Agents currently shipped:
 
 ### PPA
 ```bash
-cd posteda_bench/eval
+cd "$REPO_ROOT/eval"
 ./eval_ppa_sr.sh
 ```
 Defaults:
@@ -240,17 +266,22 @@ divergence is marked `FAIL_FUNCTIONAL` even when PPA targets are met.
 
 ## 5. LLM backends
 
-Each agent file selects its backend near the top:
+This repository does not provide models or API access. You need to set up
+your own models before running any agent:
 
-| Backend | Where set | Required env |
-|---|---|---|
-| OpenAI (`gpt-5`, `gpt-5-mini`) | `LLM_BACKEND="openai"` | `OPENAI_API_KEY` |
-| vLLM (e.g. `qwen3.5-9b`) | `LLM_BACKEND="vllm"` | local vLLM server at `VLLM_BASE_URL` |
-| Google GenAI (Gemini) | (commented branch) | `GOOGLE_API_KEY` |
+- **OpenAI-based agents** (`gpt_*.py`) call the OpenAI API and read
+  `OPENAI_API_KEY`.
+- **All other agents** expect an OpenAI-compatible server that you run
+  yourself (for example vLLM with tool calling enabled). Point them at it with
+  `VLLM_BASE_URL`, and make sure the model name matches your server: some
+  agents read `VLLM_MODEL`, others set the model name in the agent file.
+- **`orfs_agent.py`** (the default PPA agent) is configured by the constants
+  at the top of the file (lines ≈55–80): `LLM_BACKEND` (`"vllm"` or
+  `"openai"`), `VLLM_MODEL`, `VLLM_BASE_URL`, and `OPENAI_MODEL`.
 
-Edit the constants at the top of the chosen agent file (e.g.
-`agents/ppa/orfs_agent/orfs_agent.py`, lines ≈55–80) to switch providers,
-models, base URLs, or parallelism.
+Confirm your endpoint works before starting an evaluation. If the server is
+unreachable, some agents (including the default DRC agent `gemma_react.py`)
+keep retrying instead of exiting.
 
 ## 6. Outputs and metrics
 
@@ -275,7 +306,9 @@ Headline metrics:
 
 ## 7. Quick smoke-test
 
-Run a single DRC task end-to-end without the harness:
+Run a single DRC task end-to-end without the harness. This runs
+`gemma_react.py`, so first start your model server and set `VLLM_BASE_URL`
+(section 5), and set `REPO_ROOT` (section 2):
 ```bash
 conda activate posteda
 cd /tmp && rm -rf sb && mkdir sb && cd sb
@@ -290,8 +323,9 @@ modified `report.lyrdb` and `modified.gds` in the working directory.
 
 ## 8. Notes for reviewers
 
-- All paths inside the repo resolve to `$REPO_ROOT` (auto-detected from each
-  script's own location). No reviewer-side editing of paths is needed.
+- The eval scripts find the repository from their own location, so no paths
+  inside the repo need editing. Only set `REPO_ROOT` (section 2) for the
+  commands in this guide.
 - The benchmark snapshots under `benchmark/ppa_bench/*/{logs,reports,results}`
   contain reference OpenROAD outputs; absolute filesystem paths inside those
   files have been replaced with `$ORFS_HOME` / `$REPO_ROOT` placeholders so
