@@ -386,9 +386,9 @@ if __name__ == "__main__":
         task_prompt = f.read()
 
     # ============================================================================
-    # LLM: google/gemma-4-31B-it served by a local vLLM instance on :8006.
-    # Endpoint / model are overridable via env vars (VLLM_BASE_URL, VLLM_MODEL)
-    # so the CLI surface stays identical to other planner-checker agents.
+    # LLM: a model served by an OpenAI-compatible server, e.g. a local vLLM
+    # instance. The endpoint comes from VLLM_BASE_URL; the model name is set
+    # below and must match the served model name.
     # ============================================================================
     # llm = ChatOpenAI(
     #     model=os.environ.get("VLLM_MODEL", "google/gemma-4-31B-it"),
@@ -401,9 +401,6 @@ if __name__ == "__main__":
     # )
     llm = ChatOpenAI(
         model="qwen3.5-9b",
-        # vLLM is served on a different host (cs-u-ding6000pro). Use its LAN IP
-        # so this works from any client host. Override with VLLM_BASE_URL if
-        # the endpoint moves.
         openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),
         openai_api_key="vllm_fake_key",
         temperature=args.temperature,

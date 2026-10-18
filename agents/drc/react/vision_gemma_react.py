@@ -335,49 +335,15 @@ if __name__ == "__main__":
         drc_error = f.read()
 
     # ============================================================================
-    # LLM: google/gemma-4-31B-it served by a local vLLM instance.
-    # The server is started with --enable-auto-tool-choice --tool-call-parser gemma4,
-    # so structured tool_calls come back in the OpenAI format.
-    # Endpoint / model are overridable via env vars (VLLM_BASE_URL, VLLM_MODEL)
-    # so the CLI surface stays identical to google_react.py.
+    # LLM: a vision-capable model served by an OpenAI-compatible server, e.g. a
+    # local vLLM instance started with --enable-auto-tool-choice
+    # --tool-call-parser <parser>. The endpoint comes from VLLM_BASE_URL; the
+    # model name is set below and must match the served model name.
     # ============================================================================
-    # llm = ChatOpenAI(
-    #     model=os.environ.get("VLLM_MODEL", "google/gemma-4-31B-it"),
-    #     # vLLM (Gemma) is served on cs-u-ding6000pro:8888. Use the LAN IP so
-    #     # this works from any client host, not just from the server itself.
-    #     # Override with VLLM_BASE_URL if the endpoint moves.
-    #     openai_api_base=os.environ.get("VLLM_BASE_URL", "http://134.84.150.139:8888/v1"),
-    #     openai_api_key="vllm_fake_key",
-    #     temperature=args.temperature,
-    #     # chat_template_kwargs is a top-level vLLM request field; OpenAI's SDK
-    #     # merges extra_body into the request body, so this lands in the right
-    #     # place. The gemma4 reasoning parser then emits a reasoning block,
-    #     # which shows up as extra output tokens in cost.json.
-    #     extra_body={"chat_template_kwargs": {"enable_thinking": True}},
-    #     model_kwargs={"tool_choice": "auto"},
-    # )
-    # llm = ChatOpenAI(
-    #     model="Qwen/Qwen3.5-122B-A10B",
-    #     openai_api_base="http://134.84.150.135:8001/v1",
-    #     openai_api_key="vllm_fake_key",
-    #     temperature=args.temperature,
-    #     # 10s timeout per attempt (vLLM occasionally accepts a request and never
-    #     # responds; abandoning + retrying recovers in seconds).
-    #     # max_retries=0 disables the SDK's silent internal retries so the
-    #     # while-loop in call_llm() is the single source of retry truth.
-    #     timeout=10.0,
-    #     max_retries=0,
-    #     extra_body={"chat_template_kwargs": {"enable_thinking": False}},
-    #     # extra_body={"chat_template_kwargs": {"enable_thinking": True}},
-    #     model_kwargs={"tool_choice": "auto"},
-    # )
     llm = ChatOpenAI(
         # model="Qwen/Qwen3.5-122B-A10B",
         # model="google/gemma-4-31B-it",
         model="qwen3.5-122b",
-        # vLLM is served on a different host (cs-u-ding6000pro). Use its LAN IP
-        # so this works from any client host. Override with VLLM_BASE_URL if
-        # the endpoint moves.
         openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),
         openai_api_key="vllm_fake_key",
         temperature=args.temperature,

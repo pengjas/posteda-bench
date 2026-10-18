@@ -120,7 +120,7 @@ if __name__ == "__main__":
     # VLLM_MODEL) so the CLI surface stays identical to gemma_react.py.
     actor_llm = ChatOpenAI(
         model=os.environ.get("VLLM_MODEL", "Qwen/Qwen3.5-27B"),
-        openai_api_base=os.environ.get("VLLM_BASE_URL", "http://134.84.150.139:8027/v1"),
+        openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),
         openai_api_key="vllm_fake_key",
         temperature=args.temperature,
         extra_body={"chat_template_kwargs": {"enable_thinking": True}},
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     # without the tool_choice model_kwarg.
     reflection_llm = ChatOpenAI(
         model=os.environ.get("VLLM_MODEL", "Qwen/Qwen3.5-27B"),
-        openai_api_base=os.environ.get("VLLM_BASE_URL", "http://134.84.150.139:8027/v1"),
+        openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),
         openai_api_key="vllm_fake_key",
         temperature=args.temperature,
         extra_body={"chat_template_kwargs": {"enable_thinking": True}},
