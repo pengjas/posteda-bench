@@ -148,10 +148,10 @@
       "@type": "cr:FileObject",
       "@id": "posteda-bench-archive",
       "name": "posteda-bench-archive",
-      "description": "xz-compressed tarball of the entire repository (benchmark/, agents/, eval/, plus README and LICENSE), stored in the GitHub repository under releases/.",
+      "description": "xz-compressed tarball of the entire repository except releases/ (agents/, benchmark/, eval/, scripts/, README, DEPLOYMENT.md, requirements.txt and LICENSE), stored in the GitHub repository under releases/.",
       "contentUrl": "https://raw.githubusercontent.com/pengjas/posteda-bench/main/releases/posteda-bench-1.1.0.tar.xz",
       "encodingFormat": "application/x-xz",
-      "sha256": "c5fb7d9ca7b5565831619a7711b86f6a79dd065304e53b1c74dd859579d570b6"
+      "sha256": "881f87fcd1fa30f7dcaba22af02dfebe0c1e0863a471dce58153eb57e55d001f"
     },
 
     {
