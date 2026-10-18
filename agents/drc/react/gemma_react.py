@@ -1,6 +1,7 @@
 """
-DRC (Design Rule Checking) Error Fixing Agent using LangGraph and
-google/gemma-4-31B-it served locally by vLLM (OpenAI-compatible /v1 endpoint).
+DRC (Design Rule Checking) Error Fixing Agent using LangGraph and a model
+served by vLLM (OpenAI-compatible /v1 endpoint). The model and endpoint come
+from VLLM_MODEL / VLLM_BASE_URL (default: google/gemma-4-31B-it).
 
 This agent iteratively:
 1. Analyzes DRC error reports
@@ -19,6 +20,7 @@ normalized $/token via vllm_cost_tracker).
 import json
 import os
 import traceback
+import openai
 from typing import Annotated, TypedDict
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage, SystemMessage
 from langchain_openai import ChatOpenAI
@@ -44,6 +46,9 @@ from agents.ppa.react import vllm_cost_tracker as cost_tracker
 # Global counter to track tool calls (persists even when exceptions occur)
 tool_call_counter = {"count": 0}
 
+# HTTP statuses that cannot succeed on retry (invalid request, auth, unknown model).
+_NON_RETRYABLE_HTTP_STATUS = {400, 401, 403, 404, 422}
+
 
 # --- State Definition ---
 class AgentState(TypedDict):
@@ -59,13 +64,15 @@ def call_llm(state: AgentState):
     print("\n--- CALL LLM: call_llm ---", flush=True)
     print(state["messages"][-1], flush=True)
 
-    # Retry forever: the vLLM server occasionally accepts a request and never
-    # responds. Each attempt has a 10s SDK-level timeout (set on ChatOpenAI),
-    # so a wedged call abandons the socket and tries again instead of hanging.
+    # Retry transient failures forever: the vLLM server occasionally accepts a
+    # request and never responds, so a call that hits the client timeout (set on
+    # ChatOpenAI), loses its connection, or gets a 429/5xx is tried again.
+    # Errors that cannot succeed on retry (unknown model, invalid request, auth)
+    # are raised so the run ends instead of looping forever.
     attempt = 0
     while True:
         attempt += 1
-        print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] --- attempt #{attempt}: WAITING for LLM response (per-attempt timeout=10s, msgs={len(state['messages'])}) ... ---", flush=True)
+        print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] --- attempt #{attempt}: WAITING for LLM response (msgs={len(state['messages'])}) ... ---", flush=True)
         _llm_t0 = time.time()
         try:
             response = llm_with_tools.invoke(state["messages"])
@@ -82,6 +89,10 @@ def call_llm(state: AgentState):
         except Exception as e:
             _llm_dt = time.time() - _llm_t0
             print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] attempt #{attempt} failed after {_llm_dt:.1f}s: {type(e).__name__}: {e}", flush=True)
+            if isinstance(e, openai.APIStatusError) and e.status_code in _NON_RETRYABLE_HTTP_STATUS:
+                print(f"--- HTTP {e.status_code} is not retryable: check VLLM_MODEL, VLLM_BASE_URL "
+                      f"and that the server has tool calling enabled ---", flush=True)
+                raise
             print(f"--- retrying ---", flush=True)
             time.sleep(1)
             continue
@@ -265,53 +276,24 @@ if __name__ == "__main__":
         drc_error = f.read()
 
     # ============================================================================
-    # LLM: google/gemma-4-31B-it served by a local vLLM instance.
-    # The server is started with --enable-auto-tool-choice --tool-call-parser gemma4,
-    # so structured tool_calls come back in the OpenAI format.
-    # Endpoint / model are overridable via env vars (VLLM_BASE_URL, VLLM_MODEL)
-    # so the CLI surface stays identical to google_react.py.
+    # LLM: any model served by an OpenAI-compatible server, e.g. a local vLLM
+    # instance (scripts/serve_vllm.sh). VLLM_MODEL must match the served model
+    # name and VLLM_BASE_URL is the server's /v1 endpoint. The server must return
+    # structured tool calls (vLLM: --enable-auto-tool-choice --tool-call-parser
+    # <parser>); the reference runs served google/gemma-4-31B-it with the
+    # gemma4 tool-call and reasoning parsers.
     # ============================================================================
     llm = ChatOpenAI(
         model=os.environ.get("VLLM_MODEL", "google/gemma-4-31B-it"),
-        # vLLM (Gemma) is served on cs-u-ding6000pro:8888. Use the LAN IP so
-        # this works from any client host, not just from the server itself.
-        # Override with VLLM_BASE_URL if the endpoint moves.
-        openai_api_base=os.environ.get("VLLM_BASE_URL", "http://134.84.150.139:8888/v1"),
-        openai_api_key="vllm_fake_key",
-        temperature=args.temperature,
-        # chat_template_kwargs is a top-level vLLM request field; OpenAI's SDK
-        # merges extra_body into the request body, so this lands in the right
-        # place. The gemma4 reasoning parser then emits a reasoning block,
-        # which shows up as extra output tokens in cost.json.
-        extra_body={"chat_template_kwargs": {"enable_thinking": True}},
-        model_kwargs={"tool_choice": "auto"},
-    )
-    # llm = ChatOpenAI(
-    #     model="Qwen/Qwen3.5-122B-A10B",
-    #     openai_api_base="http://134.84.150.135:8001/v1",
-    #     openai_api_key="vllm_fake_key",
-    #     temperature=args.temperature,
-    #     # 10s timeout per attempt (vLLM occasionally accepts a request and never
-    #     # responds; abandoning + retrying recovers in seconds).
-    #     # max_retries=0 disables the SDK's silent internal retries so the
-    #     # while-loop in call_llm() is the single source of retry truth.
-    #     timeout=10.0,
-    #     max_retries=0,
-    #     extra_body={"chat_template_kwargs": {"enable_thinking": False}},
-    #     # extra_body={"chat_template_kwargs": {"enable_thinking": True}},
-    #     model_kwargs={"tool_choice": "auto"},
-    # )
-    llm = ChatOpenAI(
-        model="google/gemma-4-31B-it",
-        # model="qwen3.5-9b",
-        # vLLM is served on a different host (cs-u-ding6000pro). Use its LAN IP
-        # so this works from any client host. Override with VLLM_BASE_URL if
-        # the endpoint moves.
         openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),
         openai_api_key="vllm_fake_key",
         temperature=args.temperature,
         timeout=600.0,
+        # call_llm() owns retries, so the SDK's silent internal retries are off.
         max_retries=0,
+        # chat_template_kwargs is a top-level vLLM request field; OpenAI's SDK
+        # merges extra_body into the request body. With a reasoning parser the
+        # thinking block shows up as extra output tokens in cost.json.
         extra_body={"chat_template_kwargs": {"enable_thinking": True}},
         model_kwargs={"tool_choice": "auto"},
     )
