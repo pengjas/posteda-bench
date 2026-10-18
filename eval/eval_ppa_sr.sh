@@ -273,13 +273,13 @@ run_single_attempt() {
     fi
 
     if [ -z "$ppa_type" ]; then
-        if [[ "$task_path_abs" == *"/multi_dimension/"* ]]; then
+        if [[ "$task_path_abs" == *"/ppa_multi/"* ]]; then
             ppa_type="multi_dimension"
-        elif [[ "$task_path_abs" == *"/area/"* ]]; then
+        elif [[ "$task_path_abs" == *"/ppa_mono/area/"* ]]; then
             ppa_type="area"
-        elif [[ "$task_path_abs" == *"/power/"* ]]; then
+        elif [[ "$task_path_abs" == *"/ppa_mono/power/"* ]]; then
             ppa_type="power"
-        elif [[ "$task_path_abs" == *"/performance/"* ]]; then
+        elif [[ "$task_path_abs" == *"/ppa_mono/perf/"* ]]; then
             ppa_type="performance"
         else
             ppa_type="unknown"
@@ -766,9 +766,9 @@ for run_id in $(seq 1 "$NUM_RUNS"); do
                     overall_output_tokens_total=$((overall_output_tokens_total + attempt_out_tok))
                     ((overall_cost_attempts++))
 
-                    if [[ "$top_level_dir" == *"/single_dimension/openroad/area"*      || \
-                          "$top_level_dir" == *"/single_dimension/openroad/power"*     || \
-                          "$top_level_dir" == *"/single_dimension/openroad/performance"* ]]; then
+                    if [[ "$top_level_dir" == *"/ppa_mono/area"*  || \
+                          "$top_level_dir" == *"/ppa_mono/power"* || \
+                          "$top_level_dir" == *"/ppa_mono/perf"* ]]; then
                         sd_cost_total=$(echo "$sd_cost_total + $attempt_cost" | bc -l)
                         sd_input_tokens_total=$((sd_input_tokens_total + attempt_in_tok))
                         sd_output_tokens_total=$((sd_output_tokens_total + attempt_out_tok))
@@ -849,9 +849,9 @@ for run_id in $(seq 1 "$NUM_RUNS"); do
         overall_tc_pos_sum=$((overall_tc_pos_sum + tl_tc_pos_sum));   overall_tc_pos_n=$((overall_tc_pos_n + tl_tc_pos_n))
 
         # Combined single-dimension (area+power+performance)
-        if [[ "$top_level_dir" == *"/single_dimension/openroad/area"* ]] || \
-           [[ "$top_level_dir" == *"/single_dimension/openroad/power"* ]] || \
-           [[ "$top_level_dir" == *"/single_dimension/openroad/performance"* ]]; then
+        if [[ "$top_level_dir" == *"/ppa_mono/area"* ]] || \
+           [[ "$top_level_dir" == *"/ppa_mono/power"* ]] || \
+           [[ "$top_level_dir" == *"/ppa_mono/perf"* ]]; then
             single_dim_success_count=$((single_dim_success_count + toplevel_success_count))
             single_dim_total_vrr=$(echo "$single_dim_total_vrr + $toplevel_total_vrr" | bc -l)
             single_dim_task_count=$((single_dim_task_count + toplevel_task_count))
@@ -1102,9 +1102,9 @@ emit_level_stats() {
     sd_roots=()
     for top_level_dir in "${FOLDER_PATHS[@]}"; do
         case "$top_level_dir" in
-            */single_dimension/openroad/area*|\
-            */single_dimension/openroad/power*|\
-            */single_dimension/openroad/performance*)
+            */ppa_mono/area*|\
+            */ppa_mono/power*|\
+            */ppa_mono/perf*)
                 tl_rel=$(realpath --relative-to="$BENCHMARK_BASE_DIR" "$top_level_dir")
                 for run_dir in "$result_dir_abs"/run*/; do
                     [ -d "$run_dir$tl_rel" ] && sd_roots+=("$run_dir$tl_rel")
