@@ -31,6 +31,12 @@ Metrics:
                               success_flag == 0
     error_recovery_rate       of errored calls, fraction whose next call had a
                               different (tool, args) (NaN when no errors)
+
+orfs_agent (LLM setup + GP loop) logs no TOOL CALL lines. Its flows are read
+from optim_history.json next to the log: each GP candidate counts as one
+run_openroad_flow call (SUCCESS when the flow produced metrics, FAILED
+otherwise), and iteration_exhausted means every planned outer iteration
+(OuterIters) ran.
 """
 
 import argparse
@@ -57,6 +63,10 @@ TOOLS_OF_INTEREST = {
     "run_openroad_flow",
     "report_ppa",
 }
+
+# orfs_agent start-up banner, and the outer-iteration budget it prints with it.
+ORFS_AGENT_MARKER = "ORFS-Agent run starting"
+OUTER_ITERS_RE = re.compile(r"^OuterIters:\s*(\d+)", re.MULTILINE)
 
 
 def _is_error_payload(payload: str) -> bool:
@@ -112,7 +122,46 @@ def parse_log(log_path: str):
     return calls, text
 
 
-def compute(calls, text, success_flag):
+def parse_orfs_agent(log_path: str, text: str):
+    """Return ([{tool, args, payload}, ...], iteration_exhausted) for orfs_agent.
+
+    Every GP candidate is one OpenROAD flow, recorded in optim_history.json
+    next to the log. A flow succeeded when it produced metrics; candidates whose
+    flow failed (e.g. at synthesis) carry no metrics.
+    """
+    attempt_dir = os.path.dirname(os.path.abspath(log_path))
+    try:
+        with open(os.path.join(attempt_dir, "optim_history.json")) as f:
+            history = json.load(f)
+    except (OSError, ValueError):
+        history = None
+
+    if history is None:
+        # The agent died before writing its history: count launched flows only.
+        calls = [{"tool": "run_openroad_flow", "args": str(i), "payload": None}
+                 for i in range(text.count("EXECUTING OPENROAD COMMAND:"))]
+        n_iters_run = len(re.findall(r"^Iteration \d+/\d+", text, re.MULTILINE))
+    else:
+        calls = []
+        for h in history:
+            produced = any(v is not None for v in (h.get("metrics") or {}).values())
+            if h.get("status") != "ok":
+                payload = f"FAILED: flow {h.get('status')}"
+            elif produced:
+                payload = "SUCCESS: flow produced metrics"
+            else:
+                payload = "FAILED: flow produced no metrics"
+            calls.append({"tool": "run_openroad_flow",
+                          "args": json.dumps(h.get("vector")),
+                          "payload": payload})
+        n_iters_run = len({h.get("iter") for h in history})
+
+    m = OUTER_ITERS_RE.search(text)
+    iteration_exhausted = int(bool(m) and n_iters_run >= int(m.group(1)))
+    return calls, iteration_exhausted
+
+
+def compute(calls, text, success_flag, iteration_exhausted=None):
     from collections import Counter
 
     per_tool = Counter(c["tool"] for c in calls)
@@ -177,7 +226,8 @@ def compute(calls, text, success_flag):
     n_flow = per_tool.get("run_openroad_flow", 0)
     n_report = per_tool.get("report_ppa", 0)
 
-    iteration_exhausted = int("RECURSION LIMIT REACHED" in text)
+    if iteration_exhausted is None:
+        iteration_exhausted = int("RECURSION LIMIT REACHED" in text)
     no_verification = int(edits_writes > 0 and n_flow == 0)
     premature_exit = int(
         not iteration_exhausted
@@ -236,7 +286,10 @@ def main():
         sys.exit(1)
 
     calls, text = parse_log(args.log_path)
-    stats = compute(calls, text, args.success)
+    iteration_exhausted = None
+    if ORFS_AGENT_MARKER in text:
+        calls, iteration_exhausted = parse_orfs_agent(args.log_path, text)
+    stats = compute(calls, text, args.success, iteration_exhausted)
     out_path = args.out or os.path.join(
         os.path.dirname(os.path.abspath(args.log_path)),
         "trajectory_stats.json",
