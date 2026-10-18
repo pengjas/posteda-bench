@@ -279,17 +279,24 @@ run_single_attempt() {
     cp "$verifier_script_path" "$work_dir/" 2>/dev/null
     local local_verifier="$work_dir/$(basename "$verifier_script_path")"
 
-    # --- Copy all task inputs into the sandbox ---
-    cp -L "$task_path_abs"/* "$work_dir/" 2>/dev/null
+    # --- Copy the task inputs into the sandbox ---
+    # except info.json: it is the scoring ground truth, so the agent never sees
+    # it. It is copied in after the agent exits, for the verifier and scoring.
+    local task_file
+    for task_file in "$task_path_abs"/*; do
+        [ "$(basename "$task_file")" = "info.json" ] && continue
+        cp -L "$task_file" "$work_dir/" 2>/dev/null
+    done
 
     # --- Read task info ---
     local init_errors=0
     local error_types=""
-    if [ -f "$work_dir/info.json" ]; then
-        init_errors=$(jq -r '.init_errors_num // 0' "$work_dir/info.json" 2>/dev/null)
-        error_types=$(jq -r '.init_error_types // {} | keys | join(",")' "$work_dir/info.json" 2>/dev/null)
+    local task_info="$task_path_abs/info.json"
+    if [ -f "$task_info" ]; then
+        init_errors=$(jq -r '.init_errors_num // 0' "$task_info" 2>/dev/null)
+        error_types=$(jq -r '.init_error_types // {} | keys | join(",")' "$task_info" 2>/dev/null)
         if [ -z "$error_types" ] || [ "$error_types" == "null" ]; then
-            error_types=$(jq -r '.error_type // [] | join(",")' "$work_dir/info.json" 2>/dev/null)
+            error_types=$(jq -r '.error_type // [] | join(",")' "$task_info" 2>/dev/null)
         fi
         echo "$error_types" > "$error_types_file"
     fi
@@ -318,6 +325,9 @@ run_single_attempt() {
         --temperature "$temperature" \
         --iterations "$num_iterations" \
         &> "$current_attempt_log"
+
+    # --- Hand the ground truth to the verifier now that the agent has exited ---
+    cp -L "$task_info" ./info.json 2>/dev/null
 
     # --- Extract Tool Call Count ---
     local tool_count_line=$(grep -E 'AGENT RUN (COMPLETE|RECURSION LIMIT REACHED)\. TOTAL TOOL CALLS:' "$current_attempt_log" | tail -n 1)

@@ -227,7 +227,8 @@ Per-task files (e.g. `drc_bench/drc_essential/L1/q1/`):
 - `prompt.txt` — natural-language description of the violation(s)
 - `info.json` — *ground truth metadata used by the harness only* (number of
   initial errors, error types, iteration budget). **The agent never sees this
-  file** — `eval_drc_sr.sh` reads it directly to score the run.
+  file**: `eval_drc_sr.sh` keeps it out of the agent's sandbox and copies it in
+  only after the agent exits, to score the run.
 - `6_drc_count.rpt` — pre-computed DRC report on the input GDS
 - `drc_error_collection.py` / `create_errors.py` — scripts used to construct
   the task (provided for transparency; not invoked at eval time)
@@ -410,6 +411,7 @@ Run a single DRC task end-to-end without the harness. This runs
 conda activate posteda
 cd /tmp && rm -rf sb && mkdir sb && cd sb
 cp -L $REPO_ROOT/benchmark/drc_bench/drc_essential/L1/q1/* .
+rm info.json    # scoring ground truth; the agent never sees it
 export PYTHONPATH=$REPO_ROOT
 export AGENT_RESULT_DIR=$(pwd)
 python $REPO_ROOT/agents/drc/react/gemma_react.py \
