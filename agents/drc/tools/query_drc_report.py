@@ -57,7 +57,12 @@ def query_drc_report(
     """
     report_path = "./report.lyrdb"
     if rerun_drc_check:
-        lydrc_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "klayout", "asap7.lydrc")
+        # A task that ships its own rule deck (drc.lydrc, copied into the sandbox
+        # with the other task files) was built and scored with that deck, e.g. the
+        # ROI-filtered drc_reasoning tasks; every other task uses the default deck.
+        lydrc_path = os.path.abspath("drc.lydrc")
+        if not os.path.isfile(lydrc_path):
+            lydrc_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "klayout", "asap7.lydrc")
         run_local_code(command=f"klayout -b -rd in_gds={gds_file_path} -rd report_file={report_path} -r {lydrc_path}", display_output=False)
 
     code = rf"""
