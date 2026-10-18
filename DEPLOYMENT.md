@@ -4,12 +4,12 @@
 
 The original setup, deployment, and evaluation instructions are preserved below.
 
-An anonymized benchmark and agent suite for evaluating LLM agents on
-**post-EDA** physical-design tasks: DRC violation fixing on layout (GDS), and
-PPA (period / power / area) optimization on a real OpenROAD flow.
+A benchmark and agent suite for evaluating LLM agents on **post-EDA**
+physical-design tasks: DRC violation fixing on layout (GDS), and PPA
+(period / power / area) optimization on a real OpenROAD flow.
 
-This repository accompanies an anonymous double-blind submission. All
-identifying information (paths, accounts, names) has been removed; reproduce by
+Machine-specific paths and account details have been removed from the
+repository, so nothing needs editing for your machine; reproduce the results by
 following the steps below.
 
 ```
