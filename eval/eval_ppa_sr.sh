@@ -311,6 +311,11 @@ run_single_attempt() {
         --iterations "$num_iterations" \
         &> "$current_attempt_log"
 
+    # --- Score against the task's own targets ---
+    # Agents may read info.json during the run, but must not change what they
+    # are scored against: restore the original before verifying and scoring.
+    cp -L "$task_path_abs/info.json" ./info.json 2>/dev/null
+
     # --- Extract Tool Call Count ---
     local tool_count_line=$(grep -E 'AGENT RUN (COMPLETE|RECURSION LIMIT REACHED)\. TOTAL TOOL CALLS:' "$current_attempt_log" | tail -n 1)
     local tool_count=0
