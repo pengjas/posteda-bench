@@ -26,6 +26,8 @@ posteda-bench/
 │   ├── ppa_metric_collection.py
 │   ├── FlowVariables.md     # OpenROAD flow-variable reference (used by the agent)
 │   └── equiv/               # Post-agent testbench-based RTL functional checks
+├── scripts/
+│   └── serve_vllm.sh        # Launch a local vLLM server for the agents
 └── requirements.txt         # Pinned Python dependencies (conda env `posteda`)
 ```
 
@@ -53,7 +55,13 @@ The repository includes benchmark inputs, reference artifacts, agent implementat
 - Python **3.11.11** (the reference version; install it with the conda command
   below). Python 3.10 is unsupported because the pinned NumPy 2.4.1 requires
   Python 3.11 or newer.
-- `jq`, `bc`, `tput`, `realpath`, `basename` (standard on most distros)
+- `git`, `wget`, `jq`, `bc`, and `xauth`; `tput`, `realpath`, and `basename`
+  are preinstalled. Stock Ubuntu does not ship `jq` (nor `bc` on Ubuntu
+  Server), and ORFS's `util/docker_shell` calls `xauth`, so install them:
+  ```bash
+  sudo apt-get update
+  sudo apt-get install -y git wget jq bc xauth
+  ```
 
 ### EDA toolchain
 - **Docker Engine** — required for PPA tasks: the agent invokes ORFS through
@@ -75,10 +83,11 @@ The repository includes benchmark inputs, reference artifacts, agent implementat
   the `klayout` CLI, whose bundled Python supplies `pya` / `klayout.db` to the
   scripts the DRC tools generate. Do not use `apt-get install klayout`: Ubuntu's
   own package is older (0.26.2 on 22.04, 0.28.x on 24.04). Install the official
-  package for your Ubuntu release (22 or 24) from klayout.de instead:
+  package for your Ubuntu release (22 or 24) from klayout.org instead (the
+  older klayout.de download links redirect there):
   ```bash
   UBUNTU_MAJOR=$(. /etc/os-release && echo "${VERSION_ID%%.*}")
-  wget "https://www.klayout.de/downloads/Ubuntu-${UBUNTU_MAJOR}/klayout_0.30.3-1_amd64.deb"
+  wget "https://www.klayout.org/downloads/Ubuntu-${UBUNTU_MAJOR}/klayout_0.30.3-1_amd64.deb"
   sudo apt-get install -y ./klayout_0.30.3-1_amd64.deb
   klayout -v                           # should print: KLayout 0.30.3
   ```
@@ -112,9 +121,12 @@ The repository includes benchmark inputs, reference artifacts, agent implementat
     util/docker_shell yosys -V
   )
   ```
-  Both commands must succeed before running PPA evaluation. With this setup,
-  re-running the flow on the unmodified `ppa_multi/L1/q1` design reproduces its
-  reference metrics (effective period 319.69 ps, power 0.00161 W).
+  Both commands must succeed before running PPA evaluation. Once the Python
+  environment is set up, the
+  [PPA reference check](#ppa-reference-check-no-model-needed) in section 7
+  confirms that re-running the flow on the unmodified `ppa_multi/L1/q1` design
+  reproduces its reference metrics (effective period 319.69 ps, power
+  0.00161 W).
 - **Yosys** — included in the ORFS Docker image above; no host install needed.
 - **Icarus Verilog** — required on the **host** for PPA functional checks.
   `eval/equiv/check_equiv.sh` invokes `iverilog` and `vvp` outside the ORFS
@@ -126,6 +138,19 @@ The repository includes benchmark inputs, reference artifacts, agent implementat
   vvp -V
   ```
   Missing executables cause `FAIL_INFRA` on designs with supported testbenches.
+  Ubuntu packages Icarus Verilog 11.0 on 22.04 and 12.0 on 24.04; both pass
+  the functional checks.
+
+### Get the code
+
+Clone this repository outside the ORFS checkout and run the Python setup below
+from its root:
+
+```bash
+cd ~    # or wherever you keep your checkouts
+git clone https://github.com/pengjas/posteda-bench.git
+cd posteda-bench
+```
 
 ### Python environment
 
@@ -165,12 +190,20 @@ export OR_IMAGE=openroad/orfs:v3.0-4639-ga2bb042b6
 # Model access: you must set up your own models (see section 5).
 # OpenAI-based agents (gpt_*.py):
 export OPENAI_API_KEY=sk-...
-# Agents that use your own OpenAI-compatible server (e.g. vLLM).
-# orfs_agent.py ignores this variable; edit the constants in that file instead.
-export VLLM_BASE_URL=http://<host>:<port>/v1
+# Agents that use your own OpenAI-compatible server, e.g. a local vLLM server
+# started with scripts/serve_vllm.sh (section 5). VLLM_MODEL must match the
+# served model name. orfs_agent.py ignores both variables; edit the constants
+# in that file instead (section 5).
+export VLLM_BASE_URL=http://localhost:9888/v1
+export VLLM_MODEL=google/gemma-4-31B-it
 
-# Optional: where to write evaluation outputs (defaults under $REPO_ROOT/results/)
-export RESULT_DIR_RAW=/abs/path/to/results
+# Optional: where to write evaluation outputs. Each harness has its own default
+# ($REPO_ROOT/results/drc/react/v0 and $REPO_ROOT/results/ppa/orfs_agent/v0).
+# Do not export one value for both: each harness writes final_summary_report.log
+# at the top of RESULT_DIR_RAW, so the second run would overwrite the first.
+# Set it per invocation instead:
+#   RESULT_DIR_RAW=/abs/path/to/results/drc ./eval_drc_sr.sh
+#   RESULT_DIR_RAW=/abs/path/to/results/ppa ./eval_ppa_sr.sh
 ```
 
 The eval scripts locate the repository from their own location, so
@@ -209,9 +242,11 @@ Two regimes × difficulty levels = **75 tasks**
 | `ppa_multi`                                        | joint period+power tasks |
 
 Per-task files include `prompt.txt`, `info.json` (targets only), `config/`
-(ORFS makefile + SDC), `src/` (RTL), and a complete reference run under
-`logs/`, `reports/`, `results/`. The agent edits files in `config/` and `src/`
-inside its sandbox copy and re-runs the OpenROAD flow.
+(ORFS makefile + SDC), `src/` (RTL), and the reference run's `logs/` and
+`reports/`. The reference `results/` databases (`.odb`, `.gds`) are not
+shipped (`benchmark/**/results/` is gitignored); re-running the flow
+regenerates them. The agent edits files in `config/` and `src/` inside its
+sandbox copy and re-runs the OpenROAD flow.
 
 ## 4. Running the eval harnesses
 
@@ -271,17 +306,71 @@ your own models before running any agent:
 
 - **OpenAI-based agents** (`gpt_*.py`) call the OpenAI API and read
   `OPENAI_API_KEY`.
-- **All other agents** expect an OpenAI-compatible server that you run
-  yourself (for example vLLM with tool calling enabled). Point them at it with
-  `VLLM_BASE_URL`, and make sure the model name matches your server: some
-  agents read `VLLM_MODEL`, others set the model name in the agent file.
+- **All other agents** call an OpenAI-compatible server that you run
+  yourself. You can serve any local model with [vLLM](https://docs.vllm.ai)
+  (see below) and point the agents at it with `VLLM_BASE_URL` and
+  `VLLM_MODEL`; the table below shows which setting each agent reads.
 - **`orfs_agent.py`** (the default PPA agent) is configured by the constants
   at the top of the file (lines ≈55–80): `LLM_BACKEND` (`"vllm"` or
   `"openai"`), `VLLM_MODEL`, `VLLM_BASE_URL`, and `OPENAI_MODEL`.
 
-Confirm your endpoint works before starting an evaluation. If the server is
-unreachable, some agents (including the default DRC agent `gemma_react.py`)
-keep retrying instead of exiting.
+### Serving a local model with vLLM
+
+Install vLLM in its own environment (it pins its own PyTorch/CUDA stack), then
+start the server with `scripts/serve_vllm.sh`:
+
+```bash
+# Default: google/gemma-4-31B-it on http://localhost:9888/v1
+CUDA_VISIBLE_DEVICES=0 scripts/serve_vllm.sh
+# Any other model, e.g. Qwen3.5 on two GPUs:
+CUDA_VISIBLE_DEVICES=0,1 TP=2 scripts/serve_vllm.sh Qwen/Qwen3.5-27B
+```
+
+The server needs three settings, which the script passes for Gemma 4 and
+Qwen3.5 models. For other model families set `TOOL_CALL_PARSER` and
+`REASONING_PARSER`; `DRY_RUN=1` prints the command without running it.
+
+- **Tool calling**: `--enable-auto-tool-choice --tool-call-parser <parser>`
+  (`gemma4` for Gemma 4, `qwen3_coder` for Qwen3.5). Without it, every agent
+  request fails with HTTP 400 (`"auto" tool choice requires
+  --enable-auto-tool-choice and --tool-call-parser to be set`).
+- **A reasoning parser**: `--reasoning-parser <parser>` (`gemma4` or `qwen3`).
+  The agents request thinking (`enable_thinking`), and the parser returns it
+  separately from the answer and the tool calls.
+- **Enough context**: `--max-model-len 65536` or more. `orfs_agent`'s setup
+  prompt alone is about 18k tokens. With a 32k window a thinking model can run
+  out of context before it answers, and the agent then logs
+  `ERROR: empty search space; aborting.`
+
+The script prints the matching `VLLM_BASE_URL` and `VLLM_MODEL` exports. Set
+`SERVED_MODEL_NAME` to serve a model under the name an agent expects (e.g.
+`SERVED_MODEL_NAME=qwen3.5-9b` matches `orfs_agent.py`'s default constant).
+The script binds to `127.0.0.1`; set `HOST=0.0.0.0` if the agents run on
+another machine.
+
+### How each agent finds its model
+
+Every vLLM-backed agent defaults to `http://localhost:9888/v1`, the script's
+default endpoint.
+
+| Agent | Model name | Endpoint |
+|---|---|---|
+| `drc/react/gemma_react.py` (default DRC agent) | `VLLM_MODEL` (default `google/gemma-4-31B-it`) | `VLLM_BASE_URL` |
+| `drc/reflexion/gemma_reflexion.py`, `drc/tot/gemma_tot.py` | `VLLM_MODEL` (default `google/gemma-4-31B-it`) | `VLLM_BASE_URL` |
+| `drc/react/vision_gemma_react.py` | `qwen3.5-122b`, set in the file (needs a vision model) | `VLLM_BASE_URL` |
+| `drc/proposer_critic/vllm_proposer_critic.py` | `qwen3.5-9b`, set in the file | `VLLM_BASE_URL` |
+| `ppa/orfs_agent/orfs_agent.py` (default PPA agent) | constant `VLLM_MODEL` (`qwen3.5-9b`) | constant `VLLM_BASE_URL` |
+| `ppa/react/gemma_react.py`, `ppa/reflexion/gemma_reflexion.py`, `ppa/tot/gemma_tot.py` | `VLLM_MODEL` (default `Qwen/Qwen3.5-27B`) | `VLLM_BASE_URL` |
+| `ppa/proposer_critic/vllm_proposer_critic.py` | `qwen3.5-9b`, set in the file | `VLLM_BASE_URL` |
+| `drc/reflexion/gpt_reflexion.py`, `drc/tot/gpt_tot.py` | `gpt-5-mini`, set in the file | OpenAI API (`OPENAI_API_KEY`) |
+| `ppa/react/gpt_react.py`, `ppa/reflexion/gpt_reflexion.py`, `ppa/tot/gpt_tot.py` | `gpt-5`, set in the file | OpenAI API (`OPENAI_API_KEY`) |
+
+Confirm your endpoint works before starting an evaluation, e.g.
+`curl -s "$VLLM_BASE_URL/models"`. If the server is unreachable or times out,
+some agents (including the default DRC agent `gemma_react.py`) keep retrying
+instead of exiting. `gemma_react.py` stops with `AGENT RUN FAILED DUE TO ERROR`
+when the server rejects its request, e.g. for an unknown model name or with
+tool calling disabled.
 
 ## 6. Outputs and metrics
 
@@ -302,13 +391,21 @@ Headline metrics:
 - **ERR (Error Reduction Rate)** — DRC: `(init_errors − final_errors) / init_errors`,
   averaged across tasks.
 - **VRR (Violation Reduction Rate)** — PPA: closed fraction of the gap
-  between initial metric and target, averaged across tasks.
+  between initial metric and target, averaged across tasks. Single-objective
+  scores are clipped to [0, 1]. Multi-objective (`ppa_multi`) scores have no
+  lower bound: each violated metric's score is capped at 1 but can go
+  negative, and breaking a constraint that was already met scores
+  −(final − target) / (target − initial), which grows quickly when the
+  initial slack is small. One such attempt can dominate the average: an
+  attempt that improved the period but raised power from 0.00161 W to
+  0.151 W against a 0.002 W limit scored VRR = −190.7 for that task (see
+  `eval/ppa_score.py`).
 
 ## 7. Quick smoke-test
 
 Run a single DRC task end-to-end without the harness. This runs
-`gemma_react.py`, so first start your model server and set `VLLM_BASE_URL`
-(section 5), and set `REPO_ROOT` (section 2):
+`gemma_react.py`, so first start your model server and set `VLLM_BASE_URL` and
+`VLLM_MODEL` (section 5), and set `REPO_ROOT` (section 2):
 ```bash
 conda activate posteda
 cd /tmp && rm -rf sb && mkdir sb && cd sb
@@ -321,12 +418,31 @@ python $REPO_ROOT/agents/drc/react/gemma_react.py \
 You should see `AGENT RUN COMPLETE. TOTAL TOOL CALLS: <n>` followed by a
 modified `report.lyrdb` and `modified.gds` in the working directory.
 
+### PPA reference check (no model needed)
+
+Re-run the OpenROAD flow on the unmodified `ppa_multi/L1/q1` design with the
+agents' own flow tool, then score it with the harness's metric script. This
+needs `OPENROAD_FLOW_DIR` and `OR_IMAGE` (section 2) and takes 1–3 minutes:
+```bash
+conda activate posteda
+T=$REPO_ROOT/benchmark/ppa_bench/ppa_multi/L1/q1
+cd "$(mktemp -d)"
+cp -rL $T/config $T/src $T/info.json $REPO_ROOT/eval/ppa_metric_collection.py .
+export PPA_SANDBOX_ROOT=$PWD PYTHONPATH=$REPO_ROOT
+python -c "from agents.ppa.tools.run_openroad import run_openroad_flow as t; print(t.invoke({'target': 'finish'}))"
+python ppa_metric_collection.py
+jq '{final_effective_period, final_power, final_area}' info.json
+```
+The flow should report `SUCCESS: Flow completed for gcd`, and the metrics
+should match the reference values: effective period 319.69 ps, power
+0.00161 W, area 293.163 µm².
+
 ## 8. Notes for reviewers
 
 - The eval scripts find the repository from their own location, so no paths
   inside the repo need editing. Only set `REPO_ROOT` (section 2) for the
   commands in this guide.
-- The benchmark snapshots under `benchmark/ppa_bench/*/{logs,reports,results}`
+- The benchmark snapshots under `benchmark/ppa_bench/*/{logs,reports}`
   contain reference OpenROAD outputs; absolute filesystem paths inside those
   files have been replaced with `$ORFS_HOME` / `$REPO_ROOT` placeholders so
   they no longer leak the original author's environment.
