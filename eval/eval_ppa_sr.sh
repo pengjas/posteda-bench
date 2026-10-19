@@ -457,10 +457,12 @@ export SCORER_SCRIPT TRAJ_ANALYZER TRAJ_SUMMARIZER
 # Record eval start time so cleanup only touches artifacts from this session
 EVAL_START_TS=$(date +%s)
 
-# User-scoped cleanup of docker containers + temp dirs left by hard-killed runs.
+# User-scoped cleanup of the ORFS containers this eval's flows leave behind
+# (util/docker_shell runs them without --rm) + temp dirs left by hard-killed runs.
 # Safe on shared hosts:
 #   - Containers: only $OR_IMAGE (default openroad/orfs:latest) ancestor, status=exited,
-#                 and CreatedAt >= EVAL_START_TS (this session only).
+#                 created at or after EVAL_START_TS (this session only), run as this
+#                 user (docker_shell's -u uid:gid), and mounting this OPENROAD_FLOW_DIR.
 #   - Temp dirs:  only -user $USER AND -newermt EVAL_START_TS.
 # Will NOT touch other users' containers or their _temp_runs/ entries,
 # and will NOT touch ORFS containers running before this eval started.
@@ -468,19 +470,27 @@ cleanup_docker_and_tmp() {
     echo ""
     echo "--- Post-eval cleanup (user-scoped) ---"
 
-    if command -v docker >/dev/null 2>&1; then
-        local cleaned=0
-        while read -r cid created; do
+    local flow_dir
+    flow_dir=$(realpath "$OPENROAD_FLOW_DIR" 2>/dev/null)
+    if command -v docker >/dev/null 2>&1 && [ -n "$flow_dir" ]; then
+        local cleaned=0 me
+        me="$(id -u):$(id -g)"
+        # docker inspect gives the creation time in RFC 3339, which date parses
+        # (docker ps's CreatedAt, e.g. "... +0000 UTC", it does not).
+        while IFS='|' read -r cid created user mount; do
             [ -z "$cid" ] && continue
             local created_ts
             created_ts=$(date -d "$created" +%s 2>/dev/null || echo 0)
-            if [ "$created_ts" -ge "$EVAL_START_TS" ]; then
-                docker rm -f "$cid" >/dev/null 2>&1 && ((cleaned++))
+            if [ "$created_ts" -ge "$EVAL_START_TS" ] && [ "$user" = "$me" ] && \
+               [ "$(realpath "$mount" 2>/dev/null)" = "$flow_dir" ]; then
+                docker rm "$cid" >/dev/null 2>&1 && ((cleaned++))
             fi
-        done < <(docker ps -a \
+        done < <(docker ps -aq \
                      --filter "ancestor=${OR_IMAGE:-openroad/orfs:latest}" \
-                     --filter status=exited \
-                     --format '{{.ID}} {{.CreatedAt}}' 2>/dev/null)
+                     --filter status=exited 2>/dev/null \
+                 | xargs -r docker inspect --format \
+                     '{{.Id}}|{{.Created}}|{{.Config.User}}|{{range .Mounts}}{{if eq .Destination "/OpenROAD-flow-scripts/flow"}}{{.Source}}{{end}}{{end}}' \
+                     2>/dev/null)
         echo "  docker: removed $cleaned exited ORFS container(s) from this session"
     fi
 
