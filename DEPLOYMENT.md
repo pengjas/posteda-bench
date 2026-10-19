@@ -179,11 +179,12 @@ binary needs to be on `$PATH`.
 
 ## 2. Configure your setup
 
-Each evaluation is configured in one file, so nothing needs exporting before a
+Everything is configured in three files, so nothing needs exporting before a
 run:
 
 | File | What you set there |
 |---|---|
+| `scripts/serve_vllm.sh` | The model to serve (a Hugging Face name or a local checkpoint path), its GPUs, and its port (section 5) |
 | `eval/eval_drc_config.sh` | The DRC evaluation: agent, model endpoint and name, runs, tasks, result directory (section 4) |
 | `eval/eval_ppa_config.sh` | The same for PPA, plus the ORFS toolchain from section 1: `OPENROAD_FLOW_DIR` (your checkout's `flow` directory) and `OR_IMAGE` |
 
@@ -376,34 +377,40 @@ The eval config files (section 4) set `VLLM_BASE_URL`, `VLLM_MODEL`, and
 
 ### Serving a local model with vLLM
 
-Install vLLM in its own environment (it pins its own PyTorch/CUDA stack), then
-start the server with `scripts/serve_vllm.sh`:
+Install vLLM in its own environment (it pins its own PyTorch/CUDA stack).
+Then edit the settings at the top of `scripts/serve_vllm.sh` and start it:
 
 ```bash
-# Default: google/gemma-4-31B-it on http://localhost:9888/v1
-CUDA_VISIBLE_DEVICES=0 scripts/serve_vllm.sh
-# Any other model, e.g. Qwen3.5 on two GPUs:
-CUDA_VISIBLE_DEVICES=0,1 scripts/serve_vllm.sh Qwen/Qwen3.5-27B --tensor-parallel-size 2
+scripts/serve_vllm.sh
 ```
 
-The model is served under its own name (`google/gemma-4-31B-it` above), so
-put that name in `VLLM_MODEL`. Options after the model name go to
-`vllm serve` and override the script's defaults, e.g. `--port 8001`,
-`--served-model-name qwen3.5-9b`, or `--host 0.0.0.0` if the agents run on
-another machine (the script binds to `127.0.0.1`).
+| Setting | Default | Meaning |
+|---|---|---|
+| `MODEL` | `google/gemma-4-31B-it` | A Hugging Face model name, or the path of a local checkpoint directory (the folder holding `config.json` and the weights) |
+| `SERVED_MODEL_NAME` | empty: `MODEL` | The name the agents request; worth setting for a local path |
+| `HF_HUB_CACHE` | empty: Hugging Face's default | Where Hugging Face models are downloaded and looked up, e.g. a shared model directory |
+| `GPUS` | `0` | GPU ids, comma-separated; the model is split across all of them |
+| `PORT`, `HOST` | `9888`, `127.0.0.1` | Where the server listens; `HOST=0.0.0.0` lets agents on other machines connect |
+| `MAX_MODEL_LEN` | `65536` | Context window (see below) |
+| `GPU_MEMORY_UTILIZATION` | `0.90` | Share of each GPU's memory vLLM may use. With less, vLLM may ask for fewer concurrent sequences, e.g. `EXTRA_ARGS=(--max-num-seqs 256)` |
+| `TOOL_CALL_PARSER`, `REASONING_PARSER` | empty: chosen from the model | vLLM's parsers; set them for models other than Gemma 4 and Qwen3.5 |
+| `VLLM` | `vllm` | The vllm command, e.g. its full path inside your vLLM environment |
+| `EXTRA_ARGS` | none | Any other `vllm serve` options |
 
-The server needs three settings, which the script passes for Gemma 4 and
-Qwen3.5 models. For other model families, add `--tool-call-parser` (and
-`--reasoning-parser` for a thinking model) to the command.
+When it starts, the script prints the `VLLM_BASE_URL` and `VLLM_MODEL` lines
+to copy into the eval config files.
+
+The server needs three settings, which the script passes:
 
 - **Tool calling**: `--enable-auto-tool-choice --tool-call-parser <parser>`
-  (`gemma4` for Gemma 4, `qwen3_coder` for Qwen3.5). Without it, every agent
-  request fails with HTTP 400 (`"auto" tool choice requires
+  (`gemma4` for Gemma 4, `qwen3_coder` for Qwen3.5; for a local checkpoint
+  the script reads the family from `model_type` in its `config.json`). Without
+  it, every agent request fails with HTTP 400 (`"auto" tool choice requires
   --enable-auto-tool-choice and --tool-call-parser to be set`).
 - **A reasoning parser**: `--reasoning-parser <parser>` (`gemma4` or `qwen3`).
   The agents request thinking (`enable_thinking`), and the parser returns it
   separately from the answer and the tool calls.
-- **Enough context**: `--max-model-len 65536` or more. `orfs_agent`'s setup
+- **Enough context**: `MAX_MODEL_LEN=65536` or more. `orfs_agent`'s setup
   prompt alone is about 18k tokens. With a 32k window a thinking model can run
   out of context before it answers, and the agent then logs
   `ERROR: empty search space; aborting.`
