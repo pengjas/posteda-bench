@@ -21,7 +21,7 @@ REPO_ROOT=
 #   agents/drc/tot/gpt_tot.py                            Tree-of-Thoughts   OpenAI
 #   agents/drc/proposer_critic/vllm_proposer_critic.py   Proposer-critic    vLLM
 # Your own agent works too if it accepts --drc_rpt_path, --temperature and
-# --iterations (DEPLOYMENT.md, section 4).
+# --iterations (agents/README.md).
 AGENT_SCRIPT=agents/drc/react/vllm_react.py
 
 # Extra command-line options for the agent; empty keeps the agent's defaults.

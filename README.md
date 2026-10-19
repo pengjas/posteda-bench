@@ -165,7 +165,7 @@ PostEDA-Bench is constructed from curated RTL designs, design rules, and EDA too
   <a href="DEPLOYMENT.md"><img src="assets/figures/posteda_end.png" alt="PostEDA-Bench handles the setup. You focus on building a better agent." width="900"></a>
 </p>
 
-Follow the **[Deployment & Reproduction Guide](DEPLOYMENT.md)** to set up the EDA toolchain, configure your model backend, and run a smoke test before evaluation. With flexible tools for inspecting designs, making edits, and checking results, you can focus on improving your agent's DRC repair and PPA optimization.
+Follow the **[Deployment Guide](DEPLOYMENT.md)**: one prompt to Codex or Claude Code deploys the toolchain, and one change to a config file runs an evaluation. With flexible tools for inspecting designs, making edits, and checking results, you can focus on improving your agent's DRC repair and PPA optimization.
 
 ## Citation
 

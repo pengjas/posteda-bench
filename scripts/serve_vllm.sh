@@ -4,7 +4,7 @@
 # Edit the settings below, then run:   scripts/serve_vllm.sh
 # On start it prints the VLLM_BASE_URL and VLLM_MODEL to set in
 # eval/eval_drc_config.sh and eval/eval_ppa_config.sh. Install vLLM in its own
-# environment, not in `posteda`.
+# environment, not in `posteda` (INSTALL.md, section 8).
 set -euo pipefail
 
 # ================================= Settings =================================

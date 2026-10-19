@@ -148,7 +148,7 @@
       "@type": "cr:FileObject",
       "@id": "posteda-bench-repository",
       "name": "posteda-bench-repository",
-      "description": "The PostEDA-Bench GitHub repository (agents/, benchmark/, eval/, scripts/, README, DEPLOYMENT.md, requirements.txt and LICENSE).",
+      "description": "The PostEDA-Bench GitHub repository (agents/, benchmark/, eval/, scripts/, README, DEPLOYMENT.md, INSTALL.md, requirements.txt and LICENSE).",
       "contentUrl": "https://github.com/pengjas/posteda-bench",
       "encodingFormat": "git+https"
     },

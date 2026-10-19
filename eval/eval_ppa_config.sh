@@ -11,7 +11,7 @@
 # Relative paths below (AGENT_SCRIPT, RESULT_DIR) start from here.
 REPO_ROOT=
 
-# --- OpenROAD toolchain (DEPLOYMENT.md, section 1) -----------------------------
+# --- OpenROAD toolchain (INSTALL.md, section 4) --------------------------------
 # Your ORFS checkout's flow directory, and the Docker image its
 # util/docker_shell runs. Other images give different PPA numbers.
 OPENROAD_FLOW_DIR=$HOME/OpenROAD-flow-scripts/flow
@@ -28,7 +28,7 @@ OR_IMAGE=openroad/orfs:v3.0-4639-ga2bb042b6
 #   agents/ppa/tot/gpt_tot.py                            Tree-of-Thoughts        OpenAI
 #   agents/ppa/proposer_critic/vllm_proposer_critic.py   Proposer-critic         vLLM
 # Your own agent works too if it accepts --prompt_path, --temperature and
-# --iterations (DEPLOYMENT.md, section 4).
+# --iterations (agents/README.md).
 AGENT_SCRIPT=agents/ppa/orfs_agent/orfs_agent.py
 
 # orfs_agent.py only. It asks the LLM once which flow parameters to tune, then

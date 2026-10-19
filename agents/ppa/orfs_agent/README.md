@@ -67,6 +67,11 @@ ORFS_OUTER_ITERATIONS=6
 ORFS_PARALLEL_RUNS=3
 ```
 
+It ignores the config's `ITERATIONS`: an attempt runs at most
+`ORFS_OUTER_ITERATIONS` × `ORFS_PARALLEL_RUNS` flows (18 by default), each
+limited to `TOOL_TIMEOUT` seconds, and `MAX_PARALLEL_AGENTS` ×
+`ORFS_PARALLEL_RUNS` flows run at once (6 by default).
+
 Everything else (sandbox creation, info.json scoring, SR/VRR aggregation,
 trajectory analysis) stays the same — the agent already conforms to the
 contract: it prints
