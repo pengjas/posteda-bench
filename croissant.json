@@ -146,12 +146,11 @@
   "distribution": [
     {
       "@type": "cr:FileObject",
-      "@id": "posteda-bench-archive",
-      "name": "posteda-bench-archive",
-      "description": "xz-compressed tarball of the entire repository except releases/ (agents/, benchmark/, eval/, scripts/, README, DEPLOYMENT.md, requirements.txt and LICENSE), stored in the GitHub repository under releases/.",
-      "contentUrl": "https://raw.githubusercontent.com/pengjas/posteda-bench/main/releases/posteda-bench-1.1.0.tar.xz",
-      "encodingFormat": "application/x-xz",
-      "sha256": "7e69d8d8d68d0779927bc6c0af907add8ff6914549653f992c1ebce5c397d78f"
+      "@id": "posteda-bench-repository",
+      "name": "posteda-bench-repository",
+      "description": "The PostEDA-Bench GitHub repository (agents/, benchmark/, eval/, scripts/, README, DEPLOYMENT.md, requirements.txt and LICENSE).",
+      "contentUrl": "https://github.com/pengjas/posteda-bench",
+      "encodingFormat": "git+https"
     },
 
     {
@@ -159,7 +158,7 @@
       "@id": "drc-essential-prompts",
       "name": "drc-essential-prompts",
       "description": "Natural-language task prompts for the drc_essential split (40 tasks: 20 at L1, 10 at L2, 10 at L3).",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "text/plain",
       "includes": "benchmark/drc_bench/drc_essential/L*/q*/prompt.txt"
     },
@@ -168,7 +167,7 @@
       "@id": "drc-essential-gds",
       "name": "drc-essential-gds",
       "description": "GDSII layout inputs for drc_essential tasks.",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "application/octet-stream",
       "includes": "benchmark/drc_bench/drc_essential/L*/q*/top_cell.gds"
     },
@@ -177,7 +176,7 @@
       "@id": "drc-essential-info",
       "name": "drc-essential-info",
       "description": "Hidden per-task evaluation metadata (ground truth) for drc_essential tasks. NOT to be exposed to the LLM under evaluation.",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "application/json",
       "includes": "benchmark/drc_bench/drc_essential/L*/q*/info.json"
     },
@@ -187,7 +186,7 @@
       "@id": "drc-reasoning-prompts",
       "name": "drc-reasoning-prompts",
       "description": "Natural-language task prompts for the drc_reasoning split (30 tasks: 13 at L1, 10 at L2, 7 at L3).",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "text/plain",
       "includes": "benchmark/drc_bench/drc_reasoning/L*/q*/prompt.txt"
     },
@@ -196,7 +195,7 @@
       "@id": "drc-reasoning-gds",
       "name": "drc-reasoning-gds",
       "description": "GDSII layout inputs for drc_reasoning tasks.",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "application/octet-stream",
       "includes": "benchmark/drc_bench/drc_reasoning/L*/q*/top_cell.gds"
     },
@@ -205,7 +204,7 @@
       "@id": "drc-reasoning-info",
       "name": "drc-reasoning-info",
       "description": "Hidden per-task evaluation metadata (ground truth) for drc_reasoning tasks. NOT to be exposed to the LLM under evaluation.",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "application/json",
       "includes": "benchmark/drc_bench/drc_reasoning/L*/q*/info.json"
     },
@@ -215,7 +214,7 @@
       "@id": "ppa-mono-prompts",
       "name": "ppa-mono-prompts",
       "description": "Natural-language task prompts for the ppa_mono split (35 single-objective PPA optimization tasks: area/L1, area/L2, perf/L1, perf/L2, perf/L3, power/L1, power/L2 with 5 questions each).",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "text/plain",
       "includes": "benchmark/ppa_bench/ppa_mono/*/L*/q*/prompt.txt"
     },
@@ -224,7 +223,7 @@
       "@id": "ppa-mono-rtl",
       "name": "ppa-mono-rtl",
       "description": "Verilog RTL source files for ppa_mono tasks.",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "text/x-verilog",
       "includes": "benchmark/ppa_bench/ppa_mono/*/L*/q*/src/**/*.v"
     },
@@ -233,7 +232,7 @@
       "@id": "ppa-mono-config",
       "name": "ppa-mono-config",
       "description": "OpenROAD-flow-scripts configuration (Makefile fragments and SDC) for ppa_mono tasks.",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "text/plain",
       "includes": "benchmark/ppa_bench/ppa_mono/*/L*/q*/config/**/*"
     },
@@ -242,7 +241,7 @@
       "@id": "ppa-mono-info",
       "name": "ppa-mono-info",
       "description": "Hidden per-task evaluation metadata (ground truth PPA targets) for ppa_mono tasks. NOT to be exposed to the LLM under evaluation.",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "application/json",
       "includes": "benchmark/ppa_bench/ppa_mono/*/L*/q*/info.json"
     },
@@ -252,7 +251,7 @@
       "@id": "ppa-multi-prompts",
       "name": "ppa-multi-prompts",
       "description": "Natural-language task prompts for the ppa_multi split (40 multi-objective PPA optimization tasks: 20 at L1, 20 at L2).",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "text/plain",
       "includes": "benchmark/ppa_bench/ppa_multi/L*/q*/prompt.txt"
     },
@@ -261,7 +260,7 @@
       "@id": "ppa-multi-rtl",
       "name": "ppa-multi-rtl",
       "description": "Verilog RTL source files for ppa_multi tasks.",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "text/x-verilog",
       "includes": "benchmark/ppa_bench/ppa_multi/L*/q*/src/**/*.v"
     },
@@ -270,7 +269,7 @@
       "@id": "ppa-multi-config",
       "name": "ppa-multi-config",
       "description": "OpenROAD-flow-scripts configuration for ppa_multi tasks.",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "text/plain",
       "includes": "benchmark/ppa_bench/ppa_multi/L*/q*/config/**/*"
     },
@@ -279,7 +278,7 @@
       "@id": "ppa-multi-info",
       "name": "ppa-multi-info",
       "description": "Hidden per-task evaluation metadata (ground truth multi-objective PPA targets) for ppa_multi tasks. NOT to be exposed to the LLM under evaluation.",
-      "containedIn": { "@id": "posteda-bench-archive" },
+      "containedIn": { "@id": "posteda-bench-repository" },
       "encodingFormat": "application/json",
       "includes": "benchmark/ppa_bench/ppa_multi/L*/q*/info.json"
     }
