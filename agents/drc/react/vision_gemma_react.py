@@ -337,13 +337,12 @@ if __name__ == "__main__":
     # ============================================================================
     # LLM: a vision-capable model served by an OpenAI-compatible server, e.g. a
     # local vLLM instance started with --enable-auto-tool-choice
-    # --tool-call-parser <parser>. The endpoint comes from VLLM_BASE_URL; the
-    # model name is set below and must match the served model name.
+    # --tool-call-parser <parser>. The endpoint and model come from
+    # VLLM_BASE_URL and VLLM_MODEL (set by eval/eval_drc_config.sh); VLLM_MODEL
+    # must match the served model name.
     # ============================================================================
     llm = ChatOpenAI(
-        # model="Qwen/Qwen3.5-122B-A10B",
-        # model="google/gemma-4-31B-it",
-        model="qwen3.5-122b",
+        model=os.environ.get("VLLM_MODEL", "qwen3.5-122b"),
         openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),
         openai_api_key="vllm_fake_key",
         temperature=args.temperature,

@@ -387,20 +387,12 @@ if __name__ == "__main__":
 
     # ============================================================================
     # LLM: a model served by an OpenAI-compatible server, e.g. a local vLLM
-    # instance. The endpoint comes from VLLM_BASE_URL; the model name is set
-    # below and must match the served model name.
+    # instance. The endpoint and model come from VLLM_BASE_URL and VLLM_MODEL
+    # (set by eval/eval_ppa_config.sh); VLLM_MODEL must match the served model
+    # name.
     # ============================================================================
-    # llm = ChatOpenAI(
-    #     model=os.environ.get("VLLM_MODEL", "google/gemma-4-31B-it"),
-    #     openai_api_base=os.environ.get("VLLM_BASE_URL", "http://127.0.0.1:8006/v1"),
-    #     openai_api_key="vllm_fake_key",
-    #     temperature=args.temperature,
-    #     timeout=400.0,
-    #     extra_body={"chat_template_kwargs": {"enable_thinking": True}},
-    #     model_kwargs={"tool_choice": "auto"},
-    # )
     llm = ChatOpenAI(
-        model="qwen3.5-9b",
+        model=os.environ.get("VLLM_MODEL", "qwen3.5-9b"),
         openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),
         openai_api_key="vllm_fake_key",
         temperature=args.temperature,

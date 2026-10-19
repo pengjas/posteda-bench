@@ -267,13 +267,12 @@ if __name__ == "__main__":
         task_prompt = f.read()
 
     # ============================================================================
-    # OPTION 1: OpenAI (gpt-5 / gpt-5-mini)
+    # OPTION 1: OpenAI (OPENAI_MODEL, set by eval/eval_ppa_config.sh; default gpt-5)
     # ============================================================================
     # Set OPENAI_API_KEY in your environment before running.
     if not os.environ.get("OPENAI_API_KEY"):
         raise RuntimeError("OPENAI_API_KEY env var is not set")
-    llm = init_chat_model(model="gpt-5", temperature=args.temperature, model_provider="openai", timeout=400.0)
-    # llm = init_chat_model(model="gpt-5-mini", temperature=args.temperature, model_provider="openai", timeout=400.0)
+    llm = init_chat_model(model=os.environ.get("OPENAI_MODEL", "gpt-5"), temperature=args.temperature, model_provider="openai", timeout=400.0)
 
     # ============================================================================
     # OPTION 2: Google GenAI with API Key (Gemini models only)

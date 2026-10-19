@@ -38,14 +38,18 @@ python -m agents.ppa.orfs_agent.orfs_agent \
     --iterations 18
 ```
 
+`--iterations` is accepted for that contract but not used. Its own options:
+- `--llm_backend vllm|openai` (default `vllm`) — which backend the setup call uses
+- `--outer_iterations N` (default 6) — outer iterations
+- `--parallel_runs K` (default 3) — candidates per iteration
+
 It reads:
 - `$PPA_SANDBOX_ROOT` (or CWD) — the per-task sandbox
 - `$AGENT_RESULT_DIR` — where to drop `cost.json`, `optim_history.json`, `orfs_summary.json`, `search_space.json`
 - `$TOOL_TIMEOUT` (default 1800s) — per-candidate ORFS timeout
-- `$ORFS_PARALLEL` (default 3) — candidates per iteration
-- `$ORFS_OUTER_ITERS` (default 6) — outer iterations
-- `$ORFS_MODEL` (default `gpt-5`) — OpenAI model
-- `$OPENAI_API_KEY` — required when `LLM_BACKEND="openai"`
+- `$VLLM_BASE_URL` / `$VLLM_MODEL` (default `http://localhost:9888/v1` / `qwen3.5-9b`) — vLLM backend
+- `$OPENAI_MODEL` (default `gpt-5`) — OpenAI backend
+- `$OPENAI_API_KEY` — required with `--llm_backend openai`
 
 It writes (back into the sandbox, so the eval harness verifier picks them up):
 - `config/`, `src/`, `reports/`, `logs/`, `results/` from the BEST candidate
@@ -53,11 +57,11 @@ It writes (back into the sandbox, so the eval harness verifier picks them up):
 
 ## Plugging into eval_ppa_sr.sh
 
-Edit `eval/eval_ppa_sr.sh` so that `AGENT_SCRIPT` points at this file (under
-the repo root):
+This is the default `AGENT_SCRIPT` in `eval/eval_ppa_config.sh`, which also
+sets the model. Pass the options above through `AGENT_ARGS`, e.g.
 
 ```bash
-AGENT_SCRIPT="${REPO_ROOT}/agents/ppa/orfs_agent/orfs_agent.py"
+AGENT_ARGS=(--llm_backend openai --outer_iterations 6 --parallel_runs 3)
 ```
 
 Everything else (sandbox creation, info.json scoring, SR/VRR aggregation,

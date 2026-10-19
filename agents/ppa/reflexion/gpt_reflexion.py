@@ -120,7 +120,7 @@ if __name__ == "__main__":
         raise RuntimeError("OPENAI_API_KEY env var is not set")
 
     llm = init_chat_model(
-        model="gpt-5",
+        model=os.environ.get("OPENAI_MODEL", "gpt-5"),
         temperature=args.temperature,
         model_provider="openai",
         timeout=400.0,

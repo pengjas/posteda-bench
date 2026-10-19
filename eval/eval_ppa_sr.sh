@@ -13,80 +13,72 @@
 # - SR (Success Rate): number of successful tasks / total tasks
 # - VRR (Violation Reduction Rate): average violation reduction across tasks
 #
+# Usage:
+#   ./eval_ppa_sr.sh [CONFIG]
+# Every setting (agent, model, runs, tasks, result directory, OpenROAD toolchain)
+# comes from CONFIG, by default eval_ppa_config.sh next to this script.
+#
 # Dependencies:
 # - bash (v5.1+ for 'wait -n -p'), python3, jq, bc, tput, realpath, basename
 #
 # ===================================================================================
 
-# ===================================================================================
-# CONFIGURATION - Modify these variables directly
-# ===================================================================================
-
-# Re-aggregation mode: set REAGGREGATE_ONLY=1 in the environment (or here) to
-# skip Stage 1 (parallel agent launching) and only re-run Stage 2 (aggregation
-# + final summary) against an existing $RESULT_DIR_RAW tree. Useful when a new
-# metric was added after the original run. Attempts that lack cost.json /
-# trajectory_stats.json are auto-backfilled from agent_run.log.
-: "${REAGGREGATE_ONLY:=0}"
-
-# Maximum number of parallel agent scripts to run
-MAX_PARALLEL_AGENTS=2
-# MAX_PARALLEL_AGENTS=5
-
-# Temperature setting for LLM
-TEMPERATURE=0
-
-# Number of runs for calculating mean and std deviation
-NUM_RUNS=5
-# Iterations per run (applied to every task, overrides info.json)
-ITERATIONS=16
-
-# Tool timeout in seconds
-TOOL_TIMEOUT=1800
-
 # Resolve repo root from this script's location: <repo>/eval/eval_ppa_sr.sh
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-# Result directory (where outputs will be saved). Override by exporting RESULT_DIR_RAW.
-RESULT_DIR_RAW="${RESULT_DIR_RAW:-$REPO_ROOT/results/ppa/orfs_agent/v0}"
+# ===================================================================================
+# CONFIGURATION - loaded from the config file; edit that file, not this script
+# ===================================================================================
+
+CONFIG_FILE="${1:-$SCRIPT_DIR/eval_ppa_config.sh}"
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "Config file not found: $CONFIG_FILE" >&2
+    echo "Usage: $0 [CONFIG]   (default: $SCRIPT_DIR/eval_ppa_config.sh)" >&2
+    exit 1
+fi
+CONFIG_FILE="$(realpath "$CONFIG_FILE")"
+source "$CONFIG_FILE"
+
+if [ ! -f "$AGENT_SCRIPT" ]; then
+    echo "AGENT_SCRIPT not found: $AGENT_SCRIPT (set in $CONFIG_FILE)" >&2
+    exit 1
+fi
+
+# The agents read their model settings from the environment, the OpenROAD tool
+# reads OPENROAD_FLOW_DIR, and ORFS's util/docker_shell reads OR_IMAGE.
+export VLLM_BASE_URL VLLM_MODEL OPENAI_MODEL OPENROAD_FLOW_DIR OR_IMAGE
 
 # Base path of your benchmarks (for calculating relative paths)
-BENCHMARK_BASE_DIR="${BENCHMARK_BASE_DIR:-$REPO_ROOT/benchmark/ppa_bench}"
+BENCHMARK_BASE_DIR="$REPO_ROOT/benchmark/ppa_bench"
 
 # List of top-level directories to evaluate
-FOLDER_PATHS=(
-    "$REPO_ROOT/benchmark/ppa_bench/ppa_multi"
-    "$REPO_ROOT/benchmark/ppa_bench/ppa_mono/area"
-    "$REPO_ROOT/benchmark/ppa_bench/ppa_mono/power"
-    "$REPO_ROOT/benchmark/ppa_bench/ppa_mono/perf"
-)
-
-# Path to the PPA agent script
-AGENT_SCRIPT="${AGENT_SCRIPT:-$REPO_ROOT/agents/ppa/orfs_agent/orfs_agent.py}"
+FOLDER_PATHS=()
+for task_group in "${TASK_GROUPS[@]}"; do
+    if [ ! -d "$BENCHMARK_BASE_DIR/$task_group" ]; then
+        echo "Task group not found: $BENCHMARK_BASE_DIR/$task_group (TASK_GROUPS in $CONFIG_FILE)" >&2
+        exit 1
+    fi
+    FOLDER_PATHS+=("$BENCHMARK_BASE_DIR/$task_group")
+done
 
 # Path to the PPA verifier script
-VERIFIER_SCRIPT="${VERIFIER_SCRIPT:-$REPO_ROOT/eval/ppa_metric_collection.py}"
+VERIFIER_SCRIPT="$REPO_ROOT/eval/ppa_metric_collection.py"
 
 # Path to the PPA scorer, required for success + VRR from info.json.
-SCORER_SCRIPT="${SCORER_SCRIPT:-$REPO_ROOT/eval/ppa_score.py}"
-
-# OpenROAD flow scripts location. Reviewer must set this env var, or symlink
-# OpenROAD-flow-scripts/flow under their HOME.
-OPENROAD_FLOW_DIR="${OPENROAD_FLOW_DIR:-$HOME/OpenROAD-flow-scripts/flow}"
-export OPENROAD_FLOW_DIR
+SCORER_SCRIPT="$REPO_ROOT/eval/ppa_score.py"
 
 # FlowVariables documentation
-FLOW_VARIABLES_DOC="${FLOW_VARIABLES_DOC:-$REPO_ROOT/eval/FlowVariables.md}"
+FLOW_VARIABLES_DOC="$REPO_ROOT/eval/FlowVariables.md"
 
 # Post-agent RTL functional-equivalence sanity check (event-match + latency-sweep).
 # Pipeline-depth and handshake-timing changes PASS; only functional divergence
 # (wrong logic, broken FSM, etc.) FAILs.
-EQUIV_CHECK_SCRIPT="${EQUIV_CHECK_SCRIPT:-$REPO_ROOT/eval/equiv/check_equiv.sh}"
+EQUIV_CHECK_SCRIPT="$REPO_ROOT/eval/equiv/check_equiv.sh"
 
 # Optional trajectory analyzer + summarizer. Skipped silently if absent.
-TRAJ_ANALYZER="${TRAJ_ANALYZER:-$REPO_ROOT/eval/analyze_trajectory.py}"
-TRAJ_SUMMARIZER="${TRAJ_SUMMARIZER:-$REPO_ROOT/eval/summarize_trajectory_stats.py}"
+TRAJ_ANALYZER="$REPO_ROOT/eval/analyze_trajectory.py"
+TRAJ_SUMMARIZER="$REPO_ROOT/eval/summarize_trajectory_stats.py"
 
 # ===================================================================================
 
@@ -205,6 +197,7 @@ run_single_attempt() {
     local verifier_script_path="$8"
     local temperature="$9"
     local num_iterations="${10}"
+    local agent_args=("${@:11}")
 
     # --- Define result file paths ---
     local success_file="$current_result_dir/success.txt"
@@ -309,6 +302,7 @@ run_single_attempt() {
         --prompt_path ./prompt.txt \
         --temperature "$temperature" \
         --iterations "$num_iterations" \
+        "${agent_args[@]}" \
         &> "$current_attempt_log"
 
     # --- Score against the task's own targets ---
@@ -487,16 +481,21 @@ cleanup_docker_and_tmp() {
 }
 trap cleanup_docker_and_tmp EXIT
 
-result_dir_abs=$(eval echo "$RESULT_DIR_RAW")
+result_dir_abs=$(eval echo "$RESULT_DIR")
 echo "=============================================================="
 echo "PPA Agent Evaluation - Success Rate Version"
 echo "=============================================================="
+echo "Config file: $CONFIG_FILE"
 echo "Result directory: $result_dir_abs"
 echo "Temperature: $TEMPERATURE"
 echo "Number of runs: $NUM_RUNS"
 echo "Iterations: $ITERATIONS"
 echo "Tool timeout: ${TOOL_TIMEOUT}s"
 echo "Agent script: $AGENT_SCRIPT"
+[ "${#AGENT_ARGS[@]}" -gt 0 ] && echo "Agent args: ${AGENT_ARGS[*]}"
+echo "vLLM model: $VLLM_MODEL at $VLLM_BASE_URL"
+echo "OpenAI model: $OPENAI_MODEL"
+echo "OpenROAD flow dir: $OPENROAD_FLOW_DIR (image: ${OR_IMAGE:-openroad/orfs:latest})"
 echo "Max parallel agents: $MAX_PARALLEL_AGENTS"
 echo ""
 mkdir -p "$result_dir_abs"
@@ -647,7 +646,8 @@ for run_id in $(seq 1 "$NUM_RUNS"); do
                 "$AGENT_SCRIPT" \
                 "$VERIFIER_SCRIPT" \
                 "$TEMPERATURE" \
-                "$task_iterations" &
+                "$task_iterations" \
+                "${AGENT_ARGS[@]}" &
 
             pid=$!
             running_jobs["$pid"]="$relative_task_path (run$run_id)"

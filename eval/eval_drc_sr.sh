@@ -13,51 +13,56 @@
 # - SR (Success Rate): number of successful tasks / total tasks
 # - ERR (Error Reduction Rate): average error reduction across tasks
 #
+# Usage:
+#   ./eval_drc_sr.sh [CONFIG]
+# Every setting (agent, model, runs, tasks, result directory) comes from CONFIG,
+# by default eval_drc_config.sh next to this script.
+#
 # Dependencies:
 # - bash (v5.1+ for 'wait -n -p'), python3, jq, bc, tput, realpath, basename
 #
 # ===================================================================================
 
-# ===================================================================================
-# CONFIGURATION - Modify these variables directly
-# ===================================================================================
-
-# Maximum number of parallel agent scripts to run
-# MAX_PARALLEL_AGENTS=1
-MAX_PARALLEL_AGENTS=5
-
-# Temperature setting for LLM
-TEMPERATURE=0
-
-# Number of runs for calculating mean and std deviation
-NUM_RUNS=5
-
-# Maximum iterations passed to the agent (formerly read from each task's info.json)
-ITERATIONS=8
-
 # Resolve repo root from this script's location: <repo>/eval/eval_drc_sr.sh
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-# Result directory (where outputs will be saved). Override via env.
-result_dir_raw="${RESULT_DIR_RAW:-$REPO_ROOT/results/drc/react/v0}"
+# ===================================================================================
+# CONFIGURATION - loaded from the config file; edit that file, not this script
+# ===================================================================================
+
+CONFIG_FILE="${1:-$SCRIPT_DIR/eval_drc_config.sh}"
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "Config file not found: $CONFIG_FILE" >&2
+    echo "Usage: $0 [CONFIG]   (default: $SCRIPT_DIR/eval_drc_config.sh)" >&2
+    exit 1
+fi
+CONFIG_FILE="$(realpath "$CONFIG_FILE")"
+source "$CONFIG_FILE"
+
+if [ ! -f "$AGENT_SCRIPT" ]; then
+    echo "AGENT_SCRIPT not found: $AGENT_SCRIPT (set in $CONFIG_FILE)" >&2
+    exit 1
+fi
+
+# The agents read their model settings from the environment
+export VLLM_BASE_URL VLLM_MODEL OPENAI_MODEL
 
 # Base path of your benchmarks (for calculating relative paths)
-benchmark_base_dir="${BENCHMARK_BASE_DIR:-$REPO_ROOT/benchmark/drc_bench}"
+benchmark_base_dir="$REPO_ROOT/benchmark/drc_bench"
 
 # List of top-level directories to evaluate
-FOLDER_PATHS=(
-    "$REPO_ROOT/benchmark/drc_bench/drc_essential"
-    "$REPO_ROOT/benchmark/drc_bench/drc_reasoning"
-)
-
-# Path to the agent script. Default points at the ReAct DRC agent shipped in
-# this repo. Swap to any other agent (e.g. agents/drc/reflexion/gpt_reflexion.py
-# or agents/drc/tot/gpt_tot.py) by exporting AGENT_SCRIPT.
-AGENT_SCRIPT="${AGENT_SCRIPT:-$REPO_ROOT/agents/drc/react/gemma_react.py}"
+FOLDER_PATHS=()
+for task_group in "${TASK_GROUPS[@]}"; do
+    if [ ! -d "$benchmark_base_dir/$task_group" ]; then
+        echo "Task group not found: $benchmark_base_dir/$task_group (TASK_GROUPS in $CONFIG_FILE)" >&2
+        exit 1
+    fi
+    FOLDER_PATHS+=("$benchmark_base_dir/$task_group")
+done
 
 # Path to the DRC verifier script, required for scoring repaired layouts.
-VERIFIER_SCRIPT="${VERIFIER_SCRIPT:-$REPO_ROOT/eval/drc_error_collection_eval.py}"
+VERIFIER_SCRIPT="$REPO_ROOT/eval/drc_error_collection_eval.py"
 # ===================================================================================
 
 # --- Helper Functions ---
@@ -263,6 +268,7 @@ run_single_attempt() {
     local verifier_script_path="$8"
     local temperature="$9"
     local num_iterations="${10}"
+    local agent_args=("${@:11}")
 
     # --- Define result file paths ---
     local success_file="$current_result_dir/success.txt"
@@ -324,6 +330,7 @@ run_single_attempt() {
         --drc_rpt_path ./prompt.txt \
         --temperature "$temperature" \
         --iterations "$num_iterations" \
+        "${agent_args[@]}" \
         &> "$current_attempt_log"
 
     # --- Hand the ground truth to the verifier now that the agent has exited ---
@@ -401,15 +408,19 @@ export -f extract_attempt_metrics
 
 # --- Main Logic ---
 
-result_dir_abs=$(eval echo "$result_dir_raw")
+result_dir_abs=$(eval echo "$RESULT_DIR")
 echo "=============================================================="
 echo "DRC Agent Evaluation - Success Rate Version"
 echo "=============================================================="
+echo "Config file: $CONFIG_FILE"
 echo "Result directory: $result_dir_abs"
 echo "Temperature: $TEMPERATURE"
 echo "Iterations: $ITERATIONS"
 echo "Number of runs: $NUM_RUNS"
 echo "Agent script: $AGENT_SCRIPT"
+[ "${#AGENT_ARGS[@]}" -gt 0 ] && echo "Agent args: ${AGENT_ARGS[*]}"
+echo "vLLM model: $VLLM_MODEL at $VLLM_BASE_URL"
+echo "OpenAI model: $OPENAI_MODEL"
 echo "Max parallel agents: $MAX_PARALLEL_AGENTS"
 echo ""
 mkdir -p "$result_dir_abs"
@@ -558,7 +569,8 @@ for run_id in $(seq 1 "$NUM_RUNS"); do
             "$AGENT_SCRIPT" \
             "$VERIFIER_SCRIPT" \
             "$TEMPERATURE" \
-            "$ITERATIONS" &
+            "$ITERATIONS" \
+            "${AGENT_ARGS[@]}" &
 
         pid=$!
         running_jobs["$pid"]="$relative_task_path (run$run_id)"

@@ -9,8 +9,13 @@ src/ list + FlowVariables.md.
 CLI matches `gpt_react.py` so it slots into eval_ppa_sr.sh:
     --prompt_path <path>    (we cd'd into sandbox, so this is ./prompt.txt)
     --temperature <T>
-    --iterations <N>        (we treat this as TOTAL ORFS budget; outer iters
-                             are derived as ceil(N / PARALLEL_RUNS))
+    --iterations <N>        (accepted for that CLI contract but not used: the
+                             budget is --outer_iterations x --parallel_runs)
+plus its own options (eval_ppa_config.sh passes them via AGENT_ARGS):
+    --llm_backend vllm|openai   (default vllm)
+    --outer_iterations <N>      (default 6)
+    --parallel_runs <K>         (default 3)
+The model comes from VLLM_MODEL / VLLM_BASE_URL or OPENAI_MODEL.
 
 Outputs that the eval harness expects:
   - sandbox/{config,src,reports,logs,results,info.json} updated to the BEST
@@ -51,29 +56,30 @@ from agents.ppa.orfs_agent.search_space_discovery import discover_search_space
 
 
 # =============================================================================
-# Hardcoded run config — edit these values directly to change behavior.
+# Run config. The model settings come from the environment (eval_ppa_config.sh
+# sets them); the other values are the defaults of the CLI options.
 # =============================================================================
 
 # Outer-loop / parallelism / paths
-DEFAULT_OUTER_ITERATIONS = 6   # number of GP iterations (was --iterations / parallel)
-DEFAULT_PARALLEL_RUNS    = 3   # candidates run concurrently per iteration
+DEFAULT_OUTER_ITERATIONS = 6   # number of GP iterations (--outer_iterations)
+DEFAULT_PARALLEL_RUNS    = 3   # candidates run concurrently per iteration (--parallel_runs)
 # FlowVariables.md is under the repo's eval/ directory; can be overridden via env.
 FLOW_VARS_PATH = os.environ.get(
     "FLOW_VARS_PATH",
     os.path.join(_REPO_ROOT, "eval", "FlowVariables.md"),
 )
 
-# LLM backend selection: "openai" | "vllm"
+# LLM backend selection: "openai" | "vllm" (--llm_backend)
 LLM_BACKEND = "vllm"
 
-# --- OpenAI cloud (used when LLM_BACKEND == "openai") ---
-OPENAI_MODEL   = "gpt-5"
+# --- OpenAI cloud (used when the backend is "openai") ---
+OPENAI_MODEL   = os.environ.get("OPENAI_MODEL", "gpt-5")
 # Set OPENAI_API_KEY in your environment; never commit it to source.
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 
-# --- vLLM local server (used when LLM_BACKEND == "vllm") ---
-VLLM_MODEL           = "qwen3.5-9b"
-VLLM_BASE_URL        = "http://localhost:9888/v1"
+# --- vLLM local server (used when the backend is "vllm") ---
+VLLM_MODEL           = os.environ.get("VLLM_MODEL", "qwen3.5-9b")
+VLLM_BASE_URL        = os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1")
 VLLM_API_KEY         = "vllm_fake_key"
 VLLM_ENABLE_THINKING = True
 VLLM_TIMEOUT         = 600.0
@@ -94,13 +100,23 @@ def main():
                         help="path to prompt.txt (typically ./prompt.txt)")
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--iterations", type=int, default=18,
-                        help="total ORFS-run budget; outer iters = "
-                             "ceil(iterations / parallel)")
+                        help="accepted for the shared agent CLI; the run "
+                             "budget is outer_iterations x parallel_runs")
+    parser.add_argument("--llm_backend", choices=["vllm", "openai"],
+                        default=LLM_BACKEND,
+                        help="vllm: VLLM_MODEL at VLLM_BASE_URL; "
+                             "openai: OPENAI_MODEL")
+    parser.add_argument("--outer_iterations", type=int,
+                        default=DEFAULT_OUTER_ITERATIONS,
+                        help="number of GP iterations")
+    parser.add_argument("--parallel_runs", type=int,
+                        default=DEFAULT_PARALLEL_RUNS,
+                        help="candidate flows run concurrently per iteration")
     args = parser.parse_args()
 
-    # --- run config (hardcoded above; CLI --iterations is informational) ----
-    parallel = DEFAULT_PARALLEL_RUNS
-    outer_iters = DEFAULT_OUTER_ITERATIONS
+    # --- run config (CLI --iterations is informational) ----------------------
+    parallel = args.parallel_runs
+    outer_iters = args.outer_iterations
 
     # TOOL_TIMEOUT is set by eval_ppa_sr.sh (1800s) and consumed inside
     # run_openroad_flow; we read it here only to compute our process-join
@@ -120,11 +136,11 @@ def main():
     print(f"ToolTimeout: {tool_timeout}s", flush=True)
     print(f"FlowVars:    {FLOW_VARS_PATH}", flush=True)
 
-    # --- LLM bootstrap (all values hardcoded at top of this file) -----------
-    # To switch model: edit LLM_BACKEND / OPENAI_MODEL / VLLM_MODEL above.
-    # The OpenAI/gpt-5 path below is preserved verbatim — set LLM_BACKEND =
-    # "openai" and OPENAI_MODEL = "gpt-5" to use it.
-    if LLM_BACKEND == "vllm":
+    # --- LLM bootstrap (model settings at the top of this file) -------------
+    # To switch model: set VLLM_MODEL / VLLM_BASE_URL or OPENAI_MODEL. The
+    # OpenAI path below is preserved verbatim — pass --llm_backend openai to
+    # use it.
+    if args.llm_backend == "vllm":
         model_name = VLLM_MODEL
         print(f"Backend:     vLLM ({model_name} @ {VLLM_BASE_URL})", flush=True)
         llm = ChatOpenAI(

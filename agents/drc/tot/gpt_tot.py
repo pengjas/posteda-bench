@@ -150,14 +150,14 @@ if __name__ == "__main__":
     #     each expansion actually differ even when the eval passes
     #     --temperature 0.
     judge_llm = init_chat_model(
-        model="gpt-5-mini",
+        model=os.environ.get("OPENAI_MODEL", "gpt-5-mini"),
         temperature=args.temperature,
         model_provider="openai",
         timeout=400.0,
     )
     sample_temp = max(args.sample_temperature, args.temperature, 0.7)
     sampler_llm = init_chat_model(
-        model="gpt-5-mini",
+        model=os.environ.get("OPENAI_MODEL", "gpt-5-mini"),
         temperature=sample_temp,
         model_provider="openai",
         timeout=400.0,

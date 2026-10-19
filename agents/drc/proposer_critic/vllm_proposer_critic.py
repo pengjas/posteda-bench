@@ -366,7 +366,7 @@ if __name__ == "__main__":
     # CLI surface stays identical to the React-style gemma_react.py.
     # ============================================================================
     llm = ChatOpenAI(
-        model="qwen3.5-9b",
+        model=os.environ.get("VLLM_MODEL", "qwen3.5-9b"),
         openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),
         openai_api_key="vllm_fake_key",
         temperature=args.temperature,
