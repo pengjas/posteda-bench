@@ -1,6 +1,7 @@
 """
-PPA (Power, Performance, Area) Optimization Agent using LangGraph and
-google/gemma-4-31B-it served locally by vLLM (OpenAI-compatible /v1 endpoint).
+PPA (Power, Performance, Area) Optimization Agent using LangGraph and a model
+served by vLLM (OpenAI-compatible /v1 endpoint). The model and endpoint come
+from VLLM_MODEL / VLLM_BASE_URL (default: Qwen/Qwen3.5-27B).
 
 This agent iteratively:
 1. Reads target metrics from info.json (target_effective_period, target_power, target_area)

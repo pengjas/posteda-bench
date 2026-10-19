@@ -107,7 +107,7 @@ def make_call_llm(llm_with_tools, cost_tracker_module):
         else:
             print(messages[-1], flush=True)
 
-        # Same retry schedule as gemma_react.py — only retries transient
+        # Same retry schedule as vllm_react.py — only retries transient
         # connection-level failures (vLLM restart / port hiccup); other
         # errors propagate so the agent fails loudly on real bugs.
         backoff_schedule = [10, 30, 60, 90, 120]

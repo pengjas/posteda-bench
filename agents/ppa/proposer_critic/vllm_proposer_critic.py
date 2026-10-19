@@ -1,6 +1,7 @@
 """
-PPA Optimization Agent using Planner-Checker workflow with google/gemma-4-31B-it
-served locally by vLLM (OpenAI-compatible /v1 endpoint).
+PPA Optimization Agent using Planner-Checker workflow with a model served by
+vLLM (OpenAI-compatible /v1 endpoint). The model and endpoint come from
+VLLM_MODEL / VLLM_BASE_URL (default: qwen3.5-9b).
 
 Workflow:
   planner -> checker -> call_tools -> planner (loop)
@@ -110,7 +111,7 @@ def _absorb_reasoning(response):
 def _invoke_with_conn_retry(llm, msgs, label):
     """Invoke an LLM with retry on transient vLLM connectivity failures.
 
-    Same backoff schedule as gemma_react.py: 10s, 30s, 60s, 90s, 120s
+    Same backoff schedule as vllm_react.py: 10s, 30s, 60s, 90s, 120s
     (~5min total) — covers a full vLLM re-init on a big model. Only
     APIConnectionError is retried; other errors propagate immediately.
     """
@@ -175,7 +176,7 @@ def _invoke_with_conn_retry(llm, msgs, label):
 
 
 def call_planner(state: AgentState):
-    """Planner step. Logging mirrors gemma_react.py's call_llm exactly:
+    """Planner step. Logging mirrors vllm_react.py's call_llm exactly:
     if the previous step was a tool call, echo each ToolMessage in the
     `  [name]: content` shape that analyze_trajectory.py parses; otherwise
     just print the latest message.
@@ -372,11 +373,11 @@ def run_agent(prompt: str):
 if __name__ == "__main__":
     separator = "=" * 80
     print(f"\n\n\n{separator}")
-    print("PPA Planner-Checker Agent Run (vLLM google/gemma-4-31B-it) - New Conversation Initialized")
+    print("PPA Planner-Checker Agent Run (vLLM) - New Conversation Initialized")
     print(f"Timestamp: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{separator}\n")
 
-    parser = argparse.ArgumentParser(description="run the PPA optimization planner-checker agent with vLLM google/gemma-4-31B-it")
+    parser = argparse.ArgumentParser(description="run the PPA optimization planner-checker agent with vLLM")
     parser.add_argument("--prompt_path", type=str, help="Initial prompt/task description path", required=True)
     parser.add_argument("--iterations", type=int, default=16, help="Maximum number of iterations for the agent")
     parser.add_argument("--temperature", type=float, default=0.7, help="LLM temperature setting")

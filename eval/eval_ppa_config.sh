@@ -10,11 +10,11 @@
 # --- Agent ---------------------------------------------------------------------
 # The agent script to evaluate:
 #   agents/ppa/orfs_agent/orfs_agent.py                  LLM setup + GP search   vLLM or OpenAI
-#   agents/ppa/react/gemma_react.py                      ReAct                   vLLM
+#   agents/ppa/react/vllm_react.py                       ReAct                   vLLM
 #   agents/ppa/react/gpt_react.py                        ReAct                   OpenAI
-#   agents/ppa/reflexion/gemma_reflexion.py              Reflexion               vLLM
+#   agents/ppa/reflexion/vllm_reflexion.py               Reflexion               vLLM
 #   agents/ppa/reflexion/gpt_reflexion.py                Reflexion               OpenAI
-#   agents/ppa/tot/gemma_tot.py                          Tree-of-Thoughts        vLLM
+#   agents/ppa/tot/vllm_tot.py                           Tree-of-Thoughts        vLLM
 #   agents/ppa/tot/gpt_tot.py                            Tree-of-Thoughts        OpenAI
 #   agents/ppa/proposer_critic/vllm_proposer_critic.py   Proposer-critic         vLLM
 # Your own agent works too if it accepts --prompt_path, --temperature and

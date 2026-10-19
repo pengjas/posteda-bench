@@ -12,7 +12,7 @@ Workflow:
 The planner's proposed tool_calls are NOT executed directly — they are formatted into a
 text proposal passed to the checker as a HumanMessage, avoiding unresolved tool_call_id issues.
 
-CLI surface and log format are kept aligned with gemma_react.py (the React-style DRC
+CLI surface and log format are kept aligned with vllm_react.py (the React-style DRC
 agent) so benchmark/utils/eval_drc_sr.sh can swap agents without modification:
   - Accepts --drc_rpt_path, --temperature, --iterations
   - Final stdout line matches: "AGENT RUN (COMPLETE|RECURSION LIMIT REACHED). TOTAL TOOL CALLS: <N>"
@@ -135,7 +135,7 @@ def _invoke_with_conn_retry(llm, msgs, label):
 
 
 def call_planner(state: AgentState):
-    """Planner step. Logging mirrors gemma_react.py's call_llm: if the previous
+    """Planner step. Logging mirrors vllm_react.py's call_llm: if the previous
     step was a tool call, echo each ToolMessage in the `[name]: content` shape
     that downstream log-parsers expect; otherwise just print the latest message.
     """
@@ -363,7 +363,7 @@ if __name__ == "__main__":
     # ============================================================================
     # LLM: served by a local vLLM instance.
     # Endpoint / model overridable via env vars (VLLM_BASE_URL, VLLM_MODEL) so the
-    # CLI surface stays identical to the React-style gemma_react.py.
+    # CLI surface stays identical to the React-style vllm_react.py.
     # ============================================================================
     llm = ChatOpenAI(
         model=os.environ.get("VLLM_MODEL", "qwen3.5-9b"),

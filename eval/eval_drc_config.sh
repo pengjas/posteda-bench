@@ -9,16 +9,16 @@
 
 # --- Agent ---------------------------------------------------------------------
 # The agent script to evaluate:
-#   agents/drc/react/gemma_react.py                      ReAct              vLLM
-#   agents/drc/react/vision_gemma_react.py               ReAct + images     vLLM (vision model)
-#   agents/drc/reflexion/gemma_reflexion.py              Reflexion          vLLM
+#   agents/drc/react/vllm_react.py                       ReAct              vLLM
+#   agents/drc/react/vision_vllm_react.py                ReAct + images     vLLM (vision model)
+#   agents/drc/reflexion/vllm_reflexion.py               Reflexion          vLLM
 #   agents/drc/reflexion/gpt_reflexion.py                Reflexion          OpenAI
-#   agents/drc/tot/gemma_tot.py                          Tree-of-Thoughts   vLLM
+#   agents/drc/tot/vllm_tot.py                           Tree-of-Thoughts   vLLM
 #   agents/drc/tot/gpt_tot.py                            Tree-of-Thoughts   OpenAI
 #   agents/drc/proposer_critic/vllm_proposer_critic.py   Proposer-critic    vLLM
 # Your own agent works too if it accepts --drc_rpt_path, --temperature and
 # --iterations (DEPLOYMENT.md, section 4).
-AGENT_SCRIPT="$REPO_ROOT/agents/drc/react/gemma_react.py"
+AGENT_SCRIPT="$REPO_ROOT/agents/drc/react/vllm_react.py"
 
 # Extra command-line options for the agent; empty keeps the agent's defaults.
 #   Reflexion:         AGENT_ARGS=(--num_attempts 2)

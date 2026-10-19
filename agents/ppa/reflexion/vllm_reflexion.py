@@ -1,6 +1,6 @@
 """Reflexion-style PPA optimization agent (vLLM-served open model).
 
-Wraps the React primitives from agents/ppa/react/gemma_react.py with a
+Wraps the React primitives from agents/ppa/react/vllm_react.py with a
 verbal-reinforcement trial loop (Shinn et al., arXiv:2303.11366):
 
   trial_1 = ReAct(iters_per_attempt)              # actor only
@@ -14,7 +14,7 @@ trial 1 and restored before each subsequent trial so reflection-guided
 retries start from the same seed as the first trial.
 
 CLI surface and end-of-run log line ('AGENT RUN COMPLETE. TOTAL TOOL CALLS: N')
-are kept identical to gemma_react.py so eval_ppa_sr.sh can swap agents without
+are kept identical to vllm_react.py so eval_ppa_sr.sh can swap agents without
 modification, and so analyze_trajectory.py / summarize_trajectory_stats.py
 emit Layer-1 metrics with no changes.
 """
@@ -117,7 +117,7 @@ if __name__ == "__main__":
         task_prompt = f.read()
 
     # vLLM endpoint / model are overridable via env vars (VLLM_BASE_URL,
-    # VLLM_MODEL) so the CLI surface stays identical to gemma_react.py.
+    # VLLM_MODEL) so the CLI surface stays identical to vllm_react.py.
     actor_llm = ChatOpenAI(
         model=os.environ.get("VLLM_MODEL", "Qwen/Qwen3.5-27B"),
         openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),

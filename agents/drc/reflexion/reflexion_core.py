@@ -63,7 +63,7 @@ tool_call_counter = {"count": 0}
 
 # Tool timeout (s) used by every DRC tool — query_drc_report and query_with_pts
 # both spawn klayout subprocesses that occasionally take a few minutes on dense
-# layouts. Matches the value hardcoded in gpt_react.py / gemma_react.py.
+# layouts. Matches the value hardcoded in gpt_react.py / vllm_react.py.
 TOOL_TIMEOUT_SECONDS = 1200
 
 

@@ -1,6 +1,6 @@
 """Tree-of-Thoughts PPA optimization agent (vLLM-served open model).
 
-Wraps the same tool surface as gemma_react.py with a ToT search
+Wraps the same tool surface as vllm_react.py with a ToT search
 (Yao et al., arXiv:2305.10601):
 
   expand(node) -> sample K candidate next actions in parallel
@@ -24,7 +24,7 @@ Iteration semantics:
   only tool calls do.
 
 CLI surface and end-of-run log line ('AGENT RUN COMPLETE. TOTAL TOOL CALLS: N')
-are kept identical to gemma_react.py so eval_ppa_sr.sh can swap agents without
+are kept identical to vllm_react.py so eval_ppa_sr.sh can swap agents without
 modification, and so analyze_trajectory.py / summarize_trajectory_stats.py
 emit Layer-1 metrics with no changes.
 """
@@ -105,7 +105,7 @@ Think like a debug engineer: diagnose, hypothesize, fix, verify. Call tools one 
 
 def _make_llm(temperature):
     """Build a ChatOpenAI handle pointed at the local vLLM endpoint. Same
-    extra_body / tool_choice settings as gemma_react.py so behavior matches."""
+    extra_body / tool_choice settings as vllm_react.py so behavior matches."""
     return ChatOpenAI(
         model=os.environ.get("VLLM_MODEL", "Qwen/Qwen3.5-27B"),
         openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),

@@ -1,21 +1,30 @@
-"""Reflexion-style DRC error-fixing agent (vLLM-served open model).
+"""Tree-of-Thoughts DRC error-fixing agent (vLLM-served open model).
 
-Wraps the React primitives from agents/drc/react/gemma_react.py with a
-verbal-reinforcement trial loop (Shinn et al., arXiv:2303.11366):
+Wraps the same tool surface as vllm_react.py with a ToT search
+(Yao et al., arXiv:2305.10601):
 
-  trial_1 = ReAct(iters_per_attempt)              # actor only
-  if not all_drc_cleared:
-      reflection_1 = SelfReflect(trajectory_1)    # tool-less LLM call
-      trial_2 = ReAct(iters_per_attempt, system_prompt += reflection_1)
+  expand(node) -> sample K candidate next actions in parallel
+              -> LLM judge scores each candidate 1..10
+              -> push (parent, candidate, score) into a global priority queue
+  step()      -> pop highest-scored (parent, candidate)
+              -> if parent != current sandbox state, restore parent's snapshot
+              -> execute the candidate's tool calls (counts against the budget)
+              -> snapshot the resulting state as a new tree node
+              -> expand the new node
 
-The reflection LLM call does NOT consume any iterations, only token cost.
-Sandbox state (modified.gds, report.lyrdb, etc.) is snapshotted before
-trial 1 and restored before each subsequent trial so reflection-guided
-retries start from the same seed as the first trial — the only thing
-carried across trials is the reflection text itself.
+Backtracking falls out for free: when the current path stalls, the next pop
+naturally goes to the highest-scored un-executed candidate of any ancestor.
+
+Iteration semantics:
+  --iterations is the TOTAL tool-call budget across the whole tree (matches
+  ReAct's 5 runs * 16 iters = 80 total when invoked with --iterations 80).
+  --max_depth caps the depth of any single path (default 16, matching ReAct's
+  per-run iteration cap). The K candidate sampling + 1 scoring LLM call per
+  expansion are billed in tokens but do NOT consume the iteration budget;
+  only tool calls do.
 
 CLI surface and end-of-run log line ('AGENT RUN COMPLETE. TOTAL TOOL CALLS: N')
-are kept identical to gemma_react.py so eval_drc_sr.sh can swap agents without
+are kept identical to vllm_react.py so eval_drc_sr.sh can swap agents without
 modification, and so the eval-script's per-tool grep / token / cost / failure-
 mode aggregations all still emit Layer-1 metrics with no changes.
 """
@@ -27,17 +36,17 @@ import datetime
 from langchain_openai import ChatOpenAI
 
 from agents.drc.tools import (
+    query_drc_report,
     query_with_pts,
+    move_cell,
     change_shape,
     add_shape,
-    move_cell,
-    query_drc_report,
 )
 # Shared throughput-normalized $/token tracker for self-hosted vLLM models.
 # Same module the React vLLM agent imports.
 from agents.ppa.react import vllm_cost_tracker as cost_tracker
-from agents.drc.reflexion.reflexion_core import (
-    run_reflexion,
+from agents.drc.tot.tot_core import (
+    run_tot,
     tool_call_counter,
 )
 
@@ -83,67 +92,79 @@ Think step-by-step and be methodical. Your objective is to resolve the DRC error
 """
 
 
-if __name__ == "__main__":
-    separator = "=" * 80
-    print(f"\n\n\n{separator}")
-    print("DRC Reflexion Agent Run - New Conversation Initialized")
-    print(f"Timestamp: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"{separator}\n")
-
-    parser = argparse.ArgumentParser(description="run the DRC reflexion agent")
-    parser.add_argument("--drc_rpt_path", type=str, required=True,
-                        help="Initial DRC error report path")
-    parser.add_argument("--iterations", type=int, default=8,
-                        help="Total iteration budget across ALL reflexion trials")
-    parser.add_argument("--temperature", type=float, default=0.7,
-                        help="LLM temperature setting")
-    parser.add_argument("--num_attempts", type=int, default=2,
-                        help="Number of reflexion trials. iters_per_attempt = "
-                             "iterations // num_attempts. Reflection step itself "
-                             "does not consume iterations.")
-    args = parser.parse_args()
-
-    with open(args.drc_rpt_path, "r") as f:
-        drc_error = f.read()
-
-    # Endpoint / model overridable via VLLM_BASE_URL / VLLM_MODEL — same convention
-    # as gemma_react.py so the CLI surface is identical.
-    actor_llm = ChatOpenAI(
+def _make_actor_llm(temperature):
+    """Tool-bound Actor LLM. Same extra_body / tool_choice settings as
+    vllm_react.py so behavior matches."""
+    return ChatOpenAI(
         model=os.environ.get("VLLM_MODEL", "google/gemma-4-31B-it"),
         openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),
         openai_api_key="vllm_fake_key",
-        temperature=args.temperature,
+        temperature=temperature,
         timeout=600.0,
         max_retries=0,
         extra_body={"chat_template_kwargs": {"enable_thinking": True}},
         model_kwargs={"tool_choice": "auto"},
     )
 
-    # Tool-less LLM dedicated to the Self-Reflection step. vLLM rejects any
-    # request that sets `tool_choice` without also providing a `tools` array
-    # ("When using `tool_choice`, `tools` must be set."), so the actor's llm
-    # — which bakes in tool_choice="auto" via model_kwargs — cannot be reused
-    # for the tool-less reflection call. We construct a separate ChatOpenAI
-    # against the same vLLM endpoint, identical in every other way, but
-    # without the tool_choice model_kwarg.
-    reflection_llm = ChatOpenAI(
+
+def _make_judge_llm(temperature):
+    """Tool-less judge LLM for the candidate scorer. vLLM rejects any
+    request that sets `tool_choice` without also providing a `tools` array
+    ("When using `tool_choice`, `tools` must be set."), so the actor's
+    handle — which bakes in tool_choice="auto" via model_kwargs — cannot
+    be reused for the tool-less judge call. We construct a separate
+    ChatOpenAI against the same vLLM endpoint, identical in every other
+    way, but without the tool_choice model_kwarg."""
+    return ChatOpenAI(
         model=os.environ.get("VLLM_MODEL", "google/gemma-4-31B-it"),
         openai_api_base=os.environ.get("VLLM_BASE_URL", "http://localhost:9888/v1"),
         openai_api_key="vllm_fake_key",
-        temperature=args.temperature,
+        temperature=temperature,
         timeout=600.0,
         max_retries=0,
         extra_body={"chat_template_kwargs": {"enable_thinking": True}},
     )
 
-    tools = [
-        query_with_pts,
-        change_shape,
-        add_shape,
-        move_cell,
-        query_drc_report,
-    ]
-    llm_with_tools = actor_llm.bind_tools(tools)
+
+if __name__ == "__main__":
+    separator = "=" * 80
+    print(f"\n\n\n{separator}")
+    print("DRC Tree-of-Thoughts Agent Run - New Conversation Initialized")
+    print(f"Timestamp: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"{separator}\n")
+
+    parser = argparse.ArgumentParser(description="run the DRC Tree-of-Thoughts agent")
+    parser.add_argument("--drc_rpt_path", type=str, required=True,
+                        help="Initial DRC error report path")
+    parser.add_argument("--iterations", type=int, default=80,
+                        help="TOTAL tool-call budget across the whole tree "
+                             "(default 80 = ReAct's 5 runs * 16 iters).")
+    parser.add_argument("--temperature", type=float, default=0.7,
+                        help="Temperature for the judge / non-sampling LLM calls.")
+    parser.add_argument("--parallel_node", type=int, default=5,
+                        help="K: candidates sampled at each tree expansion.")
+    parser.add_argument("--max_depth", type=int, default=16,
+                        help="Max depth for any single path through the tree.")
+    parser.add_argument("--sample_temperature", type=float, default=0.9,
+                        help="Temperature used ONLY when sampling the K candidates "
+                             "(forced above 0 so candidates actually differ when "
+                             "the eval harness passes --temperature 0).")
+    args = parser.parse_args()
+
+    with open(args.drc_rpt_path, "r") as f:
+        drc_error = f.read()
+
+    # judge_llm uses --temperature so the candidate scorer matches the
+    # eval-harness's intended determinism. It is tool-less (see
+    # _make_judge_llm docstring for why).
+    judge_llm = _make_judge_llm(args.temperature)
+    # sampler_llm forces a non-zero temperature so the K parallel samples in
+    # each expansion actually differ even when the eval passes --temperature 0.
+    sample_temp = max(args.sample_temperature, args.temperature, 0.7)
+    sampler_llm = _make_actor_llm(sample_temp)
+
+    tools = [query_with_pts, change_shape, add_shape, move_cell, query_drc_report]
+    sampler_llm_with_tools = sampler_llm.bind_tools(tools)
 
     tool_call_counter["count"] = 0
     cost_tracker.reset()
@@ -151,15 +172,16 @@ if __name__ == "__main__":
     status = "COMPLETE"
     total_tool_calls = 0
     try:
-        status, total_tool_calls = run_reflexion(
-            llm=reflection_llm,
-            llm_with_tools=llm_with_tools,
+        status, total_tool_calls = run_tot(
+            judge_llm=judge_llm,
+            sampler_llm_with_tools=sampler_llm_with_tools,
             tools=tools,
             system_prompt_content=SYSTEM_PROMPT,
             task_prompt=drc_error,
             iterations=args.iterations,
-            num_attempts=args.num_attempts,
-            cost_recorder=cost_tracker.record_langchain_usage,
+            parallel_node=args.parallel_node,
+            max_depth=args.max_depth,
+            cost_tracker_module=cost_tracker,
         )
     except Exception as e:
         print(f"\n{separator}")
@@ -169,7 +191,10 @@ if __name__ == "__main__":
         total_tool_calls = tool_call_counter["count"]
 
     finally:
-        model_name = getattr(actor_llm, "model_name", None) or getattr(actor_llm, "model", "unknown")
+        model_name = (
+            getattr(judge_llm, "model_name", None)
+            or getattr(judge_llm, "model", "unknown")
+        )
         cost_data = cost_tracker.save_cost_json(model_name)
         print(f"\n{separator}")
         print(f"AGENT RUN {status}. TOTAL TOOL CALLS: {total_tool_calls}")

@@ -264,7 +264,7 @@ To keep several setups side by side, copy a config file and pass the copy:
 
 | Setting | DRC default | PPA default | Meaning |
 |---|---|---|---|
-| `AGENT_SCRIPT` | `agents/drc/react/gemma_react.py` | `agents/ppa/orfs_agent/orfs_agent.py` | Agent to evaluate; the shipped agents are listed below and in the file |
+| `AGENT_SCRIPT` | `agents/drc/react/vllm_react.py` | `agents/ppa/orfs_agent/orfs_agent.py` | Agent to evaluate; the shipped agents are listed below and in the file |
 | `AGENT_ARGS` | none | none | Extra agent options, e.g. `(--num_attempts 2)` for Reflexion |
 | `VLLM_BASE_URL` | `http://localhost:9888/v1` | `http://localhost:9888/v1` | Endpoint the vLLM agents call |
 | `VLLM_MODEL` | `google/gemma-4-31B-it` | `qwen3.5-9b` | Model the vLLM agents request; must match the served name |
@@ -296,19 +296,19 @@ sandboxes, `cost.json`, `agent_run.log`, and an aggregated
 `final_summary_report.log` under `RESULT_DIR`.
 
 Agents currently shipped:
-- `agents/drc/react/{gemma_react.py, vision_gemma_react.py}` — vLLM-backed
+- `agents/drc/react/{vllm_react.py, vision_vllm_react.py}` — vLLM-backed
   ReAct (non-vision and vision variants)
-- `agents/drc/reflexion/{gemma_reflexion.py, gpt_reflexion.py}` — Reflexion
-- `agents/drc/tot/{gemma_tot.py, gpt_tot.py}` — Tree-of-Thoughts
+- `agents/drc/reflexion/{vllm_reflexion.py, gpt_reflexion.py}` — Reflexion
+- `agents/drc/tot/{vllm_tot.py, gpt_tot.py}` — Tree-of-Thoughts
 - `agents/drc/proposer_critic/vllm_proposer_critic.py`
 
 ### PPA
 `eval_ppa_sr.sh` works the same way, with each attempt running real OpenROAD
 flows. The default agent is `agents/ppa/orfs_agent/orfs_agent.py` (LLM-driven
 setup followed by a GP optimization loop). Other available baselines:
-- `agents/ppa/react/{gpt_react.py, gemma_react.py}`
-- `agents/ppa/reflexion/{gpt_reflexion.py, gemma_reflexion.py}`
-- `agents/ppa/tot/{gpt_tot.py, gemma_tot.py}`
+- `agents/ppa/react/{gpt_react.py, vllm_react.py}`
+- `agents/ppa/reflexion/{gpt_reflexion.py, vllm_reflexion.py}`
+- `agents/ppa/tot/{gpt_tot.py, vllm_tot.py}`
 - `agents/ppa/proposer_critic/vllm_proposer_critic.py`
 
 After every PPA attempt, `eval/equiv/check_equiv.sh` runs testbench-based RTL
@@ -396,18 +396,18 @@ defaults below when a variable is unset. `VLLM_BASE_URL` defaults to
 
 | Agent | Model setting | Default when unset |
 |---|---|---|
-| `drc/react/gemma_react.py` (default DRC agent), `drc/reflexion/gemma_reflexion.py`, `drc/tot/gemma_tot.py` | `VLLM_MODEL` | `google/gemma-4-31B-it` |
-| `drc/react/vision_gemma_react.py` (needs a vision model) | `VLLM_MODEL` | `qwen3.5-122b` |
+| `drc/react/vllm_react.py` (default DRC agent), `drc/reflexion/vllm_reflexion.py`, `drc/tot/vllm_tot.py` | `VLLM_MODEL` | `google/gemma-4-31B-it` |
+| `drc/react/vision_vllm_react.py` (needs a vision model) | `VLLM_MODEL` | `qwen3.5-122b` |
 | `drc/proposer_critic/vllm_proposer_critic.py`, `ppa/proposer_critic/vllm_proposer_critic.py` | `VLLM_MODEL` | `qwen3.5-9b` |
 | `ppa/orfs_agent/orfs_agent.py` (default PPA agent) | `VLLM_MODEL`, or `OPENAI_MODEL` with `--llm_backend openai` | `qwen3.5-9b` / `gpt-5` |
-| `ppa/react/gemma_react.py`, `ppa/reflexion/gemma_reflexion.py`, `ppa/tot/gemma_tot.py` | `VLLM_MODEL` | `Qwen/Qwen3.5-27B` |
+| `ppa/react/vllm_react.py`, `ppa/reflexion/vllm_reflexion.py`, `ppa/tot/vllm_tot.py` | `VLLM_MODEL` | `Qwen/Qwen3.5-27B` |
 | `drc/reflexion/gpt_reflexion.py`, `drc/tot/gpt_tot.py` | `OPENAI_MODEL` | `gpt-5-mini` |
 | `ppa/react/gpt_react.py`, `ppa/reflexion/gpt_reflexion.py`, `ppa/tot/gpt_tot.py` | `OPENAI_MODEL` | `gpt-5` |
 
 Confirm your endpoint works before starting an evaluation, e.g.
 `curl -s http://localhost:9888/v1/models`. If the server is unreachable or
-times out, some agents (including the default DRC agent `gemma_react.py`) keep
-retrying instead of exiting. `gemma_react.py` stops with
+times out, some agents (including the default DRC agent `vllm_react.py`) keep
+retrying instead of exiting. `vllm_react.py` stops with
 `AGENT RUN FAILED DUE TO ERROR` when the server rejects its request, e.g. for
 an unknown model name or with tool calling disabled.
 
@@ -443,7 +443,7 @@ Headline metrics:
 ## 7. Quick smoke-test
 
 Run a single DRC task end-to-end without the harness. This runs
-`gemma_react.py`, so first start your model server (section 5) and set
+`vllm_react.py`, so first start your model server (section 5) and set
 `REPO_ROOT` (section 2). Without the harness, export the model settings
 yourself:
 ```bash
@@ -454,7 +454,7 @@ cp -L $REPO_ROOT/benchmark/drc_bench/drc_essential/L1/q1/* .
 rm info.json    # scoring ground truth; the agent never sees it
 export PYTHONPATH=$REPO_ROOT
 export AGENT_RESULT_DIR=$(pwd)
-python $REPO_ROOT/agents/drc/react/gemma_react.py \
+python $REPO_ROOT/agents/drc/react/vllm_react.py \
     --drc_rpt_path ./prompt.txt --temperature 0 --iterations 8
 ```
 You should see `AGENT RUN COMPLETE. TOTAL TOOL CALLS: <n>` followed by a
