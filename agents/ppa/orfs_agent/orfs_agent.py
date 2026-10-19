@@ -11,7 +11,8 @@ CLI matches `gpt_react.py` so it slots into eval_ppa_sr.sh:
     --temperature <T>
     --iterations <N>        (accepted for that CLI contract but not used: the
                              budget is --outer_iterations x --parallel_runs)
-plus its own options (eval_ppa_config.sh passes them via AGENT_ARGS):
+plus its own options, which default to ORFS_LLM_BACKEND, ORFS_OUTER_ITERATIONS
+and ORFS_PARALLEL_RUNS in the environment (eval_ppa_config.sh sets them):
     --llm_backend vllm|openai   (default vllm)
     --outer_iterations <N>      (default 6)
     --parallel_runs <K>         (default 3)
@@ -56,20 +57,20 @@ from agents.ppa.orfs_agent.search_space_discovery import discover_search_space
 
 
 # =============================================================================
-# Run config. The model settings come from the environment (eval_ppa_config.sh
-# sets them); the other values are the defaults of the CLI options.
+# Run config. eval_ppa_config.sh sets the model and ORFS_* settings in the
+# environment; these are the defaults when it does not.
 # =============================================================================
 
 # Outer-loop / parallelism / paths
-DEFAULT_OUTER_ITERATIONS = 6   # number of GP iterations (--outer_iterations)
-DEFAULT_PARALLEL_RUNS    = 3   # candidates run concurrently per iteration (--parallel_runs)
+DEFAULT_OUTER_ITERATIONS = 6   # number of GP iterations (ORFS_OUTER_ITERATIONS, --outer_iterations)
+DEFAULT_PARALLEL_RUNS    = 3   # candidates run concurrently per iteration (ORFS_PARALLEL_RUNS, --parallel_runs)
 # FlowVariables.md is under the repo's eval/ directory; can be overridden via env.
 FLOW_VARS_PATH = os.environ.get(
     "FLOW_VARS_PATH",
     os.path.join(_REPO_ROOT, "eval", "FlowVariables.md"),
 )
 
-# LLM backend selection: "openai" | "vllm" (--llm_backend)
+# LLM backend selection: "openai" | "vllm" (ORFS_LLM_BACKEND, --llm_backend)
 LLM_BACKEND = "vllm"
 
 # --- OpenAI cloud (used when the backend is "openai") ---
@@ -103,16 +104,23 @@ def main():
                         help="accepted for the shared agent CLI; the run "
                              "budget is outer_iterations x parallel_runs")
     parser.add_argument("--llm_backend", choices=["vllm", "openai"],
-                        default=LLM_BACKEND,
+                        default=os.environ.get("ORFS_LLM_BACKEND") or LLM_BACKEND,
                         help="vllm: VLLM_MODEL at VLLM_BASE_URL; "
                              "openai: OPENAI_MODEL")
     parser.add_argument("--outer_iterations", type=int,
-                        default=DEFAULT_OUTER_ITERATIONS,
+                        default=os.environ.get("ORFS_OUTER_ITERATIONS") or DEFAULT_OUTER_ITERATIONS,
                         help="number of GP iterations")
     parser.add_argument("--parallel_runs", type=int,
-                        default=DEFAULT_PARALLEL_RUNS,
+                        default=os.environ.get("ORFS_PARALLEL_RUNS") or DEFAULT_PARALLEL_RUNS,
                         help="candidate flows run concurrently per iteration")
     args = parser.parse_args()
+    # argparse checks neither choices nor ranges on defaults, which may come
+    # from the environment.
+    if args.llm_backend not in ("vllm", "openai"):
+        parser.error(f"ORFS_LLM_BACKEND / --llm_backend must be vllm or openai, "
+                     f"not {args.llm_backend!r}")
+    if args.outer_iterations < 1 or args.parallel_runs < 1:
+        parser.error("ORFS_OUTER_ITERATIONS and ORFS_PARALLEL_RUNS must be at least 1")
 
     # --- run config (CLI --iterations is informational) ----------------------
     parallel = args.parallel_runs

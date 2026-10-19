@@ -4,8 +4,12 @@
 #   ./eval_drc_sr.sh                  # uses this file
 #   ./eval_drc_sr.sh my_config.sh     # or a copy of it, e.g. one per experiment
 #
-# $REPO_ROOT is the root of this repository. Keep OPENAI_API_KEY in your shell,
-# not in this file.
+# OpenAI agents read their API key from OPENAI_API_KEY in your shell; keep the
+# key out of this file.
+
+# Your posteda-bench checkout. Empty: the checkout that holds eval_drc_sr.sh.
+# Relative paths below (AGENT_SCRIPT, RESULT_DIR) start from here.
+REPO_ROOT=
 
 # --- Agent ---------------------------------------------------------------------
 # The agent script to evaluate:
@@ -18,7 +22,7 @@
 #   agents/drc/proposer_critic/vllm_proposer_critic.py   Proposer-critic    vLLM
 # Your own agent works too if it accepts --drc_rpt_path, --temperature and
 # --iterations (DEPLOYMENT.md, section 4).
-AGENT_SCRIPT="$REPO_ROOT/agents/drc/react/vllm_react.py"
+AGENT_SCRIPT=agents/drc/react/vllm_react.py
 
 # Extra command-line options for the agent; empty keeps the agent's defaults.
 #   Reflexion:         AGENT_ARGS=(--num_attempts 2)
@@ -27,7 +31,7 @@ AGENT_ARGS=()
 
 # --- Model ---------------------------------------------------------------------
 # vLLM agents call this OpenAI-compatible endpoint with this model name, which
-# must match the served name (scripts/serve_vllm.sh serves MODEL on port 9888).
+# must match the served name; scripts/serve_vllm.sh prints both when it starts.
 VLLM_BASE_URL=http://localhost:9888/v1
 VLLM_MODEL=google/gemma-4-31B-it
 # OpenAI agents (gpt_*.py) use this model.
@@ -50,4 +54,4 @@ TASK_GROUPS=(drc_essential drc_reasoning)
 # Results directory. Attempts that already have results here are skipped, so an
 # interrupted evaluation resumes where it stopped: use a new directory for each
 # new agent or model.
-RESULT_DIR="$REPO_ROOT/results/drc/react/v0"
+RESULT_DIR=results/drc/react/v0

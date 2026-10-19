@@ -23,9 +23,8 @@
 #
 # ===================================================================================
 
-# Resolve repo root from this script's location: <repo>/eval/eval_ppa_sr.sh
+# This script's location: <repo>/eval/eval_ppa_sr.sh
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 # ===================================================================================
 # CONFIGURATION - loaded from the config file; edit that file, not this script
@@ -40,14 +39,30 @@ fi
 CONFIG_FILE="$(realpath "$CONFIG_FILE")"
 source "$CONFIG_FILE"
 
+# Repo root from the config, else the checkout that holds this script. Relative
+# paths in the config start from it.
+REPO_ROOT="${REPO_ROOT:-$SCRIPT_DIR/..}"
+if [ ! -d "$REPO_ROOT" ]; then
+    echo "REPO_ROOT not found: $REPO_ROOT (set in $CONFIG_FILE)" >&2
+    exit 1
+fi
+REPO_ROOT="$(cd "$REPO_ROOT" && pwd)"
+[[ "$AGENT_SCRIPT" = /* ]] || AGENT_SCRIPT="$REPO_ROOT/$AGENT_SCRIPT"
+
 if [ ! -f "$AGENT_SCRIPT" ]; then
     echo "AGENT_SCRIPT not found: $AGENT_SCRIPT (set in $CONFIG_FILE)" >&2
     exit 1
 fi
+if [ "$REAGGREGATE_ONLY" != "1" ] && [ ! -f "$OPENROAD_FLOW_DIR/util/docker_shell" ]; then
+    echo "OPENROAD_FLOW_DIR has no util/docker_shell: $OPENROAD_FLOW_DIR (set in $CONFIG_FILE)" >&2
+    exit 1
+fi
 
-# The agents read their model settings from the environment, the OpenROAD tool
-# reads OPENROAD_FLOW_DIR, and ORFS's util/docker_shell reads OR_IMAGE.
+# The agents read their model settings (and orfs_agent its own settings) from
+# the environment, the OpenROAD tool reads OPENROAD_FLOW_DIR, and ORFS's
+# util/docker_shell reads OR_IMAGE.
 export VLLM_BASE_URL VLLM_MODEL OPENAI_MODEL OPENROAD_FLOW_DIR OR_IMAGE
+export ORFS_LLM_BACKEND ORFS_OUTER_ITERATIONS ORFS_PARALLEL_RUNS
 
 # Base path of your benchmarks (for calculating relative paths)
 BENCHMARK_BASE_DIR="$REPO_ROOT/benchmark/ppa_bench"
@@ -482,6 +497,7 @@ cleanup_docker_and_tmp() {
 trap cleanup_docker_and_tmp EXIT
 
 result_dir_abs=$(eval echo "$RESULT_DIR")
+[[ "$result_dir_abs" = /* ]] || result_dir_abs="$REPO_ROOT/$result_dir_abs"
 echo "=============================================================="
 echo "PPA Agent Evaluation - Success Rate Version"
 echo "=============================================================="
@@ -492,6 +508,8 @@ echo "Number of runs: $NUM_RUNS"
 echo "Iterations: $ITERATIONS"
 echo "Tool timeout: ${TOOL_TIMEOUT}s"
 echo "Agent script: $AGENT_SCRIPT"
+[ "$(basename "$AGENT_SCRIPT")" = orfs_agent.py ] && \
+    echo "orfs_agent: $ORFS_LLM_BACKEND backend, $ORFS_OUTER_ITERATIONS iterations x $ORFS_PARALLEL_RUNS flows"
 [ "${#AGENT_ARGS[@]}" -gt 0 ] && echo "Agent args: ${AGENT_ARGS[*]}"
 echo "vLLM model: $VLLM_MODEL at $VLLM_BASE_URL"
 echo "OpenAI model: $OPENAI_MODEL"

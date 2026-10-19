@@ -23,9 +23,8 @@
 #
 # ===================================================================================
 
-# Resolve repo root from this script's location: <repo>/eval/eval_drc_sr.sh
+# This script's location: <repo>/eval/eval_drc_sr.sh
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 # ===================================================================================
 # CONFIGURATION - loaded from the config file; edit that file, not this script
@@ -39,6 +38,16 @@ if [ ! -f "$CONFIG_FILE" ]; then
 fi
 CONFIG_FILE="$(realpath "$CONFIG_FILE")"
 source "$CONFIG_FILE"
+
+# Repo root from the config, else the checkout that holds this script. Relative
+# paths in the config start from it.
+REPO_ROOT="${REPO_ROOT:-$SCRIPT_DIR/..}"
+if [ ! -d "$REPO_ROOT" ]; then
+    echo "REPO_ROOT not found: $REPO_ROOT (set in $CONFIG_FILE)" >&2
+    exit 1
+fi
+REPO_ROOT="$(cd "$REPO_ROOT" && pwd)"
+[[ "$AGENT_SCRIPT" = /* ]] || AGENT_SCRIPT="$REPO_ROOT/$AGENT_SCRIPT"
 
 if [ ! -f "$AGENT_SCRIPT" ]; then
     echo "AGENT_SCRIPT not found: $AGENT_SCRIPT (set in $CONFIG_FILE)" >&2
@@ -409,6 +418,7 @@ export -f extract_attempt_metrics
 # --- Main Logic ---
 
 result_dir_abs=$(eval echo "$RESULT_DIR")
+[[ "$result_dir_abs" = /* ]] || result_dir_abs="$REPO_ROOT/$result_dir_abs"
 echo "=============================================================="
 echo "DRC Agent Evaluation - Success Rate Version"
 echo "=============================================================="

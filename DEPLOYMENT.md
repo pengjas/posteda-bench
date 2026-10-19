@@ -41,7 +41,7 @@ The repository includes benchmark inputs, reference artifacts, agent implementat
 
 | Start here | What you will find |
 | --- | --- |
-| [Deployment & reproduction](#1-prerequisites) | Toolchain setup, environment variables, evaluation commands, outputs, and a smoke test. |
+| [Deployment & reproduction](#1-prerequisites) | Toolchain setup, configuration files, evaluation commands, outputs, and a smoke test. |
 | [DRC benchmark](benchmark/drc_bench) | Layout-repair tasks across essential and reasoning splits. |
 | [PPA benchmark](benchmark/ppa_bench) | Single-objective and multi-objective optimization tasks. |
 | [Agent suite](agents) | Baseline reasoning strategies and EDA tool interfaces. |
@@ -111,9 +111,9 @@ The repository includes benchmark inputs, reference artifacts, agent implementat
   No `--recursive` clone or `./build_openroad.sh` is needed:
   `util/docker_shell` runs OpenROAD and Yosys from the `$OR_IMAGE` Docker
   image. If `OR_IMAGE` is unset, it falls back to `openroad/orfs:latest`, which
-  gives different results. Keep `OPENROAD_FLOW_DIR` and `OR_IMAGE` exported in
-  every shell that runs the agents or eval scripts, or set them in
-  `eval/eval_ppa_config.sh`. The ASAP7 PDK ships with ORFS.
+  gives different results. The eval harness takes both values from
+  `eval/eval_ppa_config.sh` (section 2); the exports above serve the commands
+  in this guide that run the flow by hand. The ASAP7 PDK ships with ORFS.
 
   Verify that the same wrapper used by the agents can launch both EDA tools:
   ```bash
@@ -177,30 +177,26 @@ environment — those imports live inside scripts handed to the `klayout -b -r`
 CLI, which runs them under KLayout's own bundled Python. Only the `klayout`
 binary needs to be on `$PATH`.
 
-## 2. Configure environment variables
+## 2. Configure your setup
 
-Set these in every shell where you run the commands in this guide:
+Each evaluation is configured in one file, so nothing needs exporting before a
+run:
 
+| File | What you set there |
+|---|---|
+| `eval/eval_drc_config.sh` | The DRC evaluation: agent, model endpoint and name, runs, tasks, result directory (section 4) |
+| `eval/eval_ppa_config.sh` | The same for PPA, plus the ORFS toolchain from section 1: `OPENROAD_FLOW_DIR` (your checkout's `flow` directory) and `OR_IMAGE` |
+
+Both eval config files also hold `REPO_ROOT`, your clone of this repository.
+Left empty, it is the clone the eval script runs from, so it needs setting only
+to evaluate a different checkout. No path inside the repo encodes your
+username, home directory, or account info.
+
+The one exception is the API key of the OpenAI-based agents (`gpt_*.py`),
+which stays in your shell so that it never lands in a file you might commit:
 ```bash
-# Absolute path to your clone of this repository. The commands below use it.
-export REPO_ROOT=/abs/path/to/posteda-bench
-
-# ORFS setup from section 1 (PPA only). eval/eval_ppa_config.sh reads both from
-# your shell; you can set them in that file instead.
-export OPENROAD_FLOW_DIR=/abs/path/to/OpenROAD-flow-scripts/flow
-export OR_IMAGE=openroad/orfs:v3.0-4639-ga2bb042b6
-
-# OpenAI-based agents (gpt_*.py) only. Keep the key in your shell, not in a
-# config file.
 export OPENAI_API_KEY=sk-...
 ```
-
-Everything else an evaluation needs (agent, model endpoint and name, runs,
-tasks, result directory) is set in the eval config files (section 4).
-The eval scripts locate the repository from their own location, so
-`REPO_ROOT` only needs to point at your clone for the commands in this guide.
-No path inside the repo encodes your username, home directory, or account
-info.
 
 ## 3. Benchmark layout
 
@@ -251,10 +247,10 @@ for `eval_ppa_sr.sh`. To run an evaluation:
    `VLLM_MODEL` to your server's endpoint and served model name (or
    `OPENAI_MODEL` for an OpenAI agent), and adjust the runs, task groups, and
    result directory.
-3. Run the harness:
+3. Run the harness from the `eval` directory of your clone:
    ```bash
    conda activate posteda
-   cd "$REPO_ROOT/eval"
+   cd eval
    ./eval_drc_sr.sh      # DRC
    ./eval_ppa_sr.sh      # PPA
    ```
@@ -264,8 +260,10 @@ To keep several setups side by side, copy a config file and pass the copy:
 
 | Setting | DRC default | PPA default | Meaning |
 |---|---|---|---|
+| `REPO_ROOT` | empty | empty | Your clone of this repository; empty means the one holding the eval script. Relative `AGENT_SCRIPT` and `RESULT_DIR` paths start here |
 | `AGENT_SCRIPT` | `agents/drc/react/vllm_react.py` | `agents/ppa/orfs_agent/orfs_agent.py` | Agent to evaluate; the shipped agents are listed below and in the file |
 | `AGENT_ARGS` | none | none | Extra agent options, e.g. `(--num_attempts 2)` for Reflexion |
+| `ORFS_LLM_BACKEND`, `ORFS_OUTER_ITERATIONS`, `ORFS_PARALLEL_RUNS` | – | `vllm`, `6`, `3` | `orfs_agent` only; see [Configuring orfs_agent](#configuring-orfs_agent) |
 | `VLLM_BASE_URL` | `http://localhost:9888/v1` | `http://localhost:9888/v1` | Endpoint the vLLM agents call |
 | `VLLM_MODEL` | `google/gemma-4-31B-it` | `qwen3.5-9b` | Model the vLLM agents request; must match the served name |
 | `OPENAI_MODEL` | `gpt-5-mini` | `gpt-5` | Model the OpenAI agents request |
@@ -275,9 +273,10 @@ To keep several setups side by side, copy a config file and pass the copy:
 | `NUM_RUNS` | `5` | `5` | Independent runs; the summary reports mean ± std |
 | `MAX_PARALLEL_AGENTS` | `5` | `2` | Attempts running at the same time (PPA attempts are heavier) |
 | `TASK_GROUPS` | `drc_essential drc_reasoning` | `ppa_multi ppa_mono/area ppa_mono/power ppa_mono/perf` | Task groups, relative to `benchmark/drc_bench` or `benchmark/ppa_bench`; a level such as `drc_essential/L1` also works |
-| `RESULT_DIR` | `results/drc/react/v0` | `results/ppa/orfs_agent/v0` | Output directory, under `$REPO_ROOT` |
+| `RESULT_DIR` | `results/drc/react/v0` | `results/ppa/orfs_agent/v0` | Output directory |
 | `REAGGREGATE_ONLY` | – | `0` | `1` rebuilds the summary from the results in `RESULT_DIR` without running any agent |
-| `OPENROAD_FLOW_DIR`, `OR_IMAGE` | – | from your shell | ORFS toolchain (section 1) |
+| `OPENROAD_FLOW_DIR` | – | `$HOME/OpenROAD-flow-scripts/flow` | Your ORFS checkout's `flow` directory (section 1) |
+| `OR_IMAGE` | – | `openroad/orfs:v3.0-4639-ga2bb042b6` | ORFS Docker image; other images give different PPA numbers |
 
 Attempts that already have results in `RESULT_DIR` are skipped, so an
 interrupted evaluation resumes where it stopped. Use a new `RESULT_DIR` for
@@ -286,8 +285,8 @@ each new agent or model; otherwise its earlier results are reused.
 `ITERATIONS` is a different budget for each framework: a ReAct or
 proposer-critic attempt stops after that many steps, Reflexion splits it
 across its trials, Tree-of-Thoughts spends it as the tool-call budget of the
-whole search, and `orfs_agent` ignores it (it runs `--outer_iterations` ×
-`--parallel_runs` flows, 6 × 3 by default).
+whole search, and `orfs_agent` ignores it (it runs `ORFS_OUTER_ITERATIONS` ×
+`ORFS_PARALLEL_RUNS` flows, 6 × 3 by default).
 
 ### DRC
 `eval_drc_sr.sh` runs every task in `TASK_GROUPS` for `NUM_RUNS` independent
@@ -314,6 +313,28 @@ setup followed by a GP optimization loop). Other available baselines:
 After every PPA attempt, `eval/equiv/check_equiv.sh` runs testbench-based RTL
 functional checks for designs with supported testbenches; detected functional
 divergence is marked `FAIL_FUNCTIONAL` even when PPA targets are met.
+
+### Configuring orfs_agent
+`orfs_agent.py` makes one LLM call, which reads the task prompt, the task's
+ORFS config files, the names of its RTL files, and `eval/FlowVariables.md`, and
+picks the flow parameters to tune with their ranges. It then searches those parameters with a Gaussian
+process: `ORFS_OUTER_ITERATIONS` rounds of `ORFS_PARALLEL_RUNS` OpenROAD flows
+each, stopping early once every target is met, and keeps the best flow's
+outputs for scoring. Its settings are in `eval/eval_ppa_config.sh`:
+
+| Setting | Default | Meaning |
+|---|---|---|
+| `ORFS_LLM_BACKEND` | `vllm` | `vllm` calls `VLLM_MODEL` at `VLLM_BASE_URL`; `openai` calls `OPENAI_MODEL` (needs `OPENAI_API_KEY`) |
+| `ORFS_OUTER_ITERATIONS` | `6` | Search rounds |
+| `ORFS_PARALLEL_RUNS` | `3` | Flows per round, run at the same time |
+
+It ignores `ITERATIONS`: an attempt runs at most `ORFS_OUTER_ITERATIONS` ×
+`ORFS_PARALLEL_RUNS` flows (18 by default), each limited to `TOOL_TIMEOUT`
+seconds, and `MAX_PARALLEL_AGENTS` × `ORFS_PARALLEL_RUNS` flows run at once (6
+by default). Besides the usual outputs, each attempt's result directory gets
+`search_space.json` (the chosen parameters), `optim_history.json` (every
+flow), and `orfs_summary.json` (the best one). See the
+[ORFS agent guide](agents/ppa/orfs_agent/README.md) for the details.
 
 ### Evaluating your own agent
 Set `AGENT_SCRIPT` to your script. The harness copies each task into a fresh
@@ -347,8 +368,8 @@ your own models before running any agent:
   yourself. You can serve any local model with [vLLM](https://docs.vllm.ai)
   (see below); the agents call `VLLM_BASE_URL` and request `VLLM_MODEL`.
 - **`orfs_agent.py`** (the default PPA agent) uses the vLLM settings; with
-  `AGENT_ARGS=(--llm_backend openai)` it calls the OpenAI API with
-  `OPENAI_MODEL` instead.
+  `ORFS_LLM_BACKEND=openai` in `eval/eval_ppa_config.sh` it calls the OpenAI
+  API with `OPENAI_MODEL` instead.
 
 The eval config files (section 4) set `VLLM_BASE_URL`, `VLLM_MODEL`, and
 `OPENAI_MODEL` for whichever agent they run.
@@ -399,7 +420,7 @@ defaults below when a variable is unset. `VLLM_BASE_URL` defaults to
 | `drc/react/vllm_react.py` (default DRC agent), `drc/reflexion/vllm_reflexion.py`, `drc/tot/vllm_tot.py` | `VLLM_MODEL` | `google/gemma-4-31B-it` |
 | `drc/react/vision_vllm_react.py` (needs a vision model) | `VLLM_MODEL` | `qwen3.5-122b` |
 | `drc/proposer_critic/vllm_proposer_critic.py`, `ppa/proposer_critic/vllm_proposer_critic.py` | `VLLM_MODEL` | `qwen3.5-9b` |
-| `ppa/orfs_agent/orfs_agent.py` (default PPA agent) | `VLLM_MODEL`, or `OPENAI_MODEL` with `--llm_backend openai` | `qwen3.5-9b` / `gpt-5` |
+| `ppa/orfs_agent/orfs_agent.py` (default PPA agent) | `VLLM_MODEL`, or `OPENAI_MODEL` with `ORFS_LLM_BACKEND=openai` | `qwen3.5-9b` / `gpt-5` |
 | `ppa/react/vllm_react.py`, `ppa/reflexion/vllm_reflexion.py`, `ppa/tot/vllm_tot.py` | `VLLM_MODEL` | `Qwen/Qwen3.5-27B` |
 | `drc/reflexion/gpt_reflexion.py`, `drc/tot/gpt_tot.py` | `OPENAI_MODEL` | `gpt-5-mini` |
 | `ppa/react/gpt_react.py`, `ppa/reflexion/gpt_reflexion.py`, `ppa/tot/gpt_tot.py` | `OPENAI_MODEL` | `gpt-5` |
@@ -443,11 +464,12 @@ Headline metrics:
 ## 7. Quick smoke-test
 
 Run a single DRC task end-to-end without the harness. This runs
-`vllm_react.py`, so first start your model server (section 5) and set
-`REPO_ROOT` (section 2). Without the harness, export the model settings
-yourself:
+`vllm_react.py`, so first start your model server (section 5). Without the
+harness, the commands set the repository path and model settings themselves;
+run them from the root of your clone:
 ```bash
 conda activate posteda
+REPO_ROOT=$PWD
 export VLLM_BASE_URL=http://localhost:9888/v1 VLLM_MODEL=google/gemma-4-31B-it
 cd /tmp && rm -rf sb && mkdir sb && cd sb
 cp -L $REPO_ROOT/benchmark/drc_bench/drc_essential/L1/q1/* .
@@ -463,10 +485,15 @@ modified `report.lyrdb` and `modified.gds` in the working directory.
 ### PPA reference check (no model needed)
 
 Re-run the OpenROAD flow on the unmodified `ppa_multi/L1/q1` design with the
-agents' own flow tool, then score it with the harness's metric script. This
-needs `OPENROAD_FLOW_DIR` and `OR_IMAGE` (section 2) and takes 1–3 minutes:
+agents' own flow tool, then score it with the harness's metric script. The
+flow tool reads the ORFS settings from section 1 from the environment, so
+export them; run the commands from the root of your clone. It takes 1–3
+minutes:
 ```bash
 conda activate posteda
+REPO_ROOT=$PWD
+export OPENROAD_FLOW_DIR=/abs/path/to/OpenROAD-flow-scripts/flow
+export OR_IMAGE=openroad/orfs:v3.0-4639-ga2bb042b6
 T=$REPO_ROOT/benchmark/ppa_bench/ppa_multi/L1/q1
 cd "$(mktemp -d)"
 cp -rL $T/config $T/src $T/info.json $REPO_ROOT/eval/ppa_metric_collection.py .
@@ -481,9 +508,8 @@ should match the reference values: effective period 319.69 ps, power
 
 ## 8. Notes for reviewers
 
-- The eval scripts find the repository from their own location, so no paths
-  inside the repo need editing. Only set `REPO_ROOT` (section 2) for the
-  commands in this guide.
+- The eval scripts find the repository from their own location (or from
+  `REPO_ROOT` in their config file), so no paths inside the repo need editing.
 - The benchmark snapshots under `benchmark/ppa_bench/*/{logs,reports}`
   contain reference OpenROAD outputs; absolute filesystem paths inside those
   files have been replaced with `$ORFS_HOME` / `$REPO_ROOT` placeholders so
