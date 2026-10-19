@@ -12,6 +12,24 @@ def get_ignore_case(d, key, default=None):
     return default
 
 
+def parse_numbers(value):
+    """Turn the numeric strings in a (nested) list into numbers.
+
+    vLLM's Gemma 4 tool parser returns the numbers inside a list argument as
+    strings ('0.125') unless the tool schema types the list's items, which a
+    bare `list` parameter does not.
+    """
+    if isinstance(value, (list, tuple)):
+        return [parse_numbers(v) for v in value]
+    if isinstance(value, str):
+        for number_type in (int, float):
+            try:
+                return number_type(value)
+            except ValueError:
+                pass
+    return value
+
+
 def run_local_code(code: str = None, local_path: str = None, command: str = None, display_output: bool = True) -> str:
     """
     Write code to a file and/or execute a command.

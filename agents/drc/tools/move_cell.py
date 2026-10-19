@@ -4,7 +4,7 @@ import os
 import sys
 from langchain_core.tools import tool
 
-from .utils import run_local_code, get_ignore_case
+from .utils import run_local_code, get_ignore_case, parse_numbers
 from .layer_config import layer_relation
 
 
@@ -31,6 +31,8 @@ def move_cell(input_gds: str, target_cell_level: str, target_cell_index: int, ce
     Returns:
         str: A confirmation message indicating success or failure of the move operation.
     """
+    query_pts = parse_numbers(query_pts)
+
     d_layers = []
     c_layers = []
     for ly in direct_layers:

@@ -4,7 +4,7 @@ import os
 import sys
 from langchain_core.tools import tool
 
-from .utils import run_local_code, get_ignore_case
+from .utils import run_local_code, get_ignore_case, parse_numbers
 from .layer_config import layers
 
 
@@ -29,6 +29,7 @@ def add_shape(input_gds: str, cell_name: str, shape_type: str, layer: str, solut
     Returns:
         str: A confirmation message indicating success or failure of the add operation.
     """
+    solutions = parse_numbers(solutions)
     layer_info = get_ignore_case(layers, layer)
 
     output_gds = "./modified.gds"

@@ -5,7 +5,7 @@ import sys
 from typing import List
 from langchain_core.tools import tool
 
-from .utils import run_local_code, get_ignore_case
+from .utils import run_local_code, get_ignore_case, parse_numbers
 from .layer_config import layer_relation
 
 
@@ -42,6 +42,10 @@ def query_with_pts(input_gds: str, level: list, cell_name: str, type: str, direc
     Returns:
         str: A formatted string describing the shapes found at the requested levels, including their properties, locations, and parent cells.
     """
+    query_pts = parse_numbers(query_pts)
+    second_level_index_range = parse_numbers(second_level_index_range)
+    third_level_index_range = parse_numbers(third_level_index_range)
+
     d_layers = []
     c_layers = []
     for ly in direct_layers:

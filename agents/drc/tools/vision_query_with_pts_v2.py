@@ -9,7 +9,7 @@ from typing import List
 from langchain_core.tools import tool
 from PIL import Image
 
-from .utils import get_ignore_case
+from .utils import get_ignore_case, parse_numbers
 from .layer_config import layer_relation
 
 
@@ -155,6 +155,10 @@ def vision_query_with_pts(input_gds: str, level: list, cell_name: str, type: str
     Returns:
         str: A formatted string describing the shapes found at the requested levels, including their properties, locations, and parent cells. And several corresponding images for your visual reference.
     """
+    query_pts = parse_numbers(query_pts)
+    second_level_index_range = parse_numbers(second_level_index_range)
+    third_level_index_range = parse_numbers(third_level_index_range)
+
     d_layers = []
     c_layers = []
     for ly in direct_layers:
