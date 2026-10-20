@@ -147,10 +147,10 @@ def vision_query_with_pts(input_gds: str, level: list, cell_name: str, type: str
                                For example, if a spacing error is in "M1", direct_layers could be ["M1"], while context_layers could be ["M1", "M2", "V1"] to see surrounding metals and vias.
         query_pts (list): A list of coordinate points that define the exact location of the DRC error, taken from the DRC report.
             - If type="edge-pair", format as a list of lists: [[x1, y1, x2, y2], [x3, y3, x4, y4]].
-            - If type="polygon", format as a list of tuples: [(x1, y1), (x2, y2), ...].
-            - If type="edge", format as a list of tuples: [[x1, y1, x2, y2]].
-        second_level_index_range (List, optional): A tuple (start, end) specifying the index range of shapes to return for the "second" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to (0, 10). To query for more shapes, use subsequent ranges, e.g., (10, 20).
-        third_level_index_range (List, optional): A tuple (start, end) specifying the index range of shapes to return for the "third" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to (0, 10). To query for more shapes, use subsequent ranges, e.g., (10, 20).
+            - If type="polygon", format as a list of lists: [[x1, y1], [x2, y2], ...].
+            - If type="edge", format as a list of lists: [[x1, y1, x2, y2]].
+        second_level_index_range (List, optional): A list [start, end] specifying the index range of shapes to return for the "second" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to [0, 10]. To query for more shapes, use subsequent ranges, e.g., [10, 20].
+        third_level_index_range (List, optional): A list [start, end] specifying the index range of shapes to return for the "third" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to [0, 10]. To query for more shapes, use subsequent ranges, e.g., [10, 20].
 
     Returns:
         str: A formatted string describing the shapes found at the requested levels, including their properties, locations, and parent cells. And several corresponding images for your visual reference.
@@ -577,6 +577,20 @@ def get_context_of_shapes(shapes, shapes_info, layers, target_cell):
     return shapes_in_dbbox, shapes_in_dbbox_info, shapes_outside, shapes_outside_info, context, context_outside
 
 
+def point_as_list(p):
+    return [round(p.x, 5), round(p.y, 5)]
+
+
+def points_as_list(points):
+    return [point_as_list(p) for p in points]
+
+
+def box_as_list(box):
+    if box is None:
+        return None
+    return [point_as_list(box.p1), point_as_list(box.p2)]
+
+
 def output_definition(i, shape, shapes_info, cell_name, layer_id, dtrans, bbox=False):
     cell = shape.cell
     output_text = "==============================\\n"
@@ -584,12 +598,12 @@ def output_definition(i, shape, shapes_info, cell_name, layer_id, dtrans, bbox=F
 
     if cell.name == cell_name:
         if bbox:
-            output_text += f"It belongs to the top cell: {{cell.name}}(boundary box: {{shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None)}}, dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
+            output_text += f"It belongs to the top cell: {{cell.name}}(boundary box: {{box_as_list(shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None))}}, dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
         else:
             output_text += f"It belongs to the top cell: {{cell.name}}(dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
     else:
         if bbox:
-            output_text += f"It belongs to the sub-cell: {{cell.name}}(boundary box: {{shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None)}}, dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
+            output_text += f"It belongs to the sub-cell: {{cell.name}}(boundary box: {{box_as_list(shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None))}}, dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
         else:
             output_text += f"It belongs to the sub-cell: {{cell.name}}(dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
     if shape.is_box():
@@ -597,33 +611,29 @@ def output_definition(i, shape, shapes_info, cell_name, layer_id, dtrans, bbox=F
         if shape.cell.name != cell_name:
             dbox_in_cell = shape.dbox
             dbox_in_global = dbox_in_cell.transformed(dtrans)
-            output_text += f"Center in global: ({{round(dbox_in_global.center().x, 5)}}, {{round(dbox_in_global.center().y, 5)}}), Left-Bottom in global: ({{round(dbox_in_global.p1.x, 5)}}, {{round(dbox_in_global.p1.y, 5)}}), Right-Top in global: ({{round(dbox_in_global.p2.x, 5)}}, {{round(dbox_in_global.p2.y, 5)}}). "
+            output_text += f"Center in global: {{point_as_list(dbox_in_global.center())}}, Left-Bottom in global: {{point_as_list(dbox_in_global.p1)}}, Right-Top in global: {{point_as_list(dbox_in_global.p2)}}. "
         dcenter = shape.box_dcenter
         dwidth = round(shape.box_dwidth, 5)
         dheight = round(shape.box_dheight, 5)
         dleft_bottom = shape.box_dp1
         dright_top = shape.box_dp2
-        output_text += f"Center in {{shape.cell.name}} cell: ({{round(dcenter.x, 5)}}, {{round(dcenter.y, 5)}}), Left-Bottom in {{shape.cell.name}} cell: ({{round(dleft_bottom.x, 5)}}, {{round(dleft_bottom.y, 5)}}), Right-Top in {{shape.cell.name}} cell: ({{round(dright_top.x, 5)}}, {{round(dright_top.y, 5)}}). Width: {{dwidth}}, Height: {{dheight}}. "
+        output_text += f"Center in {{shape.cell.name}} cell: {{point_as_list(dcenter)}}, Left-Bottom in {{shape.cell.name}} cell: {{point_as_list(dleft_bottom)}}, Right-Top in {{shape.cell.name}} cell: {{point_as_list(dright_top)}}. Width: {{dwidth}}, Height: {{dheight}}. "
     elif shape.is_polygon():
         output_text += "It is a polygon. "
         if shape.cell.name != cell_name:
             dpolygon_in_cell = shape.dpolygon
             dpolygon_in_global = dpolygon_in_cell.transformed(dtrans)
-            output_text += f"Outline Points in global: {{dpolygon_in_global.to_s()}}. "
+            output_text += f"Outline Points in global: {{points_as_list(dpolygon_in_global.each_point_hull())}}. "
 
-        output_text += f"Outline Points in {{shape.cell.name}} cell: {{shape.dpolygon.to_s()}}. "
+        output_text += f"Outline Points in {{shape.cell.name}} cell: {{points_as_list(shape.dpolygon.each_point_hull())}}. "
     elif shape.is_path():
         output_text += "It is a path. "
         if shape.cell.name != cell_name:
             dpath_in_cell = shape.dpath
             dpath_in_global = dpath_in_cell.transformed(dtrans)
-            output_text += f" Spine Points in global: "
-            for p in dpath_in_global.each_point():
-                output_text += f" ({{round(p.x, 5)}}, {{round(p.y, 5)}})"
+            output_text += f"Spine Points in global: {{points_as_list(dpath_in_global.each_point())}}. "
 
-        output_text += f"Spine Points in {{shape.cell.name}} cell: "
-        for p in shape.dpath.each_point():
-            output_text += f" ({{round(p.x, 5)}}, {{round(p.y, 5)}})"
+        output_text += f"Spine Points in {{shape.cell.name}} cell: {{points_as_list(shape.dpath.each_point())}}"
         dwidth = round(shape.dpath.width, 5)
         output_text += f". Width: {{dwidth}}."
     output_text += "\\n"
@@ -925,14 +935,14 @@ def extract_edges(query_pts, type):
 
 def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell_name, type, query_pts, second_level_index_range=None, third_level_index_range=None):
     if second_level_index_range is not None and second_level_index_range[1] - second_level_index_range[0] > 10:
-        second_level_index_range = (second_level_index_range[0], second_level_index_range[0] + 10)
+        second_level_index_range = [second_level_index_range[0], second_level_index_range[0] + 10]
     if third_level_index_range is not None and third_level_index_range[1] - third_level_index_range[0] > 10:
-        third_level_index_range = (third_level_index_range[0], third_level_index_range[0] + 10)
+        third_level_index_range = [third_level_index_range[0], third_level_index_range[0] + 10]
 
     if second_level_index_range is None:
-        second_level_index_range = (0, 10)
+        second_level_index_range = [0, 10]
     if third_level_index_range is None:
-        third_level_index_range = (0, 10)
+        third_level_index_range = [0, 10]
     output_parts = ["## DRC Error Context Shapes Report"]
     output_parts.append(
     "---"
@@ -988,7 +998,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
             if sorted_shapes_in_dbbox:
                 output_parts.append(
                     "These are all shapes located within the combined bounding box of the Level 1 shapes' boundary box. And these shapes are also shown in `level_2.png`.\\n"
-                    f"**Boundary Box Analyzed:** `{{dbbox.to_s()}}`"
+                    f"**Boundary Box Analyzed:** `{{box_as_list(dbbox)}}`"
                 )
                 total_shapes = len(sorted_shapes_in_dbbox)
                 start_index = second_level_index_range[0]
@@ -1001,7 +1011,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
                 if total_shapes > 10:
                     report_msg += (
                         "\\n> *Note: A maximum of 10 shapes are displayed per query. "
-                        "To view other shapes, please query again with a different `second_level_index_range`, for example, `(10, 20)`.*"
+                        "To view other shapes, please query again with a different `second_level_index_range`, for example, `[10, 20]`.*"
                     )
                 output_parts.append(report_msg)
                 dpolygon_list = []
@@ -1016,7 +1026,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
                 generate_layout_image(input_gds, cell_name, dbbox, dpolygon_list, context_layers, "level_2.png", edges=edges)
             else:
                 output_parts.append(
-                    f"**Boundary Box Analyzed:** `{{dbbox.to_s()}}`\\n"
+                    f"**Boundary Box Analyzed:** `{{box_as_list(dbbox)}}`\\n"
                     "> **Status:** No other context shapes were found within this bounding box."
                 )
         else:
@@ -1030,7 +1040,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
                 output_parts.append(
                     "These are the nearest shapes found just outside the bounding box, "
                     "providing information about **neighboring structures**. And these shapes are also shown in `level_3.png`.\\n"
-                    f"**Analysis Area:** Immediately surrounding the box `{{dbbox.to_s()}}`: `{{dbbox_outside.to_s()}}`"
+                    f"**Analysis Area:** Immediately surrounding the box `{{box_as_list(dbbox)}}`: `{{box_as_list(dbbox_outside)}}`"
                 )
                 total_shapes = len(sorted_shapes_outside)
                 start_index = third_level_index_range[0]
@@ -1043,7 +1053,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
                 if total_shapes > 10:
                     report_msg += (
                         "\\n> *Note: A maximum of 10 shapes are displayed per query. "
-                        "To view other shapes, please query again with a different `third_level_index_range`, for example, `(10, 20)`.*"
+                        "To view other shapes, please query again with a different `third_level_index_range`, for example, `[10, 20]`.*"
                     )
                 output_parts.append(report_msg)
                 dpolygon_list = []
@@ -1058,7 +1068,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
                 generate_layout_image(input_gds, cell_name, dbbox_outside, dpolygon_list, context_layers, "level_3.png", edges=edges)
             else:
                 output_parts.append(
-                    f"**Analysis Area:** Immediately surrounding the box `{{dbbox.to_s()}}`: `{{dbbox_outside.to_s()}}`\\n"
+                    f"**Analysis Area:** Immediately surrounding the box `{{box_as_list(dbbox)}}`: `{{box_as_list(dbbox_outside)}}`\\n"
                     "> **Status:** No neighboring shapes were found in the immediate vicinity."
                 )
         else:

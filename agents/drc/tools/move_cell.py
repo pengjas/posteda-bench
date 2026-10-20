@@ -11,7 +11,7 @@ from .layer_config import layer_relation
 @tool
 def move_cell(input_gds: str, target_cell_level: str, target_cell_index: int, cell_name: str, type: str, direct_layers: list, context_layers: list, query_pts: list, new_x: float, new_y: float):
     """
-    Moves a specific cell instance identified by a prior 'query_with_pts' call to a new (x, y) coordinate.
+    Moves a specific cell instance identified by a prior 'query_with_pts' call to a new position given by new_x and new_y.
     Note: This moves an 'instance' of a cell, not the cell blueprint itself.
 
     IMPORTANT: To ensure you are moving the correct object in the correct context, the parameters 'cell_name', 'type', 'direct_layers', 'context_layers', and 'query_pts' MUST EXACTLY MATCH the parameters used in the 'query_with_pts' call that provided the information.
@@ -400,18 +400,32 @@ def get_context_of_shapes(shapes, shapes_info, layers, target_cell):
     return shapes_in_dbbox, shapes_in_dbbox_info, shapes_outside, shapes_outside_info, context, context_outside
 
 
+def point_as_list(p):
+    return [round(p.x, 5), round(p.y, 5)]
+
+
+def points_as_list(points):
+    return [point_as_list(p) for p in points]
+
+
+def box_as_list(box):
+    if box is None:
+        return None
+    return [point_as_list(box.p1), point_as_list(box.p2)]
+
+
 def output_definition(i, shape, shapes_info, layer_id, dtrans, bbox=False):
     cell = shape.cell
     output_text = "==============================\\n"
     output_text += f"Shape {{i}}: "
     if cell.is_top():
         if bbox:
-            output_text += f"It belongs to the top cell: {{cell.name}}(boundary box: {{shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None)}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
+            output_text += f"It belongs to the top cell: {{cell.name}}(boundary box: {{box_as_list(shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None))}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
         else:
             output_text += f"It belongs to the top cell: {{cell.name}}. Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
     else:
         if bbox:
-            output_text += f"It belongs to the sub-cell: {{cell.name}}(boundary box: {{shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None)}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
+            output_text += f"It belongs to the sub-cell: {{cell.name}}(boundary box: {{box_as_list(shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None))}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
         else:
             output_text += f"It belongs to the sub-cell: {{cell.name}}. Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
     if shape.is_box():
@@ -419,33 +433,29 @@ def output_definition(i, shape, shapes_info, layer_id, dtrans, bbox=False):
         if not shape.cell.is_top():
             dbox_in_cell = shape.dbox
             dbox_in_global = dbox_in_cell.transformed(dtrans)
-            output_text += f"Center in global: ({{round(dbox_in_global.center().x, 5)}}, {{round(dbox_in_global.center().y, 5)}}), Left-Bottom in global: ({{round(dbox_in_global.p1.x, 5)}}, {{round(dbox_in_global.p1.y, 5)}}), Right-Top in global: ({{round(dbox_in_global.p2.x, 5)}}, {{round(dbox_in_global.p2.y, 5)}}). "
+            output_text += f"Center in global: {{point_as_list(dbox_in_global.center())}}, Left-Bottom in global: {{point_as_list(dbox_in_global.p1)}}, Right-Top in global: {{point_as_list(dbox_in_global.p2)}}. "
         dcenter = shape.box_dcenter
         dwidth = round(shape.box_dwidth, 5)
         dheight = round(shape.box_dheight, 5)
         dleft_bottom = shape.box_dp1
         dright_top = shape.box_dp2
-        output_text += f"Center in {{shape.cell.name}} cell: ({{round(dcenter.x, 5)}}, {{round(dcenter.y, 5)}}), Left-Bottom in {{shape.cell.name}} cell: ({{round(dleft_bottom.x, 5)}}, {{round(dleft_bottom.y, 5)}}), Right-Top in {{shape.cell.name}} cell: ({{round(dright_top.x, 5)}}, {{round(dright_top.y, 5)}}). Width: {{dwidth}}, Height: {{dheight}}. "
+        output_text += f"Center in {{shape.cell.name}} cell: {{point_as_list(dcenter)}}, Left-Bottom in {{shape.cell.name}} cell: {{point_as_list(dleft_bottom)}}, Right-Top in {{shape.cell.name}} cell: {{point_as_list(dright_top)}}. Width: {{dwidth}}, Height: {{dheight}}. "
     elif shape.is_polygon():
         output_text += "It is a polygon. "
         if not shape.cell.is_top():
             dpolygon_in_cell = shape.dpolygon
             dpolygon_in_global = dpolygon_in_cell.transformed(dtrans)
-            output_text += f"Outline Points in global: {{dpolygon_in_global.to_s()}}. "
+            output_text += f"Outline Points in global: {{points_as_list(dpolygon_in_global.each_point_hull())}}. "
 
-        output_text += f"Outline Points in {{shape.cell.name}} cell: {{shape.dpolygon.to_s()}}. "
+        output_text += f"Outline Points in {{shape.cell.name}} cell: {{points_as_list(shape.dpolygon.each_point_hull())}}. "
     elif shape.is_path():
         output_text += "It is a path. "
         if not shape.cell.is_top():
             dpath_in_cell = shape.dpath
             dpath_in_global = dpath_in_cell.transformed(dtrans)
-            output_text += f" Spine Points in global: "
-            for p in dpath_in_global.each_point():
-                output_text += f" ({{round(p.x, 5)}}, {{round(p.y, 5)}})"
+            output_text += f"Spine Points in global: {{points_as_list(dpath_in_global.each_point())}}. "
 
-        output_text += f"Spine Points in {{shape.cell.name}} cell: "
-        for p in shape.dpath.each_point():
-            output_text += f" ({{round(p.x, 5)}}, {{round(p.y, 5)}})"
+        output_text += f"Spine Points in {{shape.cell.name}} cell: {{points_as_list(shape.dpath.each_point())}}"
         dwidth = round(shape.dpath.width, 5)
         output_text += f". Width: {{dwidth}}."
     output_text += "\\n"
@@ -591,7 +601,7 @@ def move_cell(target_cell_index, shapes, shapes_info, new_x, new_y, output_gds):
         new_dtrans = db.DTrans(current_rot, current_mirr, new_x, new_y)
         found_inst.dtrans = new_dtrans
         ly.write(output_gds)
-        print(f"Moved instance of cell '{{found_inst.cell.name}}' from ({{current_dtrans.disp.x}}, {{current_dtrans.disp.y}}) to ({{new_x}}, {{new_y}}). New dtrans: {{found_inst.dtrans}}. Modified GDS written to {{output_gds}}")
+        print(f"Moved instance of cell '{{found_inst.cell.name}}' from [{{current_dtrans.disp.x}}, {{current_dtrans.disp.y}}] to [{{new_x}}, {{new_y}}]. New dtrans: {{found_inst.dtrans}}. Modified GDS written to {{output_gds}}")
 
 
 

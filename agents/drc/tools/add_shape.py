@@ -18,10 +18,10 @@ def add_shape(input_gds: str, cell_name: str, shape_type: str, layer: str, solut
         cell_name (str): The name of the cell where the new shape will be added.
         shape_type (str): The type of shape to add. This determines the required format for the 'solutions' parameter.
                         Valid values:
-                        - "polygon": `solutions` is a list of DPoints, e.g., [(x1,y1), (x2,y2), ...].
-                        - "box_Center": `solutions` is [(center_x, center_y), width, height].
-                        - "box_Points": `solutions` is [(llx, lly), (urx, ury)].
-                        - "path_Points": `solutions` is [width, [(x1,y1), (x2,y2), ...]].
+                        - "polygon": `solutions` is a list of DPoints, e.g., [[x1, y1], [x2, y2], ...].
+                        - "box_Center": `solutions` is [[center_x, center_y], width, height].
+                        - "box_Points": `solutions` is [[llx, lly], [urx, ury]].
+                        - "path_Points": `solutions` is [width, [[x1, y1], [x2, y2], ...]].
         layer (str): The name of the layer where the new shape will be added.
                      Available layers: ['well drawing', 'well pin', 'fin drawing', 'Gate drawing', 'Gate pin', 'Gate label', 'Gate net', 'Dummy drawing', 'GCut drawing', 'Active drawing', 'Nselect drawing', 'Pselect drawing', 'LIG drawing', 'LIG pin', 'LIG label', 'LIG net', 'LIG blockage', 'LISD drawing', 'LISD pin', 'LISD label', 'LISD net', 'LISD blockage', 'V0 drawing', 'V0 blockage', 'V0 PIN', 'M1 drawing', 'M1 pin', 'M1 label', 'M1 net', 'M1 blockage', 'V1 drawing', 'V1 blockage', 'V1 PIN', 'M2 drawing', 'M2 pin', 'M2 label', 'M2 net', 'M2 blockage', 'V2 drawing', 'V2 blockage', 'V2 PIN', 'M3 drawing', 'M3 pin', 'M3 label', 'M3 net', 'M3 blockage', 'V3 drawing', 'V3 blockage', 'V3 PIN', 'M4 drawing', 'M4 pin', 'M4 label', 'M4 net', 'M4 blockage', 'V4 drawing', 'V4 blockage', 'V4 PIN', 'M5 drawing', 'M5 pin', 'M5 label', 'M5 net', 'M5 blockage', 'V5 drawing', 'V5 blockage', 'V5 PIN', 'M6 drawing', 'M6 pin', 'M6 label', 'M6 net', 'M6 blockage', 'V6 drawing', 'V6 blockage', 'V6 PIN', 'M7 drawing', 'M7 pin', 'M7 label', 'M7 net', 'M7 blockage', 'V7 drawing', 'V7 blockage', 'V7 PIN', 'M8 drawing', 'M8 pin', 'M8 label', 'M8 net', 'M8 blockage', 'V8 drawing', 'V8 blockage', 'V8 PIN', 'M9 drawing', 'M9 pin', 'M9 label', 'M9 net', 'M9 blockage', 'V9 drawing', 'V9 blockage', 'V9 PIN', 'SDT drawing', 'SDT blockage', 'SLVT drawing', 'LVT drawing', 'SRAMDRC drawing', 'BOUNDARY drawing', 'TEXT drawing', 'SRAMVT drawing', 'P_SUB pin', 'Die Area'].
         solutions (list): A list containing the geometric data for the new shape.
@@ -42,13 +42,27 @@ import math
 import xml.etree.ElementTree as ET
 
 
+def point_as_list(p):
+    return [round(p.x, 5), round(p.y, 5)]
+
+
+def points_as_list(points):
+    return [point_as_list(p) for p in points]
+
+
+def box_as_list(box):
+    if box is None:
+        return None
+    return [point_as_list(box.p1), point_as_list(box.p2)]
+
+
 def add_polygon_shape(solutions, layer_index, target_cell, output_path):
     pts_list = [pya.DPoint(pt[0], pt[1]) for pt in solutions]
     new_polygon = pya.DPolygon(pts_list)
     shape_container = target_cell.shapes(layer_index)
     shape_container.insert(new_polygon)
     ly.write(output_path)
-    print(f"Polygon is added at {{new_polygon.to_s()}} and saved to {{output_path}}")
+    print(f"Polygon is added at {{points_as_list(new_polygon.each_point_hull())}} and saved to {{output_path}}")
 
 def add_box_shape(solutions, shape_type, layer_index, target_cell, output_path):
     if shape_type[1] == "Center":
@@ -60,7 +74,7 @@ def add_box_shape(solutions, shape_type, layer_index, target_cell, output_path):
         shape_container = target_cell.shapes(layer_index)
         shape_container.insert(dbox)
         ly.write(output_path)
-        print(f"Box {{dbox.to_s()}} is added via Center({{new_dcenter.to_s()}}), Width({{new_dwidth}}), Height({{new_dheight}}) and layout saved in {{output_path}}.")
+        print(f"Box {{box_as_list(dbox)}} is added via Center {{point_as_list(new_dcenter)}}, Width {{new_dwidth}}, Height {{new_dheight}} and layout saved in {{output_path}}.")
     elif shape_type[1] == "Points":
         new_dp1 = pya.DPoint(solutions[0][0], solutions[0][1])
         new_dp2 = pya.DPoint(solutions[1][0], solutions[1][1])
@@ -68,7 +82,7 @@ def add_box_shape(solutions, shape_type, layer_index, target_cell, output_path):
         shape_container = target_cell.shapes(layer_index)
         shape_container.insert(dbox)
         ly.write(output_path)
-        print(f"Box {{dbox.to_s()}} is added via two corner points and layout saved in {{output_path}}.")
+        print(f"Box {{box_as_list(dbox)}} is added via two corner points and layout saved in {{output_path}}.")
 
 
 def add_path_shape(solutions, shape_type, layer_index, target_cell, output_path):

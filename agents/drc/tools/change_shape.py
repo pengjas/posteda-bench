@@ -26,11 +26,11 @@ def change_shape(input_gds: str, target_shape_level: str, target_shape_index: in
         query_pts (list): Must match the prior query.
         shape_type (str): The type of modification to perform. This determines the required format for the 'solutions' parameter.
                         Valid values:
-                        - "polygon": Replaces the shape's points. `solutions` must be a list of DPoints, e.g., [(x1,y1), (x2,y2), ...].
+                        - "polygon": Replaces the shape's points. `solutions` must be a list of DPoints, e.g., [[x1, y1], [x2, y2], ...].
                         - "delete": Deletes the shape. `solutions` can be an empty list [].
-                        - "box_Center": Reshapes a box using its center, width, and height. `solutions` must be [(center_x, center_y), width, height].
-                        - "box_Points": Reshapes a box using its lower-left and upper-right corner points. `solutions` must be [(llx, lly), (urx, ury)].
-                        - "path_Points": Reshapes a path using a new width and spine points. `solutions` must be [width, [(x1,y1), (x2,y2), ...]].
+                        - "box_Center": Reshapes a box using its center, width, and height. `solutions` must be [[center_x, center_y], width, height].
+                        - "box_Points": Reshapes a box using its lower-left and upper-right corner points. `solutions` must be [[llx, lly], [urx, ury]].
+                        - "path_Points": Reshapes a path using a new width and spine points. `solutions` must be [width, [[x1, y1], [x2, y2], ...]].
         solutions (list): A list containing the geometric data for the modification, formatted according to the 'shape_type'. And the values for coordinates are relative to the shape's cell coordinate system, instead of the global coordinate system.
         change_in_cell (bool): Controls the scope of the shape modification.
                             - When modifying the top-level cell: This parameter should always be set to True.
@@ -413,18 +413,32 @@ def get_context_of_shapes(shapes, shapes_info, layers, target_cell):
     return shapes_in_dbbox, shapes_in_dbbox_info, shapes_outside, shapes_outside_info, context, context_outside
 
 
+def point_as_list(p):
+    return [round(p.x, 5), round(p.y, 5)]
+
+
+def points_as_list(points):
+    return [point_as_list(p) for p in points]
+
+
+def box_as_list(box):
+    if box is None:
+        return None
+    return [point_as_list(box.p1), point_as_list(box.p2)]
+
+
 def output_definition(i, shape, shapes_info, cell_name, layer_id, dtrans, bbox=False):
     cell = shape.cell
     output_text = "==============================\\n"
     output_text += f"Shape {{i}}: "
     if cell.name == cell_name:
         if bbox:
-            output_text += f"It belongs to the top cell: {{cell.name}}(boundary box: {{shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None)}}, dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
+            output_text += f"It belongs to the top cell: {{cell.name}}(boundary box: {{box_as_list(shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None))}}, dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
         else:
             output_text += f"It belongs to the top cell: {{cell.name}}(dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
     else:
         if bbox:
-            output_text += f"It belongs to the sub-cell: {{cell.name}}(boundary box: {{shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None)}}, dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
+            output_text += f"It belongs to the sub-cell: {{cell.name}}(boundary box: {{box_as_list(shapes_info[(shape, layer_id, dtrans)].get('cell_global_dbbox', None))}}, dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
         else:
             output_text += f"It belongs to the sub-cell: {{cell.name}}(dtrans: {{dtrans}}). Layer: {{layer_to_name.get(layer_id, layer_id)}}{{layer_id}}. "
     if shape.is_box():
@@ -432,33 +446,29 @@ def output_definition(i, shape, shapes_info, cell_name, layer_id, dtrans, bbox=F
         if shape.cell.name != cell_name:
             dbox_in_cell = shape.dbox
             dbox_in_global = dbox_in_cell.transformed(dtrans)
-            output_text += f"Center in global: ({{round(dbox_in_global.center().x, 5)}}, {{round(dbox_in_global.center().y, 5)}}), Left-Bottom in global: ({{round(dbox_in_global.p1.x, 5)}}, {{round(dbox_in_global.p1.y, 5)}}), Right-Top in global: ({{round(dbox_in_global.p2.x, 5)}}, {{round(dbox_in_global.p2.y, 5)}}). "
+            output_text += f"Center in global: {{point_as_list(dbox_in_global.center())}}, Left-Bottom in global: {{point_as_list(dbox_in_global.p1)}}, Right-Top in global: {{point_as_list(dbox_in_global.p2)}}. "
         dcenter = shape.box_dcenter
         dwidth = round(shape.box_dwidth, 5)
         dheight = round(shape.box_dheight, 5)
         dleft_bottom = shape.box_dp1
         dright_top = shape.box_dp2
-        output_text += f"Center in {{shape.cell.name}} cell: ({{round(dcenter.x, 5)}}, {{round(dcenter.y, 5)}}), Left-Bottom in {{shape.cell.name}} cell: ({{round(dleft_bottom.x, 5)}}, {{round(dleft_bottom.y, 5)}}), Right-Top in {{shape.cell.name}} cell: ({{round(dright_top.x, 5)}}, {{round(dright_top.y, 5)}}). Width: {{dwidth}}, Height: {{dheight}}. "
+        output_text += f"Center in {{shape.cell.name}} cell: {{point_as_list(dcenter)}}, Left-Bottom in {{shape.cell.name}} cell: {{point_as_list(dleft_bottom)}}, Right-Top in {{shape.cell.name}} cell: {{point_as_list(dright_top)}}. Width: {{dwidth}}, Height: {{dheight}}. "
     elif shape.is_polygon():
         output_text += "It is a polygon. "
         if shape.cell.name != cell_name:
             dpolygon_in_cell = shape.dpolygon
             dpolygon_in_global = dpolygon_in_cell.transformed(dtrans)
-            output_text += f"Outline Points in global: {{dpolygon_in_global.to_s()}}. "
+            output_text += f"Outline Points in global: {{points_as_list(dpolygon_in_global.each_point_hull())}}. "
 
-        output_text += f"Outline Points in {{shape.cell.name}} cell: {{shape.dpolygon.to_s()}}. "
+        output_text += f"Outline Points in {{shape.cell.name}} cell: {{points_as_list(shape.dpolygon.each_point_hull())}}. "
     elif shape.is_path():
         output_text += "It is a path. "
         if shape.cell.name != cell_name:
             dpath_in_cell = shape.dpath
             dpath_in_global = dpath_in_cell.transformed(dtrans)
-            output_text += f" Spine Points in global: "
-            for p in dpath_in_global.each_point():
-                output_text += f" ({{round(p.x, 5)}}, {{round(p.y, 5)}})"
+            output_text += f"Spine Points in global: {{points_as_list(dpath_in_global.each_point())}}. "
 
-        output_text += f"Spine Points in {{shape.cell.name}} cell: "
-        for p in shape.dpath.each_point():
-            output_text += f" ({{round(p.x, 5)}}, {{round(p.y, 5)}})"
+        output_text += f"Spine Points in {{shape.cell.name}} cell: {{points_as_list(shape.dpath.each_point())}}"
         dwidth = round(shape.dpath.width, 5)
         output_text += f". Width: {{dwidth}}."
     output_text += "\\n"
@@ -713,7 +723,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
             output_parts.append(
                 "These are all shapes located within the combined bounding box of the Level 1 shapes' boundary box. "
                 f"This provides the **immediate local context**.\\n"
-                f"**Boundary Box Analyzed:** `{{dbbox.to_s()}}`"
+                f"**Boundary Box Analyzed:** `{{box_as_list(dbbox)}}`"
             )
             if shapes_in_dbbox:
                 output_parts.append(f"Found **{{len(shapes_in_dbbox)}}** context shape(s):")
@@ -730,7 +740,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
             output_parts.append(
                 "These are the nearest shapes found just outside the bounding box, "
                 "providing information about **neighboring structures**.\\n"
-                f"**Analysis Area:** Immediately surrounding the box `{{dbbox.to_s()}}`: `{{dbbox_outside.to_s()}}`"
+                f"**Analysis Area:** Immediately surrounding the box `{{box_as_list(dbbox)}}`: `{{box_as_list(dbbox_outside)}}`"
             )
             if shapes_outside:
                 output_parts.append(f"Found **{{len(shapes_outside)}}** nearest neighboring shape(s):")
