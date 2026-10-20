@@ -1,5 +1,6 @@
 """Utility functions for DRC tools."""
 
+import ast
 import subprocess
 import os
 
@@ -17,9 +18,16 @@ def parse_numbers(value):
 
     vLLM's Gemma 4 tool parser returns the numbers inside a list argument as
     strings ('0.125') unless the tool schema types the list's items, which a
-    bare `list` parameter does not.
+    bare `list` parameter does not. It knows no tuples either: it splits a
+    point written as (0.04,-0.258) at the comma into '(0.04' and '-0.258)',
+    which are joined back here into [0.04, -0.258].
     """
     if isinstance(value, (list, tuple)):
+        if any(isinstance(v, str) and "(" in v for v in value):
+            try:
+                value = ast.literal_eval(_as_source(value))
+            except (ValueError, SyntaxError):
+                pass
         return [parse_numbers(v) for v in value]
     if isinstance(value, str):
         for number_type in (int, float):
@@ -28,6 +36,13 @@ def parse_numbers(value):
             except ValueError:
                 pass
     return value
+
+
+def _as_source(value):
+    """Write a list the parser split back out as the text the model wrote."""
+    if isinstance(value, (list, tuple)):
+        return "[" + ",".join(_as_source(v) for v in value) + "]"
+    return str(value)
 
 
 def run_local_code(code: str = None, local_path: str = None, command: str = None, display_output: bool = True) -> str:
