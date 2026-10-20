@@ -95,7 +95,8 @@ def parse_lyp(path):
     tree = ET.parse(path)
     root = tree.getroot()
     mapping = []
-    for prop in root.findall("properties"):
+    # The entries sit inside the file's <layer-properties> tab, not at its root.
+    for prop in root.iter("properties"):
         name = prop.findtext("name")
         if name:
             try:
