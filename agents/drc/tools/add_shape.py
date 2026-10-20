@@ -2,14 +2,15 @@
 
 import os
 import sys
+from typing import Annotated
 from langchain_core.tools import tool
 
-from .utils import run_local_code, get_ignore_case, parse_numbers
+from .utils import run_local_code, get_ignore_case, numbers_from_text
 from .layer_config import layers
 
 
 @tool
-def add_shape(input_gds: str, cell_name: str, shape_type: str, layer: str, solutions: list):
+def add_shape(input_gds: str, cell_name: str, shape_type: str, layer: str, solutions: Annotated[list, numbers_from_text]):
     """
     Adds a new shape (polygon, box, or path) to a specified cell on a specified layer. This tool is for creating new geometry.
 
@@ -29,7 +30,6 @@ def add_shape(input_gds: str, cell_name: str, shape_type: str, layer: str, solut
     Returns:
         str: A confirmation message indicating success or failure of the add operation.
     """
-    solutions = parse_numbers(solutions)
     layer_info = get_ignore_case(layers, layer)
 
     output_gds = "./modified.gds"

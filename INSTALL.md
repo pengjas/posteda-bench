@@ -122,7 +122,10 @@ of your ORFS checkout (default `$HOME/OpenROAD-flow-scripts/flow`), and keep
   PyTorch and CUDA (e.g. `conda create -n vllm python=3.12`, then
   `pip install vllm` inside it). At the top of `scripts/serve_vllm.sh`, set
   `MODEL` (a Hugging Face name or a local checkpoint path), `GPUS`, and `VLLM`
-  (the path of that environment's `vllm` command).
+  (the path of that environment's `vllm` command). For Gemma 4 the script also
+  loads `scripts/vllm_tuple_args.py`, without which vLLM's parser breaks up the
+  tuples the DRC tools ask for; if you start vLLM yourself, pass it with
+  `--tool-parser-plugin`.
 - **OpenAI API:** `export OPENAI_API_KEY=sk-...` in your shell; keep the key out
   of files.
 

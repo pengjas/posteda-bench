@@ -4,6 +4,8 @@ import ast
 import subprocess
 import os
 
+from pydantic import BeforeValidator
+
 
 def get_ignore_case(d, key, default=None):
     """Get a value from a dictionary with case-insensitive key matching."""
@@ -13,20 +15,33 @@ def get_ignore_case(d, key, default=None):
     return default
 
 
-def parse_numbers(value):
-    """Turn the numeric strings in a (nested) list into numbers.
+_LITERAL_ERRORS = (ValueError, TypeError, SyntaxError, MemoryError, RecursionError)
 
-    vLLM's Gemma 4 tool parser returns the numbers inside a list argument as
-    strings ('0.125') unless the tool schema types the list's items, which a
-    bare `list` parameter does not. It knows no tuples either: it splits a
-    point written as (0.04,-0.258) at the comma into '(0.04' and '-0.258)',
-    which are joined back here into [0.04, -0.258].
+
+def parse_numbers(value):
+    """Turn the numbers of a tool argument that arrive as text into numbers.
+
+    The tools describe points and ranges as Python tuples, e.g.
+    [(llx, lly), (urx, ury)] or (10, 20), and a model that writes them so does
+    not always deliver lists of numbers. JSON tool calls, and parsers that
+    read array arguments with json.loads such as vLLM's qwen3_coder, carry the
+    whole value as a string: "(10, 20)". vLLM's Gemma 4 parser splits a tuple
+    at its commas, '(0.04', '-0.258)', and returns the numbers of an untyped
+    list as strings: '0.125'. Each is read here as lists of numbers. What
+    departs from the descriptions, such as a list in one bracket too many or
+    a quoted list without tuples, is left for the tool to reject.
     """
+    if isinstance(value, str) and "(" in value:
+        try:
+            literal = ast.literal_eval(value)
+        except _LITERAL_ERRORS:
+            return value
+        return parse_numbers(literal) if isinstance(literal, (list, tuple)) else value
     if isinstance(value, (list, tuple)):
         if any(isinstance(v, str) and "(" in v for v in value):
             try:
                 value = ast.literal_eval(_as_source(value))
-            except (ValueError, SyntaxError):
+            except _LITERAL_ERRORS:
                 pass
         return [parse_numbers(v) for v in value]
     if isinstance(value, str):
@@ -36,6 +51,11 @@ def parse_numbers(value):
             except ValueError:
                 pass
     return value
+
+
+# Annotate a tool argument with this to run parse_numbers on it before the
+# argument is checked against its type.
+numbers_from_text = BeforeValidator(parse_numbers)
 
 
 def _as_source(value):

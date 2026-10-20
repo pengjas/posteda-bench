@@ -2,14 +2,15 @@
 
 import os
 import sys
+from typing import Annotated
 from langchain_core.tools import tool
 
-from .utils import run_local_code, get_ignore_case, parse_numbers
+from .utils import run_local_code, get_ignore_case, numbers_from_text
 from .layer_config import layer_relation
 
 
 @tool
-def move_cell(input_gds: str, target_cell_level: str, target_cell_index: int, cell_name: str, type: str, direct_layers: list, context_layers: list, query_pts: list, new_x: float, new_y: float):
+def move_cell(input_gds: str, target_cell_level: str, target_cell_index: int, cell_name: str, type: str, direct_layers: list, context_layers: list, query_pts: Annotated[list, numbers_from_text], new_x: float, new_y: float):
     """
     Moves a specific cell instance identified by a prior 'query_with_pts' call to a new (x, y) coordinate.
     Note: This moves an 'instance' of a cell, not the cell blueprint itself.
@@ -31,8 +32,6 @@ def move_cell(input_gds: str, target_cell_level: str, target_cell_index: int, ce
     Returns:
         str: A confirmation message indicating success or failure of the move operation.
     """
-    query_pts = parse_numbers(query_pts)
-
     d_layers = []
     c_layers = []
     for ly in direct_layers:

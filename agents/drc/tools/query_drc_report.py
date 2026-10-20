@@ -2,9 +2,10 @@
 
 import os
 import sys
+from typing import Annotated
 from langchain_core.tools import tool
 
-from .utils import run_local_code
+from .utils import run_local_code, numbers_from_text
 
 
 @tool
@@ -12,7 +13,7 @@ def query_drc_report(
     gds_file_path: str,
     rerun_drc_check: bool = True,
     filter_by_categories: list[str] | None = None,
-    view_error_ranges: list[list[int]] | None = None
+    view_error_ranges: Annotated[list[list[int]] | None, numbers_from_text] = None
 ):
     """
     **PURPOSE:** Runs a DRC check to generate a new violation report OR queries a previously

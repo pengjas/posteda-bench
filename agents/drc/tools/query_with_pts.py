@@ -2,15 +2,15 @@
 
 import os
 import sys
-from typing import List
+from typing import Annotated, List
 from langchain_core.tools import tool
 
-from .utils import run_local_code, get_ignore_case, parse_numbers
+from .utils import run_local_code, get_ignore_case, numbers_from_text
 from .layer_config import layer_relation
 
 
 @tool
-def query_with_pts(input_gds: str, level: list, cell_name: str, type: str, direct_layers: list, context_layers: list, query_pts: list, second_level_index_range: List = None, third_level_index_range: List = None):
+def query_with_pts(input_gds: str, level: list, cell_name: str, type: str, direct_layers: list, context_layers: list, query_pts: Annotated[list, numbers_from_text], second_level_index_range: Annotated[List, numbers_from_text] = None, third_level_index_range: Annotated[List, numbers_from_text] = None):
     """
     Queries a GDS layout file to gather information about shapes related to a specific DRC error. This is the primary tool for 'seeing' the layout.
 
@@ -42,10 +42,6 @@ def query_with_pts(input_gds: str, level: list, cell_name: str, type: str, direc
     Returns:
         str: A formatted string describing the shapes found at the requested levels, including their properties, locations, and parent cells.
     """
-    query_pts = parse_numbers(query_pts)
-    second_level_index_range = parse_numbers(second_level_index_range)
-    third_level_index_range = parse_numbers(third_level_index_range)
-
     d_layers = []
     c_layers = []
     for ly in direct_layers:
