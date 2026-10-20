@@ -6,7 +6,7 @@ from typing import List
 from langchain_core.tools import tool
 
 from .utils import run_local_code, get_ignore_case, parse_numbers
-from .layer_config import layer_relation
+from .layer_config import layer_relation, layer_names
 
 
 @tool
@@ -53,67 +53,11 @@ def query_with_pts(input_gds: str, level: list, cell_name: str, type: str, direc
     for ly in context_layers:
         c_layers.extend(get_ignore_case(layer_relation, ly, []))
 
-    lyp_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "klayout", "asap7.lyp")
-
     code = rf'''
 import pdb
 import pya
 import klayout.db as db
 import math
-
-import xml.etree.ElementTree as ET
-
-def parse_layer_name(s):
-    s = s.strip()
-
-    if " - " in s:
-        name_part, ld_part = s.split(" - ", 1)
-        layer_id, datatype = ld_part.split("/")
-        name_part = name_part.strip()
-    else:
-        parts = s.split("/")
-        if len(parts) >= 2:
-            layer_id = parts[0].strip()
-            rest = parts[1].strip()
-            datatype_parts = rest.split(None, 1)
-            if len(datatype_parts) >= 2:
-                datatype = datatype_parts[0].strip()
-                name_part = datatype_parts[1].strip()
-            else:
-                datatype = datatype_parts[0].strip()
-                name_part = ""
-        else:
-            return {{
-                "name": s,
-                "layer_id": 0,
-                "datatype": 0
-            }}
-
-    return {{
-        "name": name_part,
-        "layer_id": int(layer_id),
-        "datatype": int(datatype)
-    }}
-
-def parse_lyp(path):
-    tree = ET.parse(path)
-    root = tree.getroot()
-    mapping = []
-    # The entries sit inside the file's <layer-properties> tab, not at its root.
-    for prop in root.iter("properties"):
-        name = prop.findtext("name")
-        if name:
-            try:
-                info = parse_layer_name(name)
-                mapping.append(info)
-            except Exception as e:
-                print(f"Failed to parse name: '{{name}}', error: {{e}}")
-                mapping.append({{
-                    "name": name,
-                    "layer_id": 0,
-                    "datatype": 0
-                }})
-    return mapping
 
 
 def point_on_edge_with_tol(edge: db.DEdge, pt: db.DPoint, tol: float = 1e-6) -> bool:
@@ -718,13 +662,7 @@ if __name__ == "__main__":
     input_gds = "{input_gds}"
     ly = db.Layout()
     ly.read(input_gds)
-    lyp_file = "{lyp_file_path}"
-    layers = parse_lyp(lyp_file)
-
-    layer_to_name = {{}}
-    for info in layers:
-        key = (info['layer_id'], info['datatype'])
-        layer_to_name[key] = info['name']
+    layer_to_name = {layer_names}
 
     level = {level}
     cell_name = "{cell_name}"

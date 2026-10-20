@@ -152,3 +152,7 @@ layers = {
     'P_SUB pin': [(3, 251)],
     'Die Area': [(235, 5)]
 }
+
+# The add_shape name of each (layer_id, datatype) pair, e.g. (19, 251) -> 'M1 pin'.
+# Its first word is the pair's name in layer_relation, which the query tools take.
+layer_names = {number: name for name, numbers in layers.items() for number in numbers}
