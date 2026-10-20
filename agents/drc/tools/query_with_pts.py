@@ -34,10 +34,10 @@ def query_with_pts(input_gds: str, level: list, cell_name: str, type: str, direc
                                For example, if a spacing error is in "M1", direct_layers could be ["M1"], while context_layers could be ["M1", "M2", "V1"] to see surrounding metals and vias.
         query_pts (list): A list of coordinate points that define the exact location of the DRC error, taken from the DRC report.
             - If type="edge-pair", format as a list of lists: [[x1, y1, x2, y2], [x3, y3, x4, y4]].
-            - If type="polygon", format as a list of lists: [[x1, y1], [x2, y2], ...].
-            - If type="edge", format as a list of lists: [[x1, y1, x2, y2]].
-        second_level_index_range (List, optional): A list [start, end] specifying the index range of shapes to return for the "second" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to [0, 10]. To query for more shapes, use subsequent ranges, e.g., [10, 20].
-        third_level_index_range (List, optional): A list [start, end] specifying the index range of shapes to return for the "third" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to [0, 10]. To query for more shapes, use subsequent ranges, e.g., [10, 20].
+            - If type="polygon", format as a list of tuples: [(x1, y1), (x2, y2), ...].
+            - If type="edge", format as a list of tuples: [[x1, y1, x2, y2]].
+        second_level_index_range (List, optional): A tuple (start, end) specifying the index range of shapes to return for the "second" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to (0, 10). To query for more shapes, use subsequent ranges, e.g., (10, 20).
+        third_level_index_range (List, optional): A tuple (start, end) specifying the index range of shapes to return for the "third" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to (0, 10). To query for more shapes, use subsequent ranges, e.g., (10, 20).
 
     Returns:
         str: A formatted string describing the shapes found at the requested levels, including their properties, locations, and parent cells.
@@ -198,7 +198,7 @@ def query_with_pts(cell, type, layers: list, query_pts: list):
             return
         for edge in query_pts:
             if len(edge) != 4:
-                print("As for 'edge-pair' type, each edge must be defined by four coordinates: [x1, y1, x2, y2].")
+                print("As for 'edge-pair' type, each edge must be defined by four coordinates: (x1, y1, x2, y2).")
                 return
         edge1 = query_pts[0]
         edge2 = query_pts[1]
@@ -212,7 +212,7 @@ def query_with_pts(cell, type, layers: list, query_pts: list):
     elif type == "polygon":
         for point in query_pts:
                 if len(point) != 2:
-                    print("As for 'polygon' type, `query_pts` should be a list of points. Each point must be defined by two coordinates: [x, y]. For example: [[x1, y1], [x2, y2], ...]")
+                    print("As for 'polygon' type, `query_pts` should be a list of points. Each point must be defined by two coordinates: (x, y). For example: [(x1, y1), (x2, y2), ...]")
                     return
         for i in range(len(query_pts)):
             point1 = db.DPoint(query_pts[i][0], query_pts[i][1])
@@ -227,7 +227,7 @@ def query_with_pts(cell, type, layers: list, query_pts: list):
             print("For 'edge' type, exactly one edge must be provided.")
             return
         if len(query_pts[0]) != 4:
-            print("As for 'edge' type, the edge must be defined by four coordinates: [x1, y1, x2, y2].")
+            print("As for 'edge' type, the edge must be defined by four coordinates: (x1, y1, x2, y2).")
             return
         edge = query_pts[0]
         p_1_x, p_1_y, p_2_x, p_2_y = edge
@@ -653,7 +653,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
                 if total_shapes > 10:
                     report_msg += (
                         "\\n> *Note: A maximum of 10 shapes are displayed per query. "
-                        "To view other shapes, please query again with a different `second_level_index_range`, for example, `[10, 20]`.*"
+                        "To view other shapes, please query again with a different `second_level_index_range`, for example, `(10, 20)`.*"
                     )
                 output_parts.append(report_msg)
 
@@ -686,7 +686,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
                 if total_shapes > 10:
                     report_msg += (
                         "\\n> *Note: A maximum of 10 shapes are displayed per query. "
-                        "To view other shapes, please query again with a different `third_level_index_range`, for example, `[10, 20]`.*"
+                        "To view other shapes, please query again with a different `third_level_index_range`, for example, `(10, 20)`.*"
                     )
                 output_parts.append(report_msg)
 

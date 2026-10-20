@@ -34,7 +34,7 @@ def query_drc_report(
         -   Use the filtering parameters to specify exactly which "page" of errors you need to see.
         -   **Example Scenario:** The initial check for category "M1.S.1" shows 10 errors but
             the total count is 50. To see the next set of errors, you would call:
-            `query_drc_report(gds_file_path="/path/to/new.gds", rerun_drc_check=False, filter_by_categories=["M1.S.1"], view_error_ranges=[[10, 20]])`
+            `query_drc_report(gds_file_path="/path/to/new.gds", rerun_drc_check=False, filter_by_categories=["M1.S.1"], view_error_ranges=[(10, 20)])`
 
     **PARAMETERS:**
     -   `gds_file_path` (str): The absolute path to the GDS file being analyzed.
@@ -45,7 +45,7 @@ def query_drc_report(
             navigating to different error indices.
     -   `filter_by_categories` (list[str] | None): A list of error category names you want to
         inspect further. **Only used when `rerun_drc_check=False`**.
-    -   `view_error_ranges` (list[list[int]] | None): A list of [start, end] pairs.
+    -   `view_error_ranges` (list[list[int]] | None): A list of (start, end) tuples.
         Specifies the precise index range of errors to view for the corresponding categories.
         **Only used when `rerun_drc_check=False`**.
 
@@ -155,7 +155,7 @@ else:
                     print(f"Error: Invalid index range {{index_range}}. Start index cannot be greater than end index. Skipping.\\n")
                     continue
             except (TypeError, ValueError):
-                print(f"Error: Index range {{index_range}} is not a valid [start, end] pair. Skipping.\\n")
+                print(f"Error: Index range {{index_range}} is not a valid tuple (start, end). Skipping.\\n")
                 continue
 
             if req_start >= total_in_cat:

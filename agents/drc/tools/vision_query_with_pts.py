@@ -183,10 +183,10 @@ def vision_query_with_pts(input_gds: str, level: list, cell_name: str, type: str
                                For example, if a spacing error is in "M1", direct_layers could be ["M1"], while context_layers could be ["M1", "M2", "V1"] to see surrounding metals and vias.
         query_pts (list): A list of coordinate points that define the exact location of the DRC error, taken from the DRC report.
             - If type="edge-pair", format as a list of lists: [[x1, y1, x2, y2], [x3, y3, x4, y4]].
-            - If type="polygon", format as a list of lists: [[x1, y1], [x2, y2], ...].
-            - If type="edge", format as a list of lists: [[x1, y1, x2, y2]].
-        second_level_index_range (List, optional): A list [start, end] specifying the index range of shapes to return for the "second" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to [0, 10]. To query for more shapes, use subsequent ranges, e.g., [10, 20].
-        third_level_index_range (List, optional): A list [start, end] specifying the index range of shapes to return for the "third" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to [0, 10]. To query for more shapes, use subsequent ranges, e.g., [10, 20].
+            - If type="polygon", format as a list of tuples: [(x1, y1), (x2, y2), ...].
+            - If type="edge", format as a list of tuples: [[x1, y1, x2, y2]].
+        second_level_index_range (List, optional): A tuple (start, end) specifying the index range of shapes to return for the "second" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to (0, 10). To query for more shapes, use subsequent ranges, e.g., (10, 20).
+        third_level_index_range (List, optional): A tuple (start, end) specifying the index range of shapes to return for the "third" level context. The shapes are pre-sorted by proximity to the error (lower index is closer). If None, defaults to (0, 10). To query for more shapes, use subsequent ranges, e.g., (10, 20).
 
     Returns:
         str: A formatted string describing the shapes found at the requested levels, including their properties, locations, and parent cells. And several corresponding images for your visual reference.
@@ -1037,7 +1037,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
                 if total_shapes > 10:
                     report_msg += (
                         "\\n> *Note: A maximum of 10 shapes are displayed per query. "
-                        "To view other shapes, please query again with a different `second_level_index_range`, for example, `[10, 20]`.*"
+                        "To view other shapes, please query again with a different `second_level_index_range`, for example, `(10, 20)`.*"
                     )
                 output_parts.append(report_msg)
                 dpolygon_list = []
@@ -1079,7 +1079,7 @@ def generate_drc_context_report(level, shapes, shapes_info, context_layers, cell
                 if total_shapes > 10:
                     report_msg += (
                         "\\n> *Note: A maximum of 10 shapes are displayed per query. "
-                        "To view other shapes, please query again with a different `third_level_index_range`, for example, `[10, 20]`.*"
+                        "To view other shapes, please query again with a different `third_level_index_range`, for example, `(10, 20)`.*"
                     )
                 output_parts.append(report_msg)
                 dpolygon_list = []
