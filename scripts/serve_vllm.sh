@@ -94,11 +94,6 @@ cmd=("$VLLM" serve "$MODEL" --host "$HOST" --port "$PORT"
 if [ -n "$REASONING_PARSER" ]; then
     cmd+=(--reasoning-parser "$REASONING_PARSER")
 fi
-# vLLM's Gemma 4 parser breaks up the tuples the DRC tools ask for; this
-# plugin makes it read them as lists.
-if [ "$TOOL_CALL_PARSER" = gemma4 ]; then
-    cmd+=(--tool-parser-plugin "$(cd "$(dirname "$0")" && pwd)/vllm_tuple_args.py")
-fi
 if [ -n "$SERVED_MODEL_NAME" ]; then
     cmd+=(--served-model-name "$SERVED_MODEL_NAME")
 fi

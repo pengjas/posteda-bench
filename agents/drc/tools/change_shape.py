@@ -2,15 +2,14 @@
 
 import os
 import sys
-from typing import Annotated
 from langchain_core.tools import tool
 
-from .utils import run_local_code, get_ignore_case, numbers_from_text
+from .utils import run_local_code, get_ignore_case, parse_numbers
 from .layer_config import layer_relation
 
 
 @tool
-def change_shape(input_gds: str, target_shape_level: str, target_shape_index: int, cell_name: str, type: str, direct_layers: list, context_layers: list, query_pts: Annotated[list, numbers_from_text], shape_type: str, solutions: Annotated[list, numbers_from_text], change_in_cell: bool):
+def change_shape(input_gds: str, target_shape_level: str, target_shape_index: int, cell_name: str, type: str, direct_layers: list, context_layers: list, query_pts: list, shape_type: str, solutions: list, change_in_cell: bool):
     """
     Modifies or deletes a specific shape identified by a prior 'query_with_pts' call. This allows for granular changes to polygons, paths, or boxes.
 
@@ -40,6 +39,9 @@ def change_shape(input_gds: str, target_shape_level: str, target_shape_index: in
     Returns:
         str: A confirmation message indicating success or failure of the shape modification.
     """
+    query_pts = parse_numbers(query_pts)
+    solutions = parse_numbers(solutions)
+
     d_layers = []
     c_layers = []
     for ly in direct_layers:
