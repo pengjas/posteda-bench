@@ -26,11 +26,11 @@ def change_shape(input_gds: str, target_shape_level: str, target_shape_index: in
         query_pts (list): Must match the prior query.
         shape_type (str): The type of modification to perform. This determines the required format for the 'solutions' parameter.
                         Valid values:
-                        - "polygon": Replaces the shape's points. `solutions` must be a list of DPoints, e.g., [(x1,y1), (x2,y2), ...].
+                        - "polygon": Replaces the shape's points. `solutions` must be a list of DPoints, e.g., [[x1, y1], [x2, y2], ...].
                         - "delete": Deletes the shape. `solutions` can be an empty list [].
-                        - "box_Center": Reshapes a box using its center, width, and height. `solutions` must be [(center_x, center_y), width, height].
-                        - "box_Points": Reshapes a box using its lower-left and upper-right corner points. `solutions` must be [(llx, lly), (urx, ury)].
-                        - "path_Points": Reshapes a path using a new width and spine points. `solutions` must be [width, [(x1,y1), (x2,y2), ...]].
+                        - "box_Center": Reshapes a box using its center, width, and height. `solutions` must be [[center_x, center_y], width, height].
+                        - "box_Points": Reshapes a box using its lower-left and upper-right corner points. `solutions` must be [[llx, lly], [urx, ury]].
+                        - "path_Points": Reshapes a path using a new width and spine points. `solutions` must be [width, [[x1, y1], [x2, y2], ...]].
         solutions (list): A list containing the geometric data for the modification, formatted according to the 'shape_type'. And the values for coordinates are relative to the shape's cell coordinate system, instead of the global coordinate system.
         change_in_cell (bool): Controls the scope of the shape modification.
                             - When modifying the top-level cell: This parameter should always be set to True.
