@@ -15,7 +15,7 @@ hand.
 | conda environment `posteda` | everything | Python 3.11.11 with `requirements.txt` |
 | KLayout | DRC | 0.30.3 |
 | Docker Engine, usable without `sudo` | PPA | any recent |
-| OpenROAD-flow-scripts (ORFS) and its Docker image | PPA | commit `a2bb042b6`, image `openroad/orfs:v3.0-4639-ga2bb042b6` |
+| OpenROAD-flow-scripts (ORFS) and its Docker image | PPA | commit `e19b7a517`, image `openroad/orfs:v3.0-4590-gf1015bb3b` |
 | Icarus Verilog (`iverilog`, `vvp`) | PPA | 11 or 12 |
 | vLLM in its own environment, NVIDIA GPU | local models | one that supports your model |
 | OpenAI API key | `gpt_*` agents | – |
@@ -70,8 +70,8 @@ Use the ORFS commit and Docker image that produced the reference results:
 ```bash
 git clone https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
 cd OpenROAD-flow-scripts
-git checkout a2bb042b6
-docker pull openroad/orfs:v3.0-4639-ga2bb042b6
+git checkout e19b7a517
+docker pull openroad/orfs:v3.0-4590-gf1015bb3b
 ```
 
 No `--recursive` clone or build is needed: `util/docker_shell` runs OpenROAD
@@ -114,7 +114,7 @@ pinned packages are optional: `pillow` (vision agents), `langchain-google-genai`
 
 In `eval/eval_ppa_config.sh`, set `OPENROAD_FLOW_DIR` to the `flow` directory
 of your ORFS checkout (default `$HOME/OpenROAD-flow-scripts/flow`), and keep
-`OR_IMAGE=openroad/orfs:v3.0-4639-ga2bb042b6`.
+`OR_IMAGE=openroad/orfs:v3.0-4590-gf1015bb3b`.
 
 ## 8. A model backend
 
@@ -135,7 +135,7 @@ need no model.
 |---|---|---|
 | KLayout | `klayout -v` | `KLayout 0.30.3` |
 | Docker without `sudo` | `docker run --rm hello-world` | `Hello from Docker!` |
-| ORFS through Docker | `(cd <ORFS>/flow && export OR_IMAGE=openroad/orfs:v3.0-4639-ga2bb042b6 && util/docker_shell openroad -version && util/docker_shell yosys -V)` | both versions |
+| ORFS through Docker | `(cd <ORFS>/flow && export OR_IMAGE=openroad/orfs:v3.0-4590-gf1015bb3b && util/docker_shell openroad -version && util/docker_shell yosys -V)` | both versions |
 | Icarus Verilog | `iverilog -V && vvp -V` | both versions |
 | Python packages | `python -c "import langchain_openai, langgraph, numpy"` | no error |
 
@@ -155,7 +155,7 @@ jq -c '{init_errors_num, final_errors_num}' info.json    # {"init_errors_num":1,
 REPO_ROOT=$PWD
 T=$REPO_ROOT/benchmark/ppa_bench/ppa_multi/L1/q1
 export OPENROAD_FLOW_DIR=/abs/path/to/OpenROAD-flow-scripts/flow
-export OR_IMAGE=openroad/orfs:v3.0-4639-ga2bb042b6
+export OR_IMAGE=openroad/orfs:v3.0-4590-gf1015bb3b
 cd "$(mktemp -d)"
 cp -rL $T/config $T/src $T/info.json $REPO_ROOT/eval/ppa_metric_collection.py .
 export PPA_SANDBOX_ROOT=$PWD PYTHONPATH=$REPO_ROOT
@@ -192,7 +192,7 @@ the OpenAI API, export `OPENAI_API_KEY` instead and run
 | A Linux distribution other than Ubuntu | Install the same versions with its package manager; klayout.org has KLayout packages for several distributions. Untested. |
 | macOS, Windows, or ARM | Use an x86_64 Linux machine or virtual machine; the tested setup is x86_64 Ubuntu, and WSL2 is untested. |
 | Another KLayout version is installed | Other projects may rely on it, so ask before replacing it. The DRC tools need 0.30.3 as the `klayout` on `PATH`. |
-| An ORFS checkout exists at another commit | Leave it; clone a second copy at `a2bb042b6` and point `OPENROAD_FLOW_DIR` at that one. |
+| An ORFS checkout exists at another commit | Leave it; clone a second copy at `e19b7a517` and point `OPENROAD_FLOW_DIR` at that one. |
 | A `posteda` conda environment already exists | Compare it with `requirements.txt`; rather than changing it, create an environment under another name. |
 | No conda | Install Miniconda in your home directory from repo.anaconda.com. If `conda create` stops at Anaconda's Terms of Service, read and accept them with `conda tos accept`, or create the environment from conda-forge (`-c conda-forge --override-channels`). |
 | Docker says `permission denied` | Your account is not in the `docker` group yet, or has not logged in again since; until then, `sg docker -c '<command>'` works. Rootless Docker and Podman are untested. |

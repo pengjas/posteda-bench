@@ -15,7 +15,7 @@ REPO_ROOT=
 # Your ORFS checkout's flow directory, and the Docker image its
 # util/docker_shell runs. Other images give different PPA numbers.
 OPENROAD_FLOW_DIR=$HOME/OpenROAD-flow-scripts/flow
-OR_IMAGE=openroad/orfs:v3.0-4639-ga2bb042b6
+OR_IMAGE=openroad/orfs:v3.0-4590-gf1015bb3b
 
 # --- Agent ---------------------------------------------------------------------
 # The agent script to evaluate:
